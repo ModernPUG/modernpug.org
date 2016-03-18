@@ -28,16 +28,22 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () use ($schedule) {
             $this->rrmdir(resource_path('views/vendor/ncells'));
-            $provider = array_rand([
-                'ModernPUG\OriginalSkin\OriginalSkinServiceProvider',
-                'ModernPUG\RedGooseSkin\RedGooseSkinServiceProvider',
-            ]);
+            $items = [
+                "ModernPUG\\OriginalSkin\\OriginalSkinServiceProvider",
+                "ModernPUG\\RedGooseSkin\\RedGooseSkinServiceProvider",
+            ];
+            shuffle($items);
+            $provider = $items[0];
             Artisan::call('vendor:publish', ['--provider' => $provider]);
         })->everyMinute();
     }
 
     private function rrmdir($dirPath)
     {
+        if (!file_exists($dirPath)) {
+            return;
+        }
+
         $paths = new \RecursiveIteratorIterator(
             new \RecursiveDirectoryIterator(
                 $dirPath,
