@@ -58,7 +58,7 @@
 					<a href="/qs">Q&amp;A</a>
 				</li>
 				<li role="presentation"{!! Request::path() === 'wiki' ? ' class="active"' : '' !!}>
-					<a href="/wiki">PUG Wiki</a>
+					<a href="/wiki">PugWiki</a>
 				</li>
 			</ul>
 		</nav>

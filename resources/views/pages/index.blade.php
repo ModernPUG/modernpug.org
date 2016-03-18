@@ -4,8 +4,8 @@
 <article class="page-main">
 	<div class="spot">
 		<div class="body">
-			<h1>Modern PUG</h1>
-			<p>ModernPUG 는 Modern PHP User Group 을 의미하며<br/>
+			<h1>ModernPUG</h1>
+			<p>ModernPUG 는 Modern Php User Group 을 의미하며<br/>
 				현대적인 PHP 개발 방식에 관심을 갖고 발전시켜 나가는 사람들을 위한 커뮤니티 입니다.</p>
 		</div>
 	</div>
@@ -15,7 +15,7 @@
 			<dl>
 				<dt><span class="icon"><i class="lnr lnr-book"></i></span></dt>
 				<dd>
-					<h2>Pug Wiki</h2>
+					<h2>PugWiki</h2>
 					<p>각종 PHP 읽을거리를 작성해둔 곳.</p>
 				</dd>
 			</dl>
