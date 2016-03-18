@@ -30,7 +30,7 @@
         },
         {
             "type": "path",
-            "url": "../vendors/modern-pug/qna"
+            "url": "../vendors/ninecells/cell-qna"
         },
         {
             "type": "path",
@@ -46,7 +46,7 @@
         "laravel/framework": "5.2.*",
         "barryvdh/laravel-debugbar": "^2.1",
         "spatie/laravel-backup": "^2.9",
-        "modern-pug/qna": "*",
+        "ninecells/cell-qna": "*",
         "ninecells/cell-wiki": "*",
         "ninecells/dev-log": "*"
     },

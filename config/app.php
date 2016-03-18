@@ -159,7 +159,7 @@ return [
         NineCells\Dev\Log\LogServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
-        ModernPUG\Qna\QnaServiceProvider::class,
+        NineCells\Qna\QnaServiceProvider::class,
         NineCells\Wiki\WikiServiceProvider::class,
 
     ],
