@@ -13,7 +13,7 @@
 			</div>
 		</header>
 		<div class="item">
-			@include('mpug::qna.parts.vote', ['type' => 'question', 'id' => $q->id, 'count' => $q->votes->sum('grade')])
+			@include('ncells::qna.parts.vote', ['type' => 'question', 'id' => $q->id, 'count' => $q->votes->sum('grade')])
 			<div class="body">{!! $q->md_content !!}</div>
 			@if (count($q->tags) > 0)
 			<nav class="tags">
@@ -25,7 +25,7 @@
 					<dl>
 						<dt><img src="{{ $q->writer->avatar }}"/></dt>
 						<dd>
-							@include('mpug::qna.parts.user_small', ['user' => $q->writer])<br/>
+							@include('ncells::qna.parts.user_small', ['user' => $q->writer])<br/>
 							<span>{{ $q->created_at->diffForHumans() }}</span>
 						</dd>
 					</dl>
@@ -46,9 +46,9 @@
 						@foreach($q->comments as $c)
 						<li>
 							<div class="meta">
-								<span class="name">@include('mpug::qna.parts.user_small', ['user' => $c->writer])</span>
+								<span class="name">@include('ncells::qna.parts.user_small', ['user' => $c->writer])</span>
 								<span>{{ $c->created_at->diffForHumans() }}</span>
-								<span>@include('mpug::qna.parts.vote_c', ['type' => 'comment', 'id' => $c->id, 'count' => $c->votes->sum('grade')])</span>
+								<span>@include('ncells::qna.parts.vote_c', ['type' => 'comment', 'id' => $c->id, 'count' => $c->votes->sum('grade')])</span>
 								@can('qna-edit', $c)
 								<span><a href="/comments/{{ $c->id }}/edit" class="button" data-action="editComment">EDIT</a></span>
 								<span><a href="#" data-href="/comments/{{ $c->id }}/delete" class="button" data-action="deleteComment">REMOVE</a></span>
@@ -100,7 +100,7 @@
 		<div class="answer" id="answer-{{ $a->id }}">
 			<div class="item">
 				<aside class="side-control">
-					@include('mpug::qna.parts.vote', ['type' => 'answer', 'id' => $a->id, 'count' => $a->votes->sum('grade')])
+					@include('ncells::qna.parts.vote', ['type' => 'answer', 'id' => $a->id, 'count' => $a->votes->sum('grade')])
 				</aside>
 				<div class="body">
 					{!! $a->md_content !!}
@@ -130,9 +130,9 @@
 							@foreach($a->comments as $c)
 							<li>
 								<div class="meta">
-									<span class="name">@include('mpug::qna.parts.user_small', ['user' => $c->writer])</span>
+									<span class="name">@include('ncells::qna.parts.user_small', ['user' => $c->writer])</span>
 									<span>{{ $c->created_at->diffForHumans() }}</span>
-									<span>@include('mpug::qna.parts.vote_c', ['type' => 'comment', 'id' => $c->id, 'count' => $c->votes->sum('grade')])</span>
+									<span>@include('ncells::qna.parts.vote_c', ['type' => 'comment', 'id' => $c->id, 'count' => $c->votes->sum('grade')])</span>
 									@can('qna-edit', $c)
 									<span><a href="/comments/{{ $c->id }}/edit" class="button" data-action="editComment">EDIT</a></span>
 									<span><a href="#" data-href="/comments/{{ $c->id }}/delete" class="button" data-action="deleteComment">REMOVE</a></span>

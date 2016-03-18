@@ -21,6 +21,6 @@
         @endif
     </dl>
 
-    @include('mpug::qna.parts.list', ['qs' => $qs])
+    @include('ncells::qna.parts.list', ['qs' => $qs])
 </article>
 @endsection
