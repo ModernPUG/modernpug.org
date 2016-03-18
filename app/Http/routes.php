@@ -3,7 +3,7 @@
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', function () {
-        return view('pages.index');
+        return view('ncells::jumbotron.index');
     });
 
     Route::get('about', function () {
