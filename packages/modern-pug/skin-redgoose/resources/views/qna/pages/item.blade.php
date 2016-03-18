@@ -1,7 +1,6 @@
 @extends('ncells::jumbotron.app')
 
 @section('content')
-
 <div class="page-qna view">
 	<!-- Question -->
 	<section class="question">
@@ -194,6 +193,7 @@
 @endsection
 
 @section('script')
+@parent
 <script>
 $(function () {
 	$('[data-action=voteUp]').click(function () {

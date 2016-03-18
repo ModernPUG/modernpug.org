@@ -52,5 +52,4 @@
         <p>ModernPUG 회원을 위한 채팅공간 입니다.</p>
     </div>
 </div>
-
 @endsection

@@ -19,5 +19,4 @@
     </div>
     <button type="submit" class="btn btn-default">저장</button>
 </form>
-
 @endsection
