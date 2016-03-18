@@ -7,7 +7,12 @@
     ],
     "license": "MIT",
     "type": "project",
-    "repositories": [],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/modern-pug/skin-redgoose"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.2.*",
@@ -15,7 +20,8 @@
         "spatie/laravel-backup": "^2.9",
         "ninecells/cell-qna": "*",
         "ninecells/cell-wiki": "*",
-        "ninecells/dev-log": "*"
+        "ninecells/dev-log": "*",
+        "modern-pug/skin-redgoose": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

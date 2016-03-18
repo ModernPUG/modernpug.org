@@ -39,6 +39,11 @@
         {
             "type": "path",
             "url": "../vendors/ninecells/dev-log/"
+        },
+        {
+            "type": "path",
+            "url": "packages/modern-pug/skin-redgoose",
+            "keep": true
         }
     ],
     "require": {
@@ -48,7 +53,8 @@
         "spatie/laravel-backup": "^2.9",
         "ninecells/cell-qna": "*",
         "ninecells/cell-wiki": "*",
-        "ninecells/dev-log": "*"
+        "ninecells/dev-log": "*",
+        "modern-pug/skin-redgoose": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -1,0 +1,14 @@
+{
+  "name": "modern-pug/skin-redgoose",
+  "license": "MIT",
+  "require": {
+    "php": ">=5.5.9",
+    "ninecells/cell-pages": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "ModernPUG\\RedGooseSkin\\": ""
+    }
+  },
+  "minimum-stability": "dev"
+}
