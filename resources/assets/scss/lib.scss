@@ -1,0 +1,65 @@
+$font-icon: 'Linearicons-Free';
+$font-roboto: 'Roboto Condensed', sans-serif;
+$font-noto: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+$size-font-basic: 13px;
+
+$color-key: #4b3c30;
+$color-nav: #857362;
+$color-key-blur: #ab9c8f;
+$color-active: #0096db;
+
+
+.blind {
+	position: absolute; overflow: hidden;
+	width: 0; height: 0; font-size: 0;
+	visibility: hidden;
+}
+
+
+
+// COMPONENTS
+
+// Tags
+.tags {
+	font-size: 0;
+	a {
+		display: inline-block; margin: 2px 4px 2px 0; padding: 3px 8px;
+		font-size: 11px; color: #fff; font-weight: 400;
+		background: $color-nav; border-radius: 3px; text-decoration: none;
+	}
+}
+
+
+// Buttons
+.rg-btn {
+	$color: $color-nav;
+	display: inline-block; padding: 10px 24px;
+	background: $color;
+	border: 1px solid $color; border-radius: 2px;
+	font-family: $font-roboto; font-size: 13px; color: #fff;
+	&:hover {
+		color: #fff; text-decoration: none;
+		background: mix($color, #000, 90%);
+		border-color: mix($color, #000, 90%);
+	}
+	&:focus {
+		color: #fff; text-decoration: none;
+		background: mix($color, #000, 90%);
+		border-color: mix($color, #000, 90%);
+	}
+	&.size-small {padding: 3px 9px; font-size: 12px;}
+	&.color-key {
+		$color: $color-active;
+		background: $color; border-color: $color;
+		&:hover {
+			background: mix($color, #000, 90%);
+			border-color: mix($color, #000, 90%);
+		}
+		&:focus {
+			color: #fff; text-decoration: none;
+			background: mix($color, #000, 90%);
+			border-color: mix($color, #000, 90%);
+		}
+	}
+}

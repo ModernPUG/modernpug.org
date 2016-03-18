@@ -1,0 +1,3 @@
+*.sqlite
+migrations/*
+!migrations/2014*
