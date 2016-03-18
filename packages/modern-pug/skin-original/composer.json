@@ -1,12 +1,12 @@
 {
-  "name": "modern-pug/skin-redgoose",
+  "name": "modern-pug/skin-original",
   "license": "MIT",
   "require": {
     "php": ">=5.5.9"
   },
   "autoload": {
     "psr-4": {
-      "ModernPUG\\RedGooseSkin\\": ""
+      "ModernPUG\\OriginalSkin\\": ""
     }
   },
   "minimum-stability": "dev"

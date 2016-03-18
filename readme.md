@@ -14,4 +14,5 @@
 - `gulp scss.app` or `gulp scss.app:watch`
 
 ## Publish
+- `php artisan vendor:publish --provider="ModernPUG\OriginalSkin\OriginalSkinServiceProvider"`
 - `php artisan vendor:publish --provider="ModernPUG\RedGooseSkin\RedGooseSkinServiceProvider"`

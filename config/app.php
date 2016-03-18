@@ -161,6 +161,7 @@ return [
         Spatie\Backup\BackupServiceProvider::class,
         NineCells\Qna\QnaServiceProvider::class,
         NineCells\Wiki\WikiServiceProvider::class,
+        ModernPUG\OriginalSkin\OriginalSkinServiceProvider::class,
         ModernPUG\RedGooseSkin\RedGooseSkinServiceProvider::class,
 
     ],

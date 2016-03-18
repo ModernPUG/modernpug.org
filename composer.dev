@@ -40,6 +40,11 @@
             "type": "path",
             "url": "../vendors/ninecells/dev-log/"
         },
+         {
+             "type": "path",
+             "url": "packages/modern-pug/skin-original",
+             "keep": true
+         },
         {
             "type": "path",
             "url": "packages/modern-pug/skin-redgoose",
@@ -54,6 +59,7 @@
         "ninecells/cell-qna": "*",
         "ninecells/cell-wiki": "*",
         "ninecells/dev-log": "*",
+        "modern-pug/skin-original": "dev-master",
         "modern-pug/skin-redgoose": "dev-master"
     },
     "require-dev": {
