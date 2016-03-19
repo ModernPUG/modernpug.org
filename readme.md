@@ -16,3 +16,4 @@
 ## 스킨변경
 - `php artisan skin:change original`
 - `php artisan skin:change redgoose`
+- `php artisan skin:random`
