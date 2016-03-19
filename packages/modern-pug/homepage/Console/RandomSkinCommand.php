@@ -10,10 +10,7 @@ class RandomSkinCommand extends SkinCommand
 
     public function fire()
     {
-        $this->removeNineCellsViews();
-
-        $skin = array_rand($this->getSkins());
-
-        $this->changeSkin($skin);
+        $skin_key = array_rand($this->getSkins());
+        $this->changeSkin($skin_key);
     }
 }

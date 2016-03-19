@@ -27,8 +27,9 @@ class SkinCommand extends Command
             $this->error("$skin_key 스킨이 존재하지 않습니다.");
             exit;
         }
-        $this->info("$skin_key 스킨으로 변경");
+        $this->removeNineCellsViews();
         $this->call('vendor:publish', ['--provider' => $this->skins[$skin_key]]);
+        $this->info("$skin_key 스킨으로 변경");
     }
 
     protected function rrmdir($dirPath)

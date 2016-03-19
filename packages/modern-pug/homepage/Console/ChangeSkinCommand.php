@@ -11,9 +11,6 @@ class ChangeSkinCommand extends SkinCommand
     public function fire()
     {
         $skin_key = $this->argument('skin_key');
-
-        $this->removeNineCellsViews();
-
         $this->changeSkin($skin_key);
     }
 }
