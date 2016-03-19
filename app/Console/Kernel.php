@@ -26,36 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () use ($schedule) {
-            $this->rrmdir(resource_path('views/vendor/ncells'));
-            $items = [
-                "ModernPUG\\OriginalSkin\\OriginalSkinServiceProvider",
-                "ModernPUG\\RedGooseSkin\\RedGooseSkinServiceProvider",
-            ];
-            shuffle($items);
-            $provider = $items[0];
-            Artisan::call('vendor:publish', ['--provider' => $provider]);
-        })->everyMinute();
-    }
-
-    private function rrmdir($dirPath)
-    {
-        if (!file_exists($dirPath)) {
-            return;
-        }
-
-        $paths = new \RecursiveIteratorIterator(
-            new \RecursiveDirectoryIterator(
-                $dirPath,
-                \FilesystemIterator::SKIP_DOTS
-            ),
-            \RecursiveIteratorIterator::CHILD_FIRST
-        );
-
-        foreach ($paths as $path) {
-            $path->isDir() && !$path->isLink() ? rmdir($path->getPathname()) : unlink($path->getPathname());
-        }
-        
-        rmdir($dirPath);
+        $schedule->command('skin:random')->everyMinute();
     }
 }

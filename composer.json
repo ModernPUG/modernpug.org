@@ -10,6 +10,10 @@
     "repositories": [
         {
             "type": "path",
+            "url": "packages/modern-pug/homepage"
+        },
+        {
+            "type": "path",
             "url": "packages/modern-pug/skin-original"
         },
         {
@@ -25,6 +29,7 @@
         "ninecells/cell-qna": "*",
         "ninecells/cell-wiki": "*",
         "ninecells/dev-log": "*",
+        "modern-pug/homepage": "dev-master",
         "modern-pug/skin-original": "dev-master",
         "modern-pug/skin-redgoose": "dev-master"
     },
