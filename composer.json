@@ -31,7 +31,8 @@
         "ninecells/dev-log": "*",
         "modern-pug/homepage": "dev-master",
         "modern-pug/skin-original": "dev-master",
-        "modern-pug/skin-redgoose": "dev-master"
+        "modern-pug/skin-redgoose": "dev-master",
+        "socialiteproviders/slack": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
