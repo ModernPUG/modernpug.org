@@ -159,6 +159,7 @@ return [
         NineCells\Dev\Log\LogServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Backup\BackupServiceProvider::class,
+        SocialiteProviders\Manager\ServiceProvider::class,
         NineCells\Qna\QnaServiceProvider::class,
         NineCells\Wiki\WikiServiceProvider::class,
         ModernPUG\Homepage\HomepageServiceProvider::class,
