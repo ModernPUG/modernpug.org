@@ -3,6 +3,7 @@
 ## 설치방법
 - `git clone https://github.com/ModernPUG/modernpug.org.git`
 - .env.example 을 참고하여 .env 작성 (db, github, log)
+- `php artisan key:generate`
 - `chmod 777 bootstrap/cache`
 - `chmod -R 777 storage`
 - `composer install`
