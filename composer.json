@@ -10,15 +10,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "packages/modern-pug/homepage"
-        },
-        {
-            "type": "path",
-            "url": "packages/modern-pug/skin-original"
-        },
-        {
-            "type": "path",
-            "url": "packages/modern-pug/skin-redgoose"
+            "url": "packages/*/*"
         }
     ],
     "require": {

@@ -10,49 +10,11 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../vendors/ninecells/cell-member"
+            "url": "../vendors/*/*"
         },
         {
             "type": "path",
-            "url": "../vendors/ninecells/cell-admin"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/assets-admin-lte"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/assets-twbs3/"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/assets-twbs3-jbtrn-narrow/"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/cell-qna"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/cell-wiki"
-        },
-        {
-            "type": "path",
-            "url": "../vendors/ninecells/dev-log/"
-        },
-        {
-            "type": "path",
-            "url": "packages/modern-pug/homepage",
-            "keep": true
-        },
-        {
-            "type": "path",
-            "url": "packages/modern-pug/skin-original",
-            "keep": true
-        },
-        {
-            "type": "path",
-            "url": "packages/modern-pug/skin-redgoose",
+            "url": "packages/*/*",
             "keep": true
         }
     ],
