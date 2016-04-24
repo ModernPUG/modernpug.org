@@ -6,7 +6,7 @@
 - `php artisan key:generate`
 - `chmod 777 bootstrap/cache`
 - `chmod -R 777 storage`
-- `composer install`
+- `composer install --no-scripts`
 - `php artisan vendor:publish`
 - `php artisan migrate`
 
