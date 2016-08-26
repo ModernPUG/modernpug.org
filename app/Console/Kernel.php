@@ -26,6 +26,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('skin:random')->everyMinute();
+//        $schedule->command('skin:random')->everyMinute();
     }
 }

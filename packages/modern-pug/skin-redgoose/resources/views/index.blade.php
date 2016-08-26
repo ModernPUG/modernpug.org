@@ -20,7 +20,7 @@
 				</dd>
 			</dl>
 		</a>
-		<a href="/qs" class="col-sm-6">
+		<a href="https://wiki.modernpug.org/" class="col-sm-6">
 			<dl>
 				<dt><span class="icon"><i class="lnr lnr-question-circle"></i></span></dt>
 				<dd>
@@ -35,6 +35,15 @@
 				<dd>
 					<h2>Allblog</h2>
 					<p>한국 PHP 블로거들의 포스트를 모아보는 곳.</p>
+				</dd>
+			</dl>
+		</a>
+		<a href="/qs" class="col-sm-6">
+			<dl>
+				<dt><span class="icon"><i class="lnr lnr-question-circle"></i></span></dt>
+				<dd>
+					<h2>Old Q&A</h2>
+					<p>예전 질문/답변 게시판입니다. 새로운 Q&A를 사용해보세요.</p>
 				</dd>
 			</dl>
 		</a>
