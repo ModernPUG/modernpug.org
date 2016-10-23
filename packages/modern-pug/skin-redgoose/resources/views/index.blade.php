@@ -20,7 +20,7 @@
 				</dd>
 			</dl>
 		</a>
-		<a href="https://wiki.modernpug.org/" class="col-sm-6">
+		<a href="https://wiki.modernpug.org/questions" class="col-sm-6">
 			<dl>
 				<dt><span class="icon"><i class="lnr lnr-question-circle"></i></span></dt>
 				<dd>
