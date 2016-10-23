@@ -68,7 +68,7 @@
                     <a href="/about">About</a>
                     </li>
                     <li role="presentation"{!! Request::path() === 'qs' ? ' class="active"' : '' !!}>
-                    <a href="/qs">Q&amp;A</a>
+                    <a href="https://wiki.modernpug.org/questions">Q&amp;A</a>
                     </li>
                     <li role="presentation"{!! Request::path() === 'wiki' ? ' class="active"' : '' !!}>
                     <a href="/wiki">PugWiki</a>
