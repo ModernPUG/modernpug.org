@@ -8,7 +8,7 @@ class ChangeSkinCommand extends SkinCommand
 
     protected $description = '스킨을 바꿉니다';
 
-    public function fire()
+    public function handle()
     {
         $skin_key = $this->argument('skin_key');
         $this->changeSkin($skin_key);
