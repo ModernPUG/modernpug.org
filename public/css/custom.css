@@ -1,0 +1,82 @@
+body {
+  font-family: inherit;
+}
+
+.background-overlay:after {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.single-blog-post {
+  /*.post-thumbnail {
+    text-align: center;
+
+    img {
+      max-height: 200px;
+      width: inherit;
+      max-width: 100%;
+    }
+  }*/
+}
+
+.single-blog-post.post-style-2 {
+  margin-bottom: 3%;
+}
+
+.single-blog-post .post-content p {
+  word-break: break-word;
+}
+
+.single-blog-post.article:hover {
+  border: 2px #E91E63 solid;
+}
+
+.single-blog-post.recruit .label {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  z-index: 10;
+  padding: 0 10px;
+  display: inline-block;
+  background-color: #ffffff;
+  text-transform: uppercase;
+  color: #03a9f4;
+  border: 1px solid #03a9f4;
+  font-size: small;
+}
+
+.single-blog-post.recruit address {
+  color: gray;
+  font-size: small;
+}
+
+.post-sidebar-area .sidebar-widget-area.banner .widget-content,
+.post-sidebar-area .sidebar-widget-area.sponsor .widget-content {
+  padding: 10px 1px;
+}
+
+.btn-group-xs > .btn,
+.btn-xs {
+  padding: .2rem;
+  font-size: .6rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
+
+.btn-group-xs > .btn:hover,
+.btn-xs:hover {
+  font-size: 0.6rem;
+}
+
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover,
+.form-control-borderless:active,
+.form-control-borderless:focus {
+  border: none;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
