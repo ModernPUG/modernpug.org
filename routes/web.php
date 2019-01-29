@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 
+Route::resource('releases','ReleaseController');
+
 Route::resource('blogs','BlogController');
 
 Route::get('/post/search/{tag?}','PostController@search')->name('posts.search');
