@@ -86,7 +86,37 @@
                             </div>
                         </div>
 
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <!-- Single Blog Post -->
+                            <div class="single-blog-post">
+                                <!-- Post Thumbnail -->
+                                <div class="post-thumbnail" style="width:70%; margin:auto;padding:5px;">
+                                    <img src="https://avatars1.githubusercontent.com/u/6157033?s=400&u=206f028c798e95e17c787270585f8cf7e1e4491e&v=4"
+                                         alt="">
+                                </div>
+                                <!-- Post Content -->
+                                <div class="post-content text-center">
+                                    <h5>이현석
 
+                                        <a style="font-size:inherit" class="text-info" target="_blank" href="//github.com/smartbos">
+                                            <i class="fa fa-github"></i>
+                                        </a>
+                                        <a style="font-size:inherit" class="text-info" target="_blank" href="//leehyunseok.com">
+                                            <i class="fa fa-home"></i>
+                                        </a>
+                                    </h5>
+
+                                    <div style="font-size:14px;">
+                                        <i class="fa fa-tag"></i>
+                                        정모 공지를 올립니다.
+                                    </div>
+                                    <div style="font-size:14px;">
+                                        <i class="fa fa-commenting"></i>
+                                        자영업자입니다. 책도 씁니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
