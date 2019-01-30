@@ -8,6 +8,7 @@
 
 return [
 
+    'tag_manager' => env('TAG_MANAGER', ''),
     'title' => 'Modern PHP User Group',
 
     'title_prefix' => 'ModernPUG::',
