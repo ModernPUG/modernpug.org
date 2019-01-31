@@ -8,6 +8,9 @@ body {
 }
 
 .single-blog-post {
+    border: 2px transparent solid;
+    padding: 3px;
+    box-sizing: border-box;
 
   &.post-style-2 {
     margin-bottom: 3%;
@@ -29,7 +32,7 @@ body {
 
 
   &.article:hover{
-    border:2px #E91E63 solid;
+      border: 2px #eb3473 solid;
   }
 
 
@@ -79,4 +82,10 @@ body {
   border: none;
   outline: none;
   box-shadow: none;
+}
+
+
+
+a:hover, a:focus {
+    color: #eb3473;
 }
