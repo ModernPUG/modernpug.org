@@ -2,18 +2,35 @@
 <html lang="{{ app()->getLocale() }}">
 
 <head>
+
+    @if(config('website.tag_manager'))
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','{{ config('website.tag_manager') }}');</script>
+    <!-- End Google Tag Manager -->
+    @endif
+
+    <title>@yield('title_prefix', config('app.name', ''))</title>
     <meta charset="UTF-8">
-    <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title_prefix', config('app.name', ''))</title>
-
+    <meta name="description" content="@yield('description',config('website.meta.description',''))"/>
+    <meta name="keywords" content="@yield('keywords',config('website.meta.keywords',''))"/>
+    <meta name="author" content="@yield('author',config('website.meta.author',''))"/>
+    <link rel="canonical" href="@yield('canonical',url()->current())"/>
+    <meta property="og:locale" content="{{ app()->getLocale() }}"/>
+    <meta property="og:title" content="@yield('meta.title',config('website.title',''))"/>
+    <meta property="og:description" content="@yield('meta.description',config('website.meta.description',''))"/>
+    <meta property="og:site_name" content="@yield('meta.site_name',config('website.meta.og.site_name',''))"/>
+    <meta property="og:url" content="@yield('meta.url',config('website.meta.og.url',''))"/>
+    <meta property="og:type" content="@yield('meta.type',config('website.meta.og.type',''))"/>
+    <meta property="og:image" content="@yield('meta.image',config('website.meta.og.image',''))"/>
     <!-- Favicon  -->
-    <link rel="icon" href="/vendor/world/img/core-img/favicon.ico">
-
+    <link rel="icon" href="/favicon.ico">
     <!-- Style CSS -->
     <link rel="stylesheet" href="/vendor/world/style.css">
     <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
