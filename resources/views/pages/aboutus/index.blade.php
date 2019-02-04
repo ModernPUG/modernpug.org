@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'About Us' )
+
 @push('css')
     <style>
         .single-blog-post{margin:15px 0;}

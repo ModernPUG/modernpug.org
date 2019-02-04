@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', $post->title )
+
 <?php
 /**
  * @var \App\Post $post

@@ -19,7 +19,7 @@ return [
 
         'description' => '현대적인 PHP 개발에 관심 많은 개발자를 위한 개발자들의 비영리 사용자 모임입니다.',
         'keywords' => 'PHP, ModernPHP, PHP User Group, Codeigniter 라라벨 laravel',
-        'author' => 'laravel@laravel.kr',
+        'author' => '',
 
         'og' => [
             'site_name' => 'Modern PHP User Group',

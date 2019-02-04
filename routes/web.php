@@ -36,7 +36,7 @@ Route::resource('posts','PostController');
 Route::resource('tags','TagController');
 
 
-Route::get('aboutus','ContactController@aboutus')->name('aboutus');
+Route::get('aboutus','AboutUsController@index')->name('aboutus');
 
 Route::resource('sponsors','SponsorController');
 

@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', '메타 블로그' )
+
 @php
 /**
  * @var \App\Blog[]|\Illuminate\Database\Eloquent\Collection $myBlogs

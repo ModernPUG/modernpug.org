@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', '포스팅 검색' )
+
 @php
     /**
      * @var string $tagName

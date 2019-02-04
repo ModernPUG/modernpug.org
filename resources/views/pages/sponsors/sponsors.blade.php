@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', '스폰서 안내' )
+
 @push('css')
     <style>
         .single-blog-post {

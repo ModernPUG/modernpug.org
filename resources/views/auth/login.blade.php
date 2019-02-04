@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'Login' )
+
 @section('content')
     <!-- ********** Hero Area Start ********** -->
     <div class="hero-area height-80vh bg-img background-overlay"

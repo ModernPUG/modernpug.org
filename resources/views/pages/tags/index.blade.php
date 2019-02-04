@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'Tags' )
+
 @php
 /**
  * @var \App\Tag[]|\Illuminate\Database\Eloquent\Collection $allTags

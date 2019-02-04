@@ -1,5 +1,9 @@
 @extends('common.layout')
 
+
+@section('title_prefix','')
+
+
 <?php
 /**
  * @var \App\Tag $tag
