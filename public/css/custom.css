@@ -2,32 +2,108 @@ body {
   font-family: inherit;
 }
 
-.background-overlay:after {
-  background-color: rgba(0, 0, 0, 0.6);
+a:hover,
+a:focus {
+  color: #0056b3;
 }
 
-.single-blog-post {
-  /*.post-thumbnail {
-    text-align: center;
-
-    img {
-      max-height: 200px;
-      width: inherit;
-      max-width: 100%;
-    }
-  }*/
+.background-overlay:after {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .single-blog-post.post-style-2 {
   margin-bottom: 3%;
 }
 
+.single-blog-post .post-thumbnail {
+  text-align: center;
+  padding: 2px;
+  /*
+    img {
+      max-height: 200px;
+      width: inherit;
+      max-width: 100%;
+    }*/
+}
+
+.single-blog-post .post-thumbnail a {
+  display: block;
+}
+
 .single-blog-post .post-content p {
   word-break: break-word;
 }
 
-.single-blog-post.article:hover {
-  border: 2px #E91E63 solid;
+.single-blog-post.article::before,
+.single-blog-post.article::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  position: absolute;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  background: #007bff;
+}
+
+.single-blog-post.article span::before,
+.single-blog-post.article span::after {
+  content: "";
+  width: 2px;
+  height: 0;
+  position: absolute;
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  background: #007bff;
+}
+
+.single-blog-post.article:hover::before,
+.single-blog-post.article:hover::after {
+  width: 100%;
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
+}
+
+.single-blog-post.article:hover span::before,
+.single-blog-post.article:hover span::after {
+  height: 100%;
+}
+
+.single-blog-post.article span::before,
+.single-blog-post.article span::after {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.single-blog-post.article::before {
+  right: 0;
+  top: 0;
+}
+
+.single-blog-post.article::after {
+  left: 0;
+  bottom: 0;
+}
+
+.single-blog-post.article span::before {
+  left: 0;
+  top: 0;
+}
+
+.single-blog-post.article span::after {
+  right: 0;
+  bottom: 0;
+}
+
+.single-blog-post.article:hover::before,
+.single-blog-post.article:hover::after {
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+
+.single-blog-post.article:hover span::before,
+.single-blog-post.article:hover span::after {
+  -webkit-transition-delay: 0s;
+          transition-delay: 0s;
 }
 
 .single-blog-post.recruit .label {

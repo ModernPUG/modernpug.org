@@ -1,7 +1,12 @@
 
-
 body {
-  font-family: inherit; }
+  font-family: inherit;
+}
+
+a:hover, a:focus {
+  color: #0056b3;
+}
+
 
 .background-overlay:after {
   background-color: rgba(0, 0, 0, 0.6)
@@ -13,28 +18,95 @@ body {
     margin-bottom: 3%;
   }
 
-  /*.post-thumbnail {
-    text-align: center;
 
+  .post-thumbnail {
+    text-align: center;
+    padding: 2px;
+
+    a {
+      display: block;
+    }
+
+    /*
     img {
       max-height: 200px;
       width: inherit;
       max-width: 100%;
-    }
-  }*/
+    }*/
+  }
 
   .post-content p {
-    word-break:break-word;
+    word-break: break-word;
   }
 
 
-  &.article:hover{
-    border:2px #E91E63 solid;
+  &.article {
+
+    &::before, &::after {
+      content: "";
+      width: 0;
+      height: 2px;
+      position: absolute;
+      transition: all 0.2s linear;
+      background: #007bff;
+    }
+
+    span::before, span::after {
+      content: "";
+      width: 2px;
+      height: 0;
+      position: absolute;
+      transition: all 0.2s linear;
+      background: #007bff;
+    }
+
+    &:hover::before, &:hover::after {
+      width: 100%;
+      transition-delay: 0s;
+    }
+
+    &:hover span::before, &:hover span::after {
+      height: 100%;
+    }
+
+    & span::before, & span::after {
+      transition-delay: 0.2s;
+    }
+
+    &::before {
+      right: 0;
+      top: 0;
+    }
+
+    &::after {
+      left: 0;
+      bottom: 0;
+    }
+
+    & span::before {
+      left: 0;
+      top: 0;
+    }
+
+    & span::after {
+      right: 0;
+      bottom: 0;
+    }
+
+    &:hover::before, &:hover::after {
+      transition-delay: 0.2s;
+    }
+
+    &:hover span::before, &:hover span::after {
+      transition-delay: 0s;
+    }
+
+
   }
 
 
-  &.recruit{
-    .label{
+  &.recruit {
+    .label {
       position: absolute;
       top: 15px;
       left: 30px;
@@ -43,32 +115,36 @@ body {
       display: inline-block;
       background-color: #ffffff;
       text-transform: uppercase;
-      color:#03a9f4;
-      border:1px solid #03a9f4;
-      font-size:small;
+      color: #03a9f4;
+      border: 1px solid #03a9f4;
+      font-size: small;
     }
+
     address {
-      color:gray;
-      font-size:small;
+      color: gray;
+      font-size: small;
     }
   }
 }
 
 
 .post-sidebar-area {
-  .sidebar-widget-area.banner,.sidebar-widget-area.sponsor {
+  .sidebar-widget-area.banner, .sidebar-widget-area.sponsor {
     .widget-content {
       padding: 10px 1px;
     }
   }
 }
 
-.btn-group-xs>.btn, .btn-xs{
-  &:hover{font-size:0.6rem}
-  padding:.2rem;
-  font-size:.6rem;
-  line-height:1.5;
-  border-radius:.2rem;
+.btn-group-xs > .btn, .btn-xs {
+  &:hover {
+    font-size: 0.6rem
+  }
+
+  padding: .2rem;
+  font-size: .6rem;
+  line-height: 1.5;
+  border-radius: .2rem;
 }
 
 .form-control-borderless {
