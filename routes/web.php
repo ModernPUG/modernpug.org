@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 
-Route::resource('releases','ReleaseController');
+Route::resource('/news/release','ReleaseNewsController', ['as' => 'news']);
 
 Route::resource('blogs','BlogController');
 
