@@ -1,5 +1,6 @@
 @extends('common.layout')
 
+@section('title', '프로필 수정' )
 
 @php
 /**

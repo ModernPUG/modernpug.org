@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'Recruiting' )
+
 @section('content')
 
     <!-- ********** Hero Area Start ********** -->

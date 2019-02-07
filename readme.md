@@ -5,9 +5,8 @@
 - `chmod 777 bootstrap/cache`
 - `chmod -R 777 storage`
 - `composer install --no-scripts`
+- `cp .env.example .env` `.env` 내용 수정
 - `php artisan key:generate`
-- `.env.example` 을 참고하여 `.env` 작성 (db, github, log)
-- `php artisan vendor:publish`
 - `php artisan migrate`
 
 ## scss to css

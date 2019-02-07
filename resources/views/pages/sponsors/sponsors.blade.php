@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', '스폰서 안내' )
+
 @push('css')
     <style>
         .single-blog-post {
@@ -39,6 +41,38 @@
                     <div class="row">
 
                         <div class="col-md-4">
+                            <a href="http://imicorp.co.kr/" target="_blank" class="headline">
+                                <!-- Single Blog Post -->
+                                <div class="single-blog-post">
+                                    <!-- Post Thumbnail -->
+                                    <div class="post-thumbnail">
+                                        <img src="/img/sponsors/imi.jpg" alt="">
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <h5>(주)아이엠아이</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-4">
+                            <a href="https://www.xpressengine.com/" target="_blank" class="headline">
+                                <!-- Single Blog Post -->
+                                <div class="single-blog-post">
+                                    <!-- Post Thumbnail -->
+                                    <div class="post-thumbnail">
+                                        <img src="/img/sponsors/XE_banner_350.jpg" alt="">
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <h5>Xpress Engine</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col-md-4">
                             <a href="https://www.jetbrains.com/" target="_blank" class="headline">
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post">
@@ -53,6 +87,7 @@
                                 </div>
                             </a>
                         </div>
+
                     </div>
 
                 </div>

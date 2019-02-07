@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', '메타태그 수정' )
+
 @section('content')
 
     <!-- ********** Hero Area Start ********** -->

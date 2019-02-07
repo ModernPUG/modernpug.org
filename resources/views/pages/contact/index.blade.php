@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'About Us' )
+
 @section('content')
     <!-- ********** Hero Area Start ********** -->
     <div class="hero-area height-400 bg-img background-overlay" style="background-image: url(/vendor/world/img/blog-img/bg4.jpg);"></div>
