@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\PostImageUpdater;
 use App\Console\Commands\CrawlFeed;
+use App\Console\Commands\CrawlRelease;
 use App\Console\Commands\PushWeeklyBestPosts;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -17,6 +18,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         CrawlFeed::class,
+        CrawlRelease::class,
         PostImageUpdater::class
     ];
 
@@ -31,6 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(CrawlFeed::class)->hourly();
         $schedule->command(PostImageUpdater::class)->hourly();
         $schedule->command(PushWeeklyBestPosts::class)->weeklyOn(1, '7:00');
+        $schedule->command(CrawlRelease::class)->hourly();
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\ReleaseNews;
 
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -8,9 +8,9 @@ use Symfony\Component\DomCrawler\Crawler;
 use Log;
 use DB;
 
-use App\Release;
+use App\ReleaseNews;
 
-class ReleaseService {
+class Updater {
     /**
      * @var Client
      */
@@ -20,13 +20,9 @@ class ReleaseService {
      */
     protected $command;
     
-    public function __construct(Client $client, Release $release) {
+    public function __construct(Client $client, ReleaseNews $releaseNews) {
         $this->client = $client;
-        $this->release = $release;
-    }
-
-    public function index() {
-
+        $this->releaseNews = $releaseNews;
     }
 
     /**
@@ -34,15 +30,16 @@ class ReleaseService {
      * @param int $success crawling success count
      * @param int $duplicate crawling duplicate count
      * @param int $fail crawling fail count
-     * @see release data -> \App\Release::CRAWLING_DATAS
+     * @see release data -> \App\ReleaseNews::SUPPORT_RELEASES
      */
-    public function update(?Command $command = null, $success = 0, $duplicate = 0, $fail = 0) {
-        $datas = $this->release::getAllCrawlData();
+    public function update(?Command $command = null, int $success = 0, int $duplicate = 0, int $fail = 0) {
+        $datas = $this->releaseNews::getAllCrawlData();
         $this->print('릴리즈 크롤링 데이터 검색 건수: ' . count($datas));
 
-        DB::beginTransaction();
-        try {
-            foreach ($datas as $type => $data) {
+        foreach ($datas as $type => $data) {
+            try {
+                DB::beginTransaction();
+                
                 $crawler = $this->crawler($data['site_url']);
                 $version = $crawler->filter($data['version'])->text();
 
@@ -52,35 +49,35 @@ class ReleaseService {
 
                 $content = $crawler->filter($data['content'])->text();
                     
-                if ($this->release::existTypeAndVersion($type, $this->releaseVersionCheck($version))) {
+                if ($this->releaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($version))) {
                     $duplicate++;
                     continue;
                 }
 
-                $this->release::create([
+                $this->releaseNews::create([
                     'site_url' => $data['site_url'],
                     'type' => $type,
                     'version' => $this->releaseVersionCheck($version),
                     'content' => $content
                 ]);
                 $success++;
+
+                DB::commit();
+            } catch (\Exception $e) {
+                $fail++;
+                DB::rollBack();
+                Log::debug($e);
             }
-            DB::commit();
-        } catch (\Exception $e) {
-            $fail++;
-            DB::rollBack();
-            Log::debug($e);
-            // return null;
         }
 
         $this->print('성공 건수: ' . $success);
         $this->print('중복 건수: ' . $duplicate);
-        $this->print('실패 건수: ' . $fail);
+        $fail && $this->print('실패 건수: ' . $fail);
     }
 
     /**
-     * @param string $url
-     * @return string
+     * @param   string $url
+     * @return  string
      */
     private function crawler(string $url) {
         $response = $this->client->get($url);
@@ -91,20 +88,20 @@ class ReleaseService {
     }
 
     /**
-     * @param string $type
-     * @param string $version
-     * @return string
+     * @param   string $type
+     * @param   string $version
+     * @return  string
      */
     private function releaseVersionCheck(string $version) {
         return preg_replace('/[^0-9_.-]/', '', trim($version));
     }
 
     /**
-     * @param string $url
-     * @param string $before
-     * @param string $after
-     * @param string $version
-     * @return string
+     * @param   string $url
+     * @param   string $before
+     * @param   string $after
+     * @param   string $version
+     * @return  string
      */
     private function releaseInContent(string $url, string $before, string $after, string $version) {
         return $url . strtolower(preg_replace($before, $after, trim($version)));

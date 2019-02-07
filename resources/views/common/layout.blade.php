@@ -76,7 +76,9 @@
                                         </a>
                                     </div>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('news.release.index') }}">Releases</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
                                 </li>
