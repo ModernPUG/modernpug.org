@@ -62,7 +62,7 @@
                                 <div class="single-blog-post">
                                     <!-- Post Thumbnail -->
                                     <div class="post-thumbnail">
-                                        <img src="/img/sponsors/xe.jpg" alt="">
+                                        <img src="/img/sponsors/XE_banner_350.jpg" alt="">
                                     </div>
                                     <!-- Post Content -->
                                     <div class="post-content">
