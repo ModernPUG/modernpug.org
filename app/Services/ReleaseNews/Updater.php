@@ -55,7 +55,7 @@ class Updater {
                 }
 
                 $this->releaseNews::create([
-                    'site_url' => $data['site_url'],
+                    'site_url' => isset($data['post']) ? $this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version) : $data['site_url'],
                     'type' => $type,
                     'version' => $this->releaseVersionCheck($version),
                     'content' => $content
