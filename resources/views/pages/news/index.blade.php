@@ -1,5 +1,7 @@
 @extends('common.layout')
 
+@section('title', 'Releases')
+
 @section('content')
 
     <!-- ********** Hero Area Start ********** -->
@@ -23,63 +25,54 @@
             <div class="row justify-content-center">
                 <!-- ============= Post Content Area Start ============= -->
                 <div class="col-12 col-lg-8">
-                    
-                    @foreach ($datas['types'] as $type)
+
                     <div class="post-content-area mb-100">
                         <!-- category Area -->
                         <div class="world-category-area">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="title">{{ $type }}</li>
+                                <li class="title">Release</li>
 
-                                @foreach ($datas['releases'] as $index => $release)
-                                    @if ($release->type === $type)
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="release-tab-body-{{ $index }}" data-toggle="tab" href="#release-tab-body-{{ $index }}"
-                                            role="tab" aria-controls="release-tab-body-{{ $index }}" aria-selected="false">{{ $release->version }}</a>
-                                    </li>
-                                    @endif
+                                @foreach ($datas['types'] as $type)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="release-tab-body-{{ $type }}" data-toggle="tab" href="#release-tab-body-{{ $type }}"
+                                        role="tab" aria-controls="release-tab-body-{{ $type }}" aria-selected="false">{{
+                                        $type }}</a>
+                                </li>
                                 @endforeach
                             </ul>
+                            
                             <div class="tab-content" id="myTabContent">
-                                @foreach($datas['releases'] as $index => $release)
-                                    @if ($release->type === $type)
-                                    <!-- Single Blog Post -->
-                                    <div class="single-blog-post post-style-2 d-flex align-items-center article">
-                                        <!-- Post Thumbnail -->
-                                        <div class="post-thumbnail">
-                                            <a href="" target="_blank" class="headline">
-                                                <img src="" alt="">
-                                            </a>
-                                        </div>
-                                        <!-- Post Content -->
-                                        <div class="post-content">
-                                            <a href="" target="_blank" class="headline">
-                                                <h5>{{ $release->version }}</h5>
-                                                <p>{{ substr($release->content, 0, 180) }}</p>
-                                            </a>
-                                            <!-- Post Meta -->
-                                            {{-- <div class="post-meta">
-                                                <p>
-                                                    <a target="_blank" href="{{ $post->blog->site_url }}" class="post-author">
-                                                        @if($post->blog->image_url)
-                                                            <img src="{{ $post->blog->image_url }}" alt="" style="width:20px;height:20px;border-radius: 5px;">
-                                                        @endif
-                                                        {{ $post->blog->title }}
-                                                    </a>
-                                                    on
-                                                    <span class="post-date">{{ $post->published_at }}</span>
-                                                </p>
-                                            </div> --}}
-                                        </div>
+                                @foreach ($datas['types'] as $type)
+                                    <div class="tab-pane {{ $loop->first ? 'active show' : 'fade' }}" id="release-tab-body-{{ $type }}" role="tabpanel">
+                                        @foreach ($datas['releases'] as $index => $release)
+                                            @if ($release->type == $type || $type == 'All')
+                                                <!-- Single Blog Post -->
+                                                <div class="single-blog-post post-style-2 d-flex align-items-center article">
+                                                    <!-- Post Thumbnail -->
+                                                    <div class="post-thumbnail">
+                                                        <img src="{{ asset('img/release/' . $release->type . '.png') }}" alt="">
+                                                    </div>
+                                                    <!-- Post Content -->
+                                                    <div class="post-content">
+                                                        <a href="{{ $release->site_url }}" target="_blank" class="headline">
+                                                            <h5>{{ $release->version }}</h5>
+                                                            <p>{{ substr($release->content, 0, 180) }}</p>
+                                                        </a>
+                                                        <div class="post-meta">
+                                                            <p>
+                                                                release on
+                                                                <span class="post-date">{{ $release->released_at }}</span>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
-                                    @endif
                                 @endforeach
                             </div>
                         </div>
                     </div>
-                    @endforeach
-
-                    
                 </div>
 
                 <!-- ========== Sidebar Area ========== -->
