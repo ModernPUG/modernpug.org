@@ -34,7 +34,7 @@
 
                                 @foreach ($datas['types'] as $type)
                                 <li class="nav-item">
-                                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="release-tab-body-{{ $type }}" data-toggle="tab" href="#release-tab-body-{{ $type }}"
+                                    <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="release-tab-title-{{ $type }}" data-toggle="tab" href="#release-tab-body-{{ $type }}"
                                         role="tab" aria-controls="release-tab-body-{{ $type }}" aria-selected="false">{{
                                         $type }}</a>
                                 </li>
