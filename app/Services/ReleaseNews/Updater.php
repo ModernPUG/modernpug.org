@@ -42,6 +42,7 @@ class Updater {
                 
                 $crawler = $this->crawler($data['site_url']);
                 $version = $crawler->filter($data['version'])->text();
+                $releasedAt = $this->releaseDateModify(trim($crawler->filter($data['date'])->text()));
 
                 if (isset($data['post'])) {
                     $crawler = $this->crawler($this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version));
@@ -58,7 +59,8 @@ class Updater {
                     'site_url' => isset($data['post']) ? $this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version) : $data['site_url'],
                     'type' => $type,
                     'version' => $this->releaseVersionCheck($version),
-                    'content' => $content
+                    'content' => $content,
+                    'released_at' => $releasedAt
                 ]);
                 $success++;
 
@@ -105,6 +107,14 @@ class Updater {
      */
     private function releaseInContent(string $url, string $before, string $after, string $version) {
         return $url . strtolower(preg_replace($before, $after, trim($version)));
+    }
+
+    /**
+     * @param   string $date
+     * @return  string
+     */
+    private function releaseDateModify(string $date) {
+        return date('y-m-d', strtotime($date));
     }
 
     private function print(string $message) {
