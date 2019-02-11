@@ -17,8 +17,8 @@ class ReleaseNewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(array $result = []) {
-        $result['types'] = $this->releaseNews::getAllCrawlTypes();
+    public function index() {
+        $result['types'] = $this->releaseNews::getAllReleaseTypes();
         $result['releases'] = $this->releaseNews::getReleaseNews();
         return view('pages.news.index', ['datas' => $result]);
     }

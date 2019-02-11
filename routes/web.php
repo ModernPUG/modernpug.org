@@ -26,8 +26,9 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::put('profile', 'ProfileController@update')->name('profile.update');
 });
 
-
-Route::resource('/news/release','ReleaseNewsController', ['as' => 'news']);
+Route::prefix('news/')->as('news.')->group(function () {
+    Route::resource('releases','ReleaseNewsController')->names('releases');
+});
 
 Route::resource('blogs','BlogController');
 

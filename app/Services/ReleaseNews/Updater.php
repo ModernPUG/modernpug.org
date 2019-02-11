@@ -33,7 +33,7 @@ class Updater {
      * @see release data -> \App\ReleaseNews::SUPPORT_RELEASES
      */
     public function update(?Command $command = null, int $success = 0, int $duplicate = 0, int $fail = 0) {
-        $datas = $this->releaseNews::getAllCrawlData();
+        $datas = $this->releaseNews::SUPPORT_RELEASES;
         $this->print('릴리즈 크롤링 데이터 검색 건수: ' . count($datas));
 
         foreach ($datas as $type => $data) {
@@ -45,7 +45,8 @@ class Updater {
                 $releasedAt = $this->releaseDateModify(trim($crawler->filter($data['date'])->text()));
 
                 if (isset($data['post'])) {
-                    $crawler = $this->crawler($this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version));
+                    $siteUrl = $this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version);
+                    $crawler = $this->crawler($siteUrl);
                 }
 
                 $content = $crawler->filter($data['content'])->text();
@@ -56,7 +57,7 @@ class Updater {
                 }
 
                 $this->releaseNews::create([
-                    'site_url' => isset($data['post']) ? $this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version) : $data['site_url'],
+                    'site_url' => isset($data['post']) ? $siteUrl : $data['site_url'],
                     'type' => $type,
                     'version' => $this->releaseVersionCheck($version),
                     'content' => $content,
@@ -114,6 +115,7 @@ class Updater {
      * @return  string
      */
     private function releaseDateModify(string $date) {
+        // TODO: CI 경우 릴리즈 날짜에 문자가 포함 되어있음으로 제외시켜야함.
         return date('y-m-d', strtotime($date));
     }
 

@@ -45,17 +45,10 @@ class ReleaseNews extends Model
     ];
 
     /**
-     * @return array
-     */
-    static public function getAllCrawlData() {
-        return static::SUPPORT_RELEASES;
-    }
-
-    /**
      * @param  array $types SUPPORT_RELEASES type(PHP, Laravel ...) contains variable
      * @return array
      */
-    static public function getAllCrawlTypes(array $types = []) {
+    static public function getAllReleaseTypes(array $types = []) {
         array_push($types, 'All');
         foreach (static::SUPPORT_RELEASES as $index => $type) {
             array_push($types, $index);

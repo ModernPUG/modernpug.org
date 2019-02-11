@@ -96,7 +96,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('news.release.index') }}">Releases</a>
+                                    <a class="nav-link" href="{{ route('news.releases.index') }}">Releases</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
