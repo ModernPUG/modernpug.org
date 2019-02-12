@@ -5,7 +5,7 @@
 - `chmod 777 bootstrap/cache`
 - `chmod -R 777 storage`
 - `composer install --no-scripts`
-- `cp .env.example .env` `.env` 내용 수정
+- `cp .env.example .env` 후 `.env` 내용 수정
 - `php artisan key:generate`
 - `php artisan migrate`
 
@@ -16,7 +16,7 @@
 
 
 ## 코드 컨셉
-- PSR을 충실히 따른다
+- [PSR](https://www.php-fig.org/psr/)을 충실히 따른다
 - CSS와 JS는 모두 resources에 작성한 후 컴파일 하여 사용한다
 - IDE에서 자동완성이 될 수 있도록 충분한 타입힌팅(or phpdoc)을 작성한다
   - IDE마다 지원하는 기능이 미묘하게 달라서 다르게 표현해야 하는 경우 PHPStorm이 기준이 된다 
@@ -74,5 +74,38 @@
   - 단 이 규칙에 과도하게 집착할 필요는 없다
 - url에는 복수형 단어를 사용한다
 - 표현가능한 단어가 복합 언어일 경우 하이픈(-)을 이용하여 구분한다
-  - ex:) ~~~.com/latest-posts
+  - ex) ~~~.com/latest-posts
   
+
+## 커밋 규칙
+- 첫줄에는 해당 커밋이 어떠한 의미를 가지는 지 한줄로 요약하여 작성한다
+  - ex) readme.md 내용 정리
+  - ex) 오타수정
+  - ex) Article 단어 복수형으로 변경 
+  
+- 첫줄만으로는 커밋의 내용을 전부 표현할 수 없을 경우 한줄의 공백줄 이후 3번째 줄부터 "-"을 이용하여 수정내역을 기입한다
+  - ```
+    readme.md 내용 정리
+    
+    - 커밋작성규칙 추가
+    - contributor 안내 추가
+    - 라이센스 표시추가
+    ``` 
+  
+- 커밋은 유의미한 최소단위의 커밋으로 커밋한다.
+  - feature 개발을 진행할 경우 해당 feature가 완료되는 시점까지의 과정을 유의미하게 분할 하여 커밋한다
+  - ```
+      - 모델 추가
+      - 컨트롤러 추가
+      - 라우터 추가
+      - 뷰 추가
+    ```
+    
+  - 위의 과정은 예시이며 유의미한 커밋(변경내역 자체가 의미가 있는 내용이며 각 커밋이 코드리뷰를 하기에 너무 크거나 작지 않은 크기) 라고 판단한다면 작업자의 판단에 의해 조정하면 됩니다
+    - 피쳐 개발을 다 끝낸 이후 `xxx 피쳐 추가` 라고 커밋을 할 경우 리뷰자의 경우 확인해야 할 범위나 사이트 이펙트의 발생여부에 대해 고려사항이 많아지므로 그만큼 리뷰 시간이 오래걸리게 되고 해당 커밋은 적절한 시점에 merge 되지 않을 가능성이 높아집니다 
+ 
+- fixed #123 같은 커밋을 통한 이슈트래커를 컨트롤 하는 커밋은 하지 않습니다. 
+
+### 레퍼런스
+- https://edykim.com/ko/post/writing-good-commit-messages/
+- http://blog.naver.com/PostView.nhn?blogId=tmondev&logNo=220763012361
