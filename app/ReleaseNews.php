@@ -4,6 +4,30 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\ReleaseNews
+ *
+ * @property int $id
+ * @property string $site_url 웹 사이트의 주소
+ * @property string $type release type (Laravel, PHP, CI)
+ * @property string $version release version
+ * @property string $content release 내용
+ * @property string|null $released_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereReleasedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereSiteUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereVersion($value)
+ * @mixin \Eloquent
+ */
 class ReleaseNews extends Model
 {
     const SUPPORT_RELEASES = [
@@ -45,10 +69,10 @@ class ReleaseNews extends Model
     ];
 
     /**
-     * @param  array $types SUPPORT_RELEASES type(PHP, Laravel ...) contains variable
      * @return array
      */
-    static public function getAllReleaseTypes(array $types = []) {
+    static public function mergeAllReleaseTypes() {
+        $types = [];
         array_push($types, 'All');
         foreach (static::SUPPORT_RELEASES as $index => $type) {
             array_push($types, $index);

@@ -32,7 +32,7 @@
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="title">Release</li>
 
-                                @foreach ($datas['types'] as $type)
+                                @foreach ($types as $type)
                                 <li class="nav-item">
                                     <a class="nav-link {{ $loop->first ? 'active' : '' }}" id="release-tab-title-{{ $type }}" data-toggle="tab" href="#release-tab-body-{{ $type }}"
                                         role="tab" aria-controls="release-tab-body-{{ $type }}" aria-selected="false">{{
@@ -42,9 +42,9 @@
                             </ul>
                             
                             <div class="tab-content" id="myTabContent">
-                                @foreach ($datas['types'] as $type)
+                                @foreach ($types as $type)
                                     <div class="tab-pane {{ $loop->first ? 'active show' : 'fade' }}" id="release-tab-body-{{ $type }}" role="tabpanel">
-                                        @foreach ($datas['releases'] as $index => $release)
+                                        @foreach ($releases as $index => $release)
                                             @if ($release->type == $type || $type == 'All')
                                                 <!-- Single Blog Post -->
                                                 <div class="single-blog-post post-style-2 d-flex align-items-center article">

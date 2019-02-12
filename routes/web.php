@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 });
 
 Route::prefix('news/')->as('news.')->group(function () {
-    Route::resource('releases','ReleaseNewsController')->names('releases');
+    Route::resource('releases','ReleaseNewsController');
 });
 
 Route::resource('blogs','BlogController');

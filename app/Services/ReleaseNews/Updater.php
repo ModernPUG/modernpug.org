@@ -19,38 +19,44 @@ class Updater {
      * @var Command
      */
     protected $command;
-    
+    /**
+     * @var ReleaseNews
+     */
+    protected $releaseNews;
+
     public function __construct(Client $client, ReleaseNews $releaseNews) {
         $this->client = $client;
         $this->releaseNews = $releaseNews;
     }
 
     /**
-     * @param Command $command
      * @param int $success crawling success count
      * @param int $duplicate crawling duplicate count
      * @param int $fail crawling fail count
-     * @see release data -> \App\ReleaseNews::SUPPORT_RELEASES
+     * @throws \Exception
      */
-    public function update(?Command $command = null, int $success = 0, int $duplicate = 0, int $fail = 0) {
+    public function update(int $success = 0, int $duplicate = 0, int $fail = 0) {
         $datas = $this->releaseNews::SUPPORT_RELEASES;
         $this->print('릴리즈 크롤링 데이터 검색 건수: ' . count($datas));
 
         foreach ($datas as $type => $data) {
             try {
                 DB::beginTransaction();
-                
-                $crawler = $this->crawler($data['site_url']);
+
+                $crawler = $this->convertCrawlerFromUrl($data['site_url']);
                 $version = $crawler->filter($data['version'])->text();
                 $releasedAt = $this->releaseDateModify(trim($crawler->filter($data['date'])->text()));
 
                 if (isset($data['post'])) {
-                    $siteUrl = $this->releaseInContent($data['post']['url'], $data['post']['before'], $data['post']['after'], $version);
-                    $crawler = $this->crawler($siteUrl);
+                    $siteUrl = $this->releaseInContent($data['post']['url'],
+                        $data['post']['before'],
+                        $data['post']['after'],
+                        $version);
+                    $crawler = $this->convertCrawlerFromUrl($siteUrl);
                 }
 
                 $content = $crawler->filter($data['content'])->text();
-                    
+
                 if ($this->releaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($version))) {
                     $duplicate++;
                     continue;
@@ -61,7 +67,7 @@ class Updater {
                     'type' => $type,
                     'version' => $this->releaseVersionCheck($version),
                     'content' => $content,
-                    'released_at' => $releasedAt
+                    'released_at' => $releasedAt,
                 ]);
                 $success++;
 
@@ -80,9 +86,9 @@ class Updater {
 
     /**
      * @param   string $url
-     * @return  string
+     * @return  Crawler
      */
-    private function crawler(string $url) {
+    private function convertCrawlerFromUrl(string $url) {
         $response = $this->client->get($url);
         $contents = $response->getBody()->getContents();
         $crawler = new Crawler($contents);
@@ -91,7 +97,6 @@ class Updater {
     }
 
     /**
-     * @param   string $type
      * @param   string $version
      * @return  string
      */
@@ -115,7 +120,7 @@ class Updater {
      * @return  string
      */
     private function releaseDateModify(string $date) {
-        // TODO: CI 경우 릴리즈 날짜에 문자가 포함 되어있음으로 제외시켜야함.
+        // TODO: CI 경우 릴리즈 날짜에 문자가 포함 되어있으므로 제외시켜야함.
         return date('y-m-d', strtotime($date));
     }
 

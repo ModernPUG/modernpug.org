@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\ReleaseNews;
 use Log;
 
+/**
+ * @property ReleaseNews releaseNews
+ */
 class ReleaseNewsController extends Controller
 {
     public function __construct(ReleaseNews $releaseNews) {
@@ -18,8 +21,8 @@ class ReleaseNewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $result['types'] = $this->releaseNews::getAllReleaseTypes();
-        $result['releases'] = $this->releaseNews::getReleaseNews();
-        return view('pages.news.index', ['datas' => $result]);
+        $types = $this->releaseNews::mergeAllReleaseTypes();
+        $releases = $this->releaseNews::getReleaseNews();
+        return view('pages.news.index', compact('types', 'releases'));
     }
 }

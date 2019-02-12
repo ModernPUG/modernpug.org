@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReleasesTable extends Migration
+class CreateReleaseNewsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -31,6 +31,6 @@ class CreateReleasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('releases');
+        Schema::dropIfExists('release_news');
     }
 }
