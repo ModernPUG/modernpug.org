@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>모던PHP유저그룹 통합 검색</ShortName>
+    <Description>모던PHP유저그룹 통합 검색</Description>
+    <InputEncoding>UTF-8</InputEncoding>
+    <Url type="text/html" template="https://modernpug.org/posts/search?keyword={searchTerms}"/>
+    <AdultContent>false</AdultContent>
+    <Language>ko-kr</Language>
+    <Attribution>
+        Modern PHP User Group. All Right Reserved.
+    </Attribution>
+</OpenSearchDescription>
