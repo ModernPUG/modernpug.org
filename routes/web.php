@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth:web'], function () {
 
 Route::resource('blogs','BlogController');
 
-Route::get('/post/search/{tag?}','PostController@search')->name('posts.search');
+Route::get('/posts/search/{tag?}', 'PostController@search')->name('posts.search');
 
 Route::resource('posts','PostController');
 
