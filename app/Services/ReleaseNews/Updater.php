@@ -56,6 +56,7 @@ class Updater {
                 foreach ($releaseArray as $release) {
                     if (ReleaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($release[0]))) {
                         $duplicate++;
+                        $count++;
                         continue;
                     }
 

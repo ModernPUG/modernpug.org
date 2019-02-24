@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
  * App\ReleaseNews
@@ -11,14 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $site_url 웹 사이트의 주소
  * @property string $type release type (Laravel, PHP, CI)
  * @property string $version release version
- * @property string $content release 내용
  * @property string|null $released_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereContent($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereReleasedAt($value)
@@ -161,9 +160,15 @@ class ReleaseNews extends Model
     }
 
     /**
+     * @param bool $slack
      * @return object
      */
-    static public function getReleaseNews() {
+    static public function getReleaseNews(bool $slack = false) {
+        if ($slack) {
+            return self::orderBy('released_at', 'desc')
+                ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
+                ->get();
+        }
         return self::orderBy('released_at', 'desc')->get();
     }
 
@@ -178,4 +183,20 @@ SQL;
 
         return \DB::select($query);
     }
+
+    /**
+     * @param $release
+     * @return SlackAttachment
+     */
+    static public function convertAttachment($release): SlackAttachment {
+        $attachment = new SlackAttachment();
+        $attachment->title = $release->type;
+        $attachment->url = $release->site_url;
+        $attachment->content = $release->version;
+//        $attachment->imageUrl = url('/img/release/' . $release->type . '.png');
+        $attachment->timestamp = strtotime($release->released_at);
+
+        return $attachment;
+    }
+
 }
