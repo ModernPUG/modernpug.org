@@ -11,6 +11,9 @@ use DB;
 use App\ReleaseNews;
 
 class Updater {
+    const CRAWLING_LIMIT = 5;
+    const CRAWLING_INITIALIZE = 0;
+
     /**
      * @var Client
      */
@@ -19,26 +22,22 @@ class Updater {
      * @var Command
      */
     protected $command;
-    /**
-     * @var ReleaseNews
-     */
-    protected $releaseNews;
 
-    public function __construct(Client $client, ReleaseNews $releaseNews) {
+    public function __construct(Client $client) {
         $this->client = $client;
-        $this->releaseNews = $releaseNews;
     }
 
     /**
+     * @param int $count each type crawling limit 20
      * @param int $success crawling success count
      * @param int $duplicate crawling duplicate count
      * @param int $fail crawling fail count
      * @throws \Exception
      */
-    public function update(int $success = 0, int $duplicate = 0, int $fail = 0) {
+    public function update(int $count = 0, int $success = 0, int $duplicate = 0, int $fail = 0) {
         $this->print('크롤링 시작');
 
-        foreach ($this->releaseNews::SUPPORT_RELEASES as $type => $data) {
+        foreach (ReleaseNews::SUPPORT_RELEASES as $type => $data) {
             try {
                 DB::beginTransaction();
 
@@ -55,29 +54,34 @@ class Updater {
                 $releaseArray = $this->mergeCrawlerResult($version, $releasedAt);
 
                 foreach ($releaseArray as $release) {
-                    if ($this->releaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($release[0]))) {
+                    if (ReleaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($release[0]))) {
                         $duplicate++;
                         continue;
                     }
 
-                    $this->print($type . '=> ' . $release[0]);
-
-                    if (isset($data['post']['url'])) {
-                        $siteUrl = $this->releaseInContent($data['post']['url'],
-                            $data['post']['before'],
-                            $data['post']['after'],
-                            $this->releaseVersionCheck($release[0]),
-                            $data['post']['end']);
+                    if ($count == self::CRAWLING_LIMIT) {
+                        $count = self::CRAWLING_INITIALIZE;
+                        $this->print('============> change crawling type');
+                        break;
                     }
 
-                    $this->releaseNews::create([
-                        'site_url' => empty($data['post']['url']) ? $data['site_url'] : $siteUrl,
+                    $this->print($type . '=> ' . trim($release[0]));
+
+                    $siteUrl = $this->releaseInContent($data['post']['url'],
+                        $data['post']['before'],
+                        $data['post']['after'],
+                        $release[0],
+                        $data['post']['end']);
+
+                    ReleaseNews::create([
+                        'site_url' => $siteUrl,
                         'type' => $type,
                         'version' => $this->releaseVersionCheck($release[0]),
                         'released_at' => $this->releaseDateModify($release[1]),
                     ]);
 
                     $success++;
+                    $count++;
                 }
 
                 DB::commit();
@@ -125,7 +129,23 @@ class Updater {
      * @return  string
      */
     private function releaseVersionCheck(string $version) {
-        return preg_replace('/[^0-9_.-]/', '', trim($version));
+        $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
+
+        if ($custom) {
+            if (strpos($version, 'released') !== false) {
+                $version = preg_replace('/[^0-9_.-]/', '', trim($version));
+            } else {
+                $version = trim($version);
+            }
+        } else {
+            if (strpos($version, 'released') !== false) {
+                $version = preg_replace('/[^0-9_.-]/', '', trim($version));
+            } else {
+                $version = preg_replace('/^[a-zA-Z]+/', '', trim($version));
+            }
+        }
+
+        return preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', trim($version));
     }
 
     /**
@@ -133,10 +153,16 @@ class Updater {
      * @param   string $before
      * @param   string $after
      * @param   string $version
-     * @param string $end
+     * @param   string $end
      * @return  string
      */
     private function releaseInContent(string $url, string $before, string $after, string $version, string $end) {
+        $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
+
+        if (! $custom) {
+            $version = $this->releaseVersionCheck($version);
+        }
+
         if (empty($before) && empty($after)) {
             return $url . $version . $end;
         } else {
@@ -149,11 +175,10 @@ class Updater {
      * @return  string
      */
     private function releaseDateModify(string $date) {
-        // TODO: CI 경우 릴리즈 날짜에 문자가 포함 되어있으므로 제외시켜야함.
         if (strpos($date, ':') !== false) {
-            return date('y-m-d', strtotime(substr($date, strpos($date, ':') + 2)));
+            return date('y-m-d', strtotime(substr($date, strpos(trim($date), ':') + 2)));
         }
-        return date('y-m-d', strtotime($date));
+        return date('y-m-d', strtotime(trim($date)));
     }
 
     private function print(string $message) {
