@@ -67,14 +67,71 @@ class ReleaseNews extends Model
          'Symfony' => [
              'site_url'  => 'https://symfony.com/blog/category/releases',
              'version'   => '#content_wrapper > div > div.row > main > div > div > h2 > a',
-             'date'      => '#content_wrapper > div > div.row > main > div > div > p.metadata > span',
+             'date'      => '#content_wrapper > div > div.row > main > div > div > p.metadata > span.m-r-15',
              'post'   =>  [
-                 'url'       => 'https://symfony.com/blog/symfony-',
+                 'url'       => 'https://symfony.com/blog/',
                  'before'    => '/[. ]/',
                  'after'     => '-',
-                 'end'      => '-released'
+                 'end'      => ''
              ]
-         ]
+         ],
+        'Phalcon' => [
+            'site_url'  => 'https://github.com/phalcon/cphalcon/releases',
+            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
+            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
+            'post'      => [
+                'url'      => 'https://github.com/phalcon/cphalcon/releases/tag/v',
+                'before'   => '',
+                'after'    => '',
+                'end'      => ''
+            ]
+        ],
+        'Slim' => [
+            'site_url'  => 'https://github.com/slimphp/Slim/releases',
+            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
+            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
+            'post'      => [
+                'url'      => 'https://github.com/slimphp/Slim/releases/tag/v',
+                'before'   => '',
+                'after'    => '',
+                'end'      => ''
+            ]
+        ],
+        'Lumen' => [
+            'site_url'  => 'https://github.com/laravel/lumen/releases',
+            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div > div > div > div.d-flex > h4 > a',
+            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div > span > relative-time',
+            'post'      => [
+                'url'      => 'https://github.com/laravel/lumen/releases/tag/v',
+                'before'   => '',
+                'after'    => '',
+                'end'      => ''
+            ]
+        ],
+        /*
+        'Composer' => [
+            'site_url'  => 'https://github.com/composer/composer/releases',
+            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
+            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
+            'post'      => [
+                'url'      => 'https://github.com/composer/composer/releases/tag/v',
+                'before'   => '',
+                'after'    => '',
+                'end'      => ''
+            ]
+        ],
+        'xdebug' => [
+            'site_url'  => 'https://github.com/xdebug/xdebug/releases',
+            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
+            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
+            'post'      => [
+                'url'      => 'https://github.com/xdebug/xdebug/releases/tag/v',
+                'before'   => '',
+                'after'    => '',
+                'end'      => ''
+            ]
+        ],
+        */
     ];
 
     protected $table = 'release_news';
@@ -88,7 +145,6 @@ class ReleaseNews extends Model
      */
     static public function mergeAllReleaseTypes() {
         $types = [];
-        array_push($types, 'All');
         foreach (static::SUPPORT_RELEASES as $index => $type) {
             array_push($types, $index);
         }
@@ -105,10 +161,21 @@ class ReleaseNews extends Model
     }
 
     /**
-     * @param  int $limit show release news max 7 versions
      * @return object
      */
-    static public function getReleaseNews(int $limit = 7) {
-        return self::orderBy('released_at', 'desc')->limit($limit)->get();
+    static public function getReleaseNews() {
+        return self::orderBy('released_at', 'desc')->get();
+    }
+
+    /**
+     * @return array
+     */
+    static public function getRecentlyReleaseNews() {
+        $query = <<<SQL
+select * from release_news where (type, released_at) in
+(select type, max(released_at) from release_news group by type)
+SQL;
+
+        return \DB::select($query);
     }
 }

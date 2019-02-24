@@ -56,7 +56,6 @@
                                                     <div class="post-content">
                                                         <a href="{{ $release->site_url }}" target="_blank" class="headline">
                                                             <h5>{{ $release->version }}</h5>
-                                                            <p>{{ substr($release->content, 0, 180) }}</p>
                                                         </a>
                                                         <div class="post-meta">
                                                             <p>
@@ -78,11 +77,7 @@
                 <!-- ========== Sidebar Area ========== -->
                 <div class="col-12 col-md-8 col-lg-4">
                     <div class="post-sidebar-area">
-
-                        {{-- @include('widget.about')
-                        @include('widget.connect')
-                        @include('widget.banner')
-                        @include('widget.sponsor') --}}
+                        @include('widget.recently-release-news', ['releases' => $recentlyReleases])
                     </div>
                 </div>
             </div>
