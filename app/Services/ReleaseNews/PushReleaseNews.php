@@ -26,6 +26,6 @@ class PushReleaseNews {
      * @return object
      */
     private function getTargetReleaseNews() {
-        return ReleaseNews::getReleaseNews(true);
+        return ReleaseNews::getPushReleaseNews();
     }
 }

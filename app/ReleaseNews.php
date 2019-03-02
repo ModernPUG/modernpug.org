@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
@@ -142,7 +143,7 @@ class ReleaseNews extends Model
     /**
      * @return array
      */
-    static public function mergeAllReleaseTypes() {
+    static public function getAllReleaseTypes() {
         $types = [];
         foreach (static::SUPPORT_RELEASES as $index => $type) {
             array_push($types, $index);
@@ -160,20 +161,23 @@ class ReleaseNews extends Model
     }
 
     /**
-     * @param bool $slack
      * @return object
      */
-    static public function getReleaseNews(bool $slack = false) {
-        if ($slack) {
-            return self::orderBy('released_at', 'desc')
-                ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
-                ->get();
-        }
+    static public function getReleaseNews() {
         return self::orderBy('released_at', 'desc')->get();
     }
 
     /**
-     * @return array
+     * @return ReleaseNews[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
+     */
+    static public function getPushReleaseNews() {
+        return self::orderBy('released_at', 'desc')
+            ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
+            ->get();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Collection
      */
     static public function getRecentlyReleaseNews() {
         $query = <<<SQL
@@ -181,14 +185,15 @@ select * from release_news where (type, released_at) in
 (select type, max(released_at) from release_news group by type)
 SQL;
 
-        return \DB::select($query);
+        $query = DB::select($query);
+        return self::hydrate($query);
     }
 
     /**
      * @param $release
      * @return SlackAttachment
      */
-    static public function convertAttachment($release): SlackAttachment {
+    public function convertAttachment($release): SlackAttachment {
         $attachment = new SlackAttachment();
         $attachment->title = $release->type;
         $attachment->url = $release->site_url;

@@ -16,7 +16,7 @@ class ReleaseNewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $types = ReleaseNews::mergeAllReleaseTypes();
+        $types = ReleaseNews::getAllReleaseTypes();
         $releases = ReleaseNews::getReleaseNews();
         $recentlyReleases = ReleaseNews::getRecentlyReleaseNews();
         return view('pages.news.index', compact('types', 'releases', 'recentlyReleases'));
