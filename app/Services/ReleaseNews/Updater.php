@@ -2,13 +2,12 @@
 
 namespace App\Services\ReleaseNews;
 
+use App\ReleaseNews;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
-use Log;
-use DB;
-
-use App\ReleaseNews;
 
 class Updater {
     const CRAWLING_LIMIT = 5;
@@ -28,7 +27,7 @@ class Updater {
     }
 
     /**
-     * @param int $count each type crawling limit 20
+     * @param int $count each type crawling limit 5
      * @param int $success crawling success count
      * @param int $duplicate crawling duplicate count
      * @param int $fail crawling fail count
@@ -51,10 +50,10 @@ class Updater {
                     return $content->text();
                 });
 
-                $releaseArray = $this->mergeCrawlerResult($version, $releasedAt);
+                $releases = $this->mergeCrawlerResult($version, $releasedAt);
 
-                foreach ($releaseArray as $release) {
-                    if (ReleaseNews::existTypeAndVersion($type, $this->releaseVersionCheck($release[0]))) {
+                foreach ($releases as $release) {
+                    if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($release[0]))) {
                         $duplicate++;
                         $count++;
                         continue;
@@ -77,8 +76,8 @@ class Updater {
                     ReleaseNews::create([
                         'site_url' => $siteUrl,
                         'type' => $type,
-                        'version' => $this->releaseVersionCheck($release[0]),
-                        'released_at' => $this->releaseDateModify($release[1]),
+                        'version' => $this->convertReleaseVersion($release[0]),
+                        'released_at' => $this->modifyReleaseDate($release[1]),
                     ]);
 
                     $success++;
@@ -129,7 +128,7 @@ class Updater {
      * @param   string $version
      * @return  string
      */
-    private function releaseVersionCheck(string $version) {
+    private function convertReleaseVersion(string $version) {
         $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
 
         if ($custom) {
@@ -161,7 +160,7 @@ class Updater {
         $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
 
         if (! $custom) {
-            $version = $this->releaseVersionCheck($version);
+            $version = $this->convertReleaseVersion($version);
         }
 
         if (empty($before) && empty($after)) {
@@ -175,7 +174,7 @@ class Updater {
      * @param   string $date
      * @return  string
      */
-    private function releaseDateModify(string $date) {
+    private function modifyReleaseDate(string $date) {
         if (strpos($date, ':') !== false) {
             return date('y-m-d', strtotime(substr($date, strpos(trim($date), ':') + 2)));
         }

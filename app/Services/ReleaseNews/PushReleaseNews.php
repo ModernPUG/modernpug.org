@@ -3,6 +3,7 @@
 namespace App\Services\ReleaseNews;
 
 use App\ReleaseNews;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Messages\SlackMessage;
 
 class PushReleaseNews {
@@ -14,12 +15,16 @@ class PushReleaseNews {
         $image = url('/img/logo.png');
         $message->image($image);
 
+        $count = 0;
         foreach ($this->getTargetReleaseNews() as $release) {
-            $attachment = ReleaseNews::convertAttachment($release);
+            $attachment = (new ReleaseNews)->convertAttachment($release);
             $message->attachments[] = $attachment;
+            $count++;
         }
 
-        \Slack::send($message);
+        if ($count !== 0) {
+            \Slack::send($message);
+        }
     }
 
     /**

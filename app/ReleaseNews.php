@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
@@ -199,7 +200,7 @@ SQL;
         $attachment->url = $release->site_url;
         $attachment->content = $release->version;
 //        $attachment->imageUrl = url('/img/release/' . $release->type . '.png');
-        $attachment->timestamp = strtotime($release->released_at);
+        $attachment->timestamp = Carbon::parse($release->released_at)->timestamp;
 
         return $attachment;
     }
