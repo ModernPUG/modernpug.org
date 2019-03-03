@@ -14,7 +14,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property string $site_url 웹 사이트의 주소
  * @property string $type release type (Laravel, PHP, CI)
  * @property string $version release version
- * @property string|null $released_at
+ * @property \Illuminate\Support\Carbon $released_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newModelQuery()
@@ -135,8 +135,8 @@ class ReleaseNews extends Model
         */
     ];
 
+    protected $dates = ['released_at'];
     protected $table = 'release_news';
-
     protected $fillable = [
         'site_url', 'type', 'version', 'released_at'
     ];
@@ -200,7 +200,7 @@ SQL;
         $attachment->url = $release->site_url;
         $attachment->content = $release->version;
 //        $attachment->imageUrl = url('/img/release/' . $release->type . '.png');
-        $attachment->timestamp = Carbon::parse($release->released_at)->timestamp;
+        $attachment->timestamp = $release->released_at->getTimestamp();
 
         return $attachment;
     }

@@ -3,7 +3,6 @@
 namespace App\Services\ReleaseNews;
 
 use App\ReleaseNews;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Messages\SlackMessage;
 
 class PushReleaseNews {
@@ -17,7 +16,7 @@ class PushReleaseNews {
 
         $count = 0;
         foreach ($this->getTargetReleaseNews() as $release) {
-            $attachment = (new ReleaseNews)->convertAttachment($release);
+            $attachment = $release->convertAttachment($release);
             $message->attachments[] = $attachment;
             $count++;
         }
