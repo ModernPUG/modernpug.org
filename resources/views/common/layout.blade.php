@@ -80,7 +80,7 @@
                     <!-- Navbar Toggler -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav"
                             aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                                class="navbar-toggler-icon"></span></button>
+                            class="navbar-toggler-icon"></span></button>
                     <!-- Navbar -->
                     <div class="collapse navbar-collapse" id="worldNav">
                         <ul class="navbar-nav ml-auto">
@@ -138,6 +138,9 @@
                                 </div>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('news.releases.index') }}">Releases</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
                             </li>
