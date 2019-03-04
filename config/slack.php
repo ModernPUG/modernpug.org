@@ -8,6 +8,6 @@
 
 return [
     'url' => env('SLACK_URL', ''),
-    'token' => env('SLACK_TOKEN', ''),
-    'channels'=>env('SLACK_CHANNELS',''),
+    'token' => env('SLACK_INVITE_TOKEN', ''),
+    'invite-channels'=>env('SLACK_INVITE_CHANNELS',''),
 ];

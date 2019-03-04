@@ -39,7 +39,7 @@ class SlackInviter
             'form_params' => [
                 'token' => config('slack.token'),
                 'email' => $email,
-                'channels' => config('slack.channels'),
+                'channels' => config('slack.invite-channels'),
                 //'ultra_restricted' => 1,
                 'set_active' => true,
                 '_attempts'=>1,
