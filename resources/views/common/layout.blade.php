@@ -80,7 +80,7 @@
                     <!-- Navbar Toggler -->
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav"
                             aria-controls="worldNav" aria-expanded="false" aria-label="Toggle navigation"><span
-                                class="navbar-toggler-icon"></span></button>
+                            class="navbar-toggler-icon"></span></button>
                     <!-- Navbar -->
                     <div class="collapse navbar-collapse" id="worldNav">
                         <ul class="navbar-nav ml-auto">
@@ -126,36 +126,6 @@
                                         PHP The Right Way
                                         <i class="fa fa-external-link"></i>
                                     </a>
-<<<<<<< HEAD
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="https://wiki.modernpug.org/questions" target="_blank">
-                                            QNA & WIKI
-                                            <i class="fa fa-external-link"></i>
-                                        </a>
-                                        <a class="dropdown-item" href="http://modernpug.github.io/php-the-right-way/" target="_blank">
-                                            PHP The Right Way
-                                            <i class="fa fa-external-link"></i>
-                                        </a>
-                                        <a class="dropdown-item" href="https://designpatternsphpko.readthedocs.io/ko/latest/" target="_blank">
-                                            Design Patterns PHP
-                                            <i class="fa fa-external-link"></i>
-                                        </a>
-                                        <a class="dropdown-item" href="https://github.com/ModernPUG/meetup" target="_blank">
-                                            정기모임 발표자료
-                                            <i class="fa fa-external-link"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('news.releases.index') }}">Releases</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('sponsors.index') }}">Sponsors</a>
-                                </li>
-=======
                                     <a class="dropdown-item"
                                        href="https://designpatternsphpko.readthedocs.io/ko/latest/" target="_blank">
                                         Design Patterns PHP
@@ -169,12 +139,14 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('news.releases.index') }}">Releases</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('sponsors.index') }}">Sponsors</a>
                             </li>
->>>>>>> upstream/v2
 
 
                             @auth
