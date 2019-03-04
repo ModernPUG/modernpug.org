@@ -55,8 +55,8 @@
                                     <p>1</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="https://www.facebook.com/events/2037590043027339/" target="_blank">
-                                        모던PUG 2월 정기 모임 안내
+                                    <a href="https://www.facebook.com/events/435333203907386/" target="_blank">
+                                        모던PUG 3월 정기 모임 안내
                                     </a>
                                 </div>
                             </div>
@@ -167,25 +167,6 @@
 
             <div class="row justify-content-center">
 
-                <!-- ========== Single Blog Post ========== -->
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post post-style-3 mt-50">
-                        <!-- Post Thumbnail -->
-                        <div class="post-thumbnail">
-                            <img src="/vendor/world/img/blog-img/b6.jpg" alt="">
-                            <!-- Post Content -->
-                            <div class="post-content d-flex align-items-center justify-content-between">
-                                <!-- category -->
-                                <div class="post-tag"><a href="#">12월 송년회/정기모임</a></div>
-                                <!-- Headline -->
-                                <a href="#" class="headline">
-                                    <h5>IMI와 XpressEngine에서 후원해주셨습니다</h5>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
                         <img src="/img/index/48389849_10216975266029953_3169161723819065344_o.jpg" alt="2019년 1월 정기모임">
@@ -195,6 +176,12 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
                         <img src="/img/index/50663726_10217219035644041_6749344056859426816_o.jpg" alt="2019년 2월 정기모임">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-post post-style-3 mt-50">
+                        <img src="/img/index/52835872_10217490523671072_6775070197997895680_n.jpg" alt="2019년 3월 정기모임">
                     </div>
                 </div>
 

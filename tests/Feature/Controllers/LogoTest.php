@@ -6,11 +6,11 @@ namespace Tests\Feature\Controllers;
 
 use Tests\TestCase;
 
-class AboutUsTest extends TestCase
+class LogoTest extends TestCase
 {
 
     public function testIndex()
     {
-        $this->get(route('modernpug.aboutus'))->assertOk();
+        $this->get(route('modernpug.logo'))->assertOk();
     }
 }

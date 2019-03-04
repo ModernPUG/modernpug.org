@@ -36,7 +36,8 @@ Route::resource('posts','PostController');
 Route::resource('tags','TagController');
 
 
-Route::get('aboutus','AboutUsController@index')->name('aboutus');
+Route::get('aboutus','AboutUsController@index')->name('modernpug.aboutus');
+Route::get('logos','LogoController@index')->name('modernpug.logo');
 
 Route::resource('sponsors','SponsorController');
 
