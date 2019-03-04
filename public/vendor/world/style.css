@@ -60,7 +60,7 @@ a {
     transition-duration: 500ms;
     text-decoration: none;
     outline: none;
-    font-size: 14px;
+    /*font-size: 14px;*/
     font-weight: 400;
     color: #0000ff; }
 

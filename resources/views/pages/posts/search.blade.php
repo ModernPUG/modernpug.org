@@ -65,19 +65,19 @@
                         <h1>Managed Tags</h1>
                     </div>
 
-                    <a href="{{ route('posts.search') }}{{ Request()->getQueryString()?"?".Request()->getQueryString():"" }}"
+                    <a href="{{ route('posts.search', array_merge(['tag'=>null],\Request::except('page'))) }}"
                        class="btn btn-sm {{ !$tagName ? "btn-primary":"btn-outline-dark" }}">
                         All
                     </a>
                     @foreach($tags as $tag)
-                        <a href="{{ route('posts.search',[$tag]) }}{{ Request()->getQueryString()?"?".Request()->getQueryString():"" }}"
+                        <a href="{{ route('posts.search',array_merge(\Request::except('page'), ['tag'=>$tag])) }}"
                            class="btn btn-sm {{ $tag == $tagName ? "btn-primary":"btn-outline-dark" }}">
                             {{ $tag }}
                         </a>
                     @endforeach
 
                     @if($tagName && !in_array($tagName,$tags))
-                        <a href="{{ route('posts.search',[$tagName]) }}{{ Request()->getQueryString()?"?".Request()->getQueryString():"" }}"
+                        <a href="{{ route('posts.search',array_merge(\Request::except('page'), ['tag'=>$tagName])) }}"
                            class="btn btn-sm btn-primary">
                             {{ $tagName }}
                         </a>
