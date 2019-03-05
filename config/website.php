@@ -26,7 +26,7 @@ return [
             'description' => '현대적인 PHP 개발에 관심 많은 개발자를 위한 개발자들의 비영리 사용자 모임입니다.',
             'url' => '',
             'type' => 'website',
-            'image' => 'https://modernpug.org/img/img-logo.png',
+            'image' => 'https://modernpug.org/img/logo/logo_03.svg',
         ],
     ],
 

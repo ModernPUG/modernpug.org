@@ -3,7 +3,6 @@
 namespace App\Services\ReleaseNews;
 
 use App\ReleaseNews;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Notifications\Messages\SlackMessage;
 
 class PushReleaseNews {

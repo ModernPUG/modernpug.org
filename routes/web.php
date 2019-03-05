@@ -32,14 +32,15 @@ Route::prefix('news/')->as('news.')->group(function () {
 
 Route::resource('blogs','BlogController');
 
-Route::get('/post/search/{tag?}','PostController@search')->name('posts.search');
+Route::get('/posts/search/{tag?}', 'PostController@search')->name('posts.search');
 
 Route::resource('posts','PostController');
 
 Route::resource('tags','TagController');
 
 
-Route::get('aboutus','AboutUsController@index')->name('aboutus');
+Route::get('aboutus','AboutUsController@index')->name('modernpug.aboutus');
+Route::get('logos','LogoController@index')->name('modernpug.logo');
 
 Route::resource('sponsors','SponsorController');
 
