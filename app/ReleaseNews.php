@@ -44,15 +44,7 @@ class ReleaseNews extends Model
             ]
         ],
          'Laravel' => [
-             'site_url'  => 'https://github.com/laravel/laravel/releases',
-             'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
-             'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
-             'post'      => [
-                 'url'      => 'https://github.com/laravel/laravel/releases/tag/v',
-                 'before'   => '',
-                 'after'    => '',
-                 'end'      => ''
-             ]
+             'site_url'  => 'https://api.github.com/repos/laravel/laravel/releases',
          ],
          'Codeigniter' => [
              'site_url'  => 'https://www.codeigniter.com/userguide3/changelog.html',
@@ -77,66 +69,26 @@ class ReleaseNews extends Model
              ]
          ],
         'Phalcon' => [
-            'site_url'  => 'https://github.com/phalcon/cphalcon/releases',
-            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
-            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
-            'post'      => [
-                'url'      => 'https://github.com/phalcon/cphalcon/releases/tag/v',
-                'before'   => '',
-                'after'    => '',
-                'end'      => ''
-            ]
+            'site_url'  => 'https://api.github.com/repos/phalcon/cphalcon/releases',
         ],
         'Slim' => [
-            'site_url'  => 'https://github.com/slimphp/Slim/releases',
-            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
-            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
-            'post'      => [
-                'url'      => 'https://github.com/slimphp/Slim/releases/tag/v',
-                'before'   => '',
-                'after'    => '',
-                'end'      => ''
-            ]
+            'site_url'  => 'https://api.github.com/repos/slimphp/Slim/releases',
         ],
         'Lumen' => [
-            'site_url'  => 'https://github.com/laravel/lumen/releases',
-            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div > div > div > div.d-flex > h4 > a',
-            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div > span > relative-time',
-            'post'      => [
-                'url'      => 'https://github.com/laravel/lumen/releases/tag/v',
-                'before'   => '',
-                'after'    => '',
-                'end'      => ''
-            ]
+            'site_url'  => 'https://api.github.com/repos/laravel/lumen/releases',
         ],
         /*
         'Composer' => [
-            'site_url'  => 'https://github.com/composer/composer/releases',
-            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
-            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
-            'post'      => [
-                'url'      => 'https://github.com/composer/composer/releases/tag/v',
-                'before'   => '',
-                'after'    => '',
-                'end'      => ''
-            ]
+            'site_url'  => 'https://api.github.com/repos/composer/composer/releases',
         ],
         'xdebug' => [
-            'site_url'  => 'https://github.com/xdebug/xdebug/releases',
-            'version'   => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.d-none.d-md-block.flex-wrap.flex-items-center.col-12.col-md-3.col-lg-2.px-md-3.pb-1.pb-md-4.pt-md-4.float-left.text-md-right.v-align-top > ul > li > a > span', // fixed laravel release version child(3)
-            'date'      => 'body > div.application-main > div > div > div.container-lg.new-discussion-timeline.experiment-repo-nav.p-responsive > div.repository-content > div.position-relative.border-top.clearfix > div > div > div.col-12.col-md-9.col-lg-10.px-md-3.py-md-4.release-main-section.commit.open.float-left > div.release-header > p > relative-time',
-            'post'      => [
-                'url'      => 'https://github.com/xdebug/xdebug/releases/tag/v',
-                'before'   => '',
-                'after'    => '',
-                'end'      => ''
-            ]
+            'site_url'  => 'https://api.github.com/repos/xdebug/xdebug/releases',
         ],
         */
     ];
 
     protected $table = 'release_news';
-
+    protected $dates = ['released_at'];
     protected $fillable = [
         'site_url', 'type', 'version', 'released_at'
     ];
@@ -200,7 +152,7 @@ SQL;
         $attachment->url = $release->site_url;
         $attachment->content = $release->version;
 //        $attachment->imageUrl = url('/img/release/' . $release->type . '.png');
-        $attachment->timestamp = Carbon::parse($release->released_at)->timestamp;
+        $attachment->timestamp = $release->released_at->getTimestamp();
 
         return $attachment;
     }

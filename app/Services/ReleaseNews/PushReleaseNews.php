@@ -17,7 +17,7 @@ class PushReleaseNews {
 
         $count = 0;
         foreach ($this->getTargetReleaseNews() as $release) {
-            $attachment = (new ReleaseNews)->convertAttachment($release);
+            $attachment = $release->convertAttachment($release);
             $message->attachments[] = $attachment;
             $count++;
         }

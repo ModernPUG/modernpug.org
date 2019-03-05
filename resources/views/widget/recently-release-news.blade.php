@@ -7,7 +7,7 @@
             <h5 class="headline">{{ $release->type }} ({{ $release->version }})</h5>
             <p>
                 release on
-                <span class="post-date">{{ $release->released_at }}</span>
+                <span class="post-date">{{ $release->released_at->format('M d, Y') }}</span>
             </p>
         @endforeach
     </div>
