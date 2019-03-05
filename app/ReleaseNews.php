@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
@@ -74,12 +73,12 @@ class ReleaseNews extends Model
         'Slim' => [
             'site_url'  => 'https://api.github.com/repos/slimphp/Slim/releases',
         ],
-        'Lumen' => [
-            'site_url'  => 'https://api.github.com/repos/laravel/lumen/releases',
-        ],
-        /*
         'Composer' => [
             'site_url'  => 'https://api.github.com/repos/composer/composer/releases',
+        ],
+        /*
+        'Lumen' => [
+            'site_url'  => 'https://api.github.com/repos/laravel/lumen/releases',
         ],
         'xdebug' => [
             'site_url'  => 'https://api.github.com/repos/xdebug/xdebug/releases',
@@ -89,10 +88,6 @@ class ReleaseNews extends Model
 
     protected $dates = ['released_at'];
     protected $table = 'release_news';
-<<<<<<< HEAD
-    protected $dates = ['released_at'];
-=======
->>>>>>> v2
     protected $fillable = [
         'site_url', 'type', 'version', 'released_at'
     ];

@@ -44,8 +44,8 @@ class Updater {
                 // github api
                 if (strpos($data['site_url'], 'api') !== false) {
                     $datas = $this->requestGithubAPI($data['site_url']);
-                    foreach ($datas as $array) {
-                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($array['name']))) {
+                    foreach ($datas as $value) {
+                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($value['name']))) {
                             $duplicate++;
                             $count++;
                             continue;
@@ -57,10 +57,10 @@ class Updater {
                         }
 
                         ReleaseNews::create([
-                            'site_url' => $array['html_url'],
+                            'site_url' => $value['html_url'],
                             'type' => $type,
-                            'version' => $this->convertReleaseVersion($array['name']),
-                            'released_at' => $this->modifyReleaseDate($array['published_at']),
+                            'version' => $this->convertReleaseVersion($value['name']),
+                            'released_at' => $this->modifyReleaseDate($value['published_at']),
                         ]);
 
                         $success++;
