@@ -60,7 +60,7 @@
                                                         <div class="post-meta">
                                                             <p>
                                                                 release on
-                                                                <span class="post-date">{{ $release->released_at->format('M d, Y') }}</span>
+                                                                <span class="post-date">{{ $release->released_at->format('Y-m-d') }}</span>
                                                             </p>
                                                         </div>
                                                     </div>
