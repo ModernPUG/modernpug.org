@@ -2,6 +2,7 @@
 
 namespace App\Services\ReleaseNews;
 
+use Carbon\Carbon;
 use App\ReleaseNews;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -60,7 +61,7 @@ class Updater {
                             'site_url' => $value['html_url'],
                             'type' => $type,
                             'version' => $this->convertReleaseVersion($value['name']),
-                            'released_at' => $this->modifyReleaseDate($value['published_at']),
+                            'released_at' => Carbon::parse($value['published_at'])->format('Y-m-d'),
                         ]);
 
                         $success++;
