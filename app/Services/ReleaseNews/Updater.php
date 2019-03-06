@@ -2,6 +2,7 @@
 
 namespace App\Services\ReleaseNews;
 
+use Carbon\Carbon;
 use App\ReleaseNews;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -32,6 +33,7 @@ class Updater {
      * @param int $duplicate crawling duplicate count
      * @param int $fail crawling fail count
      * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function update(int $count = 0, int $success = 0, int $duplicate = 0, int $fail = 0) {
         $this->print('크롤링 시작');
@@ -40,48 +42,72 @@ class Updater {
             try {
                 DB::beginTransaction();
 
-                $crawler = $this->convertCrawlerFromUrl($data['site_url']);
+                // github api
+                if (strpos($data['site_url'], 'api') !== false) {
+                    $datas = $this->requestGithubAPI($data['site_url']);
+                    foreach ($datas as $value) {
+                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($value['name']))) {
+                            $duplicate++;
+                            $count++;
+                            continue;
+                        }
 
-                $version = $crawler->filter($data['version'])->each(function ($content) {
-                    return $content->text();
-                });
+                        if ($count == self::CRAWLING_LIMIT) {
+                            $count = self::CRAWLING_INITIALIZE;
+                            break;
+                        }
 
-                $releasedAt = $crawler->filter($data['date'])->each(function ($content) {
-                    return $content->text();
-                });
+                        ReleaseNews::create([
+                            'site_url' => $value['html_url'],
+                            'type' => $type,
+                            'version' => $this->convertReleaseVersion($value['name']),
+                            'released_at' => Carbon::parse($value['published_at'])->format('Y-m-d'),
+                        ]);
 
-                $releases = $this->mergeCrawlerResult($version, $releasedAt);
-
-                foreach ($releases as $release) {
-                    if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($release[0]))) {
-                        $duplicate++;
+                        $success++;
                         $count++;
-                        continue;
                     }
+                } else {
+                    $crawler = $this->convertCrawlerFromUrl($data['site_url']);
 
-                    if ($count == self::CRAWLING_LIMIT) {
-                        $count = self::CRAWLING_INITIALIZE;
-                        $this->print('============> change crawling type');
-                        break;
+                    $version = $crawler->filter($data['version'])->each(function ($content) {
+                        return $content->text();
+                    });
+
+                    $releasedAt = $crawler->filter($data['date'])->each(function ($content) {
+                        return $content->text();
+                    });
+
+                    $releases = $this->mergeCrawlerResult($version, $releasedAt);
+
+                    foreach ($releases as $release) {
+                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($release[0]))) {
+                            $duplicate++;
+                            $count++;
+                            continue;
+                        }
+
+                        if ($count == self::CRAWLING_LIMIT) {
+                            $count = self::CRAWLING_INITIALIZE;
+                            break;
+                        }
+
+                        $siteUrl = $this->releaseInContent($data['post']['url'],
+                            $data['post']['before'],
+                            $data['post']['after'],
+                            $release[0],
+                            $data['post']['end']);
+
+                        ReleaseNews::create([
+                            'site_url' => $siteUrl,
+                            'type' => $type,
+                            'version' => $this->convertReleaseVersion($release[0]),
+                            'released_at' => $this->modifyReleaseDate($release[1]),
+                        ]);
+
+                        $success++;
+                        $count++;
                     }
-
-                    $this->print($type . '=> ' . trim($release[0]));
-
-                    $siteUrl = $this->releaseInContent($data['post']['url'],
-                        $data['post']['before'],
-                        $data['post']['after'],
-                        $release[0],
-                        $data['post']['end']);
-
-                    ReleaseNews::create([
-                        'site_url' => $siteUrl,
-                        'type' => $type,
-                        'version' => $this->convertReleaseVersion($release[0]),
-                        'released_at' => $this->modifyReleaseDate($release[1]),
-                    ]);
-
-                    $success++;
-                    $count++;
                 }
 
                 DB::commit();
@@ -107,6 +133,16 @@ class Updater {
         $crawler = new Crawler($contents);
 
         return $crawler;
+    }
+
+    /**
+     * @param string $url
+     * @return \Psr\Http\Message\StreamInterface
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function requestGithubAPI(string $url) {
+        $request = $this->client->request('GET', $url);
+        return json_decode($request->getBody(), true);
     }
 
     /**
@@ -176,9 +212,9 @@ class Updater {
      */
     private function modifyReleaseDate(string $date) {
         if (strpos($date, ':') !== false) {
-            return date('y-m-d', strtotime(substr($date, strpos(trim($date), ':') + 2)));
+            return date('Y-m-d', strtotime(substr($date, strpos(trim($date), ':') + 2)));
         }
-        return date('y-m-d', strtotime(trim($date)));
+        return date('Y-m-d', strtotime(trim($date)));
     }
 
     private function print(string $message) {
