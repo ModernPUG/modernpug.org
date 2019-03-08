@@ -45,6 +45,17 @@ class ReleaseNews extends Model
          'Laravel' => [
              'site_url'  => 'https://api.github.com/repos/laravel/laravel/releases',
          ],
+        'Lumen' => [
+            'site_url'  => 'https://github.com/laravel/lumen/releases',
+            'version'   => '.commit-title > a',
+            'date'      => '.list-style-none relative-time',
+            'post'      => [
+                'url'       => 'https://github.com/laravel/lumen/releases/tag/v',
+                'before'    => '',
+                'after'     => '',
+                'end'       => ''
+            ],
+        ],
          'Codeigniter' => [
              'site_url'  => 'https://www.codeigniter.com/userguide3/changelog.html',
              'version'   => '#change-log > div > h2',
@@ -73,15 +84,12 @@ class ReleaseNews extends Model
         'Slim' => [
             'site_url'  => 'https://api.github.com/repos/slimphp/Slim/releases',
         ],
+        /*
         'Composer' => [
             'site_url'  => 'https://api.github.com/repos/composer/composer/releases',
         ],
-        /*
-        'Lumen' => [
-            'site_url'  => 'https://api.github.com/repos/laravel/lumen/releases',
-        ],
         'xdebug' => [
-            'site_url'  => 'https://api.github.com/repos/xdebug/xdebug/releases',
+            'site_url'  => 'https://github.com/xdebug/xdebug/releases',
         ],
         */
     ];

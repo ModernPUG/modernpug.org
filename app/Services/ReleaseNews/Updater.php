@@ -212,9 +212,10 @@ class Updater {
      */
     private function modifyReleaseDate(string $date) {
         if (strpos($date, ':') !== false) {
-            return date('Y-m-d', strtotime(substr($date, strpos(trim($date), ':') + 2)));
+            return Carbon::parse(substr($date, strpos(trim($date), ':') + 2))->format('Y-m-d');
         }
-        return date('Y-m-d', strtotime(trim($date)));
+
+        return Carbon::parse(trim($date))->format('Y-m-d');
     }
 
     private function print(string $message) {
