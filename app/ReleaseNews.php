@@ -131,8 +131,10 @@ class ReleaseNews extends Model
      * @return ReleaseNews[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
      */
     static public function getPushReleaseNews() {
-        return self::orderBy('released_at', 'desc')
+        return self::selectRaw('type, GROUP_CONCAT(version order by released_at desc SEPARATOR \',\') as versions')
+            ->selectRaw('GROUP_CONCAT(site_url order by released_at desc SEPARATOR \',\') as sites')
             ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
+            ->groupBy('type')
             ->get();
     }
 
@@ -156,10 +158,10 @@ SQL;
     public function convertAttachment($release): SlackAttachment {
         $attachment = new SlackAttachment();
         $attachment->title = $release->type;
-        $attachment->url = $release->site_url;
-        $attachment->content = $release->version;
-//        $attachment->imageUrl = url('/img/release/' . $release->type . '.png');
-        $attachment->timestamp = $release->released_at->getTimestamp();
+
+        foreach (explode(',', $release->versions) as $index => $version) {
+            $attachment->action($version, explode(',', $release->sites)[$index]);
+        }
 
         return $attachment;
     }
