@@ -43,7 +43,7 @@ class ReleaseNews extends Model
             ]
         ],
          'Laravel' => [
-             'site_url'  => 'https://api.github.com/repos/laravel/laravel/releases',
+             'site_url'  => 'https://api.github.com/repos/laravel/framework/releases',
          ],
         'Lumen' => [
             'site_url'  => 'https://github.com/laravel/lumen/releases',
