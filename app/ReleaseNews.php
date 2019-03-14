@@ -133,7 +133,7 @@ class ReleaseNews extends Model
     static public function getPushReleaseNews() {
         return self::selectRaw('type, GROUP_CONCAT(version order by released_at desc SEPARATOR \',\') as versions')
             ->selectRaw('GROUP_CONCAT(site_url order by released_at desc SEPARATOR \',\') as sites')
-            ->whereDate('created_at', date('Y-m-d', strtotime('-1 days')))
+            ->whereDate('released_at', date('Y-m-d', strtotime('-1 days')))
             ->groupBy('type')
             ->get();
     }
