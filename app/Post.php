@@ -4,13 +4,17 @@ namespace App;
 
 use App\Services\StripPosts;
 use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Post
+ *
  * @property int $id
  * @property string $title
  * @property string $link
@@ -19,25 +23,35 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Support\Carbon $published_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Blog $blog
  * @property-read \App\Preview $preview
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post query()
+ * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereBlogId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereLink($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublishedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
  * @mixin \Eloquent
  */
 class Post extends Model
 {
-    protected $dates=['published_at'];
+
+    use SoftDeletes;
+
+    protected $dates = ['published_at', 'deleted_at'];
     protected $fillable = [
         'title',
         'link',
@@ -46,44 +60,23 @@ class Post extends Model
         'blog_id',
     ];
 
-
-    public function getPublishedAtAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('y-m-d');
-    }
-
-    public function blog()
-    {
-        return $this->belongsTo(Blog::class);
-    }
-
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class)->withTimestamps();
-    }
-
-    public function preview()
-    {
-        return $this->hasOne(Preview::class)->withDefault(['image_url' => url('/img/adult-article-assortment-1496183.jpg')]);
-    }
-
-    public static function getLatestPosts(int $count, array $tagNames=[])
+    public static function getLatestPosts(int $count, array $tagNames = [])
     {
 
-        $posts = self::with('blog','preview','tags');
+        $posts = self::with('blog', 'preview', 'tags');
 
 
-        if(count($tagNames))
-            $posts->whereHas('tags',function(Builder $builder) use ($tagNames){
+        if (count($tagNames)) {
+            $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
                 $builder->whereIn('tags.name', $tagNames);
             });
+        }
 
         return $posts->limit($count)->get();
 
     }
 
-
-    public static function getLastBestPosts(int $lastDays = 30, int $limit = 20, array $tagNames=[])
+    public static function getLastBestPosts(int $lastDays = 30, int $limit = 20, array $tagNames = [])
     {
         $tagCondition = '';
         if (count($tagNames)) {
@@ -103,7 +96,27 @@ ORDER BY vcount DESC
 LIMIT ?
 SQL;
         $result = DB::select($sql, [$lastDays, $limit]);
-        return Post::hydrate($result)->load('blog','preview','tags');
+        return Post::hydrate($result)->load('blog', 'preview', 'tags');
+    }
+
+    public function getPublishedAtAttribute($date)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('y-m-d');
+    }
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class)->withTimestamps();
+    }
+
+    public function preview()
+    {
+        return $this->hasOne(Preview::class)->withDefault(['image_url' => url('/img/adult-article-assortment-1496183.jpg')]);
     }
 
     /**

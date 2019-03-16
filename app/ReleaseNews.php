@@ -13,7 +13,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property string $site_url 웹 사이트의 주소
  * @property string $type release type (Laravel, PHP, CI)
  * @property string $version release version
- * @property \Illuminate\Support\Carbon $released_at
+ * @property \Illuminate\Support\Carbon|null $released_at 출시일
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newModelQuery()

@@ -43,4 +43,9 @@ class Blog extends Model
     {
         return static::whereNotNull('site_url')->where('site_url','!=','')->get();
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

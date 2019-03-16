@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * App\Tag
+ *
  * @property int $id
  * @property string $name
  * @property \Illuminate\Support\Carbon|null $created_at
