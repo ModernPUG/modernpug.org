@@ -57,7 +57,7 @@ class PostUpdater
         /**
          * @var Post $post
          */
-        $post = Post::updateOrCreate(['blog_id' => $blog->id, 'link' => $link], [
+        $post = Post::withTrashed()->updateOrCreate(['blog_id' => $blog->id, 'link' => $link], [
             'title' => $entry->getTitle(),
             'link' => $link,
             'description' => $description,
