@@ -90,6 +90,7 @@ FROM posts
 LEFT JOIN viewcount
 ON posts.id = viewcount.post_id
 WHERE posts.published_at >= DATE(NOW()) - INTERVAL ? DAY
+AND deleted_at is null 
 $tagCondition
 GROUP BY posts.id
 ORDER BY vcount DESC
