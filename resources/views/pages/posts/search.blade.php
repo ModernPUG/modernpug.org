@@ -45,7 +45,6 @@
                                     <!--end of col-->
                                 </div>
                             </div>
-                            <style></style>
                         </form>
                     </div>
                 </div>
