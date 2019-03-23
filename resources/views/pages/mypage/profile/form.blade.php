@@ -18,7 +18,7 @@
 
                         <div class="card-body">
                             <h4>Update User Profile</h4>
-                            <form method="POST" action="{{ route('profile.update') }}">
+                            <form method="POST" action="{{ route('mypage.profile.update') }}">
                                 @method('put')
                                 @csrf
 

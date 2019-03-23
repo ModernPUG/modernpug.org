@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Blog $blog
  * @property-read \App\Preview $preview
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Viewcount[] $viewcount
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
@@ -107,7 +108,7 @@ SQL;
 
     public function blog()
     {
-        return $this->belongsTo(Blog::class);
+        return $this->belongsTo(Blog::class)->withTrashed();
     }
 
     public function tags()
@@ -118,6 +119,11 @@ SQL;
     public function preview()
     {
         return $this->hasOne(Preview::class)->withDefault(['image_url' => url('/img/adult-article-assortment-1496183.jpg')]);
+    }
+
+    public function viewcount()
+    {
+        return $this->hasMany(Viewcount::class);
     }
 
     /**

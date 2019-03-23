@@ -156,7 +156,8 @@
                                         {{ auth()->user()->name }}님 환영합니다
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a>
+                                        <a class="dropdown-item" href="{{ route('mypage.dashboard.show') }}">Dashboard</a>
+                                        <a class="dropdown-item" href="{{ route('mypage.profile.show') }}">Profile</a>
                                         <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
                                     </div>
                                 </li>

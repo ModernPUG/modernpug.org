@@ -20,10 +20,11 @@ Route::get('/home',function(){
 });
 
 
-Route::group(['middleware' => 'auth:web'], function () {
+Route::group(['middleware' => 'auth:web','prefix'=>'mypage','as'=>'mypage.'], function () {
 
-    Route::get('profile', 'ProfileController@show')->name('profile.show');
-    Route::put('profile', 'ProfileController@update')->name('profile.update');
+    Route::get('dashboard', 'Mypage\DashboardController@show')->name('dashboard.show');
+    Route::get('profile', 'Mypage\ProfileController@show')->name('profile.show');
+    Route::put('profile', 'Mypage\ProfileController@update')->name('profile.update');
 });
 
 Route::prefix('news/')->as('news.')->group(function () {
@@ -31,9 +32,10 @@ Route::prefix('news/')->as('news.')->group(function () {
 });
 
 Route::resource('blogs','BlogController');
+Route::patch('blogs/{blog}/restore','BlogController@restore')->name('blogs.restore');
 
 Route::get('/posts/search/{tag?}', 'PostController@search')->name('posts.search');
-
+Route::patch('posts/{post}/restore','PostController@restore')->name('posts.restore');
 Route::resource('posts','PostController');
 
 Route::resource('tags','TagController');

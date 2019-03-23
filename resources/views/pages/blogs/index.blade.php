@@ -26,51 +26,6 @@
     </div>
     <!-- ********** Hero Area End ********** -->
 
-    @if(count($myBlogs))
-    <section class="contact-area section-padding-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <!-- Contact Form Area -->
-                <div class="col-12 col-md-12 col-lg-12 ubuntu-fonts">
-
-                    <h4>My Blog</h4>
-                    <div class="row">
-                        @foreach($myBlogs as $blog)
-
-                            <div class="col-md-3 mb-30">
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="{{ $blog->image_url??"/img/adult-article-assortment-1496183.jpg" }}"
-                                             alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content" style="word-break: break-all">
-                                        <h5>{{ $blog->title }}</h5>
-                                        <div>
-                                            {{ $blog->description }}
-                                        </div>
-                                        <div>
-                                            {{ $blog->site_url }}
-                                            <i class="fa fa-external-link"></i>
-                                        </div>
-
-                                        <a href="{{ route('blogs.edit',[$blog->id]) }}" class="btn btn-primary btn-sm">
-                                            수정하기
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    @endif
-
     <section class="contact-area section-padding-100">
         <div class="container">
             <div class="row justify-content-center">

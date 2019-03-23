@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Mypage;
 
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
 use Hash;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ProfileController extends Controller
 
         $user = auth()->user();
 
-        return view('pages.profile.form', compact('user'));
+        return view('pages.mypage.profile.form', compact('user'));
     }
 
 
@@ -27,8 +28,8 @@ class ProfileController extends Controller
 
 
         $args = [
-            'name'=>$request->get('name'),
-            'password'=>Hash::make($request->get('password')),
+            'name' => $request->get('name'),
+            'password' => Hash::make($request->get('password')),
         ];
 
 
@@ -36,7 +37,7 @@ class ProfileController extends Controller
 
 
         Toastr::success('프로필이 수정되었습니다');
-        return redirect(route('profile.show'));
+        return redirect(route('mypage.profile.show'));
 
 
     }
