@@ -20,7 +20,7 @@ Route::get('/home',function(){
 });
 
 
-Route::group(['middleware' => 'auth:web','prefix'=>'mypage','as'=>'mypage.'], function () {
+Route::group(['middleware' => ['auth:web','verified'],'prefix'=>'mypage','as'=>'mypage.'], function () {
 
     Route::get('dashboard', 'Mypage\DashboardController@show')->name('dashboard.show');
     Route::get('profile', 'Mypage\ProfileController@show')->name('profile.show');

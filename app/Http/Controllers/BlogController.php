@@ -17,6 +17,14 @@ use Zend\Http\Exception\InvalidArgumentException;
 
 class BlogController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('verified')->except('index');
+    }
+
+
     /**
      * Display a listing of the resource.
      * @return Response

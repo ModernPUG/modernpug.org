@@ -12,6 +12,15 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class PostController extends Controller
 {
+
+
+    public function __construct()
+    {
+
+        $this->middleware('verified')->except(['index','search']);
+    }
+
+
     /**
      * Display a listing of the resource.
      * @return \Illuminate\Http\Response
