@@ -72,7 +72,7 @@ class Post extends Model
             });
         }
 
-        return $posts->limit($count)->get();
+        return $posts->orderBy('published_at', 'desc')->limit($count)->get();
 
     }
 
