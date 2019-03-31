@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null $crawled_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog newModelQuery()
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog query()
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCrawledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereDescription($value)

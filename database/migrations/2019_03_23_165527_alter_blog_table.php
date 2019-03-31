@@ -15,6 +15,7 @@ class AlterBlogTable extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             $table->softDeletes();
+            $table->dateTime('crawled_at')->nullable()->index();
         });
     }
 
@@ -27,6 +28,7 @@ class AlterBlogTable extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             $table->dropSoftDeletes();
+            $table->dropColumn('crawled_at');
         });
     }
 }

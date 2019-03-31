@@ -54,6 +54,9 @@
                                         <div>
                                             {{ $blog->description }}
                                         </div>
+                                        <div class="small">
+                                            피드 갱신: {{ $blog->crawled_at?:"아직 처리되지 않았습니다" }}
+                                        </div>
                                         <div>
                                             @if($blog->site_url)
                                                 <a href="{{ $blog->site_url }}" target="_blank">

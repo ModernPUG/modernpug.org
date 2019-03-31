@@ -53,6 +53,10 @@ class BlogFeedUpdater
                 $feed = $this->feedParser->fromUrl($blog->feed_url);
                 $this->blogUpdater->fromFeed($feed, $blog);
                 $this->postUpdater->fromFeed($feed, $blog);
+
+                $blog->crawled_at = now();
+                $blog->update();
+
                 $this->print($blog->feed_url . " 종료");
 
             } catch (ZendFeedRuntimeException $exception) {
