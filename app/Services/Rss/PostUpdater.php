@@ -75,8 +75,8 @@ class PostUpdater
      */
     private function makePostLink(EntryInterface $entry): string
     {
-        $postUri = new Uri($entry->getLink());
-        $link = $postUri->getScheme() . "://" . $postUri->getHost() . $postUri->getPath();
+        $link = $entry->getLink();
+
         return $link;
     }
 
