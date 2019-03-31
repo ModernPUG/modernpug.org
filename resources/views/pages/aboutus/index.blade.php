@@ -19,6 +19,11 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="single-blog-title text-center">
                         <h3>Modern PHP User Group</h3>
+
+                        <p class="mt-50 text-white">
+                            현대적인 PHP 개발에 관심 많은 개발자를 위한 개발자들의 비영리 사용자 모임입니다.<br />
+                            매월 1회 정기 모임과 발표를 통해 관심사와 지식을 공유합니다.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -26,22 +31,6 @@
 
     </div>
     <!-- ********** Hero Area End ********** -->
-
-    <div class="regular-page-wrap section-padding-100">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <div class="page-content">
-                        <h5>
-                            현대적인 PHP 개발에 관심 많은 개발자를 위한 개발자들의 비영리 사용자 모임입니다.<br />
-                            매월 1회 정기 모임과 발표를 통해 관심사와 지식을 공유합니다.
-                        </h5>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <section class="contact-area section-padding-50">
