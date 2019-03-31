@@ -17,7 +17,7 @@ class PostController extends Controller
     public function __construct()
     {
 
-        $this->middleware('verified')->except(['index','search','show']);
+        $this->middleware('verified')->except(['index', 'search', 'show']);
     }
 
 
@@ -60,7 +60,7 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -77,13 +77,14 @@ class PostController extends Controller
     public function show(Post $post, Request $request)
     {
 
-        Viewcount::create(['post_id' => $post->id, 'ip' => $request->ip()]);
+        Viewcount::increase($post, $request);
 
         //원본 블로그로 이동하게 한다
         $link = $post->link;
 
-        if(substr($link,0,2)=="//")
+        if (substr($link, 0, 2) == "//") {
             $link = "https:" . $link;
+        }
 
         return redirect()->to($link);
 
@@ -106,7 +107,7 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param \Illuminate\Http\Request $request
+     * @param Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
@@ -126,7 +127,7 @@ class PostController extends Controller
 
 
         if (!auth()->check()) {
-            throw new UnauthorizedHttpException('','로그인 후 사용가능합니다');
+            throw new UnauthorizedHttpException('', '로그인 후 사용가능합니다');
         }
 
         $user = auth()->user();
@@ -148,7 +149,7 @@ class PostController extends Controller
 
 
         if (!auth()->check()) {
-            throw new UnauthorizedHttpException('','로그인 후 사용가능합니다');
+            throw new UnauthorizedHttpException('', '로그인 후 사용가능합니다');
         }
 
         $user = auth()->user();
