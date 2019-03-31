@@ -11,7 +11,7 @@ class PushReleaseNews {
         $message->content('오늘의 릴리즈 뉴스입니다.');
         $message->to(config('release-news.slack.notification-channel'));
         $message->from('ModernPUG');
-        $image = url('/img/logo.png');
+        $image = url('/img/logo/logo-03.png');
         $message->image($image);
 
         $count = 0;

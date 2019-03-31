@@ -21,7 +21,7 @@ class PushWeeklyBestPosts
         $message = new SlackMessage();
         $message->content("Modern PUG 주간 인기글입니다");
         $message->from('ModernPUG');
-        $image = url('/img/logo/logo.png');
+        $image = url('/img/logo/logo-03.png');
         $message->image($image);
 
 
