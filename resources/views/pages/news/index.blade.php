@@ -11,7 +11,12 @@
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="single-blog-title text-center">
-                        <h3>Releases</h3>
+                        <h3>Releases News</h3>
+
+
+                        <p class="mt-50 text-white">
+                            PHP와 관련된 주요 업데이트 소식을 전합니다.
+                        </p>
                     </div>
                 </div>
             </div>
