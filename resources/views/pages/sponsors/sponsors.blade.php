@@ -21,6 +21,10 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="single-blog-title text-center">
                         <h3>Sponsors</h3>
+
+                        <p class="mt-50 text-white">
+                            Modern PHP User Group의 공식 후원사입니다
+                        </p>
                     </div>
                 </div>
             </div>
@@ -37,7 +41,7 @@
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-12 col-lg-12">
 
-                    <h4>정기 스폰서</h4>
+                    <h4>정기 모임 후원</h4>
                     <div class="row">
 
                         <div class="col-md-6">
