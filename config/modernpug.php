@@ -11,4 +11,5 @@ return [
     'slack'=>'https://modernpug.slack.com/',
     'github'=>'https://github.com/ModernPUG',
     'github_repo'=>'https://github.com/ModernPUG/modernpug.org',
+    'meetup_repo'=>'https://github.com/ModernPUG/meetup',
 ];

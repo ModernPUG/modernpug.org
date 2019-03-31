@@ -43,6 +43,7 @@ Route::resource('tags','TagController');
 
 Route::get('aboutus','AboutUsController@index')->name('modernpug.aboutus');
 Route::get('logos','LogoController@index')->name('modernpug.logo');
+Route::get('project','ProjectController@index')->name('modernpug.project');
 
 Route::resource('sponsors','SponsorController');
 

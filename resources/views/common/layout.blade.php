@@ -93,6 +93,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarBlogDropdown">
                                     <a class="dropdown-item" href="{{ route('modernpug.aboutus') }}">About Us</a>
                                     <a class="dropdown-item" href="{{ route('modernpug.logo') }}">Logo</a>
+                                    <a class="dropdown-item" href="{{ route('modernpug.project') }}">Project</a>
                                 </div>
                             </li>
 
