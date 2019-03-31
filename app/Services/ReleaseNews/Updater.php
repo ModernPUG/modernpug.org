@@ -46,10 +46,8 @@ class Updater {
                 if (strpos($data['site_url'], 'api') !== false) {
                     $datas = $this->requestGithubAPI($data['site_url']);
                     foreach ($datas as $value) {
-                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($value['name']))) {
-                            $duplicate++;
-                            $count++;
-                            continue;
+                        if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($value['tag_name']))) {
+                            break;
                         }
 
                         if ($count == self::CRAWLING_LIMIT) {
@@ -60,7 +58,7 @@ class Updater {
                         ReleaseNews::create([
                             'site_url' => $value['html_url'],
                             'type' => $type,
-                            'version' => $this->convertReleaseVersion($value['name']),
+                            'version' => $this->convertReleaseVersion($value['tag_name']),
                             'released_at' => Carbon::parse($value['published_at'])->format('Y-m-d'),
                         ]);
 
@@ -82,9 +80,7 @@ class Updater {
 
                     foreach ($releases as $release) {
                         if (ReleaseNews::existTypeAndVersion($type, $this->convertReleaseVersion($release[0]))) {
-                            $duplicate++;
-                            $count++;
-                            continue;
+                            break;
                         }
 
                         if ($count == self::CRAWLING_LIMIT) {
@@ -119,7 +115,6 @@ class Updater {
         }
 
         $this->print('성공 건수: ' . $success);
-        $this->print('중복 건수: ' . $duplicate);
         $fail && $this->print('실패 건수: ' . $fail);
     }
 
