@@ -205,7 +205,13 @@
                         <img src="/img/logo/logo_white.svg" style="width:250px;" alt="Logo">
                     </a>
                     <div class="copywrite-text mt-30">
-                        <p>홈페이지와 관련된 내용은 페이스북 그룹, 슬랙, 깃허브를 통해서 문의바랍니다</p>
+                        <p>
+                            홈페이지와 관련된 내용은
+                            <a class="text-info" href="{{ config('modernpug.facebook') }}" target="_blank">페이스북 그룹</a>,
+                            <a class="text-info" href="{{ config('modernpug.slack') }}" target="_blank">슬랙</a>,
+                            <a class="text-info" href="{{ config('modernpug.github_repo') }}" target="_blank">깃허브</a>
+                            를 통해서 문의바랍니다
+                        </p>
                         <p>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;{{ date('Y') }} All rights reserved | This template is made with

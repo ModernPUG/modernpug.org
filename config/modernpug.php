@@ -10,4 +10,5 @@ return [
     'facebook'=>'https://www.facebook.com/groups/655071604594451/',
     'slack'=>'https://modernpug.slack.com/',
     'github'=>'https://github.com/ModernPUG',
+    'github_repo'=>'https://github.com/ModernPUG/modernpug.org',
 ];
