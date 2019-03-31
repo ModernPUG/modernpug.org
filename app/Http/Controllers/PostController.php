@@ -80,7 +80,12 @@ class PostController extends Controller
         Viewcount::create(['post_id' => $post->id, 'ip' => $request->ip()]);
 
         //원본 블로그로 이동하게 한다
-        return redirect()->to($post->link);
+        $link = $post->link;
+
+        if(substr($link,0,2)=="//")
+            $link = "https:" . $link;
+
+        return redirect()->to($link);
 
         /*
         $relatedPosts = Post::whereBlogId($post->blog_id)->whereKeyNot($post->id)->limit(3)->get();
