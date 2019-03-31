@@ -86,7 +86,7 @@ class Post extends Model
         }
 
         $sql = <<<SQL
-SELECT count(posts.id) AS vcount, posts.*
+SELECT count(posts.id) AS vcount,(COUNT(posts.id)/abs(datediff(published_at,now()))) as rank_point, posts.*
 FROM posts
 LEFT JOIN viewcount
 ON posts.id = viewcount.post_id
@@ -94,7 +94,7 @@ WHERE posts.published_at >= DATE(NOW()) - INTERVAL ? DAY
 AND deleted_at is null 
 $tagCondition
 GROUP BY posts.id
-ORDER BY vcount DESC
+ORDER BY rank_point DESC
 LIMIT ?
 SQL;
         $result = DB::select($sql, [$lastDays, $limit]);
