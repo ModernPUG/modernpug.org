@@ -40,7 +40,7 @@
                     <h4>정기 스폰서</h4>
                     <div class="row">
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <a href="http://imicorp.co.kr/" target="_blank" class="headline">
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post">
@@ -56,23 +56,7 @@
                             </a>
                         </div>
 
-                        <div class="col-md-4">
-                            <a href="https://www.xpressengine.com/" target="_blank" class="headline">
-                                <!-- Single Blog Post -->
-                                <div class="single-blog-post">
-                                    <!-- Post Thumbnail -->
-                                    <div class="post-thumbnail">
-                                        <img src="/img/sponsors/XE_banner_350.jpg" alt="">
-                                    </div>
-                                    <!-- Post Content -->
-                                    <div class="post-content">
-                                        <h5>Xpress Engine</h5>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <a href="https://www.jetbrains.com/" target="_blank" class="headline">
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post">
