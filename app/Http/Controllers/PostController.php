@@ -17,7 +17,7 @@ class PostController extends Controller
     public function __construct()
     {
 
-        $this->middleware('verified')->except(['index','search']);
+        $this->middleware('verified')->except(['index','search','show']);
     }
 
 
