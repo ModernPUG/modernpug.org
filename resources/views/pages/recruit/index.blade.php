@@ -13,6 +13,10 @@
                 <div class="col-12 col-md-8 col-lg-8">
                     <div class="single-blog-title text-center">
                         <h3>Recruiting</h3>
+
+                        <p class="mt-50 text-white">
+                            PHP와 관련한 채용 공고입니다
+                        </p>
                     </div>
                 </div>
             </div>
