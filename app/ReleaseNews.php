@@ -32,11 +32,11 @@ class ReleaseNews extends Model
 {
     const SUPPORT_RELEASES = [
         'PHP' => [
-            'site_url'  => 'http://php.net/releases/',
-            'version'   => '#layout-content > h2',
-            'date'      => '#layout-content > ul > li:nth-child(1)',
+            'site_url'  => 'https://www.php.net/ChangeLog-7.php',
+            'version'   => '#layout-content > section > h3',
+            'date'      => '#layout-content > section > b > time',
             'post'      => [
-                'url'       => 'http://php.net/releases/#',
+                'url'       => 'https://www.php.net/ChangeLog-7.php#',
                 'before'    => '',
                 'after'     => '',
                 'end'       => ''
