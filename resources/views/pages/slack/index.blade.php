@@ -49,11 +49,16 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mb-30">
-                                    <button type="submit" class="btn world-btn">register</button>
+                                    <button type="submit" class="btn world-btn">Request</button>
                                 </div>
                                 <div class="col-12">
 
                                     <div>신청하신 이메일로 초대장이 자동 발송됩니다</div>
+                                    <div>
+                                        이미 가입하신 분은
+                                        <a href="{{ config('modernpug.slack') }}" target="_blank" class="btn btn-xs btn-outline-primary">여기</a>
+                                        에서 로그인 하실 수 있습니다
+                                    </div>
                                 </div>
                             </div>
                         </form>
