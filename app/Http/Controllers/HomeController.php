@@ -32,7 +32,7 @@ class HomeController extends Controller
         }
 
 
-        $latestPosts = Post::getLatestPosts(4, ['php']);
+        $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags());
 
 
         return view('pages.home.index', compact( 'monthlyBestByTag', 'latestPosts'));
