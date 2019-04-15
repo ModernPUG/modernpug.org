@@ -8,6 +8,7 @@ use App\Services\Rss\BlogUpdater;
 use App\Services\Rss\FeedParser;
 use Illuminate\Console\Command;
 use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
+use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
 
 class BlogFeedUpdater
 {
@@ -59,10 +60,16 @@ class BlogFeedUpdater
 
                 $this->print($blog->feed_url . " 종료");
 
-            } catch (ZendFeedRuntimeException $exception) {
+            } catch (ZendFeedRuntimeException | ZendHttpRuntimeException $exception) {
 
-                $this->print($exception->getMessage());
+                if (app()->environment() === 'production' && app()->bound('sentry')) {
+                    app('sentry')->captureException($exception);
+                }
 
+                if (app()->environment() !== 'production')
+                {
+                    $this->print($exception->getMessage());
+                }
             }
         }
     }
