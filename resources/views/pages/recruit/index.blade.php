@@ -35,7 +35,7 @@
                         <a href="https://recruit.brich.co.kr/" target="_blank" class="headline">
                             <!-- Post Thumbnail -->
                             <div class="post-thumbnail">
-                                <img src="/img/recruit/brich_logo.jpg" alt="에어텔닷컴 백엔드 개발자 채용" style="padding:80px 30px;">
+                                <img src="/img/recruit/brich_logo.jpg" alt="브리치 개발자 채용" style="padding:80px 30px;">
                                 <!-- category -->
                                 <div class="label">Laravel</div>
                             </div>
