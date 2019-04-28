@@ -176,7 +176,7 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
                         <img src="/img/index/201904.jpg" alt="2019년 4월 정기모임">
-                    </div>1
+                    </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
