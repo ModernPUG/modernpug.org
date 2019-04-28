@@ -1,7 +1,7 @@
 
 <!-- Widget Area -->
 <div class="sidebar-widget-area">
-    <h5 class="title">Stay Connected</h5>
+    <h5 class="title">Connect</h5>
     <div class="widget-content">
         <div class="social-area d-flex justify-content-around">
             @if(config('modernpug.facebook'))
