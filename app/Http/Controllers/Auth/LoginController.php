@@ -58,6 +58,9 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
 
+        /**
+         * @var \Laravel\Socialite\Contracts\User $provider_user
+         */
         $provider_user = Socialite::with($provider)->user();
 
         $oauth_identity = OauthIdentity::firstOrNew([
@@ -65,21 +68,22 @@ class LoginController extends Controller
             'provider_user_id' => $provider_user->id,
         ]);
 
-        $email = Email::firstOrNew(['email' => $provider_user->email]);
+        $email = Email::firstOrNew(['email' => $provider_user->getEmail()]);
 
         if ($oauth_identity->user_id) {
             $user = User::find($oauth_identity->user_id);
         } else {
-            $user = User::firstOrNew(['email' => $provider_user->email]);
+            $user = User::firstOrNew(['email' => $provider_user->getEmail()]);
         }
 
         $oauth_identity->access_token = $provider_user->token;
 
         if (!$user->id) {
-            $user->name = $provider_user->name;
+            $user->name = $provider_user->getName();
             $email->is_primary = 1;
         }
 
+        $user->avatar_url = $user->avatar_url ?: $provider_user->getAvatar();
 
         $user->save();
         $user->emails()->save($email);
