@@ -55,8 +55,8 @@
                                     <p>1</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="https://www.facebook.com/events/2283126815262130/" target="_blank">
-                                        모던PUG 4월 정기 모임 안내
+                                    <a href="https://www.facebook.com/events/2353261694736737/" target="_blank">
+                                        모던PUG 5월 정기 모임 안내
                                     </a>
                                 </div>
                             </div>
@@ -170,18 +170,17 @@
 
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
-                        <img src="/img/index/50663726_10217219035644041_6749344056859426816_o.jpg" alt="2019년 2월 정기모임">
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post post-style-3 mt-50">
                         <img src="/img/index/52835872_10217490523671072_6775070197997895680_n.jpg" alt="2019년 3월 정기모임">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="single-blog-post post-style-3 mt-50">
                         <img src="/img/index/201904.jpg" alt="2019년 4월 정기모임">
+                    </div>1
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-post post-style-3 mt-50">
+                        <img src="/img/index/58713304_10217915481054741_8037517380152197120_o.jpg" alt="2019년 5월 정기모임">
                     </div>
                 </div>
 
