@@ -110,17 +110,20 @@
                                 </div>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://wiki.modernpug.org/questions"
+                                   target="_blank">
+                                    QNA & WIKI
+                                    <i class="fa fa-external-link"></i>
+                                </a>
+                            </li>
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">
-                                    Links
+                                    Projects
                                 </a>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="https://wiki.modernpug.org/questions"
-                                       target="_blank">
-                                        QNA & WIKI
-                                        <i class="fa fa-external-link"></i>
-                                    </a>
                                     <a class="dropdown-item" href="http://modernpug.github.io/php-the-right-way/"
                                        target="_blank">
                                         PHP The Right Way
