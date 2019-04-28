@@ -21,6 +21,7 @@
         "oriceon/toastr-5-laravel": "dev-master",
         "sentry/sentry-laravel": "^1.0",
         "socialiteproviders/slack": "^3.0",
+        "spatie/laravel-permission": "^2.37",
         "spatie/laravel-slack-slash-command": "1.7",
         "symfony/dom-crawler": "^4.2",
         "zendframework/zend-feed": "^2.10",
