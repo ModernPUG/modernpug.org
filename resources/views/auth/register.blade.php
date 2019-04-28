@@ -86,6 +86,20 @@
                                 </div>
                             </form>
                         </div>
+                        <div class="card-footer">
+
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-4">
+
+                                    <a class="btn btn-outline-secondary btn-block" href="{{ route('login.social',['slack']) }}">
+                                        <strong>
+                                            <i class="fa fa-slack icon"></i> Login with Slack
+                                        </strong>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

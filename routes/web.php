@@ -12,6 +12,8 @@
 */
 Auth::routes(['verify' => true]);
 Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('login/{driver}', 'Auth\LoginController@redirectToProvider')->name('login.social');
+Route::get('login/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/', 'HomeController@index')->name('home');
 

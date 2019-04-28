@@ -58,7 +58,7 @@
 
                                 <div class="form-group row">
                                     <label for="password"
-                                           class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                           class="col-md-4 col-form-label text-md-right">New {{ __('Password') }}</label>
 
                                     <div class="col-md-6">
                                         <input id="password" type="password"
@@ -86,11 +86,27 @@
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Register') }}
+                                            Update
                                         </button>
                                     </div>
                                 </div>
                             </form>
+                        </div>
+                        <div class="card-footer">
+                            <div class="form-group">
+                                <div class="col-md-6 offset-md-4">
+
+                                    @foreach($user->oauth_identities as $oauthIdentity)
+
+                                        <div class="btn btn-outline-secondary btn-block">
+                                            <strong>
+                                                <i class="fa fa-{{ $oauthIdentity->provider }} icon"></i> Connected with
+                                                {{ ucfirst($oauthIdentity->provider) }}
+                                            </strong>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
