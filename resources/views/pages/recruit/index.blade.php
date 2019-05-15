@@ -15,7 +15,10 @@
                         <h3>Recruiting</h3>
 
                         <p class="mt-50 text-white">
-                            PHP와 관련한 채용 공고입니다
+                            PHP와 관련한 채용공고를 보여드립니다.
+                            게시를 원하시는 분들은
+                            <a href="https://forms.gle/hEHLvemuRKcvQ9Nf6" class="text-info">여기</a>
+                            로 문의/접수 부탁드립니다.
                         </p>
                     </div>
                 </div>
