@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
 use App\Http\Requests\InviteSlackRequest;
 use App\Services\SlackInviter;
@@ -44,6 +45,10 @@ class SlackController extends Controller
 
 
             Toastr::success('초대장이 신청하신 메일로 발송되었습니다.');
+
+        } catch (AlreadyInvitedException $exception) {
+
+            Toastr::warning('이미 초대장이 발송완료되었습니다. 초대장을 받지 못하셨다면 스팸메일함을 확인해보시거나 모던퍼그 페이스북을 통해 문의해주세요.');
 
         } catch (SlackInviteFailException $exception) {
 

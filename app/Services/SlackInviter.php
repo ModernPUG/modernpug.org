@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
 use GuzzleHttp\Client;
 
@@ -29,6 +30,7 @@ class SlackInviter
      * @param string $email
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws SlackInviteFailException
+     * @throws AlreadyInvitedException
      */
     public function invite(string $email)
     {
@@ -42,14 +44,20 @@ class SlackInviter
                 'channels' => config('slack.invite-channels'),
                 //'ultra_restricted' => 1,
                 'set_active' => true,
-                '_attempts'=>1,
+                '_attempts' => 1,
             ],
         ]);
 
         $result = json_decode($response->getBody()->getContents());
 
+
         if (!$result->ok) {
-            throw new SlackInviteFailException($result->error);
+
+            if ($result->error == 'already_invited') {
+                throw new AlreadyInvitedException();
+            } else {
+                throw new SlackInviteFailException($result->error);
+            }
         }
 
     }
