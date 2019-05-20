@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
 use GuzzleHttp\Client;
@@ -31,6 +32,7 @@ class SlackInviter
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws SlackInviteFailException
      * @throws AlreadyInvitedException
+     * @throws AlreadyInTeamException
      */
     public function invite(string $email)
     {
@@ -55,6 +57,8 @@ class SlackInviter
 
             if ($result->error == 'already_invited') {
                 throw new AlreadyInvitedException();
+            } elseif ($result->error == 'already_in_team') {
+                throw new AlreadyInTeamException();
             } else {
                 throw new SlackInviteFailException($result->error);
             }
