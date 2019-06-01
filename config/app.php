@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Spatie\SlashCommand\SlashCommandServiceProvider::class,
 
         /*
          * Application Service Providers...
