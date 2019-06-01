@@ -5,7 +5,7 @@
 ![GitHub](https://img.shields.io/github/license/ModernPug/modernpug.org.svg)
 [![CircleCI](https://circleci.com/gh/ModernPUG/modernpug.org.svg?style=svg)](https://circleci.com/gh/ModernPUG/modernpug.org)
 
-https://modernpug.org의 소스코드를 관리하기 위한 프로젝트입니다
+[https://modernpug.org](https://modernpug.org)의 소스코드를 관리하기 위한 프로젝트입니다
 
 
 ## 설치방법
