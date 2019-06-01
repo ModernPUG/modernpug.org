@@ -1,37 +1,29 @@
 <?php
 
-
 namespace App\Services\Rss;
 
-
-use App\Post;
-use App\Blog;
 use App\Tag;
+use App\Blog;
+use App\Post;
 use Zend\Feed\Reader\Entry\Rss as Entry;
 use Zend\Feed\Reader\Feed\FeedInterface;
 use Zend\Feed\Reader\Entry\EntryInterface;
-use Zend\Feed\Uri;
 
 class PostUpdater
 {
-
     public function fromFeed(FeedInterface $feed, Blog $blog)
     {
 
         /**
-         * @var Entry $entry
+         * @var Entry
          */
         foreach ($feed as $entry) {
-
             $post = $this->updateBlogFromEntry($blog, $entry);
             $tags = $this->getTagIdsFromEntry($entry);
 
             $this->attachTags($post, $tags);
-
         }
-
     }
-
 
     /**
      * @param Post $post
@@ -53,9 +45,8 @@ class PostUpdater
         $description = $entry->getDescription();
         $published_at = $entry->getDateModified();
 
-
         /**
-         * @var Post $post
+         * @var Post
          */
         $post = Post::withTrashed()->updateOrCreate(['blog_id' => $blog->id, 'link' => $link], [
             'title' => $entry->getTitle(),
@@ -68,7 +59,6 @@ class PostUpdater
         return $post;
     }
 
-
     /**
      * @param $entry
      * @return string
@@ -77,8 +67,8 @@ class PostUpdater
     {
         $link = $entry->getLink();
 
-        if (strpos($link, "//") === 0) {
-            $link = "https:" . $link;
+        if (strpos($link, '//') === 0) {
+            $link = 'https:'.$link;
         }
 
         return $link;
@@ -86,7 +76,7 @@ class PostUpdater
 
     /**
      * @param EntryInterface $entry
-     * @return integer[]
+     * @return int[]
      */
     private function getTagIdsFromEntry(EntryInterface $entry): array
     {
@@ -94,13 +84,12 @@ class PostUpdater
 
         foreach ($entry->getCategories() as $category) {
             /**
-             * @var Tag $tag
+             * @var Tag
              */
             $tag = Tag::firstOrCreate(['name' => $category['label']]);
             $tags[] = $tag->id;
-
         }
+
         return $tags;
     }
-
 }

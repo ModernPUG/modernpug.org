@@ -1,15 +1,11 @@
 <?php
 
-
 namespace Tests\Mock;
-
 
 use App\Services\Rss\BlogUpdater;
 
 trait BlogUpdaterMock
 {
-
-
     /**
      * @return BlogUpdater
      */
@@ -20,5 +16,4 @@ trait BlogUpdaterMock
 
         return $mock;
     }
-
 }

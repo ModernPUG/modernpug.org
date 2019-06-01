@@ -23,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-        $this->app->singleton(\JoliCode\Slack\Api\Client::class,function(){
+        $this->app->singleton(\JoliCode\Slack\Api\Client::class, function () {
             return \JoliCode\Slack\ClientFactory::create(config('slack.token'));
         });
     }

@@ -1,14 +1,12 @@
 <?php
 
-
 namespace Tests\Unit\Services;
 
-
-use App\Services\BlogFeedUpdater;
-use Tests\Mock\PostUpdaterMock;
-use Tests\Mock\BlogUpdaterMock;
-use Tests\Mock\FeedParserMock;
 use Tests\TestCase;
+use Tests\Mock\FeedParserMock;
+use Tests\Mock\BlogUpdaterMock;
+use Tests\Mock\PostUpdaterMock;
+use App\Services\BlogFeedUpdater;
 
 class RssReaderTest extends TestCase
 {
@@ -18,15 +16,11 @@ class RssReaderTest extends TestCase
 
     public function testSuccessRequest()
     {
-
         $rssReader = new BlogFeedUpdater($this->getFeedParserMock(),
             $this->getBlogUpdaterMock(),
             $this->getPostUpdaterMock()
         );
 
         $rssReader->updateAllBlog();
-
     }
-
-
 }

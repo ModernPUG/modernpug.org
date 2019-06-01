@@ -29,19 +29,16 @@ class PickerDelayedResponse extends SlashCommandResponseJob
      */
     public function handle()
     {
-
-
         for ($i = 0; $i < self::MAX_DELAYED_COUNT; $i++) {
             $this->respondToSlack(self::MAX_DELAYED_COUNT - $i)->displayResponseToEveryoneOnChannel()->send();
             sleep(self::DELAY_SECOND);
         }
 
         $taggedUsers = array_map(function ($user) {
-            return "<@" . $user . ">";
+            return '<@'.$user.'>';
         }, $this->pickedUsers);
 
-        $pickerMessage = '추첨결과 : ' . implode($taggedUsers, ', ') . '님이 당첨되었습니다. 축하드립니다 :tada:';
+        $pickerMessage = '추첨결과 : '.implode($taggedUsers, ', ').'님이 당첨되었습니다. 축하드립니다 :tada:';
         $this->respondToSlack($pickerMessage)->displayResponseToEveryoneOnChannel()->send();
-
     }
 }

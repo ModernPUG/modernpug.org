@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: kkame
  * Date: 18. 11. 13
- * Time: 오후 10:56
+ * Time: 오후 10:56.
  */
 
 return [

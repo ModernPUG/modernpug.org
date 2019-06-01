@@ -2,18 +2,16 @@
 
 namespace App;
 
-use App\Services\StripPosts;
 use Carbon\Carbon;
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Messages\SlackAttachment;
+use App\Services\StripPosts;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
- * App\Post
+ * App\Post.
  *
  * @property int $id
  * @property string $title
@@ -49,7 +47,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Post extends Model
 {
-
     use SoftDeletes;
 
     protected $dates = ['published_at', 'deleted_at'];
@@ -63,9 +60,7 @@ class Post extends Model
 
     public static function getLatestPosts(int $count, array $tagNames = [])
     {
-
         $posts = self::with('blog', 'preview', 'tags');
-
 
         if (count($tagNames)) {
             $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
@@ -74,14 +69,13 @@ class Post extends Model
         }
 
         return $posts->orderBy('published_at', 'desc')->limit($count)->get();
-
     }
 
     public static function getLastBestPosts(int $lastDays = 30, int $limit = 20, array $tagNames = [])
     {
         $tagCondition = '';
         if (count($tagNames)) {
-            $tagNamesString = join("','", $tagNames);
+            $tagNamesString = implode("','", $tagNames);
             $tagCondition = " AND posts.id IN (select post_id from post_tag where tag_id in (select id from tags where name in ('$tagNamesString'))) ";
         }
 
@@ -98,7 +92,8 @@ ORDER BY rank_point DESC
 LIMIT ?
 SQL;
         $result = DB::select($sql, [$lastDays, $limit]);
-        return Post::hydrate($result)->load('blog', 'preview', 'tags');
+
+        return self::hydrate($result)->load('blog', 'preview', 'tags');
     }
 
     public function getPublishedAtAttribute($date)
@@ -147,7 +142,7 @@ SQL;
         foreach ($this->tags as $tag) {
             $attachment->action($tag->name, route('posts.search', [$tag->name]));
         }
+
         return $attachment;
     }
-
 }

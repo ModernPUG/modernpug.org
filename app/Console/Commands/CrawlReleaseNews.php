@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ReleaseNews\Updater;
 use Illuminate\Console\Command;
+use App\Services\ReleaseNews\Updater;
 
 class CrawlReleaseNews extends Command
 {
@@ -28,7 +28,8 @@ class CrawlReleaseNews extends Command
      * @return mixed
      * @throws \Exception
      */
-    public function handle(Updater $updater) {
+    public function handle(Updater $updater)
+    {
         $updater->update();
     }
 }

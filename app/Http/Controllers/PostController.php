@@ -2,24 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Blog;
 use App\Post;
-use App\Tag;
 use App\Viewcount;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class PostController extends Controller
 {
-
-
     public function __construct()
     {
-
         $this->middleware('verified')->except(['index', 'search', 'show']);
     }
-
 
     /**
      * Display a listing of the resource.
@@ -27,9 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-
         $managedTags = Tag::getAllPrimaryTags();
-
 
         $weeklyDay = 300;
         $weeklyBestByTag = [];
@@ -38,13 +32,11 @@ class PostController extends Controller
             $weeklyBestByTag[$tag] = Post::getLastBestPosts($weeklyDay, 5, Tag::MANAGED_TAGS[$tag]);
         }
 
-
         $latestPostsByTag = [];
         $latestPostsByTag['All'] = Post::getLatestPosts(5);
         foreach ($managedTags as $tag) {
             $latestPostsByTag[$tag] = Post::getLatestPosts(5, Tag::MANAGED_TAGS[$tag]);
         }
-
 
         return view('pages.posts.index', compact('weeklyBestByTag', 'latestPostsByTag'));
     }
@@ -76,14 +68,13 @@ class PostController extends Controller
      */
     public function show(Post $post, Request $request)
     {
-
         Viewcount::increase($post, $request);
 
         //원본 블로그로 이동하게 한다
         $link = $post->link;
 
-        if (substr($link, 0, 2) == "//") {
-            $link = "https:" . $link;
+        if (substr($link, 0, 2) == '//') {
+            $link = 'https:'.$link;
         }
 
         return redirect()->to($link);
@@ -92,7 +83,6 @@ class PostController extends Controller
         $relatedPosts = Post::whereBlogId($post->blog_id)->whereKeyNot($post->id)->limit(3)->get();
         return view('pages.posts.show', compact('post', 'relatedPosts'));
         */
-
     }
 
     /**
@@ -124,9 +114,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-
-
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             throw new UnauthorizedHttpException('', '로그인 후 사용가능합니다');
         }
 
@@ -146,9 +134,7 @@ class PostController extends Controller
      */
     public function restore($id)
     {
-
-
-        if (!auth()->check()) {
+        if (! auth()->check()) {
             throw new UnauthorizedHttpException('', '로그인 후 사용가능합니다');
         }
 
@@ -159,13 +145,10 @@ class PostController extends Controller
         Post::withTrashed()->whereId($id)->whereIn('blog_id', $blogs)->restore();
 
         return back();
-
     }
 
-
-    public function search(Request $request, ?string $tagName = "")
+    public function search(Request $request, ?string $tagName = '')
     {
-
         $keyword = $request->get('keyword');
 
         $posts = Post::with('blog', 'preview', 'tags');
@@ -175,7 +158,6 @@ class PostController extends Controller
         }
 
         if ($tagName) {
-
             $searchTagName = array_key_exists($tagName, Tag::MANAGED_TAGS) ? Tag::MANAGED_TAGS[$tagName] : [];
             $searchTagName[] = $tagName;
 
@@ -184,11 +166,9 @@ class PostController extends Controller
             });
         }
 
-
         $posts->orderBy('published_at', 'desc');
 
         $posts = $posts->paginate(10);
-
 
         $tags = Tag::getAllPrimaryTags();
 

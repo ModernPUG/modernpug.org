@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Post;
-use App\Services\BlogFeedUpdater;
 use App\Tag;
-use Illuminate\Support\Collection;
+use App\Post;
 
 class HomeController extends Controller
 {
-
-
     /**
      * Show the application dashboard.
      *
@@ -19,22 +14,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-
         $managedTags = Tag::getAllPrimaryTags();
 
         $monthlyDay = 300;
-        $monthlyBestByTag=[];
-        $monthlyBestByTag['All'] = Post::getLastBestPosts($monthlyDay,5,Tag::getAllManagedTags());
-        foreach($managedTags as $tag)
-        {
-            $monthlyBestByTag[$tag]= Post::getLastBestPosts($monthlyDay, 5,  Tag::MANAGED_TAGS[$tag]);
+        $monthlyBestByTag = [];
+        $monthlyBestByTag['All'] = Post::getLastBestPosts($monthlyDay, 5, Tag::getAllManagedTags());
+        foreach ($managedTags as $tag) {
+            $monthlyBestByTag[$tag] = Post::getLastBestPosts($monthlyDay, 5, Tag::MANAGED_TAGS[$tag]);
         }
-
 
         $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags());
 
-
-        return view('pages.home.index', compact( 'monthlyBestByTag', 'latestPosts'));
+        return view('pages.home.index', compact('monthlyBestByTag', 'latestPosts'));
     }
 }

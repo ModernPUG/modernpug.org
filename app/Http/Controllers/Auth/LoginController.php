@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Email;
-use App\Http\Controllers\Controller;
-use App\OauthIdentity;
 use App\User;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Email;
 use Socialite;
+use App\OauthIdentity;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
@@ -41,7 +41,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
     /**
      * @param $provider
      * @return \Illuminate\Http\Response
@@ -59,7 +58,7 @@ class LoginController extends Controller
     {
 
         /**
-         * @var \Laravel\Socialite\Contracts\User $provider_user
+         * @var \Laravel\Socialite\Contracts\User
          */
         $provider_user = Socialite::with($provider)->user();
 
@@ -78,7 +77,7 @@ class LoginController extends Controller
 
         $oauth_identity->access_token = $provider_user->token;
 
-        if (!$user->id) {
+        if (! $user->id) {
             $user->name = $provider_user->getName();
             $email->is_primary = 1;
         }
@@ -93,5 +92,4 @@ class LoginController extends Controller
 
         return redirect(route('home'));
     }
-
 }

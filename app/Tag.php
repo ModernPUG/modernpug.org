@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Tag
+ * App\Tag.
  *
  * @property int $id
  * @property string $name
@@ -32,7 +32,7 @@ class Tag extends Model
             'phpunit',
             'codeception',
             'pear',
-            'xdebug'
+            'xdebug',
         ],
         'LARAVEL' => [
             'LARAVEL',
@@ -115,20 +115,17 @@ class Tag extends Model
         return $this->belongsToMany(Post::class)->withTimestamps();
     }
 
-
-    static public function getAllManagedTags()
+    public static function getAllManagedTags()
     {
-        $return =[];
-        array_map(function($tags) use (&$return){
-
-            $return = array_merge($return,$tags);
-        },static::MANAGED_TAGS);
+        $return = [];
+        array_map(function ($tags) use (&$return) {
+            $return = array_merge($return, $tags);
+        }, static::MANAGED_TAGS);
 
         return $return;
-
     }
 
-    static public function getAllPrimaryTags()
+    public static function getAllPrimaryTags()
     {
         return array_keys(static::MANAGED_TAGS);
     }

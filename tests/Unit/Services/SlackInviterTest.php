@@ -1,28 +1,23 @@
 <?php
 
-
 namespace Tests\Unit\Services;
 
-
-use App\Services\SlackInviter;
 use Tests\TestCase;
+use App\Services\SlackInviter;
 
 class SlackInviterTest extends TestCase
 {
     public function testSuccessRequest()
     {
-
         $mock = $this->getSuccessMock();
         $inviter = new SlackInviter($mock);
 
         $inviter->invite('test@test.com');
-
     }
 
     private function getSuccessMock()
     {
-
-        $body = <<<EOF
+        $body = <<<'EOF'
 {"ok":true}
 EOF;
 
@@ -45,18 +40,15 @@ EOF;
      */
     public function testFailRequest()
     {
-
         $mock = $this->getFailMock();
         $inviter = new SlackInviter($mock);
 
         $inviter->invite('test@test.com');
-
     }
 
     private function getFailMock()
     {
-
-        $body = <<<EOF
+        $body = <<<'EOF'
 {"ok":false, "error": "invaild_auth"}
 EOF;
 
@@ -73,5 +65,4 @@ EOF;
 
         return $requestMock;
     }
-
 }

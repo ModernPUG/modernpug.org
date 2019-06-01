@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * App\User
+ * App\User.
  *
  * @property int $id
  * @property string $name
@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_url'
+        'name', 'email', 'password', 'avatar_url',
     ];
 
     /**
@@ -58,10 +58,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
-
     public function blogs()
     {
-        return $this->hasMany(Blog::class,'entry_user_id');
+        return $this->hasMany(Blog::class, 'entry_user_id');
     }
 
     public function emails()

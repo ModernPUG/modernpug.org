@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class LogoController extends Controller
 {
     /**
@@ -15,5 +13,4 @@ class LogoController extends Controller
     {
         return view('pages.brand.index');
     }
-
 }

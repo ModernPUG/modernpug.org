@@ -3,11 +3,10 @@
  * Created by PhpStorm.
  * User: kkame
  * Date: 18. 12. 2
- * Time: 오후 7:54
+ * Time: 오후 7:54.
  */
 
 namespace App\Services;
-
 
 use App\Blog;
 use App\Post;
@@ -20,7 +19,6 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class PreviewUpdater
 {
-
     /**
      * @var Client
      */
@@ -44,22 +42,19 @@ class PreviewUpdater
     {
         $this->command = $command;
 
-
         $blogs = $this->getTargetBlogs();
-        $this->print("블로그 : " . $blogs->count() . "건 검색시작");
+        $this->print('블로그 : '.$blogs->count().'건 검색시작');
         foreach ($blogs as $blog) {
             $this->parseBlogImageUrl($blog);
         }
-        $this->print("블로그 검색완료");
-
+        $this->print('블로그 검색완료');
 
         $posts = $this->searchImageUnregisteredPosts();
-        $this->print("게시글 : " . $posts->count() . "건 검색시작");
+        $this->print('게시글 : '.$posts->count().'건 검색시작');
         foreach ($posts as $post) {
             $this->parsePostImageUrl($post);
         }
-        $this->print("게시글 검색완료");
-
+        $this->print('게시글 검색완료');
     }
 
     private function searchImageUnregisteredPosts()
@@ -67,7 +62,6 @@ class PreviewUpdater
         return Post::whereNotIn('id', function (Builder $builder) {
             $builder->select('post_id')->from('previews');
         })->get();
-
     }
 
     private function getTargetBlogs()
@@ -79,17 +73,14 @@ class PreviewUpdater
 
     private function parseBlogImageUrl(Blog $blog)
     {
-
         $imageUrl = $this->getImageUrlBaseFeed($blog->feed_url);
 
         if (empty($imageUrl)) {
             $imageUrl = $this->getImageUrlBaseOgImage($blog->site_url);
         }
 
-
         $blog->image_url = $imageUrl;
         $blog->save();
-
     }
 
     private function getImageUrlBaseFeed(string $url): ?string
@@ -107,7 +98,6 @@ class PreviewUpdater
 
     private function getImageUrlBaseOgImage(string $url): ?string
     {
-
         try {
             $info = Embed::create($url);
 
@@ -117,34 +107,26 @@ class PreviewUpdater
         } catch (\Exception $exception) {
             return null;
         }
-
     }
 
     private function parsePostImageUrl(Post $post)
     {
-
         $imageUrl = $this->getImageUrlBaseOgImage($post->link);
 
         if ($imageUrl) {
-
             $preview = new Preview;
             $preview->image_url = $imageUrl;
             $preview->post_id = $post->id;
             $preview->save();
         }
-
-
     }
 
     private function print(string $message)
     {
-
-
         if ($this->command) {
             $this->command->info($message);
         } else {
             dump($message);
         }
     }
-
 }
