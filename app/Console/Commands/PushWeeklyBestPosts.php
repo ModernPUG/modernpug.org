@@ -33,7 +33,6 @@ class PushWeeklyBestPosts extends Command
      */
     public function handle(\App\Services\PushWeeklyBestPosts $pushWeeklyBestPosts)
     {
-
         $pushWeeklyBestPosts->pushSlack();
     }
 }

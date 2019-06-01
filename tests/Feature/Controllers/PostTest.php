@@ -1,14 +1,11 @@
 <?php
 
-
 namespace Tests\Feature\Controllers;
-
 
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
-
     public function testIndex()
     {
         $this->get(route('posts.index'))->assertOk();
@@ -18,5 +15,4 @@ class PostTest extends TestCase
     {
         $this->get(route('posts.search'))->assertOk();
     }
-
 }

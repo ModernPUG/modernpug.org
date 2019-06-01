@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Blog
+ * App\Blog.
  *
  * @property int $id
  * @property string|null $title
@@ -52,10 +52,9 @@ class Blog extends Model
         'title', 'feed_url', 'site_url',
     ];
 
-
-    static public function getCrawledBlog()
+    public static function getCrawledBlog()
     {
-        return static::whereNotNull('site_url')->where('site_url','!=','')->get();
+        return static::whereNotNull('site_url')->where('site_url', '!=', '')->get();
     }
 
     public function posts()

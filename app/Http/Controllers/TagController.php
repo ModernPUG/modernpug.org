@@ -14,11 +14,10 @@ class TagController extends Controller
      */
     public function index()
     {
-
         $managedTags = Tag::MANAGED_TAGS;
         $allTags = Tag::orderBy('name')->get();
 
-        return view('pages.tags.index',compact('managedTags','allTags'));
+        return view('pages.tags.index', compact('managedTags', 'allTags'));
     }
 
     /**

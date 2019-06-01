@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Email
+ * App\Email.
  *
  * @property int $id
  * @property int $user_id
@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Email extends Model
 {
-    protected $fillable=['user_id','is_primary','email'];
+    protected $fillable = ['user_id', 'is_primary', 'email'];
 
     public function user()
     {

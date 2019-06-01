@@ -13,7 +13,6 @@ class CreateViewcountTable extends Migration
             $table->string('ip', 45)->index();
             $table->timestamps();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
-
         });
     }
 

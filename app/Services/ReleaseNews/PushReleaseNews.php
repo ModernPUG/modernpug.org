@@ -5,8 +5,10 @@ namespace App\Services\ReleaseNews;
 use App\ReleaseNews;
 use Illuminate\Notifications\Messages\SlackMessage;
 
-class PushReleaseNews {
-    public function pushSlack() {
+class PushReleaseNews
+{
+    public function pushSlack()
+    {
         $message = new SlackMessage();
         $message->content('오늘의 릴리즈 뉴스입니다.');
         $message->to(config('release-news.slack.notification-channel'));
@@ -29,7 +31,8 @@ class PushReleaseNews {
     /**
      * @return object
      */
-    private function getTargetReleaseNews() {
+    private function getTargetReleaseNews()
+    {
         return ReleaseNews::getPushReleaseNews();
     }
 }

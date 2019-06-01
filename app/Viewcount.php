@@ -3,11 +3,11 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Viewcount
+ * App\Viewcount.
  *
  * @property int $id
  * @property int $post_id
@@ -26,19 +26,16 @@ use Illuminate\Http\Request;
  */
 class Viewcount extends Model
 {
-
     protected $table = 'viewcount';
     protected $fillable = ['post_id', 'ip'];
 
-
-    static public function increase(Post $post, Request $request)
+    public static function increase(Post $post, Request $request)
     {
-
-        $viewCount = Viewcount::whereDate('created_at', Carbon::today())
+        $viewCount = self::whereDate('created_at', Carbon::today())
             ->where('post_id', $post->id)->where('ip', $request->ip())->get();
 
-        if (!$viewCount->count()) {
-            Viewcount::create(['post_id' => $post->id, 'ip' => $request->ip()]);
+        if (! $viewCount->count()) {
+            self::create(['post_id' => $post->id, 'ip' => $request->ip()]);
         }
     }
 }

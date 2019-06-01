@@ -2,12 +2,12 @@
 
 namespace App\Console;
 
-use App\Console\Commands\PostImageUpdater;
 use App\Console\Commands\CrawlFeed;
 use App\Console\Commands\CrawlReleaseNews;
-use App\Console\Commands\PushTodayReleaseNews;
-use App\Console\Commands\PushWeeklyBestPosts;
+use App\Console\Commands\PostImageUpdater;
 use Illuminate\Console\Scheduling\Schedule;
+use App\Console\Commands\PushWeeklyBestPosts;
+use App\Console\Commands\PushTodayReleaseNews;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         CrawlFeed::class,
         CrawlReleaseNews::class,
-        PostImageUpdater::class
+        PostImageUpdater::class,
     ];
 
     /**

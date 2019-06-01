@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ReleaseNews\PushReleaseNews;
 use Illuminate\Console\Command;
+use App\Services\ReleaseNews\PushReleaseNews;
 
 class PushTodayReleaseNews extends Command
 {
@@ -27,7 +27,8 @@ class PushTodayReleaseNews extends Command
      * @param PushReleaseNews $pushReleaseNews
      * @return mixed
      */
-    public function handle(PushReleaseNews $pushReleaseNews) {
+    public function handle(PushReleaseNews $pushReleaseNews)
+    {
         $pushReleaseNews->pushSlack();
     }
 }

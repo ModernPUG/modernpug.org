@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
- * App\ReleaseNews
+ * App\ReleaseNews.
  *
  * @property int $id
  * @property string $site_url 웹 사이트의 주소
@@ -39,8 +39,8 @@ class ReleaseNews extends Model
                 'url'       => 'https://www.php.net/ChangeLog-7.php#',
                 'before'    => '',
                 'after'     => '',
-                'end'       => ''
-            ]
+                'end'       => '',
+            ],
         ],
          'Laravel' => [
              'site_url'  => 'https://api.github.com/repos/laravel/framework/releases',
@@ -53,7 +53,7 @@ class ReleaseNews extends Model
                 'url'       => 'https://github.com/laravel/lumen/releases/tag/v',
                 'before'    => '',
                 'after'     => '',
-                'end'       => ''
+                'end'       => '',
             ],
         ],
          'Codeigniter' => [
@@ -64,8 +64,8 @@ class ReleaseNews extends Model
                  'url'      => 'https://www.codeigniter.com/userguide3/changelog.html#version-',
                  'before'   => '/[. ]/',
                  'after'    => '-',
-                 'end'      => ''
-             ]
+                 'end'      => '',
+             ],
          ],
          'Symfony' => [
              'site_url'  => 'https://symfony.com/blog/category/releases',
@@ -75,8 +75,8 @@ class ReleaseNews extends Model
                  'url'       => 'https://symfony.com/blog/',
                  'before'    => '/[. ]/',
                  'after'     => '-',
-                 'end'      => ''
-             ]
+                 'end'      => '',
+             ],
          ],
         'Phalcon' => [
             'site_url'  => 'https://api.github.com/repos/phalcon/cphalcon/releases',
@@ -97,17 +97,19 @@ class ReleaseNews extends Model
     protected $dates = ['released_at'];
     protected $table = 'release_news';
     protected $fillable = [
-        'site_url', 'type', 'version', 'released_at'
+        'site_url', 'type', 'version', 'released_at',
     ];
 
     /**
      * @return array
      */
-    static public function getAllReleaseTypes() {
+    public static function getAllReleaseTypes()
+    {
         $types = [];
         foreach (static::SUPPORT_RELEASES as $index => $type) {
             array_push($types, $index);
         }
+
         return $types;
     }
 
@@ -116,21 +118,24 @@ class ReleaseNews extends Model
      * @param  string $version version of type
      * @return object
      */
-    static public function existTypeAndVersion(string $type, string $version) {
+    public static function existTypeAndVersion(string $type, string $version)
+    {
         return self::where('type', $type)->where('version', $version)->first();
     }
 
     /**
      * @return object
      */
-    static public function getReleaseNews() {
+    public static function getReleaseNews()
+    {
         return self::orderBy('released_at', 'desc')->get();
     }
 
     /**
      * @return ReleaseNews[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Query\Builder[]|\Illuminate\Support\Collection
      */
-    static public function getPushReleaseNews() {
+    public static function getPushReleaseNews()
+    {
         return self::selectRaw('type, GROUP_CONCAT(version order by released_at desc SEPARATOR \',\') as versions')
             ->selectRaw('GROUP_CONCAT(site_url order by released_at desc SEPARATOR \',\') as sites')
             ->whereDate('released_at', date('Y-m-d', strtotime('-1 days')))
@@ -141,13 +146,15 @@ class ReleaseNews extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    static public function getRecentlyReleaseNews() {
-        $query = <<<SQL
+    public static function getRecentlyReleaseNews()
+    {
+        $query = <<<'SQL'
 select * from release_news where (type, released_at) in
 (select type, max(released_at) from release_news group by type)
 SQL;
 
         $query = DB::select($query);
+
         return self::hydrate($query);
     }
 
@@ -155,7 +162,8 @@ SQL;
      * @param $release
      * @return SlackAttachment
      */
-    public function convertAttachment($release): SlackAttachment {
+    public function convertAttachment($release): SlackAttachment
+    {
         $attachment = new SlackAttachment();
         $attachment->title = $release->type;
 
@@ -165,5 +173,4 @@ SQL;
 
         return $attachment;
     }
-
 }

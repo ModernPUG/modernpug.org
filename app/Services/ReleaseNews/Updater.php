@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\DomCrawler\Crawler;
 
-class Updater {
+class Updater
+{
     const CRAWLING_LIMIT = 5;
     const CRAWLING_INITIALIZE = 0;
 
@@ -23,7 +24,8 @@ class Updater {
      */
     protected $command;
 
-    public function __construct(Client $client) {
+    public function __construct(Client $client)
+    {
         $this->client = $client;
     }
 
@@ -35,7 +37,8 @@ class Updater {
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function update(int $count = 0, int $success = 0, int $duplicate = 0, int $fail = 0) {
+    public function update(int $count = 0, int $success = 0, int $duplicate = 0, int $fail = 0)
+    {
         $this->print('크롤링 시작');
 
         foreach (ReleaseNews::SUPPORT_RELEASES as $type => $data) {
@@ -114,15 +117,16 @@ class Updater {
             }
         }
 
-        $this->print('성공 건수: ' . $success);
-        $fail && $this->print('실패 건수: ' . $fail);
+        $this->print('성공 건수: '.$success);
+        $fail && $this->print('실패 건수: '.$fail);
     }
 
     /**
      * @param   string $url
      * @return  Crawler
      */
-    private function convertCrawlerFromUrl(string $url) {
+    private function convertCrawlerFromUrl(string $url)
+    {
         $response = $this->client->get($url);
         $contents = $response->getBody()->getContents();
         $crawler = new Crawler($contents);
@@ -135,8 +139,10 @@ class Updater {
      * @return \Psr\Http\Message\StreamInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function requestGithubAPI(string $url) {
+    private function requestGithubAPI(string $url)
+    {
         $request = $this->client->request('GET', $url);
+
         return json_decode($request->getBody(), true);
     }
 
@@ -144,7 +150,8 @@ class Updater {
      * @param mixed ...$argv
      * @return array
      */
-    private function mergeCrawlerResult(...$argv) {
+    private function mergeCrawlerResult(...$argv)
+    {
         $result = [];
         foreach ($argv as $array) {
             foreach ($array as $index => $value) {
@@ -159,7 +166,8 @@ class Updater {
      * @param   string $version
      * @return  string
      */
-    private function convertReleaseVersion(string $version) {
+    private function convertReleaseVersion(string $version)
+    {
         $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
 
         if ($custom) {
@@ -187,7 +195,8 @@ class Updater {
      * @param   string $end
      * @return  string
      */
-    private function releaseInContent(string $url, string $before, string $after, string $version, string $end) {
+    private function releaseInContent(string $url, string $before, string $after, string $version, string $end)
+    {
         $custom = count(explode(' ', trim($version))) >= 3 ? true : false;
 
         if (! $custom) {
@@ -195,9 +204,9 @@ class Updater {
         }
 
         if (empty($before) && empty($after)) {
-            return $url . $version . $end;
+            return $url.$version.$end;
         } else {
-            return $url . strtolower(preg_replace($before, $after, trim($version))) . $end;
+            return $url.strtolower(preg_replace($before, $after, trim($version))).$end;
         }
     }
 
@@ -205,7 +214,8 @@ class Updater {
      * @param   string $date
      * @return  string
      */
-    private function modifyReleaseDate(string $date) {
+    private function modifyReleaseDate(string $date)
+    {
         if (strpos($date, ':') !== false) {
             return Carbon::parse(substr($date, strpos(trim($date), ':') + 2))->format('Y-m-d');
         }
@@ -213,7 +223,8 @@ class Updater {
         return Carbon::parse(trim($date))->format('Y-m-d');
     }
 
-    private function print(string $message) {
+    private function print(string $message)
+    {
         if ($this->command) {
             $this->command->info($message);
         } else {

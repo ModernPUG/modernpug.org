@@ -6,11 +6,8 @@ use Tests\TestCase;
 
 class SlashCommandTest extends TestCase
 {
-
-
     public function testUnauthorizedException()
     {
-
         $this->post(config('laravel-slack-slash-command.url'))
             ->assertStatus(500);
 
@@ -21,22 +18,17 @@ class SlashCommandTest extends TestCase
 
         $this->post(config('laravel-slack-slash-command.url'), [
             'token' => config('laravel-slack-slash-command.token'),
-            'command'=>'/NotExistsCommand'
+            'command'=>'/NotExistsCommand',
         ])
             ->assertStatus(500);
-
     }
 
     public function testValidRequest()
     {
-
-
         $this->post(config('laravel-slack-slash-command.url'), [
             'token' => config('laravel-slack-slash-command.token'),
             'command' => '/추첨',
         ])
             ->assertOk();
-
-
     }
 }

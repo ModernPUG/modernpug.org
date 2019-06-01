@@ -28,6 +28,4 @@ class PickerRequest extends FormRequest
             'user_id'=>'required',
         ];
     }
-
-
 }

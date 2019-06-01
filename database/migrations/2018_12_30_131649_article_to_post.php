@@ -17,19 +17,17 @@ class ArticleToPost extends Migration
             $table->rename('posts');
         });
 
-        Schema::table('viewcount', function(Blueprint $table) {
-
-            $table->renameColumn('article_id','post_id');
+        Schema::table('viewcount', function (Blueprint $table) {
+            $table->renameColumn('article_id', 'post_id');
         });
 
         Schema::table('article_tag', function (Blueprint $table) {
-            $table->renameColumn('article_id','post_id');
+            $table->renameColumn('article_id', 'post_id');
             $table->rename('post_tag');
         });
 
-        Schema::table('previews', function(Blueprint $table) {
-
-            $table->renameColumn('article_id','post_id');
+        Schema::table('previews', function (Blueprint $table) {
+            $table->renameColumn('article_id', 'post_id');
         });
     }
 
@@ -44,20 +42,17 @@ class ArticleToPost extends Migration
             $table->rename('articles');
         });
 
-        Schema::table('viewcount', function(Blueprint $table) {
-
-            $table->renameColumn('post_id','article_id');
+        Schema::table('viewcount', function (Blueprint $table) {
+            $table->renameColumn('post_id', 'article_id');
         });
 
         Schema::table('post_tag', function (Blueprint $table) {
-            $table->renameColumn('post_id','article_id');
+            $table->renameColumn('post_id', 'article_id');
             $table->rename('article_tag');
         });
 
-        Schema::table('previews', function(Blueprint $table) {
-
-            $table->renameColumn('post_id','article_id');
+        Schema::table('previews', function (Blueprint $table) {
+            $table->renameColumn('post_id', 'article_id');
         });
-
     }
 }

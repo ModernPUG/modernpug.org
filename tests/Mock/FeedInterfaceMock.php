@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Mock;
-
 
 use Zend\Feed\Reader\Feed\FeedInterface;
 
@@ -17,7 +15,6 @@ trait FeedInterfaceMock
     {
         $entryMock = $this->getEntryInterfaceMock();
 
-
         $feedInterfaceMock = \Mockery::mock(FeedInterface::class);
         $feedInterfaceMock->shouldReceive('getTitle')->andReturn('테스트 타이틀');
         $feedInterfaceMock->shouldReceive('getLink')->andReturn('http://test.com');
@@ -27,7 +24,7 @@ trait FeedInterfaceMock
             $entryMock,
         ];
         $this->mockArrayIterator($feedInterfaceMock, $items);
+
         return $feedInterfaceMock;
     }
-
 }

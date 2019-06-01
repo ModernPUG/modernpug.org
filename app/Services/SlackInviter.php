@@ -1,19 +1,14 @@
 <?php
 
-
 namespace App\Services;
 
-
+use GuzzleHttp\Client;
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
-use GuzzleHttp\Client;
 
 /**
- * Class SlackInviter
- * @package App\Services
- * 슬랙의 레거시 토큰이 필요합니다. 발급받은 해당 사용자의 명의로 초대장이 발송됩니다
- * https://api.slack.com/custom-integrations/legacy-tokens
+ * Class SlackInviter.
  */
 class SlackInviter
 {
@@ -36,8 +31,7 @@ class SlackInviter
      */
     public function invite(string $email)
     {
-
-        $uri = config('slack.url') . '/api/users.admin.invite?t=' . time();
+        $uri = config('slack.url').'/api/users.admin.invite?t='.time();
 
         $response = $this->client->request('post', $uri, [
             'form_params' => [
@@ -52,9 +46,7 @@ class SlackInviter
 
         $result = json_decode($response->getBody()->getContents());
 
-
-        if (!$result->ok) {
-
+        if (! $result->ok) {
             if ($result->error == 'already_invited') {
                 throw new AlreadyInvitedException();
             } elseif ($result->error == 'already_in_team') {
@@ -63,6 +55,5 @@ class SlackInviter
                 throw new SlackInviteFailException($result->error);
             }
         }
-
     }
 }

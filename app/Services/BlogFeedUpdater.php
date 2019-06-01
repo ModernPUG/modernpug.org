@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\Blog;
-use App\Services\Rss\PostUpdater;
-use App\Services\Rss\BlogUpdater;
-use App\Services\Rss\FeedParser;
 use Illuminate\Console\Command;
+use App\Services\Rss\FeedParser;
+use App\Services\Rss\BlogUpdater;
+use App\Services\Rss\PostUpdater;
 use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
 use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
 
@@ -40,16 +40,13 @@ class BlogFeedUpdater
         $this->postUpdater = $postUpdater;
     }
 
-
     public function updateAllBlog(?Command $command = null)
     {
         $this->command = $command;
 
         foreach ($this->getAllBlog() as $blog) {
-
             try {
-
-                $this->print($blog->feed_url . " 시작");
+                $this->print($blog->feed_url.' 시작');
 
                 $feed = $this->feedParser->fromUrl($blog->feed_url);
                 $this->blogUpdater->fromFeed($feed, $blog);
@@ -58,16 +55,13 @@ class BlogFeedUpdater
                 $blog->crawled_at = now();
                 $blog->update();
 
-                $this->print($blog->feed_url . " 종료");
-
+                $this->print($blog->feed_url.' 종료');
             } catch (ZendFeedRuntimeException | ZendHttpRuntimeException $exception) {
-
                 if (app()->environment() === 'production' && app()->bound('sentry')) {
                     app('sentry')->captureException($exception);
                 }
 
-                if (app()->environment() !== 'production')
-                {
+                if (app()->environment() !== 'production') {
                     $this->print($exception->getMessage());
                 }
             }
@@ -81,14 +75,10 @@ class BlogFeedUpdater
 
     private function print(string $message)
     {
-
-
         if ($this->command) {
             $this->command->info($message);
         } else {
             dump($message);
         }
     }
-
-
 }
