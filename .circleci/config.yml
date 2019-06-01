@@ -53,6 +53,7 @@ jobs:
             - node_modules
             - ~/.yarn
 
+      - run: npm run dev
       - run: php artisan migrate --env=testing --force
       - run: php artisan db:seed --env=testing --force
 
