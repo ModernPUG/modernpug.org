@@ -3,7 +3,7 @@
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 ![GitHub issues](https://img.shields.io/github/issues/ModernPug/modernpug.org.svg)
 ![GitHub](https://img.shields.io/github/license/ModernPug/modernpug.org.svg)
-[![CircleCI](https://circleci.com/gh/ModernPUG/modernpug.org.svg?style=svg)](https://circleci.com/gh/ModernPUG/modernpug.org)
+[![CircleCI](https://circleci.com/gh/ModernPUG/modernpug.org/tree/v2.svg?style=svg)](https://circleci.com/gh/ModernPUG/modernpug.org/tree/v2)
 [![StyleCI](https://styleci.io/repos/54202989/shield)](https://styleci.io/repos/54202989)
 [![codecov](https://codecov.io/gh/ModernPUG/modernpug.org/branch/v2/graph/badge.svg)](https://codecov.io/gh/ModernPUG/modernpug.org)
 
