@@ -29,6 +29,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OauthIdentity extends Model
 {
+
+    public const SUPPORT_PROVIDER=['slack'];
+
     protected $fillable = ['user_id', 'provider_user_id', 'provider', 'access_token'];
 
     public function user()

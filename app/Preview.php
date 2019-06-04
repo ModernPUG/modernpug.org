@@ -25,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Preview extends Model
 {
+    protected $fillable=['post_id','image_url'];
+
     public function post()
     {
         return $this->belongsTo(Post::class);
