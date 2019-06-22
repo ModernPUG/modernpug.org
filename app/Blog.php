@@ -49,7 +49,7 @@ class Blog extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'title', 'feed_url', 'site_url',
+        'title', 'feed_url', 'site_url', 'description', 'image_url', 'entry_user_id', 'comment',
     ];
 
     public static function getCrawledBlog()
