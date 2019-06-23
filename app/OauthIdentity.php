@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\OauthIdentity.
+ * App\OauthIdentity
  *
  * @property int $id
  * @property int $user_id

@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * App\User.
+ * App\User
  *
  * @property int $id
  * @property string $name

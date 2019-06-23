@@ -12,7 +12,7 @@ class DashboardController extends Controller
     {
         $user = auth()->user();
 
-        $blogs = Blog::withTrashed()->withCount('posts')->whereEntryUserId($user->id)->get();
+        $blogs = Blog::withTrashed()->withCount('posts')->whereOwnerId($user->id)->get();
 
         $posts = Post::withTrashed()->with('blog', 'preview')->withCount('viewcount')->whereIn('blog_id', $blogs)->paginate(10);
 

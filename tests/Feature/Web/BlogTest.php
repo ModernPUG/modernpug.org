@@ -12,6 +12,16 @@ class BlogTest extends TestCase
     use RefreshDatabase;
 
 
+    const NOT_AVAILABLE_FEED = 'http://test.com';
+    const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
+
+    protected function setUp()
+    {
+        parent::setUp();
+
+        \Toastr::clear();
+    }
+
     public function testIndex()
     {
         $this->get(route('blogs.index'))->assertOk();
@@ -19,8 +29,10 @@ class BlogTest extends TestCase
 
     public function testRedirectIfExecutedByUnauthorizedUserOrNotVerifiedUser()
     {
-        $this->get(route('blogs.create'))->assertStatus(302)->assertRedirect('/email/verify');
-        $this->post(route('blogs.store'))->assertStatus(302)->assertRedirect('/email/verify');
+        $this->get(route('blogs.create'))
+            ->assertRedirect('/email/verify');
+        $this->post(route('blogs.store'))
+            ->assertRedirect('/email/verify');
 
 
         /**
@@ -28,11 +40,28 @@ class BlogTest extends TestCase
          */
         $user = factory(User::class)->create(['email_verified_at' => null]);
 
-        $this->actingAs($user)->get(route('blogs.create'))->assertStatus(302)->assertRedirect('/email/verify');
-        $this->actingAs($user)->post(route('blogs.store'))->assertStatus(302)->assertRedirect('/email/verify');
+        $this->actingAs($user)->get(route('blogs.create'))->assertRedirect('/email/verify');
+        $this->actingAs($user)->post(route('blogs.store'))->assertRedirect('/email/verify');
 
 
     }
+
+    public function testCreateBlogWithEmptyRequestByAuthorizedUser()
+    {
+
+        /**
+         * @var User $user
+         */
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->get(route('blogs.create'))->assertOk();
+
+        $this->actingAs($user)->post(route('blogs.store'), [])
+            ->assertSessionHasErrors('feed_url')
+            ->assertRedirect(route('blogs.create'));
+
+    }
+
 
     public function testCreateCannotAccessibleBlogByAuthorizedUser()
     {
@@ -47,10 +76,9 @@ class BlogTest extends TestCase
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->make();
+        $blog = factory(Blog::class)->make(['owner_id' => null]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
-            ->assertStatus(302)
             ->assertSessionHas('toastr::notifications.0.type', 'error')
             ->assertRedirect(route('blogs.create'));
 
@@ -73,25 +101,22 @@ class BlogTest extends TestCase
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->make(['feed_url' => 'https://blog.jetbrains.com/feed/']);
+        $blog = factory(Blog::class)->make(['feed_url' => self::AVAILABLE_FEED]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
-            ->assertStatus(302)
             ->assertSessionHas('toastr::notifications.0.type', 'success')
             ->assertRedirect(route('blogs.create'));
-
-        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
     }
 
 
-    public function testCannotDeleteBlogByNotOwnedUser()
+    public function testCannotUpdateBlogByNonOwner()
     {
 
         /**
          * @var User $user
          */
-        $notOwnedUser = factory(User::class)->create();
+        $nonOwner = factory(User::class)->create();
 
         /**
          * @var Blog $blog
@@ -101,13 +126,84 @@ class BlogTest extends TestCase
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
-        $this->actingAs($notOwnedUser)->delete(route('blogs.destroy', [$blog->id]))->assertStatus(403);
+        $this->actingAs($nonOwner)->get(route('blogs.edit', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+
+        $this->actingAs($nonOwner)->put(route('blogs.update', ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+
+        $this->actingAs($nonOwner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+    }
+
+
+    public function testUpdateBlogByOwner()
+    {
+
+        /**
+         * @var User $user
+         */
+        $owner = factory(User::class)->create();
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+        $this->actingAs($owner)->get(route('blogs.edit', [$blog->id]))
+            ->assertOk();
+
+        $this->actingAs($owner)->put(route('blogs.update', ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.edit', [$blog->id]));
+
+
+        \Toastr::clear();
+
+        $this->actingAs($owner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect(route('blogs.edit', ['id' => $blog->id]));
+
+    }
+
+    public function testCannotDeleteBlogByNonOwner()
+    {
+
+        /**
+         * @var User $user
+         */
+        $nonOwner = factory(User::class)->create();
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create();
+
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+        $this->actingAs($nonOwner)->delete(route('blogs.destroy', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
     }
 
-    public function testCanDeleteBlogByOwnedUser()
+    public function testCanDeleteBlogByOwner()
     {
 
         /**
@@ -123,7 +219,9 @@ class BlogTest extends TestCase
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
-        $this->actingAs($owner)->delete(route('blogs.destroy', [$blog->id]))->assertStatus(302);
+        $this->actingAs($owner)->delete(route('blogs.destroy', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
 

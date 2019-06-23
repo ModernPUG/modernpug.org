@@ -120,7 +120,7 @@ class PostController extends Controller
 
         $user = auth()->user();
 
-        $blogs = Blog::whereEntryUserId($user->id)->get();
+        $blogs = Blog::whereOwnerId($user->id)->get();
 
         Post::whereId($id)->whereIn('blog_id', $blogs)->delete();
 
@@ -140,7 +140,7 @@ class PostController extends Controller
 
         $user = auth()->user();
 
-        $blogs = Blog::whereEntryUserId($user->id)->get();
+        $blogs = Blog::whereOwnerId($user->id)->get();
 
         Post::withTrashed()->whereId($id)->whereIn('blog_id', $blogs)->restore();
 
