@@ -69,7 +69,7 @@ class BlogController extends Controller
             ZendReader::import($feed_url);
 
             $args = $request->all();
-            $args['entry_user_id'] = auth()->id();
+            $args['owner_id'] = auth()->id();
             $blog = new Blog($args);
             $blog->save();
 
@@ -121,7 +121,7 @@ class BlogController extends Controller
 
         $blog = Blog::findOrFail($id);
 
-        if (auth()->id() != $blog->entry_user_id) {
+        if (auth()->id() != $blog->owner_id) {
             throw new AccessDeniedHttpException();
         }
 
@@ -145,7 +145,7 @@ class BlogController extends Controller
 
             $blog = Blog::findOrFail($id);
 
-            if (auth()->id() != $blog->entry_user_id) {
+            if (auth()->id() != $blog->owner_id) {
                 throw new AccessDeniedHttpException();
             }
 
@@ -196,7 +196,7 @@ class BlogController extends Controller
 
         $blog = Blog::findOrFail($id);
 
-        if (auth()->id() != $blog->entry_user_id) {
+        if (auth()->id() != $blog->owner_id) {
             throw new AccessDeniedHttpException();
         }
 
@@ -218,7 +218,7 @@ class BlogController extends Controller
 
         $blog = Blog::withTrashed()->findOrFail($id);
 
-        if (auth()->id() != $blog->entry_user_id) {
+        if (auth()->id() != $blog->owner_id) {
             throw new AccessDeniedHttpException();
         }
 

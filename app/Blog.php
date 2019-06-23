@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $site_url
  * @property string|null $description
  * @property string|null $image_url
- * @property int|null $entry_user_id
+ * @property int|null $owner_id
  * @property string|null $comment
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -49,7 +49,7 @@ class Blog extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'title', 'feed_url', 'site_url', 'description', 'image_url', 'entry_user_id', 'comment',
+        'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];
 
     public static function getCrawledBlog()

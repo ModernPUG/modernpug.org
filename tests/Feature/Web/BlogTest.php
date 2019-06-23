@@ -118,7 +118,7 @@ class BlogTest extends TestCase
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['entry_user_id' => $owner]);
+        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
 
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);

@@ -10,7 +10,7 @@ $factory->define(App\Blog::class, function () {
         'site_url' => $faker->url,
         'description' => $faker->paragraph,
         'image_url' => $faker->url,
-        'entry_user_id' => factory(\App\User::class),
+        'owner_id' => factory(\App\User::class),
         'comment' => $faker->paragraph,
     ];
 });

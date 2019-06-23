@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function blogs()
     {
-        return $this->hasMany(Blog::class, 'entry_user_id');
+        return $this->hasMany(Blog::class, 'owner_id');
     }
 
     public function emails()
