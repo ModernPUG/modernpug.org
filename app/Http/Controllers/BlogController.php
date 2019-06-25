@@ -18,8 +18,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:web')->except(['index', 'show']);
-        $this->middleware('verified')->except(['index', 'show']);
+        $this->middleware(['auth:web','verified'])->except(['index', 'show']);
     }
 
     /**
