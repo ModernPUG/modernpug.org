@@ -30,9 +30,9 @@ class BlogTest extends TestCase
     public function testRedirectIfExecutedByUnauthorizedUserOrNotVerifiedUser()
     {
         $this->get(route('blogs.create'))
-            ->assertRedirect('/email/verify');
+            ->assertRedirect('/login');
         $this->post(route('blogs.store'))
-            ->assertRedirect('/email/verify');
+            ->assertRedirect('/login');
 
 
         /**

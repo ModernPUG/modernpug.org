@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Blog;
 use App\Http\Requests\BlogStoreRequest;
 use App\Services\Rss\Exceptions\CannotConnectFeedException;
-use App\Services\Rss\Exceptions\RequestNotOwnedBlogException;
 use App\User;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Toastr;
 use Zend\Feed\Exception\RuntimeException;
@@ -20,6 +18,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
+        $this->middleware('auth:web')->except(['index', 'show']);
         $this->middleware('verified')->except(['index', 'show']);
     }
 
@@ -86,35 +85,28 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      * @param Blog $blog
-     * @param Request $request
      * @return Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Blog $blog, Request $request)
+    public function edit(Blog $blog)
     {
-
-        if ($blog->owner->isNot($request->user())) {
-            throw new RequestNotOwnedBlogException();
-        }
-
+        $this->authorize('update', $blog);
 
         return view('pages.blogs.edit', compact('blog'));
     }
 
     /**
-     * Update the specified resource in storage.
      * @param BlogStoreRequest $request
      * @param Blog $blog
-     * @param User $user
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws CannotConnectFeedException
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
     public function update(BlogStoreRequest $request, Blog $blog)
     {
         try {
 
-            if ($blog->owner->isNot($request->user())) {
-                throw new RequestNotOwnedBlogException();
-            }
+            $this->authorize('update', $blog);
 
             $feed_url = $request->get('feed_url');
 
@@ -135,16 +127,13 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param Blog $blog
-     * @param Request $request
      * @return Response
      * @throws Exception
      */
-    public function destroy(Blog $blog, Request $request)
+    public function destroy(Blog $blog)
     {
 
-        if ($blog->owner->isNot($request->user())) {
-            throw new RequestNotOwnedBlogException();
-        }
+        $this->authorize('destroy', $blog);
 
         $blog->delete();
 
@@ -154,21 +143,17 @@ class BlogController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @param Request $request
-     * @return Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function restore($id, Request $request)
+    public function restore($id)
     {
 
 
         $blog = Blog::withTrashed()->findOrFail($id);
 
-
-        if ($blog->owner->isNot($request->user())) {
-            throw new RequestNotOwnedBlogException();
-        }
+        $this->authorize('restore', $blog);
 
         $blog->restore();
 
