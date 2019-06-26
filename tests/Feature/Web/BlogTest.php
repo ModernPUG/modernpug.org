@@ -4,12 +4,12 @@ namespace Tests\Feature\Web;
 
 use App\Blog;
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class BlogTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
 
     const NOT_AVAILABLE_FEED = 'http://test.com';

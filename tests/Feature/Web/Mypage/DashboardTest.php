@@ -4,12 +4,12 @@ namespace Tests\Feature\Web\Mypage;
 
 use App\Blog;
 use App\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
 
     public function testNotAuthorizedUserRedirectToLogin()
