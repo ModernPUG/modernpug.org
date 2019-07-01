@@ -63,7 +63,7 @@ class BlogTest extends TestCase
     }
 
 
-    public function testCreateCannotAccessibleBlogByAuthorizedUser()
+    public function testCreateCantAccessibleBlogByAuthorizedUser()
     {
 
         /**
@@ -110,7 +110,7 @@ class BlogTest extends TestCase
     }
 
 
-    public function testCannotUpdateBlogByNonOwner()
+    public function testCantUpdateBlogByNonOwner()
     {
 
         /**
@@ -179,7 +179,7 @@ class BlogTest extends TestCase
 
     }
 
-    public function testCannotDeleteBlogByNonOwner()
+    public function testCantDeleteBlogByNonOwner()
     {
 
         /**
@@ -224,6 +224,105 @@ class BlogTest extends TestCase
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+    }
+
+    public function testCanDeleteBlogByNonOwnerWithPermission()
+    {
+
+        /**
+         * @var User $nonOwnerWithPermission
+         */
+        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission->givePermissionTo('blog-delete');
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create();
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+        $this->actingAs($nonOwnerWithPermission)->delete(route('blogs.destroy', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+    }
+
+    public function testCantRestoreBlogByNonOwner()
+    {
+
+        /**
+         * @var User $user
+         */
+        $nonOwner = factory(User::class)->create();
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create();
+        $blog->delete();
+
+
+        $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+        $this->actingAs($nonOwner)->patch(route('blogs.restore', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+    }
+
+    public function testCanRestoreBlogByOwner()
+    {
+
+        /**
+         * @var User $user
+         */
+        $owner = factory(User::class)->create();
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog->delete();
+
+
+        $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+        $this->actingAs($owner)->patch(route('blogs.restore', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
+
+    }
+
+    public function testCanRestoreBlogByNonOwnerWithPermission()
+    {
+
+        /**
+         * @var User $nonOwnerWithPermission
+         */
+        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission->givePermissionTo('blog-restore');
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create();
+        $blog->delete();
+
+        $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
+
+        $this->actingAs($nonOwnerWithPermission)->patch(route('blogs.restore', [$blog->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect(route('blogs.index'));
+
+        $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
     }
 

@@ -14,7 +14,8 @@ trait ToastrWithBackRenderTrait
     {
 
         $request->flash();
-        Toastr::error($this->getMessage());
+        $message = $this->getMessage();
+        Toastr::error($message);
 
         return back();
     }

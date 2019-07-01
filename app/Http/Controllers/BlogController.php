@@ -19,6 +19,7 @@ class BlogController extends Controller
     public function __construct()
     {
         $this->middleware(['auth:web','verified'])->except(['index', 'show']);
+        $this->authorizeResource(Blog::class,'blog');
     }
 
     /**
@@ -89,7 +90,6 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        $this->authorize('update', $blog);
 
         return view('pages.blogs.edit', compact('blog'));
     }
@@ -105,7 +105,6 @@ class BlogController extends Controller
     {
         try {
 
-            $this->authorize('update', $blog);
 
             $feed_url = $request->get('feed_url');
 
@@ -132,7 +131,6 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
 
-        $this->authorize('destroy', $blog);
 
         $blog->delete();
 
@@ -155,6 +153,8 @@ class BlogController extends Controller
         $this->authorize('restore', $blog);
 
         $blog->restore();
+
+        Toastr::success('블로그 복구가 완료되었습니다. 관련된 게시글들은 노출이 재개됩니다');
 
         return back();
     }
