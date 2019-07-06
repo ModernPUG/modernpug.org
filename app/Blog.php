@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $crawled_at
+ * @property \Illuminate\Support\Carbon|null $crawled_at
  * @property-read \App\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
  * @method static bool|null forceDelete()
@@ -48,7 +48,7 @@ class Blog extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at','crawled_at'];
     protected $fillable = [
         'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];

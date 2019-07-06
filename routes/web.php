@@ -22,7 +22,12 @@ Route::get('/home', function () {
 });
 
 Route::group(['middleware' => ['auth:web'], 'prefix'=>'mypage', 'as'=>'mypage.'], function () {
-    Route::get('dashboard', 'Mypage\DashboardController@show')->name('dashboard.show')->middleware('verified');
+    Route::group(['middleware' => ['verified']], function () {
+        Route::resource('dashboard', 'Mypage\DashboardController');
+        Route::resource('blogs', 'Mypage\BlogController');
+        Route::resource('posts', 'Mypage\PostController');
+    });
+
     Route::get('profile', 'Mypage\ProfileController@show')->name('profile.show');
     Route::put('profile', 'Mypage\ProfileController@update')->name('profile.update');
 });

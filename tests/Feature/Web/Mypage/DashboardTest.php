@@ -14,7 +14,7 @@ class DashboardTest extends TestCase
 
     public function testNotAuthorizedUserRedirectToLogin()
     {
-        $this->get(route('mypage.dashboard.show'))
+        $this->get(route('mypage.dashboard.index'))
             ->assertRedirect('/login');
     }
 
@@ -27,7 +27,7 @@ class DashboardTest extends TestCase
          */
         $user = factory(User::class)->create(['email_verified_at' => null]);
 
-        $this->actingAs($user)->get(route('mypage.dashboard.show'))
+        $this->actingAs($user)->get(route('mypage.dashboard.index'))
             ->assertRedirect('/email/verify');
     }
 
@@ -44,7 +44,7 @@ class DashboardTest extends TestCase
         $ownedBlog = factory(Blog::class)->create(['owner_id' => $owner->id]);
         $nonOwnedBlog = factory(Blog::class)->create();
 
-        $this->actingAs($owner)->get(route('mypage.dashboard.show'))
+        $this->actingAs($owner)->get(route('mypage.dashboard.index'))
             ->assertSee($ownedBlog->title)
             ->assertDontSee($nonOwnedBlog->title)
             ->assertOk();
