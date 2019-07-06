@@ -93,6 +93,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarBlogDropdown">
                                     <a class="dropdown-item" href="{{ route('modernpug.aboutus') }}">About Us</a>
                                     <a class="dropdown-item" href="{{ route('modernpug.logo') }}">Logo</a>
+                                    <a class="dropdown-item" href="{{ route('sponsors.index') }}">Sponsors</a>
                                 </div>
                             </li>
 
@@ -146,9 +147,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('sponsors.index') }}">Sponsors</a>
                             </li>
 
 
