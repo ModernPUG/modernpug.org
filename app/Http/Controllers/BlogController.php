@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
-use App\Http\Requests\BlogStoreRequest;
+use App\Http\Requests\Web\Blog\CreateRequest;
+use App\Http\Requests\Web\Blog\DeleteRequest;
+use App\Http\Requests\Web\Blog\EditRequest;
+use App\Http\Requests\Web\Blog\RestoreRequest;
+use App\Http\Requests\Web\Blog\StoreRequest;
+use App\Http\Requests\Web\Blog\UpdateRequest;
 use App\Services\Rss\Exceptions\CannotConnectFeedException;
 use App\User;
 use Exception;
@@ -18,8 +23,7 @@ class BlogController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth:web','verified'])->except(['index', 'show']);
-        $this->authorizeResource(Blog::class,'blog');
+        $this->middleware(['auth:web', 'verified'])->except(['index', 'show']);
     }
 
     /**
@@ -35,20 +39,21 @@ class BlogController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * @param CreateRequest $request
      * @return Response
      */
-    public function create()
+    public function create(CreateRequest $request)
     {
         return view('pages.blogs.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param BlogStoreRequest $request
+     * @param StoreRequest $request
      * @return Response
      * @throws CannotConnectFeedException
      */
-    public function store(BlogStoreRequest $request)
+    public function store(StoreRequest $request)
     {
 
         try {
@@ -84,24 +89,22 @@ class BlogController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * @param EditRequest $request
      * @param Blog $blog
      * @return Response
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function edit(Blog $blog)
+    public function edit(EditRequest $request, Blog $blog)
     {
 
         return view('pages.blogs.edit', compact('blog'));
     }
 
     /**
-     * @param BlogStoreRequest $request
+     * @param UpdateRequest $request
      * @param Blog $blog
      * @return \Illuminate\Http\RedirectResponse
-     * @throws CannotConnectFeedException
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function update(BlogStoreRequest $request, Blog $blog)
+    public function update(UpdateRequest $request, Blog $blog)
     {
         try {
 
@@ -124,11 +127,12 @@ class BlogController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * @param DeleteRequest $request
      * @param Blog $blog
      * @return Response
      * @throws Exception
      */
-    public function destroy(Blog $blog)
+    public function destroy(DeleteRequest $request, Blog $blog)
     {
 
 
@@ -140,19 +144,15 @@ class BlogController extends Controller
     }
 
     /**
+     * @param RestoreRequest $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function restore($id)
+    public function restore(RestoreRequest $request, $id)
     {
 
 
-        $blog = Blog::withTrashed()->findOrFail($id);
-
-        $this->authorize('restore', $blog);
-
-        $blog->restore();
+        Blog::onlyTrashed()->findOrFail($id)->restore();
 
         Toastr::success('블로그 복구가 완료되었습니다. 관련된 게시글들은 노출이 재개됩니다');
 

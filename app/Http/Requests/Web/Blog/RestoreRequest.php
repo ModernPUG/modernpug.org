@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Web\Blog;
 
+use App\Blog;
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BlogStoreRequest extends FormRequest
+class RestoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,14 @@ class BlogStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->check();
+
+        $blog = Blog::onlyTrashed()->findOrFail($this->route('blog'));
+
+        /**
+         * @var User $user
+         */
+        $user = auth()->user();
+        return $user->can('restore', $blog);
     }
 
     /**
@@ -24,7 +33,7 @@ class BlogStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'feed_url'=>'required|url',
+
         ];
     }
 }
