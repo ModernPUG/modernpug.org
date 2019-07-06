@@ -3,7 +3,7 @@
 @section('content')
     <!-- ********** Hero Area Start ********** -->
     <div class="hero-area height-80vh bg-img background-overlay"
-         style="background-image: url(/img/author-blog-businesswoman-267569.jpg);">
+         style="padding-top:75px;background-image: url(/img/author-blog-businesswoman-267569.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center">
                     <div class="col-md-8">

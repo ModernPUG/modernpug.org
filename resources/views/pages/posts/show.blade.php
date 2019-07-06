@@ -10,7 +10,7 @@
 
 @section('content')
     <!-- ********** Hero Area Start ********** -->
-    <div class="hero-area height-400 bg-img background-overlay" style="background-image: url(/vendor/world/img/blog-img/bg2.jpg);">
+    <div class="hero-area height-300 bg-img background-overlay" style="background-image: url(/vendor/world/img/blog-img/bg2.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-12">
@@ -196,7 +196,7 @@
                                     </li>
                                 </ol>
                             </li>
-                            
+
                             <!-- Single Comment Area -->
                             <li class="single_comment_area">
                                 <!-- Comment Content -->
@@ -209,7 +209,7 @@
                                     <p>Pick the yellow peach that looks like a sunset with its red, orange, and pink coat skin, peel it off with your teeth. Sink them into unripened...</p>
                                 </div>
                             </li>
-                            
+
                         </ol>
                     </div>
                 </div>

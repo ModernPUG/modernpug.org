@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- ********** Hero Area Start ********** -->
-    <div class="hero-area height-400 bg-img background-overlay" style="background-image: url(/img/Programming-Wallpapers-33-2880-x-1800.jpg);">
+    <div class="hero-area height-300 bg-img background-overlay" style="padding-top:75px;background-image: url(/img/Programming-Wallpapers-33-2880-x-1800.jpg);">
 
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center">
@@ -45,7 +45,7 @@
                                 </li>
                                 @endforeach
                             </ul>
-                            
+
                             <div class="tab-content" id="myTabContent">
                                 @foreach ($types as $type)
                                     <div class="tab-pane {{ $loop->first ? 'active show' : 'fade' }}" id="release-tab-body-{{ $type }}" role="tabpanel">

@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- ********** Hero Area Start ********** -->
-    <div class="hero-area height-400 bg-img background-overlay" style="background-image: url(/vendor/world/img/blog-img/bg4.jpg);"></div>
+    <div class="hero-area height-300 bg-img background-overlay" style="background-image: url(/vendor/world/img/blog-img/bg4.jpg);"></div>
     <!-- ********** Hero Area End ********** -->
 
     <section class="contact-area section-padding-100">

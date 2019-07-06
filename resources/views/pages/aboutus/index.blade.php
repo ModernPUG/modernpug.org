@@ -12,8 +12,8 @@
 @section('content')
 
     <!-- ********** Hero Area Start ********** -->
-    <div class="hero-area height-400 bg-img background-overlay"
-         style="background-image: url(/img/book-computer-design-326424.jpg);">
+    <div class="hero-area height-300 bg-img background-overlay"
+         style="padding-top:75px;background-image: url(/img/book-computer-design-326424.jpg);">
         <div class="container h-100">
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-12 col-md-8 col-lg-8">
