@@ -37,7 +37,6 @@
                     </div>
 
                     <div class="row">
-                        @forelse($blogs as $blog)
                             <table class="table table-hover table-responsive">
                                 <thead>
                                 <tr>
@@ -125,10 +124,6 @@
                                 </tr>
                                 </tfoot>
                             </table>
-
-                        @empty
-                            등록된 블로그가 없습니다
-                        @endforelse
 
                     </div>
 

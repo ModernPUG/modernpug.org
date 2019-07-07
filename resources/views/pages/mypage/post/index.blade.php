@@ -18,7 +18,7 @@
             <div class="row h-100 align-items-center justify-content-center">
                 <div class="col-12 ">
                     <div class="single-blog-title text-center">
-                        <h3>Post</h3>
+                        <h3>Posts</h3>
                     </div>
                 </div>
             </div>
