@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        $users = User::withTrashed()->with('blogs')->withCount('blogs')->paginate(10);
+        $users = User::withTrashed()->with('blogs','oauth_identities')->withCount('blogs')->paginate(10);
 
         return view('pages.mypage.user.index', compact('users'));
     }

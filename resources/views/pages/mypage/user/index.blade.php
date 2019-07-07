@@ -46,6 +46,7 @@
                                 <th>email</th>
                                 <th>블로그</th>
                                 <th>Role</th>
+                                <th>Oauth</th>
                                 <th>가입일</th>
                                 <th>삭제일</th>
                                 <th>삭제/복구</th>
@@ -87,6 +88,15 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        @foreach($user->oauth_identities as $oauth_identity)
+                                            <div class="btn-group">
+                                                <div class="btn btn-xs btn-info">
+                                                    {{ $oauth_identity->provider }}
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </td>
+                                    <td>
                                         {{ $user->created_at->format('y-m-d') }}
                                     </td>
                                     <td>
@@ -118,7 +128,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="10">
                                         사용자가 없습니다
                                     </td>
                                 </tr>
@@ -128,7 +138,7 @@
                             <tfoot>
 
                             <tr>
-                                <td colspan="9" class="text-center">
+                                <td colspan="10" class="text-center">
                                     @if($users->count())
                                         {!! $users->appends(Request::except('page'))->render() !!}
                                     @endif
