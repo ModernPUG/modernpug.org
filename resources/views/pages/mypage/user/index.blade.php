@@ -36,8 +36,8 @@
                         <h2>Users</h2>
                     </div>
 
-                    <div class="row">
-                        <table class="table table-hover table-responsive">
+                    <div class="row table-responsive">
+                        <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>ID</th>

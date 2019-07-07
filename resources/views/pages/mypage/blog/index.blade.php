@@ -36,8 +36,8 @@
                         <h2>My Blogs</h2>
                     </div>
 
-                    <div class="row">
-                            <table class="table table-hover table-responsive">
+                    <div class="row table-responsive">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>미리보기</th>
