@@ -27,6 +27,7 @@ class PermissionSeeder extends Seeder
             'user-create',
             'user-edit',
             'user-delete',
+            'user-restore',
 
             'blog-list',
             'blog-create',
