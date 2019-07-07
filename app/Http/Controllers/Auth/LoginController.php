@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\User\Exceptions\AccessDeniedUserException;
 use App\User;
 use App\Email;
 use Socialite;
 use App\OauthIdentity;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class LoginController extends Controller
 {
@@ -70,9 +72,9 @@ class LoginController extends Controller
         $email = Email::firstOrNew(['email' => $provider_user->getEmail()]);
 
         if ($oauth_identity->user_id) {
-            $user = User::find($oauth_identity->user_id);
+            $user = User::withTrashed()->find($oauth_identity->user_id);
         } else {
-            $user = User::firstOrNew(['email' => $provider_user->getEmail()]);
+            $user = User::withTrashed()->firstOrNew(['email' => $provider_user->getEmail()]);
         }
 
         $oauth_identity->access_token = $provider_user->token;
@@ -87,6 +89,9 @@ class LoginController extends Controller
         $user->save();
         $user->emails()->save($email);
         $user->oauth_identities()->save($oauth_identity);
+
+        if($user->deleted_at)
+            throw new AccessDeniedUserException('탈퇴 처리된 회원입니다');
 
         auth()->login($user, true);
 
