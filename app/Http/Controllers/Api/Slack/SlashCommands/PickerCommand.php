@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\Slack\SlashCommands;
 
 use JoliCode\Slack\Api\Client;
-use App\Services\Slack\Channel;
 use Spatie\SlashCommand\Request;
 use Spatie\SlashCommand\Response;
 use Spatie\SlashCommand\Attachment;
