@@ -14,7 +14,7 @@ class PostUpdater
     public function fromFeed(FeedInterface $feed, Blog $blog)
     {
 
-        /**
+        /*
          * @var Entry
          */
         foreach ($feed as $entry) {
