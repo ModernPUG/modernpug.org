@@ -401,7 +401,7 @@
                     </li>
                     <li>
                         <div class="timeline-badge primary">
-                            2018
+                            2019
                         </div>
                         <div class="timeline-panel">
                             <div class="timeline-heading">
@@ -409,7 +409,7 @@
                                 <p>
                                     <small class="text-muted">
                                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                        2018. 01
+                                        2019. 01
                                     </small>
                                 </p>
                             </div>
