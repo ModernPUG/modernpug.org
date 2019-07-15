@@ -32,7 +32,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::getCrawledBlog();
+        $blogs = Blog::crawledBlog()->get();
 
         return view('pages.blogs.index', compact('blogs'));
     }

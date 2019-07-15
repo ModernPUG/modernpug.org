@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $crawled_at
  * @property-read \App\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog crawledBlog()
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog newQuery()
@@ -53,9 +55,9 @@ class Blog extends Model
         'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];
 
-    public static function getCrawledBlog()
+    public function scopeCrawledBlog(Builder $query)
     {
-        return static::whereNotNull('site_url')->where('site_url', '!=', '')->get();
+        return $query->whereNotNull('site_url')->where('site_url', '!=', '');
     }
 
     public function posts()
