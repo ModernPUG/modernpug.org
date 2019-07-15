@@ -53,6 +53,16 @@
                                                 <strong>{{ $errors->first('email') }}</strong>
                                             </span>
                                         @endif
+
+
+                                        @if(!$user->email_verified_at)
+                                            <span class="text-danger" role="alert">
+                                                아직 이메일을 인증받지 않았습니다.
+                                                <a href="{{ route('verification.resend') }}" class="btn btn-warning btn-xs">
+                                                    인증메일 전송
+                                                </a>
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
 
