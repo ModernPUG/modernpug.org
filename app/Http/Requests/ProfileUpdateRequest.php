@@ -25,7 +25,12 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => 'nullable|string|min:6|confirmed',
+            'github_url' => 'nullable|url',
+            'facebook_url' => 'nullable|url',
+            'twitter_url' => 'nullable|url',
+            'homepage_url' => 'nullable|url',
+            'comment' => 'nullable|string|max:255',
         ];
     }
 }

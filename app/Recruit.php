@@ -14,37 +14,39 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $description
  * @property string $skills
  * @property string $link
+ * @property string|null $image_url
  * @property string $address
  * @property int|null $min_salary
  * @property int|null $max_salary
- * @property \Illuminate\Support\Carbon $expired_at
+ * @property mixed $expired_at
  * @property int $entry_user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
- * @property-read User $entry_user
+ * @property-read \App\User $entry_user
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit newQuery()
- * @method static \Illuminate\Database\Query\Builder|Recruit onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\Recruit onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereAddress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereCompanyName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereEntryUserId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereExpiredAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereMaxSalary($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereMinSalary($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereSkills($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|Recruit withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Recruit withoutTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereCompanyName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereEntryUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereExpiredAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereMaxSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereMinSalary($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereSkills($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Recruit withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Recruit withoutTrashed()
  * @mixin \Eloquent
  */
 class Recruit extends Model

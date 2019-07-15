@@ -14,7 +14,8 @@ class RoleSeeder extends Seeder
 
         $roles = [
             'super-admin', //관리자
-            'admin', //사이트 운영자
+            'admin', //사이트 관리자
+            'facilitators', //운영진
         ];
 
 

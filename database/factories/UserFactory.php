@@ -1,4 +1,5 @@
 <?php
+
 use Faker\Factory as Faker;
 
 /*
@@ -12,13 +13,18 @@ use Faker\Factory as Faker;
 |
 */
 
-$factory->define(App\User::class,  function () {
+$factory->define(App\User::class, function () {
     $faker = Faker::create('ko_KR');
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
+        'github_url' => $faker->url,
+        'facebook_url' => $faker->url,
+        'twitter_url' => $faker->url,
+        'homepage_url' => $faker->url,
+        'comment' => $faker->paragraph,
         'remember_token' => str_random(10),
     ];
 });
