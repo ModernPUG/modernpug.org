@@ -23,6 +23,24 @@
                                 @csrf
 
                                 <div class="form-group row">
+
+                                    <label for="name"
+                                           class="col-md-4 col-form-label text-md-right">{{ __('Avatar') }}</label>
+
+                                    <div class="col-md-6">
+                                        @if($user->avatar_url)
+                                            <img src="{{ $user->avatar_url }}" alt="{{ $user->name }}">
+                                        @else
+                                            <div class="text-info">
+                                                등록된 아바타가 없습니다.
+                                                소셜 로그인을 하실 경우 해당 로그인에 등록된 아바타 이미지를 사용합니다.
+                                            </div>
+                                        @endif
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+
                                     <label for="name"
                                            class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
