@@ -146,7 +146,7 @@
                                 <a class="nav-link" href="{{ route('news.releases.index') }}">Releases</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('recruit.index') }}">Recruit</a>
+                                <a class="nav-link" href="{{ route('recruits.index') }}">Recruits</a>
                             </li>
 
 

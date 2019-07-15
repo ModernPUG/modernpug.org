@@ -40,6 +40,12 @@ class PermissionSeeder extends Seeder
             'post-edit',
             'post-delete',
             'post-restore',
+
+            'recruit-list',
+            'recruit-create',
+            'recruit-edit',
+            'recruit-delete',
+            'recruit-restore',
         ];
 
 

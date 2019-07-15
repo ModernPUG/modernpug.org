@@ -53,6 +53,7 @@ Route::get('logos', 'LogoController@index')->name('modernpug.logo');
 
 Route::resource('sponsors', 'SponsorController');
 
-Route::resource('recruit', 'RecruitController');
+Route::resource('recruits', 'RecruitController');
+Route::patch('recruits/{recruit}/restore', 'RecruitController@restore')->name('recruits.restore');
 
 Route::resource('slack', 'SlackController');

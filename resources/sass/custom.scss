@@ -1,6 +1,7 @@
 
 body {
   font-family: inherit;
+  font-size: 14px;
 }
 
 a:hover, a:focus {
@@ -136,13 +137,16 @@ a:hover, a:focus {
   }
 }
 
+.btn {
+    margin: 1px;
+}
 .btn-group-xs > .btn, .btn-xs {
   &:hover {
-    font-size: 0.6rem
+    font-size: 0.7rem
   }
 
   padding: .2rem;
-  font-size: .6rem;
+  font-size: .7rem;
   line-height: 1.5;
   border-radius: .2rem;
 }

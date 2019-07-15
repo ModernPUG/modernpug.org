@@ -978,6 +978,12 @@ textarea:valid ~ label {
   font-size: 12px;
   color: #0000ff; }
 
+input:invalid ~ label,
+textarea:invalid ~ label {
+  top: -15px;
+  font-size: 12px;
+  color: red; }
+
 input:focus ~ .bar:before,
 textarea:focus ~ .bar:before,
 input:focus ~ .bar:after,

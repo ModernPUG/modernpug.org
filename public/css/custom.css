@@ -1,5 +1,6 @@
 body {
   font-family: inherit;
+  font-size: 14px;
 }
 
 a:hover,
@@ -124,17 +125,21 @@ a:focus {
   padding: 10px 1px;
 }
 
+.btn {
+  margin: 1px;
+}
+
 .btn-group-xs > .btn,
 .btn-xs {
   padding: 0.2rem;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   line-height: 1.5;
   border-radius: 0.2rem;
 }
 
 .btn-group-xs > .btn:hover,
 .btn-xs:hover {
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .form-control-borderless {
