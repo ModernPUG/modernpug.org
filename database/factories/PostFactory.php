@@ -6,7 +6,7 @@ use Faker\Factory as Faker;
 $factory->define(App\Post::class,  function () {
     $faker = Faker::create('ko_KR');
     return [
-        'title'=>$faker->title,
+        'title'=>$faker->paragraph,
         'link'=>$faker->url,
         'description'=>$faker->paragraph,
         'published_at'=>$faker->dateTime,
