@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Services\Rss\Exceptions;
+namespace App\Services\Blog\Exceptions;
 
 
 use App\Exceptions\ToastrWithBackRenderTrait;

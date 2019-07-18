@@ -4,13 +4,13 @@
 namespace App\Services\Recruits\Exceptions;
 
 
-use App\Exceptions\ToastrWithRedirect;
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use App\Exceptions\ToastrWithBackRenderTrait;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
-class RecruitPolicyException extends AccessDeniedHttpException
+class RecruitPolicyException extends UnauthorizedHttpException
 {
 
-    use ToastrWithRedirect;
+    use ToastrWithBackRenderTrait;
 
-    protected $redirectTo = '/recruit';
+    protected $redirectTo = '/recruits';
 }

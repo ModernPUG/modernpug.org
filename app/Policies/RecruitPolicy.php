@@ -2,12 +2,9 @@
 
 namespace App\Policies;
 
-use App\Services\Recruits\Exceptions\RecruitPolicyException;
-use App\Services\Rss\Exceptions\BlogPolicyException;
-use App\User;
 use App\Recruit;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Toastr;
 
 class RecruitPolicy
 {
@@ -54,7 +51,6 @@ class RecruitPolicy
             return true;
         }
 
-        Toastr::error('채용공고를 수정 할 권한이 없습니다');
         return false;
     }
 
@@ -76,7 +72,6 @@ class RecruitPolicy
             return true;
         }
 
-        Toastr::error('채용공고를 삭제 할 권한이 없습니다');
         return false;
     }
 
@@ -98,7 +93,6 @@ class RecruitPolicy
             return true;
         }
 
-        Toastr::error('채용공고를 복구 할 권한이 없습니다');
         return false;
     }
 

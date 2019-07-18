@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Web\Blog;
 
-use App\Blog;
+use App\Services\Blog\Exceptions\BlogPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +22,12 @@ class EditRequest extends FormRequest
          * @var User $user
          */
         $user = auth()->user();
-        return $user->can('edit', $blog);
+        $result = $user->can('edit', $blog);
+
+        if(!$result)
+            throw new BlogPolicyException('블로그를 수정할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Web\Mypage\User;
 
 use App\Blog;
+use App\Services\User\Exceptions\UserPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +23,12 @@ class RestoreRequest extends FormRequest
          * @var User $user
          */
         $user = auth()->user();
-        return $user->can('restore', $routeUser);
+        $result = $user->can('restore', $routeUser);
+
+        if(!$result)
+            throw new UserPolicyException('사용자를 복구 할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

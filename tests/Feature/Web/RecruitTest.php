@@ -147,14 +147,14 @@ class RecruitTest extends TestCase
 
         $this->actingAs($nonOwner)->get(route('recruits.edit', [$recruit->id]))
             ->assertSessionHas('toastr::notifications.0.type', 'error')
-            ->assertForbidden();
+            ->assertRedirect();
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
 
         $this->actingAs($nonOwner)->put(route('recruits.update', ['id' => $recruit->id]), $recruit->toArray())
             ->assertSessionHas('toastr::notifications.0.type', 'error')
-            ->assertForbidden();
+            ->assertRedirect();
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
     }
@@ -237,7 +237,7 @@ class RecruitTest extends TestCase
 
         $this->actingAs($nonOwner)->delete(route('recruits.destroy', [$recruit->id]))
             ->assertSessionHas('toastr::notifications.0.type', 'error')
-            ->assertForbidden();
+            ->assertRedirect();
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
@@ -310,7 +310,7 @@ class RecruitTest extends TestCase
 
         $this->actingAs($nonOwner)->patch(route('recruits.restore', [$recruit->id]))
             ->assertSessionHas('toastr::notifications.0.type', 'error')
-            ->assertForbidden();
+            ->assertRedirect();
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
 

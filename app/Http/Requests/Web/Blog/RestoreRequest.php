@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Web\Blog;
 
 use App\Blog;
+use App\Services\Blog\Exceptions\BlogPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +23,12 @@ class RestoreRequest extends FormRequest
          * @var User $user
          */
         $user = auth()->user();
-        return $user->can('restore', $blog);
+        $result = $user->can('restore', $blog);
+
+        if(!$result)
+            throw new BlogPolicyException('블로그를 복구 할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

@@ -18,7 +18,7 @@ class UserPolicy
             return true;
         }
 
-        throw new UserPolicyException('사용자를 조회 할 권한이 없습니다');
+        return false;
     }
 
     public function create(User $user)
@@ -26,22 +26,6 @@ class UserPolicy
         return true;
     }
 
-    public function edit(User $user, User $routeUser)
-    {
-
-        if ($user->is($routeUser)) {
-            return true;
-        }
-
-
-        if ($user->can('user-edit')) {
-            return true;
-        }
-
-
-        throw new UserPolicyException('사용자를 수정할 권한이 없습니다');
-
-    }
 
     public function update(User $user, User $routeUser)
     {
@@ -54,7 +38,8 @@ class UserPolicy
             return true;
         }
 
-        throw new UserPolicyException('사용자를 수정 할 권한이 없습니다');
+        return false;
+
     }
 
     public function delete(User $user, User $routeUser)
@@ -68,7 +53,7 @@ class UserPolicy
             return true;
         }
 
-        throw new UserPolicyException('사용자를 삭제 할 권한이 없습니다');
+        return false;
 
     }
 
@@ -83,8 +68,7 @@ class UserPolicy
             return true;
         }
 
-        throw new UserPolicyException('사용자를 복구 할 권한이 없습니다');
-
+        return false;
     }
 
 

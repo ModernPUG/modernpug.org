@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
+use App\Services\Recruits\Exceptions\RecruitPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -21,7 +22,12 @@ class EditRequest extends FormRequest
          */
         $user = auth()->user();
 
-        return $user->can('update', $recruit);
+        $result = $user->can('update', $recruit);
+
+        if (!$result)
+            throw new RecruitPolicyException('채용공고를 수정 할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

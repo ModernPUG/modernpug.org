@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Web\Mypage\User;
 
+use App\Services\User\Exceptions\UserPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -20,7 +21,12 @@ class IndexRequest extends FormRequest
          */
         $user = auth()->user();
 
-        return $user->can('view', User::class);
+        $result = $user->can('view', User::class);
+
+        if(!$result)
+            throw new UserPolicyException('사용자를 조회 할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Web\Blog;
 
-use App\Blog;
+use App\Services\Blog\Exceptions\BlogPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,7 +22,12 @@ class DeleteRequest extends FormRequest
          * @var User $user
          */
         $user = auth()->user();
-        return $user->can('delete', $blog);
+        $result = $user->can('delete', $blog);
+
+        if(!$result)
+            throw new BlogPolicyException('블로그를 삭제 할 권한이 없습니다');
+
+        return $result;
     }
 
     /**

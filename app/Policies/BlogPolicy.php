@@ -3,7 +3,6 @@
 namespace App\Policies;
 
 use App\Blog;
-use App\Services\Rss\Exceptions\BlogPolicyException;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -29,8 +28,7 @@ class BlogPolicy
             return true;
         }
 
-
-        throw new BlogPolicyException('블로그를 수정할 권한이 없습니다');
+        return false;
 
     }
 
@@ -45,7 +43,8 @@ class BlogPolicy
             return true;
         }
 
-        throw new BlogPolicyException('블로그를 수정 할 권한이 없습니다');
+        return false;
+
     }
 
     public function delete(User $user, Blog $blog)
@@ -59,7 +58,7 @@ class BlogPolicy
             return true;
         }
 
-        throw new BlogPolicyException('블로그를 삭제 할 권한이 없습니다');
+        return false;
 
     }
 
@@ -74,7 +73,7 @@ class BlogPolicy
             return true;
         }
 
-        throw new BlogPolicyException('블로그를 복구 할 권한이 없습니다');
+        return false;
 
     }
 
