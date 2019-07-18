@@ -10,7 +10,6 @@ class BlogPolicy
 {
     use HandlesAuthorization;
 
-
     public function create(User $user)
     {
         return true;
@@ -18,23 +17,19 @@ class BlogPolicy
 
     public function edit(User $user, Blog $blog)
     {
-
         if ($user->is($blog->owner)) {
             return true;
         }
-
 
         if ($user->can('blog-edit')) {
             return true;
         }
 
         return false;
-
     }
 
     public function update(User $user, Blog $blog)
     {
-
         if ($user->is($blog->owner)) {
             return true;
         }
@@ -44,12 +39,10 @@ class BlogPolicy
         }
 
         return false;
-
     }
 
     public function delete(User $user, Blog $blog)
     {
-
         if ($user->is($blog->owner)) {
             return true;
         }
@@ -59,12 +52,10 @@ class BlogPolicy
         }
 
         return false;
-
     }
 
     public function restore(User $user, Blog $blog)
     {
-
         if ($user->is($blog->owner)) {
             return true;
         }
@@ -74,8 +65,5 @@ class BlogPolicy
         }
 
         return false;
-
     }
-
-
 }

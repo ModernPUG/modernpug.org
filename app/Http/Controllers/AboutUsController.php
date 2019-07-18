@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Database\Schema\Builder;
 
 class AboutUsController extends Controller
 {
@@ -14,7 +13,6 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-
         $facilitators = User::role('facilitators')->get();
 
         return view('pages.aboutus.index', compact('facilitators'));

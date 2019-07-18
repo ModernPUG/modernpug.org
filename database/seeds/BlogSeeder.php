@@ -11,7 +11,6 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-
         \App\Blog::firstOrCreate([
             'feed_url' => 'http://88240.tistory.com/rss',
         ], [

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Recruit
+ * App\Recruit.
  *
  * @property int $id
  * @property string $title
@@ -73,7 +73,6 @@ class Recruit extends Model
     {
         return self::make(['min_salary' => 3000, 'max_salary' => 8000]);
     }
-
 
     use SoftDeletes;
 

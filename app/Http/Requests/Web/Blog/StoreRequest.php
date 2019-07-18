@@ -17,9 +17,10 @@ class StoreRequest extends FormRequest
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
+
         return $user->can('create', Blog::class);
     }
 

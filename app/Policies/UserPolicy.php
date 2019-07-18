@@ -2,17 +2,14 @@
 
 namespace App\Policies;
 
-use App\Post;
 use App\User;
-use App\Services\User\Exceptions\UserPolicyException;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
 {
     use HandlesAuthorization;
 
-
-    public function view(User $user, User $routeUser=null)
+    public function view(User $user, User $routeUser = null)
     {
         if ($user->can('user-list')) {
             return true;
@@ -26,10 +23,8 @@ class UserPolicy
         return true;
     }
 
-
     public function update(User $user, User $routeUser)
     {
-
         if ($user->is($routeUser)) {
             return true;
         }
@@ -39,12 +34,10 @@ class UserPolicy
         }
 
         return false;
-
     }
 
     public function delete(User $user, User $routeUser)
     {
-
         if ($user->is($routeUser)) {
             return true;
         }
@@ -54,12 +47,10 @@ class UserPolicy
         }
 
         return false;
-
     }
 
     public function restore(User $user, User $routeUser)
     {
-
         if ($user->is($routeUser)) {
             return true;
         }
@@ -70,6 +61,4 @@ class UserPolicy
 
         return false;
     }
-
-
 }
