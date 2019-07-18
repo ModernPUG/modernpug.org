@@ -21,7 +21,7 @@ $factory->define(App\Recruit::class, function (Faker $faker) {
         'address' => $faker->address,
         'min_salary' => $minSalary * $salary,
         'max_salary' => ($minSalary + $maxSalary) * $salary,
-        'expired_at' => $faker->dateTimeInInterval('-1 months', '+1 months'),
+        'expired_at' => $faker->dateTimeInInterval('-1 months', '+2 months'),
         'entry_user_id' => factory(\App\User::class),
     ];
 });
