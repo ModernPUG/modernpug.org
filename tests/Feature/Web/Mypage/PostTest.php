@@ -5,10 +5,13 @@ namespace Tests\Feature\Web\Mypage;
 use App\Blog;
 use App\Post;
 use App\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
+
+    use DatabaseTransactions;
 
     public function testCantSeePostByNonOwner()
     {
