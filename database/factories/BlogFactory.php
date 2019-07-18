@@ -4,6 +4,7 @@ use Faker\Factory as Faker;
 
 $factory->define(App\Blog::class, function () {
     $faker = Faker::create('ko_KR');
+
     return [
         'title' => $faker->paragraph,
         'feed_url' => $faker->url,

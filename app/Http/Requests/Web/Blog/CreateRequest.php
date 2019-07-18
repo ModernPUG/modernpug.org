@@ -16,9 +16,10 @@ class CreateRequest extends FormRequest
     public function authorize()
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
+
         return $user->can('create', Blog::class);
     }
 

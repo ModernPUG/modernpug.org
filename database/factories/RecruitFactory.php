@@ -3,7 +3,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Recruit::class, function (Faker $faker) {
-
     $faker = \Faker\Factory::create('ko_KR');
 
     $minSalary = $faker->numberBetween(5, 10);
@@ -15,7 +14,7 @@ $factory->define(App\Recruit::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'company_name' => $faker->company,
         'description' => $faker->paragraph,
-        'skills' => implode(',', $faker->words(random_int(1,5))),
+        'skills' => implode(',', $faker->words(random_int(1, 5))),
         'link' => $faker->url,
         'image_url' => $faker->imageUrl(),
         'address' => $faker->address,

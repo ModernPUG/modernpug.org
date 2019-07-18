@@ -5,24 +5,23 @@ namespace Tests\Feature\Web\Mypage;
 use App\Blog;
 use App\Post;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PostTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testCantSeePostByNonOwner()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $nonOwner = factory(User::class)->create();
 
         /**
-         * @var Post $post
+         * @var Post
          */
         $post = factory(Post::class)->create();
 
@@ -33,22 +32,20 @@ class PostTest extends TestCase
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $owner = factory(User::class)->create();
 
-
         /**
-         * @var Blog $blog
+         * @var Blog
          */
         $blog = factory(Blog::class)->create(['owner_id' => $owner]);
 
         /**
-         * @var Post $post
+         * @var Post
          */
         $post = factory(Post::class)->create(['blog_id' => $blog]);
 
         $this->actingAs($owner)->get(route('mypage.posts.index'))->assertOk()->assertSee($post->title);
     }
-
 }

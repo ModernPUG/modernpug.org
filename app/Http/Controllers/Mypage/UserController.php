@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Mypage;
 
-
-use App\Http\Requests\Web\Mypage\User\DeleteRequest;
-use App\Http\Requests\Web\Mypage\User\IndexRequest;
-use App\Http\Requests\Web\Mypage\User\RestoreRequest;
-use App\Http\Requests\Web\Mypage\User\UpdateRequest;
+use Toastr;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Toastr;
+use App\Http\Requests\Web\Mypage\User\IndexRequest;
+use App\Http\Requests\Web\Mypage\User\DeleteRequest;
+use App\Http\Requests\Web\Mypage\User\UpdateRequest;
+use App\Http\Requests\Web\Mypage\User\RestoreRequest;
 
 class UserController extends Controller
 {
@@ -22,7 +21,7 @@ class UserController extends Controller
      */
     public function index(IndexRequest $request)
     {
-        $users = User::withTrashed()->with('blogs','oauth_identities')->withCount('blogs')->paginate(10);
+        $users = User::withTrashed()->with('blogs', 'oauth_identities')->withCount('blogs')->paginate(10);
 
         return view('pages.mypage.user.index', compact('users'));
     }
@@ -78,8 +77,6 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-
-
     }
 
     /**
@@ -92,17 +89,12 @@ class UserController extends Controller
      */
     public function destroy(DeleteRequest $request, User $user)
     {
-
-
         $user->delete();
 
-        Toastr::success('사용자 ' . $user->name . '가 삭제되었습니다.');
+        Toastr::success('사용자 '.$user->name.'가 삭제되었습니다.');
 
         return back();
-
-
     }
-
 
     /**
      * @param RestoreRequest $request
@@ -111,13 +103,10 @@ class UserController extends Controller
      */
     public function restore(RestoreRequest $request, $id)
     {
-
-
         User::onlyTrashed()->findOrFail($id)->restore();
 
         Toastr::success('사용자의 복구가 완료되었습니다');
 
         return back();
     }
-
 }

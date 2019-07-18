@@ -2,17 +2,14 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\Services\Recruits\Exceptions\RecruitPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Recruits\Exceptions\RecruitPolicyException;
 
 class UpdateRequest extends FormRequest
 {
-
-
     use AttributesTrait;
     use MessagesTrait;
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -21,18 +18,17 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-
         $recruit = $this->route('recruit');
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
         $result = $user->can('update', $recruit);
 
-
-        if (!$result)
+        if (! $result) {
             throw new RecruitPolicyException('채용공고를 수정 할 권한이 없습니다');
+        }
 
         return $result;
     }
@@ -44,7 +40,6 @@ class UpdateRequest extends FormRequest
      */
     public function rules()
     {
-
         return [
             'title' => 'required|string',
             'company_name' => 'required|string',

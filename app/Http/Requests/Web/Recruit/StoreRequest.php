@@ -2,16 +2,14 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\Recruit;
 use App\User;
+use App\Recruit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
 {
-
     use MessagesTrait;
     use AttributesTrait;
-
 
     /**
      * Determine if the user is authorized to make this request.
@@ -21,9 +19,10 @@ class StoreRequest extends FormRequest
     public function authorize()
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
+
         return $user->can('create', Recruit::class);
     }
 
@@ -47,6 +46,4 @@ class StoreRequest extends FormRequest
             'expired_at' => 'required|date|date_format:Y-m-d|after:today',
         ];
     }
-
-
 }

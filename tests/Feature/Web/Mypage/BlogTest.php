@@ -4,13 +4,12 @@ namespace Tests\Feature\Web\Mypage;
 
 use App\Blog;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class BlogTest extends TestCase
 {
     use DatabaseTransactions;
-
 
     protected function setUp()
     {
@@ -19,17 +18,16 @@ class BlogTest extends TestCase
         \Toastr::clear();
     }
 
-
     public function testCantSeeBlogByNonOwner()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $nonOwner = factory(User::class)->create();
 
         /**
-         * @var Blog $blog
+         * @var Blog
          */
         $blog = factory(Blog::class)->create();
 
@@ -40,19 +38,15 @@ class BlogTest extends TestCase
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $owner = factory(User::class)->create();
 
         /**
-         * @var Blog $blog
+         * @var Blog
          */
         $blog = factory(Blog::class)->create(['owner_id' => $owner]);
 
         $this->actingAs($owner)->get(route('mypage.blogs.index'))->assertOk()->assertSee($blog->title);
     }
-
-
-
-
 }

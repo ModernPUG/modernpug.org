@@ -11,7 +11,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-
         $permissions = [
             'role-list',
             'role-create',
@@ -48,15 +47,12 @@ class PermissionSeeder extends Seeder
             'recruit-restore',
         ];
 
-
         $models = config('permission.models.permission');
 
         foreach ($permissions as $permission) {
-
             $models::firstOrCreate([
                 'name' => $permission,
             ]);
         }
-
     }
 }

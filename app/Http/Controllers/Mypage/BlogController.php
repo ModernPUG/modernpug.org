@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Blog;
-use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
