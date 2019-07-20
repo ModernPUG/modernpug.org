@@ -3,8 +3,8 @@
 namespace Tests\Feature\Web\Mypage;
 
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -63,7 +63,7 @@ class UserTest extends TestCase
     {
 
         /**
-         * @var User
+         * @var User $user
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -79,7 +79,7 @@ class UserTest extends TestCase
     {
 
         /**
-         * @var User
+         * @var User $user
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -95,7 +95,7 @@ class UserTest extends TestCase
     {
 
         /**
-         * @var User
+         * @var User $user
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -107,4 +107,71 @@ class UserTest extends TestCase
             ->assertSessionHas('toastr::notifications.0.type', 'success')
             ->assertRedirect();
     }
+
+
+    public function testCantAccessModifyUserPageByNotPermittedUser()
+    {
+
+        /**
+         * @var User $user
+         * @var User $targetUser
+         */
+        $user = factory(User::class)->create();
+        $targetUser = factory(User::class)->create();
+
+        $this->actingAs($user)->get(route('mypage.users.edit', [$targetUser->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect();
+    }
+
+
+    public function testCanAccessModifyUserPageByPermittedUser()
+    {
+
+        /**
+         * @var User $user
+         * @var User $targetUser
+         */
+        $user = factory(User::class)->create();
+        $user->givePermissionTo('user-edit');
+        $targetUser = factory(User::class)->create();
+
+        $this->actingAs($user)->get(route('mypage.users.edit', [$targetUser->id]))
+            ->assertOk();
+    }
+
+
+    public function testCantUpdateUserByNotPermittedUser()
+    {
+
+        /**
+         * @var User $user
+         * @var User $targetUser
+         */
+        $user = factory(User::class)->create();
+        $targetUser = factory(User::class)->create();
+
+        $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]))
+            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertRedirect();
+    }
+
+
+    public function testCanUpdateUserByPermittedUser()
+    {
+
+        /**
+         * @var User $user
+         * @var User $targetUser
+         */
+        $user = factory(User::class)->create();
+        $user->givePermissionTo('user-edit');
+        $targetUser = factory(User::class)->create();
+
+        $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]), $targetUser->toArray())
+            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertRedirect();
+    }
+
+
 }

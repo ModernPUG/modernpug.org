@@ -6,7 +6,7 @@ use App\Services\User\Exceptions\UserPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+class EditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -39,15 +39,6 @@ class UpdateRequest extends FormRequest
     {
         return [
 
-            'name' => 'required|string|max:255',
-            'password' => 'nullable|string|min:6|confirmed',
-            'github_url' => 'nullable|url',
-            'facebook_url' => 'nullable|url',
-            'twitter_url' => 'nullable|url',
-            'homepage_url' => 'nullable|url',
-            'comment' => 'nullable|string|max:255',
-            'roles' => 'nullable|array',
-            'roles.*' => 'string|exists:' . config('permission.table_names.roles').',name'
         ];
     }
 }

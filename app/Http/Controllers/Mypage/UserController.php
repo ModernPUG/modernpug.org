@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Mypage;
 
-use Toastr;
-use App\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Web\Mypage\User\IndexRequest;
 use App\Http\Requests\Web\Mypage\User\DeleteRequest;
-use App\Http\Requests\Web\Mypage\User\UpdateRequest;
+use App\Http\Requests\Web\Mypage\User\EditRequest;
+use App\Http\Requests\Web\Mypage\User\IndexRequest;
 use App\Http\Requests\Web\Mypage\User\RestoreRequest;
+use App\Http\Requests\Web\Mypage\User\UpdateRequest;
+use App\Role;
+use App\User;
+use Hash;
+use Illuminate\Http\Request;
+use Toastr;
 
 class UserController extends Controller
 {
@@ -23,7 +26,7 @@ class UserController extends Controller
     {
         $users = User::withTrashed()->with('blogs', 'oauth_identities')->withCount('blogs')->paginate(10);
 
-        return view('pages.mypage.user.index', compact('users'));
+        return view('pages.mypage.users.index', compact('users'));
     }
 
     /**
@@ -33,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //d
+
     }
 
     /**
@@ -60,23 +63,43 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param int $id
+     * @param EditRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(EditRequest $request, User $user)
     {
-        //
+
+        $roles = Role::all();
+
+        return view('pages.mypage.users.form', compact('user', 'roles'));
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param UpdateRequest $request
-     * @param int $id
+     * @param User $user
      * @return void
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, User $user)
     {
+        $validated = $request->validated();
+
+
+        $password = $request->get('password');
+        if ($password) {
+            $validated['password'] = Hash::make($password);
+        }
+
+        $user->update($validated);
+        $user->syncRoles($request->get('roles'));
+
+        Toastr::success('사용자 ' . $user->name . '가 수정되었습니다.');
+
+        return back();
+
     }
 
     /**
@@ -91,7 +114,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        Toastr::success('사용자 '.$user->name.'가 삭제되었습니다.');
+        Toastr::success('사용자 ' . $user->name . '가 삭제되었습니다.');
 
         return back();
     }
