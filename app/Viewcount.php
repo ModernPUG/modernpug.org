@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Viewcount.
+ * App\Viewcount
  *
  * @property int $id
  * @property int $post_id

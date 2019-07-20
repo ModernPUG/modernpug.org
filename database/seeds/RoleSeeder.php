@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         ];
 
         $models = config('permission.models.role');
-        $permissions = \Spatie\Permission\Models\Permission::all();
+        $permissions = config('permission.models.permission')::all();
 
         foreach ($roles as $role) {
             $models::firstOrCreate([

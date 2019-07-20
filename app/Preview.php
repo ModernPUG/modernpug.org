@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Preview.
+ * App\Preview
  *
  * @property int $id
  * @property int $post_id
