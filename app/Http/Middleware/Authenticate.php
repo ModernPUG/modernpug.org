@@ -15,6 +15,8 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
+            \Toastr::error('로그인 후 사용해주세요');
+
             return route('login');
         }
     }

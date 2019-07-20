@@ -3,13 +3,12 @@
 namespace Tests\Feature\Web\Mypage;
 
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
-
 
     protected function setUp(): void
     {
@@ -45,10 +44,8 @@ class UserTest extends TestCase
         $this->actingAs($user)->get(route('mypage.users.index'))->assertOk();
     }
 
-
     public function testCantDeleteNormalUser()
     {
-
 
         /**
          * @var User $user
@@ -62,12 +59,11 @@ class UserTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testCanDeletePermittedUser()
     {
 
         /**
-         * @var User $user
+         * @var User
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -79,13 +75,11 @@ class UserTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testCantRestoreNormalUser()
     {
 
-
         /**
-         * @var User $user
+         * @var User
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -97,12 +91,11 @@ class UserTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testCanRestorePermittedUser()
     {
 
         /**
-         * @var User $user
+         * @var User
          * @var User $targetUser
          */
         $user = factory(User::class)->create();
@@ -114,6 +107,4 @@ class UserTest extends TestCase
             ->assertSessionHas('toastr::notifications.0.type', 'success')
             ->assertRedirect();
     }
-
-
 }

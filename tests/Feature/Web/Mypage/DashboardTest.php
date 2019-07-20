@@ -4,13 +4,12 @@ namespace Tests\Feature\Web\Mypage;
 
 use App\Blog;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class DashboardTest extends TestCase
 {
     use DatabaseTransactions;
-
 
     public function testNotAuthorizedUserRedirectToLogin()
     {
@@ -18,12 +17,11 @@ class DashboardTest extends TestCase
             ->assertRedirect('/login');
     }
 
-
     public function testEmailNotVerifiedUserRedirectToEmailVerify()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = factory(User::class)->create(['email_verified_at' => null]);
 
@@ -31,12 +29,11 @@ class DashboardTest extends TestCase
             ->assertRedirect('/email/verify');
     }
 
-
     public function testUserCanOnlySeeOwnedBlog()
     {
 
         /**
-         * @var User $owner
+         * @var User
          * @var Blog $ownedBlog
          * @var Blog $nonOwnedBlog
          */
@@ -48,8 +45,5 @@ class DashboardTest extends TestCase
             ->assertSee($ownedBlog->title)
             ->assertDontSee($nonOwnedBlog->title)
             ->assertOk();
-
     }
-
-
 }

@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\OauthIdentity
+ * App\OauthIdentity.
  *
  * @property int $id
  * @property int $user_id
@@ -29,8 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class OauthIdentity extends Model
 {
-
-    public const SUPPORT_PROVIDER=['slack'];
+    public const SUPPORT_PROVIDER = ['slack'];
 
     protected $fillable = ['user_id', 'provider_user_id', 'provider', 'access_token'];
 

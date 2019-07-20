@@ -15,6 +15,7 @@ use Faker\Factory as Faker;
 
 $factory->define(App\User::class, function () {
     $faker = Faker::create('ko_KR');
+
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

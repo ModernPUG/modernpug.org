@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Preview
+ * App\Preview.
  *
  * @property int $id
  * @property int $post_id
@@ -25,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Preview extends Model
 {
-    protected $fillable=['post_id','image_url'];
+    protected $fillable = ['post_id', 'image_url'];
 
     public function post()
     {

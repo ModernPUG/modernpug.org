@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Blog
+ * App\Blog.
  *
  * @property int $id
  * @property string|null $title
@@ -50,7 +50,7 @@ class Blog extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['deleted_at','crawled_at'];
+    protected $dates = ['deleted_at', 'crawled_at'];
     protected $fillable = [
         'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];
@@ -69,5 +69,4 @@ class Blog extends Model
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
-
 }

@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\Recruit;
 use App\User;
+use App\Recruit;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class RecruitPolicy
@@ -46,7 +46,6 @@ class RecruitPolicy
             return true;
         }
 
-
         if ($user->can('recruit-edit')) {
             return true;
         }
@@ -66,7 +65,6 @@ class RecruitPolicy
         if ($user->is($recruit->entry_user)) {
             return true;
         }
-
 
         if ($user->can('recruit-delete')) {
             return true;
@@ -88,12 +86,10 @@ class RecruitPolicy
             return true;
         }
 
-
         if ($user->can('recruit-restore')) {
             return true;
         }
 
         return false;
     }
-
 }

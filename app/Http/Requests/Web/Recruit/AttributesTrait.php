@@ -1,12 +1,9 @@
 <?php
 
-
 namespace App\Http\Requests\Web\Recruit;
-
 
 trait AttributesTrait
 {
-
     public function attributes()
     {
         return [
@@ -22,5 +19,4 @@ trait AttributesTrait
             'expired_at' => '채용 종료일',
         ];
     }
-
 }

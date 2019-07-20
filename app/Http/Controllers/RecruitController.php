@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Web\Recruit\RestoreRequest;
-use App\Http\Requests\Web\Recruit\CreateRequest;
-use App\Http\Requests\Web\Recruit\DeleteRequest;
-use App\Http\Requests\Web\Recruit\EditRequest;
-use App\Http\Requests\Web\Recruit\StoreRequest;
-use App\Http\Requests\Web\Recruit\UpdateRequest;
-use App\Recruit;
+use Toastr;
 use App\User;
+use App\Recruit;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Toastr;
+use App\Http\Requests\Web\Recruit\EditRequest;
+use App\Http\Requests\Web\Recruit\StoreRequest;
+use App\Http\Requests\Web\Recruit\CreateRequest;
+use App\Http\Requests\Web\Recruit\DeleteRequest;
+use App\Http\Requests\Web\Recruit\UpdateRequest;
+use App\Http\Requests\Web\Recruit\RestoreRequest;
 
 class RecruitController extends Controller
 {
@@ -28,7 +28,6 @@ class RecruitController extends Controller
      */
     public function index()
     {
-
         $recruits = Recruit::where('expired_at', '>=', Carbon::now())->get();
 
         return view('pages.recruits.index', compact('recruits'));
@@ -42,7 +41,6 @@ class RecruitController extends Controller
      */
     public function create(CreateRequest $request)
     {
-
         $recruit = Recruit::initializeWithDefault();
 
         return view('pages.recruits.create', compact('recruit'));
@@ -57,12 +55,11 @@ class RecruitController extends Controller
     public function store(StoreRequest $request)
     {
         /**
-         * @var User $user
+         * @var User
          */
         $user = $request->user();
 
         $user->recruits()->save(Recruit::make($request->validated()));
-
 
         Toastr::success('등록이 완료되었습니다.');
 
@@ -89,9 +86,7 @@ class RecruitController extends Controller
      */
     public function edit(EditRequest $request, Recruit $recruit)
     {
-
         return view('pages.recruits.edit', compact('recruit'));
-
     }
 
     /**
@@ -103,7 +98,6 @@ class RecruitController extends Controller
      */
     public function update(UpdateRequest $request, Recruit $recruit)
     {
-
         $recruit->update($request->validated());
 
         Toastr::success('수정이 완료되었습니다.');
@@ -121,14 +115,12 @@ class RecruitController extends Controller
      */
     public function destroy(DeleteRequest $request, Recruit $recruit)
     {
-
         $recruit->delete();
 
         Toastr::success('삭제가 완료되었습니다.');
 
         return back();
     }
-
 
     /**
      * @param RestoreRequest $request
@@ -137,13 +129,10 @@ class RecruitController extends Controller
      */
     public function restore(RestoreRequest $request, $id)
     {
-
-
         Recruit::onlyTrashed()->findOrFail($id)->restore();
 
         Toastr::success('채용공고가 복구되었습니다. 노출이 재개됩니다');
 
         return back();
     }
-
 }

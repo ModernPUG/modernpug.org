@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\Services\Recruits\Exceptions\RecruitPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Services\Recruits\Exceptions\RecruitPolicyException;
 
 class DeleteRequest extends FormRequest
 {
@@ -18,13 +18,14 @@ class DeleteRequest extends FormRequest
         $recruit = $this->route('recruit');
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
         $result = $user->can('delete', $recruit);
 
-        if (!$result)
+        if (! $result) {
             throw new RecruitPolicyException('채용공고를 삭제 할 권한이 없습니다');
+        }
 
         return $result;
     }

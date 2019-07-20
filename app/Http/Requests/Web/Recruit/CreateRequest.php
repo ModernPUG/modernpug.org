@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\Recruit;
 use App\User;
+use App\Recruit;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest
@@ -17,9 +17,10 @@ class CreateRequest extends FormRequest
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = auth()->user();
+
         return $user->can('create', Recruit::class);
     }
 
