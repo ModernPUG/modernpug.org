@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Toastr;
-use Illuminate\Http\Request;
-use App\Services\SlackInviter;
-use App\Http\Requests\InviteSlackRequest;
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
+use App\Http\Requests\InviteSlackRequest;
+use App\Services\SlackInviter;
+use Illuminate\Http\Request;
+use Toastr;
 
 class SlackController extends Controller
 {

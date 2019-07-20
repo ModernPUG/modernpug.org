@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Toastr;
-use App\User;
-use App\Recruit;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use App\Http\Requests\Web\Recruit\EditRequest;
-use App\Http\Requests\Web\Recruit\StoreRequest;
 use App\Http\Requests\Web\Recruit\CreateRequest;
 use App\Http\Requests\Web\Recruit\DeleteRequest;
-use App\Http\Requests\Web\Recruit\UpdateRequest;
+use App\Http\Requests\Web\Recruit\EditRequest;
 use App\Http\Requests\Web\Recruit\RestoreRequest;
+use App\Http\Requests\Web\Recruit\StoreRequest;
+use App\Http\Requests\Web\Recruit\UpdateRequest;
+use App\Recruit;
+use App\User;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Toastr;
 
 class RecruitController extends Controller
 {

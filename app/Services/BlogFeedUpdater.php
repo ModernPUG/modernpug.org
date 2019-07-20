@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\Blog;
-use Illuminate\Console\Command;
-use App\Services\Rss\FeedParser;
 use App\Services\Rss\BlogUpdater;
+use App\Services\Rss\FeedParser;
 use App\Services\Rss\PostUpdater;
+use Illuminate\Console\Command;
 use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
 use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
 
