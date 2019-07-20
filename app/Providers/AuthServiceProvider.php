@@ -8,6 +8,7 @@ use App\Recruit;
 use App\Policies\BlogPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\RecruitPolicy;
+use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -32,6 +33,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::before(function (User $user, $ability) {
+            return $user->hasRole('super-admin') ? true : null;
+        });
+
+        Gate::after(function (User $user, $ability) {
+            return $user->hasRole('super-admin'); // note this returns boolean
+        });
     }
 }
