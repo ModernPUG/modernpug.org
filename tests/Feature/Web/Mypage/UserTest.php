@@ -17,12 +17,11 @@ class UserTest extends TestCase
         \Toastr::clear();
     }
 
-
     public function testCantAccessNormalUser()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = factory(User::class)->create();
 
@@ -31,12 +30,11 @@ class UserTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testCanAccessPermittedUser()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = factory(User::class)->create();
         $user->givePermissionTo('user-list');
@@ -48,7 +46,7 @@ class UserTest extends TestCase
     {
 
         /**
-         * @var User $user
+         * @var User
          * @var User $targetUser
          */
         $user = factory(User::class)->create();

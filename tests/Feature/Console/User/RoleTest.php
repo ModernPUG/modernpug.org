@@ -4,19 +4,18 @@ namespace Tests\Feature\Console\User;
 
 use App\Role;
 use App\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class RoleTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testAssignRole()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = factory(User::class)->create();
 
@@ -35,12 +34,11 @@ class RoleTest extends TestCase
         $this->assertTrue($user->hasRole($role->name));
     }
 
-
     public function testRemoveRole()
     {
 
         /**
-         * @var User $user
+         * @var User
          */
         $user = factory(User::class)->create();
 
@@ -59,7 +57,5 @@ class RoleTest extends TestCase
         $user->refresh();
         $this->assertCount(0, $user->roles);
         $this->assertFalse($user->hasRole($role->name));
-
     }
-
 }
