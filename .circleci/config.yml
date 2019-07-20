@@ -42,6 +42,7 @@ jobs:
           key: composer-v1-{{ checksum "composer.lock" }}
           paths:
             - vendor
+            - ~/.composer
 
       # node cache
 
