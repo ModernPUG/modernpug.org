@@ -13,3 +13,4 @@ yarn-error.log
 .env.testing
 tests/Report/
 *.sqlite
+.phpunit.result.cache

@@ -15,7 +15,7 @@ class BlogTest extends TestCase
     const NOT_AVAILABLE_FEED = 'http://test.com';
     const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
