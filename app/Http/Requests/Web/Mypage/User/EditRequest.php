@@ -23,7 +23,7 @@ class EditRequest extends FormRequest
         $user = auth()->user();
         $result = $user->can('update', $routeUser);
 
-        if (!$result) {
+        if (! $result) {
             throw new UserPolicyException('사용자를 수정 할 권한이 없습니다');
         }
 

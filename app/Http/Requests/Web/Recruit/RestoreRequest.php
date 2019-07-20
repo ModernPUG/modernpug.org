@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\User;
 use App\Recruit;
-use Illuminate\Foundation\Http\FormRequest;
 use App\Services\Recruits\Exceptions\RecruitPolicyException;
+use App\User;
+use Illuminate\Foundation\Http\FormRequest;
 
 class RestoreRequest extends FormRequest
 {

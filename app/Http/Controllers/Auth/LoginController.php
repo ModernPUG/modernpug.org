@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Email;
-use Socialite;
-use App\OauthIdentity;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\OauthIdentity;
 use App\Services\User\Exceptions\AccessDeniedUserException;
+use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
 
 class LoginController extends Controller
 {

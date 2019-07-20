@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App;
 
-
 /**
- * App\Role
+ * App\Role.
  *
  * @property int $id
  * @property string $name
@@ -27,5 +25,4 @@ namespace App;
  */
 class Role extends \Spatie\Permission\Models\Role
 {
-
 }

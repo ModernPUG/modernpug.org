@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Services;
 
-use Tests\TestCase;
 use App\Services\SlackInviter;
+use Tests\TestCase;
 
 class SlackInviterTest extends TestCase
 {

@@ -3,9 +3,9 @@
 namespace App\Http\Requests\Web\Mypage\Role;
 
 use App\Role;
+use App\Services\Role\Exceptions\RolePolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Services\Role\Exceptions\RolePolicyException;
 
 class IndexRequest extends FormRequest
 {

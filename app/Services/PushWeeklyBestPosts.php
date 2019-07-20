@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Tag;
 use App\Post;
+use App\Tag;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Notifications\Messages\SlackMessage;
 

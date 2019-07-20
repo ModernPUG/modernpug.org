@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Recruit
+ * App\Recruit.
  *
  * @property int $id
  * @property string $title

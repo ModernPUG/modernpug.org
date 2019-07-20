@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Web;
 
-use App\User;
 use App\Recruit;
+use App\User;
 use Carbon\Carbon;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class RecruitTest extends TestCase
 {

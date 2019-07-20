@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
+use Illuminate\Support\Facades\DB;
 
 /**
- * App\ReleaseNews
+ * App\ReleaseNews.
  *
  * @property int $id
  * @property string $site_url 웹 사이트의 주소
