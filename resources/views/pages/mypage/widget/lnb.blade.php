@@ -7,16 +7,21 @@
             <a href="{{ route('mypage.dashboard.index') }}" class="title">Dashboard</a>
         </div>
 
-    @can('user-list')
+    @hasanyrole('super-admin|admin|facilitator')
         <!-- Widget Area -->
             <div class="sidebar-widget-area">
 
                 <h5 class="title">Admin</h5>
                 <div class="widget-content">
+                    @can('user-list')
                     <h5 class="headline"><a href="{{ route('mypage.users.index') }}">Users</a></h5>
+                    @endcan
+                    @can('role-list')
+                    <h5 class="headline"><a href="{{ route('mypage.roles.index') }}">Roles</a></h5>
+                    @endcan
                 </div>
             </div>
-    @endcan
+    @endhasrole
 
     <!-- Widget Area -->
         <div class="sidebar-widget-area">

@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:web'], 'prefix'=>'mypage', 'as'=>'mypage.']
         Route::resource('dashboard', 'Mypage\DashboardController');
         Route::resource('users', 'Mypage\UserController');
         Route::patch('users/{user}/restore', 'Mypage\UserController@restore')->name('users.restore');
+        Route::resource('roles', 'Mypage\RoleController');
 
         Route::resource('blogs', 'Mypage\BlogController');
         Route::resource('posts', 'Mypage\PostController');
