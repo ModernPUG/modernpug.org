@@ -16,6 +16,7 @@
         "guzzlehttp/guzzle": "^6.3",
         "jolicode/slack-php-api": "^1.2",
         "laravel/framework": "5.8.*",
+        "laravel/slack-notification-channel": "^2.0",
         "laravel/socialite": "^4.1",
         "laravel/tinker": "^1.0",
         "oriceon/toastr-5-laravel": "dev-master",
