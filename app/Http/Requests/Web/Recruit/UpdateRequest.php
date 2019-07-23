@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
+use App\Services\Recruits\Exceptions\RecruitPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Services\Recruits\Exceptions\RecruitPolicyException;
 
 class UpdateRequest extends FormRequest
 {

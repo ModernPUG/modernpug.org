@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api\Slack\SlashCommands;
 
+use App\Jobs\Slack\SlashCommands\PickerDelayedResponse;
 use JoliCode\Slack\Api\Client;
-use Spatie\SlashCommand\Request;
-use Spatie\SlashCommand\Response;
 use Spatie\SlashCommand\Attachment;
 use Spatie\SlashCommand\Handlers\BaseHandler;
-use App\Jobs\Slack\SlashCommands\PickerDelayedResponse;
+use Spatie\SlashCommand\Request;
+use Spatie\SlashCommand\Response;
 
 class PickerCommand extends BaseHandler
 {
