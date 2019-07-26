@@ -6,7 +6,6 @@ use GuzzleHttp\Client;
 
 class ReCaptcha
 {
-
     /**
      * @var Client
      */
@@ -21,14 +20,14 @@ class ReCaptcha
     {
         $response = $this->client->post('https://www.google.com/recaptcha/api/siteverify',
             [
-                'form_params' =>
-                    [
+                'form_params' => [
                         'secret' => config('recaptcha.secret'),
-                        'response' => $value
-                    ]
+                        'response' => $value,
+                    ],
             ]
         );
         $body = json_decode((string) $response->getBody());
+
         return $body->success;
     }
 }

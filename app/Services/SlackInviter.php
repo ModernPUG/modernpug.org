@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Client;
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
+use GuzzleHttp\Client;
 
 /**
  * Class SlackInviter.
