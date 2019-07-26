@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 /**
  * App\Permission
@@ -29,5 +27,4 @@ namespace App;
  */
 class Permission extends \Spatie\Permission\Models\Permission
 {
-
 }

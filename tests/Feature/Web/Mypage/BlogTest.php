@@ -18,7 +18,6 @@ class BlogTest extends TestCase
         \Toastr::clear();
     }
 
-
     public function testCantSeeBlogByNonOwner()
     {
 
@@ -50,8 +49,4 @@ class BlogTest extends TestCase
 
         $this->actingAs($owner)->get(route('mypage.blogs.index'))->assertOk()->assertSee($blog->title);
     }
-
-
-
-
 }

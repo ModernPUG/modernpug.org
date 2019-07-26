@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
         $user = auth()->user();
         $result = $user->can('update', $routeUser);
 
-        if (!$result) {
+        if (! $result) {
             throw new UserPolicyException('사용자를 수정 할 권한이 없습니다');
         }
 
@@ -47,7 +47,7 @@ class UpdateRequest extends FormRequest
             'homepage_url' => 'nullable|url',
             'comment' => 'nullable|string|max:255',
             'roles' => 'nullable|array',
-            'roles.*' => 'string|exists:' . config('permission.table_names.roles').',name'
+            'roles.*' => 'string|exists:'.config('permission.table_names.roles').',name',
         ];
     }
 }
