@@ -113,7 +113,7 @@
                             <a href="{{ $relatedPost->link }}" class="headline">
                                 <h5>{{ $relatedPost->title }}</h5>
                             </a>
-                            <p>{!! \App\Services\StripPosts::panel($relatedPost->description) !!}</p>
+                            <p>{!! \App\Services\Blog\StripPosts::panel($relatedPost->description) !!}</p>
                             <!-- Post Meta -->
                             <div class="post-meta">
                                 <p><a target="_blank" href="{{ $relatedPost->blog->site_url }}" class="post-author">{{ $relatedPost->blog->title }}</a>

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Blog\PreviewUpdater;
 use Illuminate\Console\Command;
-use App\Services\PreviewUpdater;
 
 class PostImageUpdater extends Command
 {

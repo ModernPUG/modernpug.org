@@ -2,13 +2,13 @@
 
 namespace App;
 
+use App\Services\Blog\StripPosts;
 use Carbon\Carbon;
-use App\Services\StripPosts;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\Post

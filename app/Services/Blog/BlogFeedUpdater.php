@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Blog;
 
 use App\Blog;
+use App\Services\Blog\Rss\BlogUpdater;
+use App\Services\Blog\Rss\FeedParser;
+use App\Services\Blog\Rss\PostUpdater;
 use Illuminate\Console\Command;
-use App\Services\Rss\FeedParser;
-use App\Services\Rss\BlogUpdater;
-use App\Services\Rss\PostUpdater;
 use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
 use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
 

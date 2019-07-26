@@ -6,7 +6,7 @@
  * Time: 오후 9:05.
  */
 
-namespace App\Services;
+namespace App\Services\Blog;
 
 class StripPosts
 {

@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Services;
 
-use Tests\TestCase;
-use Tests\Mock\FeedParserMock;
+use App\Services\Blog\BlogFeedUpdater;
 use Tests\Mock\BlogUpdaterMock;
+use Tests\Mock\FeedParserMock;
 use Tests\Mock\PostUpdaterMock;
-use App\Services\BlogFeedUpdater;
+use Tests\TestCase;
 
 class RssReaderTest extends TestCase
 {

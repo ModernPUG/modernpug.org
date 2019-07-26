@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Blog\BlogFeedUpdater;
 use Illuminate\Console\Command;
-use App\Services\BlogFeedUpdater;
 
 class CrawlFeed extends Command
 {

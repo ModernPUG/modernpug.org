@@ -2,15 +2,15 @@
 
 namespace Tests\Unit\Services;
 
+use App\Services\Slack\Inviter;
 use Tests\TestCase;
-use App\Services\SlackInviter;
 
 class SlackInviterTest extends TestCase
 {
     public function testSuccessRequest()
     {
         $mock = $this->getSuccessMock();
-        $inviter = new SlackInviter($mock);
+        $inviter = new Inviter($mock);
 
         $inviter->invite('test@test.com');
     }
@@ -41,7 +41,7 @@ EOF;
     public function testFailRequest()
     {
         $mock = $this->getFailMock();
-        $inviter = new SlackInviter($mock);
+        $inviter = new Inviter($mock);
 
         $inviter->invite('test@test.com');
     }

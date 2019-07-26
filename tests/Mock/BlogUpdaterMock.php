@@ -2,7 +2,7 @@
 
 namespace Tests\Mock;
 
-use App\Services\Rss\BlogUpdater;
+use App\Services\Blog\Rss\BlogUpdater;
 
 trait BlogUpdaterMock
 {

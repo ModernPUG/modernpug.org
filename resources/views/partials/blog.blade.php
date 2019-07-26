@@ -18,7 +18,7 @@
     <div class="post-content">
         <a href="{{ route('posts.show',[$post->id]) }}" target="_blank" class="headline">
             <h5>{{ $post->title }}</h5>
-            <p>{!! \App\Services\StripPosts::panel($post->description) !!}</p>
+            <p>{!! \App\Services\Blog\StripPosts::panel($post->description) !!}</p>
 
             @if($post->tags->count())
             <p>

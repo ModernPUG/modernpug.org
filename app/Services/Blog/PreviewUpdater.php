@@ -6,7 +6,7 @@
  * Time: 오후 7:54.
  */
 
-namespace App\Services;
+namespace App\Services\Blog;
 
 use App\Blog;
 use App\Post;

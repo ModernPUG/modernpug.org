@@ -2,7 +2,7 @@
 
 namespace Tests\Mock;
 
-use App\Services\Rss\FeedParser;
+use App\Services\Blog\Rss\FeedParser;
 
 trait FeedParserMock
 {

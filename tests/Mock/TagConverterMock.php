@@ -2,7 +2,7 @@
 
 namespace Tests\Mock;
 
-use App\Services\Rss\TagsConverter;
+use App\Services\Blog\Rss\TagsConverter;
 
 trait TagConverterMock
 {

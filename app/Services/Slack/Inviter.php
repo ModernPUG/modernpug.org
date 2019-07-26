@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Slack;
 
-use GuzzleHttp\Client;
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
+use GuzzleHttp\Client;
 
-/**
- * Class SlackInviter.
- */
-class SlackInviter
+class Inviter
 {
     /**
      * @var Client

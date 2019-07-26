@@ -29,9 +29,9 @@ class PushWeeklyBestPosts extends Command
 
     /**
      * Execute the console command.
-     * @param \App\Services\PushWeeklyBestPosts $pushWeeklyBestPosts
+     * @param \App\Services\Blog\PushWeeklyBestPosts $pushWeeklyBestPosts
      */
-    public function handle(\App\Services\PushWeeklyBestPosts $pushWeeklyBestPosts)
+    public function handle(\App\Services\Blog\PushWeeklyBestPosts $pushWeeklyBestPosts)
     {
         $pushWeeklyBestPosts->pushSlack();
     }

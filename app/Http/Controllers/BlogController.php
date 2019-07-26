@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Toastr;
 use App\Blog;
+use App\Http\Requests\Web\Blog\CreateRequest;
+use App\Http\Requests\Web\Blog\DeleteRequest;
+use App\Http\Requests\Web\Blog\EditRequest;
+use App\Http\Requests\Web\Blog\RestoreRequest;
+use App\Http\Requests\Web\Blog\StoreRequest;
+use App\Http\Requests\Web\Blog\UpdateRequest;
+use App\Services\Blog\Rss\Exceptions\CannotConnectFeedException;
 use App\User;
 use Exception;
 use Illuminate\Http\Response;
+use Toastr;
 use Zend\Feed\Exception\RuntimeException;
 use Zend\Feed\Reader\Reader as ZendReader;
-use App\Http\Requests\Web\Blog\EditRequest;
-use App\Http\Requests\Web\Blog\StoreRequest;
-use App\Http\Requests\Web\Blog\CreateRequest;
-use App\Http\Requests\Web\Blog\DeleteRequest;
-use App\Http\Requests\Web\Blog\UpdateRequest;
-use App\Http\Requests\Web\Blog\RestoreRequest;
-use Zend\Http\Exception\InvalidArgumentException;
-use App\Services\Rss\Exceptions\CannotConnectFeedException;
 use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendRuntimeException;
+use Zend\Http\Exception\InvalidArgumentException;
 
 class BlogController extends Controller
 {

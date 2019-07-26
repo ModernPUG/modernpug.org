@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Rss;
+namespace App\Services\Blog\Rss;
 
 use Zend\Feed\Reader\Feed\FeedInterface;
 use Zend\Feed\Reader\Reader as ZendReader;

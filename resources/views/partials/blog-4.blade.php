@@ -17,7 +17,7 @@
             <h5>{{ $post->title }}</h5>
         </a>
         <p>
-            {!! \App\Services\StripPosts::panel($post->description) !!}
+            {!! \App\Services\Blog\StripPosts::panel($post->description) !!}
         </p>
 
         @if($post->tags->count())

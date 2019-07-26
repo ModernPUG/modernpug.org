@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Services;
 
+use App\Services\Blog\StripPosts;
 use Tests\TestCase;
-use App\Services\StripPosts;
 
 class StripArticlesTest extends TestCase
 {
