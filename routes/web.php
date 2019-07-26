@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth:web'], 'prefix'=>'mypage', 'as'=>'mypage.']
     Route::put('profile', 'Mypage\ProfileController@update')->name('profile.update');
 });
 
-Route::prefix('news/')->as('news.')->group(function () {
+Route::group(['prefix'=>'news','as'=>'news.'],function () {
     Route::resource('releases', 'ReleaseNewsController');
 });
 
@@ -47,12 +47,12 @@ Route::get('/posts/search/{tag?}', 'PostController@search')->name('posts.search'
 Route::patch('posts/{post}/restore', 'PostController@restore')->name('posts.restore');
 Route::resource('posts', 'PostController');
 
-Route::resource('tags', 'TagController');
+Route::get('tags', 'TagController@index')->name('tags.index');
 
 Route::get('aboutus', 'AboutUsController@index')->name('modernpug.aboutus');
 Route::get('logos', 'LogoController@index')->name('modernpug.logo');
 
-Route::resource('sponsors', 'SponsorController');
+Route::get('sponsors', 'SponsorController@index')->name('sponsors.index');
 
 Route::resource('recruits', 'RecruitController');
 Route::patch('recruits/{recruit}/restore', 'RecruitController@restore')->name('recruits.restore');
