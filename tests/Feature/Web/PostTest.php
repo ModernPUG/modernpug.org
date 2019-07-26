@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Web;
 
+use App\Post;
 use Tests\TestCase;
 
 class PostTest extends TestCase
@@ -11,8 +12,27 @@ class PostTest extends TestCase
         $this->get(route('posts.index'))->assertOk();
     }
 
-    public function testCreate()
+    public function testSearch()
     {
         $this->get(route('posts.search'))->assertOk();
+    }
+
+    public function testIfSeePostIncreaseViewCountAndRedirectOriginLink()
+    {
+
+        /**
+         * @var Post $post
+         */
+        $post = factory(Post::class)->create();
+
+
+        $this->assertCount(0, $post->viewcount);
+
+        $this->get(route('posts.show', [$post->id]))
+            ->assertRedirect($post->link);
+
+        $post->refresh();
+        $this->assertCount(1, $post->viewcount);
+
     }
 }
