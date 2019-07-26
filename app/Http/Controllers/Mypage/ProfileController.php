@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Mypage;
 
-use Hash;
-use Toastr;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use Hash;
+use Illuminate\Http\Request;
+use Toastr;
 
 class ProfileController extends Controller
 {

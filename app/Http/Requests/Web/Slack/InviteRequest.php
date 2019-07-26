@@ -25,7 +25,7 @@ class InviteRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'recaptcha-token' => 'required|recaptcha'
+            'recaptcha-token' => 'required|recaptcha',
         ];
     }
 

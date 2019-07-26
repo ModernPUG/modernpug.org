@@ -4,8 +4,8 @@ namespace Tests\Feature\Web\Mypage;
 
 use App\Blog;
 use App\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
 
 class DashboardTest extends TestCase
 {

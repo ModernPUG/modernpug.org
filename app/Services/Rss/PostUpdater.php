@@ -2,12 +2,12 @@
 
 namespace App\Services\Rss;
 
-use App\Tag;
 use App\Blog;
 use App\Post;
+use App\Tag;
+use Zend\Feed\Reader\Entry\EntryInterface;
 use Zend\Feed\Reader\Entry\Rss as Entry;
 use Zend\Feed\Reader\Feed\FeedInterface;
-use Zend\Feed\Reader\Entry\EntryInterface;
 
 class PostUpdater
 {
