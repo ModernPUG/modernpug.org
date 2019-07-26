@@ -6,7 +6,7 @@ $factory->define(App\Blog::class, function () {
     $faker = Faker::create('ko_KR');
 
     return [
-        'title' => $faker->paragraph,
+        'title' => $faker->sentence,
         'feed_url' => $faker->url,
         'site_url' => $faker->url,
         'description' => $faker->paragraph,

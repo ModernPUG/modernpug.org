@@ -7,7 +7,7 @@ $factory->define(App\Post::class, function () {
     $faker = Faker::create('ko_KR');
 
     return [
-        'title'=>$faker->paragraph,
+        'title' => $faker->sentence,
         'link'=>$faker->url,
         'description'=>$faker->paragraph,
         'published_at'=>$faker->dateTime,
