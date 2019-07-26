@@ -76,13 +76,11 @@ class BlogController extends Controller
 
     /**
      * Display the specified resource.
-     * @param int $id
+     * @param  Blog  $blog
      * @return Response
      */
-    public function show($id)
+    public function show(Blog $blog)
     {
-        $blog = Blog::findOrFail($id);
-
         return redirect($blog->site_url);
     }
 
