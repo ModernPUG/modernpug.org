@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Toastr;
-use Illuminate\Http\Request;
-use App\Services\SlackInviter;
-use App\Http\Requests\InviteSlackRequest;
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
+use App\Http\Requests\Web\Slack\InviteRequest;
+use App\Services\SlackInviter;
+use Illuminate\Http\Request;
+use Toastr;
 
 class SlackController extends Controller
 {
@@ -32,12 +32,12 @@ class SlackController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param InviteSlackRequest $request
+     * @param InviteRequest $request
      * @param SlackInviter $inviter
      * @return \Illuminate\Http\Response
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function store(InviteSlackRequest $request, SlackInviter $inviter)
+    public function store(InviteRequest $request, SlackInviter $inviter)
     {
         try {
             $inviter->invite($request->get('email'));

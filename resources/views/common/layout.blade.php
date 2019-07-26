@@ -230,9 +230,8 @@
                         Invite ModernPUG Slack
                         <i class="fa fa-slack"></i>
                     </h5>
-                    <form action="{{ route('slack.store') }}" method="post">
-                        @csrf
-                        <input type="email" name="email" placeholder="Enter your mail" required>
+                    <form action="{{ route('slack.store') }}" method="post" onclick="document.location.href=this.attributes.action.value;">
+                        <input type="email" name="email" placeholder="Join Us" required>
                         <button type="button"><i class="fa fa-arrow-right"></i></button>
                     </form>
                 </div>
@@ -257,6 +256,7 @@
 @include('common.toastr')
 
 @yield('js')
+@stack('js')
 </body>
 
 </html>

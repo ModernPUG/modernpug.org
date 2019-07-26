@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
-use Validator;
+use App\Validators\ReCaptcha;
+use Blade;
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
         Validator::replacer('greater_than_field', function ($message, $attribute, $rule, $parameters) {
             return str_replace(':field', $parameters[0], $message);
         });
+
+        Validator::extend('recaptcha', ReCaptcha::class);
+
+
     }
 
     /**
