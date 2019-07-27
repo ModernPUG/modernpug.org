@@ -35,14 +35,7 @@ class UpdateGravatar extends Command
         $users = User::whereAvatarUrl(null)->get();
 
         $users->each(function (User $user) use ($client) {
-
-            $avatarUrl = Gravatar::get($user->email);
-
-            if ($client->get($avatarUrl)->getStatusCode() != 200) {
-                return;
-            }
-
-            $user->avatar_url = $avatarUrl;
+            $user->avatar_url = Gravatar::get($user->email);
             $user->update();
         });
     }
