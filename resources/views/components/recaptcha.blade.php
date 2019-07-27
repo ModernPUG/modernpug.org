@@ -12,16 +12,16 @@
         <script>
             grecaptcha.ready(function () {
                 grecaptcha.execute('{{ config('recaptcha.key') }}', {action: 'homepage'}).then(function (token) {
-                    $("{{$formSelector}}").append('<input type="hidden" name="recaptcha-token" value="' + token + '">');
+                    $("form").append('<input type="hidden" name="{{ config('recaptcha.validation-key') }}" value="' + token + '">');
                 });
             });
         </script>
     @endif
 @endpush
 
-@if ($errors->has($inputName))
+@if ($errors->has(config('recaptcha.validation-key')))
     <span class=”invalid-feedback” role="alert">
-        <strong>{{ $errors->first($inputName) }}</strong>
+        <strong>{{ $errors->first(config('recaptcha.validation-key')) }}</strong>
     </span>
 @endif
 

@@ -25,15 +25,15 @@ class InviteRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'recaptcha-token' => 'required|recaptcha'
+            config('recaptcha.validation-key') => 'required|recaptcha'
         ];
     }
 
     public function messages()
     {
         return [
-            'recaptcha-token.required' => '비정상 접근입니다. 다시 시도해주세요',
-            'recaptcha-token.recaptcha' => '비정상 접근입니다. 다시 시도해주세요',
+            config('recaptcha.validation-key').'.required' => '비정상 접근입니다. 다시 시도해주세요',
+            config('recaptcha.validation-key').'.recaptcha' => '비정상 접근입니다. 다시 시도해주세요',
         ];
     }
 }

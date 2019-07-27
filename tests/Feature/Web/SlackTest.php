@@ -30,7 +30,7 @@ class SlackTest extends TestCase
     {
 
         $this->post(route('slack.store'), ['email' => 'test@example.com'])
-            ->assertSessionHasErrors('recaptcha-token')
+            ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
 
     }
