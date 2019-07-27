@@ -53,10 +53,12 @@
                                             </a>
                                         @endif
                                     </div>
+                                    @if($facilitator->comment)
                                     <div>
                                         <i class="fa fa-commenting"></i>
                                         {{ $facilitator->comment }}
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
