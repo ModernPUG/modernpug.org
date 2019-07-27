@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
 use App\Services\ReleaseNews\Updater;
+use Illuminate\Console\Command;
 
 class CrawlReleaseNews extends Command
 {

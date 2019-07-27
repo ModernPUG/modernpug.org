@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Blog;
 
+use App\Services\Blog\Exceptions\BlogPolicyException;
 use App\User;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Services\Blog\Exceptions\BlogPolicyException;
 
 class UpdateRequest extends FormRequest
 {
