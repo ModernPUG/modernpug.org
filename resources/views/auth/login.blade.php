@@ -15,7 +15,7 @@
 
                     <div class="card-body">
                         <h4>{{ __('Login') }}</h4>
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('login') }}" id="login-form">
                             @csrf
 
                             <div class="form-group row">
@@ -49,6 +49,15 @@
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-4">
+
+                                    @component('components.recaptcha')
+                                    @endcomponent
+
                                 </div>
                             </div>
 

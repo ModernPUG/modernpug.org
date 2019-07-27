@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Email;
+use Illuminate\Http\Request;
 use Socialite;
 use App\OauthIdentity;
 use App\Http\Controllers\Controller;
@@ -40,7 +41,27 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('recaptcha')->only('login');
     }
+
+
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'required|email',
+            'password' => 'required|string',
+        ]);
+    }
+
 
     /**
      * @param $provider

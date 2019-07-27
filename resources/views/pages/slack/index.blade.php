@@ -50,12 +50,6 @@
                                 </div>
 
                                 @component('components.recaptcha')
-                                    @slot('formSelector')
-                                        #invite-slack
-                                    @endslot
-                                    @slot('inputName')
-                                        recaptcha-token
-                                    @endslot
                                 @endcomponent
 
                                 <div class="col-12 mb-30">

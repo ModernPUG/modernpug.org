@@ -38,6 +38,14 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                        <div class="col-md-6 offset-md-4">
+
+                                            @component('components.recaptcha')
+                                            @endcomponent
+
+                                        </div>
+                                    </div>
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
