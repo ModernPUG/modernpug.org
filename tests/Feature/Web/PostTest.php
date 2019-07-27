@@ -3,10 +3,13 @@
 namespace Tests\Feature\Web;
 
 use App\Post;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class PostTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testIndex()
     {
         $this->get(route('posts.index'))->assertOk();
