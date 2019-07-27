@@ -9,6 +9,7 @@
         "ext-dom": "*",
         "ext-intl": "*",
         "ext-json": "*",
+        "creativeorange/gravatar": "^1.0",
         "doctrine/dbal": "^2.8",
         "embed/embed": "^3.3",
         "fideloper/proxy": "^4.0",
