@@ -73,7 +73,7 @@
                                         {{ $user->email }}
                                         <i class="fa fa-check {{ $user->email_verified_at?"text-success":"text-danger" }}"
                                            aria-hidden="true"
-                                           title="verified at {{ $user->email_verified_at->format('y-m-d H:i:s') }}"></i>
+                                           title="{{ $user->email_verified_at?"verified at ".$user->email_verified_at->format('y-m-d H:i:s'):"verified  not yet" }}"></i>
                                     </td>
                                     <td>
                                         {{ number_format($user->blogs->count()) }}
