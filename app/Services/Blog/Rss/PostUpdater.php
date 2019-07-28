@@ -82,6 +82,10 @@ class PostUpdater
         $tags = [];
 
         foreach ($entry->getCategories() as $category) {
+            if (empty($category['term'])) {
+                continue;
+            }
+
             /**
              * @var Tag
              */
@@ -89,6 +93,28 @@ class PostUpdater
             $tags[] = $tag->id;
         }
 
+        if (count($tags) == 0) {
+            $tags = $this->getTagsFromPost($entry);
+        }
+
         return $tags;
+    }
+
+    private function getTagsFromPost(EntryInterface $entry): array
+    {
+        $autoTags = array_keys(Tag::MANAGED_TAGS);
+
+        $tags = [];
+        $content = $entry->getContent();
+
+        foreach ($autoTags as $tag) {
+
+            if (stripos($content, $tag)) {
+                $tags[] = Tag::firstOrCreate(['name' => $tag])->id;
+            }
+        }
+
+        return $tags;
+
     }
 }
