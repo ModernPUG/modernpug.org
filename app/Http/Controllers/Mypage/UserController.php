@@ -36,7 +36,6 @@ class UserController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -69,11 +68,9 @@ class UserController extends Controller
      */
     public function edit(EditRequest $request, User $user)
     {
-
         $roles = Role::all();
 
         return view('pages.mypage.users.form', compact('user', 'roles'));
-
     }
 
     /**
@@ -87,7 +84,6 @@ class UserController extends Controller
     {
         $validated = $request->validated();
 
-
         $password = $request->get('password');
         if ($password) {
             $validated['password'] = Hash::make($password);
@@ -96,10 +92,9 @@ class UserController extends Controller
         $user->update($validated);
         $user->syncRoles($request->get('roles'));
 
-        Toastr::success('사용자 ' . $user->name . '가 수정되었습니다.');
+        Toastr::success('사용자 '.$user->name.'가 수정되었습니다.');
 
         return back();
-
     }
 
     /**
@@ -114,7 +109,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        Toastr::success('사용자 ' . $user->name . '가 삭제되었습니다.');
+        Toastr::success('사용자 '.$user->name.'가 삭제되었습니다.');
 
         return back();
     }
