@@ -37,7 +37,7 @@ class RoleTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)->get(route('mypage.roles.index'))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 

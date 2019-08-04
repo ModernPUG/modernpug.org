@@ -27,7 +27,7 @@ class UserTest extends TestCase
         $user = factory(User::class)->create();
 
         $this->actingAs($user)->get(route('mypage.users.index'))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 
@@ -55,7 +55,7 @@ class UserTest extends TestCase
         $targetUser = factory(User::class)->create();
 
         $this->actingAs($user)->delete(route('mypage.users.destroy', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 
@@ -71,7 +71,7 @@ class UserTest extends TestCase
         $targetUser = factory(User::class)->create();
 
         $this->actingAs($user)->delete(route('mypage.users.destroy', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect();
     }
 
@@ -87,7 +87,7 @@ class UserTest extends TestCase
         $targetUser->delete();
 
         $this->actingAs($user)->patch(route('mypage.users.restore', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 
@@ -104,7 +104,7 @@ class UserTest extends TestCase
         $targetUser->delete();
 
         $this->actingAs($user)->patch(route('mypage.users.restore', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect();
     }
 
@@ -120,7 +120,7 @@ class UserTest extends TestCase
         $targetUser = factory(User::class)->create();
 
         $this->actingAs($user)->get(route('mypage.users.edit', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 
@@ -152,7 +152,7 @@ class UserTest extends TestCase
         $targetUser = factory(User::class)->create();
 
         $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect();
     }
 
@@ -169,7 +169,7 @@ class UserTest extends TestCase
         $targetUser = factory(User::class)->create();
 
         $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]), $targetUser->toArray())
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect();
     }
 
