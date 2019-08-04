@@ -25,7 +25,6 @@ class RemoveRole extends Command
      */
     protected $description = '유저에게 Role을 제거합니다';
 
-
     /**
      * Execute the console command.
      *
@@ -33,25 +32,27 @@ class RemoveRole extends Command
      */
     public function handle()
     {
-
-
         $user = $this->getUserFromArgument();
 
-        if (!$user)
+        if (! $user) {
             $user = $this->askUserEmail();
+        }
 
-        if (!$user) {
+        if (! $user) {
             $this->warn('유저를 찾지 못하였습니다');
+
             return false;
         }
 
         $role = $this->getRoleFromArgument();
 
-        if (!$role)
+        if (! $role) {
             $role = $this->askRole($user);
+        }
 
-        if (!$role) {
+        if (! $role) {
             $this->warn('role을 찾지 못하였습니다');
+
             return false;
         }
 
@@ -61,11 +62,11 @@ class RemoveRole extends Command
             $this->info('요청이 취소되었습니다');
         }
 
-
-        if ($user->roles->count())
+        if ($user->roles->count()) {
             $this->info("{$user->name}에게 {$user->roles->pluck('name')->implode(',')} 권한이 있습니다");
-        else
+        } else {
             $this->info("{$user->name}의 모든 권한이 제거되었습니다");
+        }
     }
 
     /**
@@ -76,6 +77,7 @@ class RemoveRole extends Command
         for ($i = 0; $i < 5; $i++) {
             try {
                 $email = $this->ask('해당 유저의 이메일을 입력해주세요');
+
                 return User::whereEmail($email)->firstOrFail();
             } catch (ModelNotFoundException $e) {
                 $this->warn('유저를 찾을 수 없습니다');
@@ -83,6 +85,7 @@ class RemoveRole extends Command
         }
 
         $this->warn('5회이상 잘못된 유저를 입력하여 명령을 종료합니다');
+
         return null;
     }
 
@@ -95,9 +98,9 @@ class RemoveRole extends Command
         for ($i = 0; $i < 5; $i++) {
             $role = $this->ask('제거할 Role을 입력해주세요', '');
 
-            if ($roles->contains('name', $role))
+            if ($roles->contains('name', $role)) {
                 return $role;
-
+            }
         }
 
         return false;
@@ -117,8 +120,9 @@ class RemoveRole extends Command
     {
         $user = $this->argument('user');
 
-        if (!$user)
+        if (! $user) {
             return null;
+        }
 
         return User::whereEmail($user)->firstOrFail();
     }
@@ -126,16 +130,16 @@ class RemoveRole extends Command
     private function getRoleFromArgument()
     {
         try {
-
             $role = $this->argument('role');
 
-            if (!$role)
+            if (! $role) {
                 return null;
+            }
 
             return Role::whereName($role)->firstOrFail()->name;
         } catch (ModelNotFoundException $exception) {
-
             $this->warn("입력하신 {$role} role은 존재하지 않습니다");
+
             return null;
         }
     }

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Email;
+use App\Http\Controllers\Controller;
+use App\OauthIdentity;
+use App\Services\User\Exceptions\AccessDeniedUserException;
+use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Socialite;
-use App\OauthIdentity;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Services\User\Exceptions\AccessDeniedUserException;
 
 class LoginController extends Controller
 {
@@ -44,8 +44,6 @@ class LoginController extends Controller
         $this->middleware('recaptcha')->only('login');
     }
 
-
-
     /**
      * Validate the user login request.
      *
@@ -61,7 +59,6 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
-
 
     /**
      * @param $provider
