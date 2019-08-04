@@ -73,7 +73,7 @@ class BlogTest extends TestCase
         $blog = factory(Blog::class)->make(['owner_id' => null]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.create'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -95,7 +95,7 @@ class BlogTest extends TestCase
         $blog = factory(Blog::class)->make(['feed_url' => self::AVAILABLE_FEED]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.create'));
     }
 
@@ -128,20 +128,20 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwner)->get(route('blogs.edit', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwner)->put(route('blogs.update',
             ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
@@ -166,13 +166,13 @@ class BlogTest extends TestCase
             ->assertOk();
 
         $this->actingAs($owner)->put(route('blogs.update', ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.edit', [$blog->id]));
 
         \Toastr::clear();
 
         $this->actingAs($owner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.edit', ['id' => $blog->id]));
     }
 
@@ -192,7 +192,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwner)->delete(route('blogs.destroy', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
@@ -214,7 +214,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($owner)->delete(route('blogs.destroy', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -237,7 +237,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwnerWithPermission)->delete(route('blogs.destroy', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -260,7 +260,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
 
         $this->actingAs($nonOwner)->patch(route('blogs.restore', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'error')
+            ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -283,7 +283,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
 
         $this->actingAs($owner)->patch(route('blogs.restore', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
@@ -307,7 +307,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
 
         $this->actingAs($nonOwnerWithPermission)->patch(route('blogs.restore', [$blog->id]))
-            ->assertSessionHas('toastr::notifications.0.type', 'success')
+            ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.index'));
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
