@@ -16,6 +16,7 @@
 - `chmod -R 777 storage`
 - `composer install --no-scripts`
 - `cp .env.example .env` 후 `.env` 내용 수정
+- `cp .env.testing.example .env.testing` 후 `.env` 내용 수정
 - `php artisan key:generate`
 - `php artisan migrate`
 - `php artisan db:seed`
