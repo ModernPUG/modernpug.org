@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Blog;
+use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
