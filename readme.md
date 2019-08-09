@@ -18,6 +18,7 @@
 - `cp .env.example .env` 후 `.env` 내용 수정
 - `php artisan key:generate`
 - `php artisan migrate`
+- `php artisan db:seed`
 
 ## scss to css
 - `npm ci`
