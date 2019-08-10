@@ -108,13 +108,11 @@ class PostUpdater
         $content = $entry->getContent();
 
         foreach ($autoTags as $tag) {
-
             if (stripos($content, $tag)) {
                 $tags[] = Tag::firstOrCreate(['name' => $tag])->id;
             }
         }
 
         return $tags;
-
     }
 }

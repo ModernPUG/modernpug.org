@@ -11,7 +11,6 @@ class RoleTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testAssignRole()
     {
 
@@ -34,7 +33,6 @@ class RoleTest extends TestCase
         $this->assertCount(1, $user->roles);
         $this->assertTrue($user->hasRole($role->name));
     }
-
 
     public function testRemoveRole()
     {
@@ -59,7 +57,5 @@ class RoleTest extends TestCase
         $user->refresh();
         $this->assertCount(0, $user->roles);
         $this->assertFalse($user->hasRole($role->name));
-
     }
-
 }
