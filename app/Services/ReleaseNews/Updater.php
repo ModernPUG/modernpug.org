@@ -2,8 +2,8 @@
 
 namespace App\Services\ReleaseNews;
 
-use Carbon\Carbon;
 use App\ReleaseNews;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;

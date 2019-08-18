@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use App\Blog;
 use App\Post;
+use App\Tag;
 use App\Viewcount;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class PostController extends Controller

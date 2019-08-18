@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Mypage;
 
 use App\Blog;
-use App\Post;
 use App\Http\Controllers\Controller;
+use App\Post;
 
 class DashboardController extends Controller
 {

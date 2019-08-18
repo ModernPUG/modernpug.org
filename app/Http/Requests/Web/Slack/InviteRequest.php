@@ -25,7 +25,7 @@ class InviteRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            config('recaptcha.validation-key') => 'required|recaptcha'
+            config('recaptcha.validation-key') => 'required|recaptcha',
         ];
     }
 
