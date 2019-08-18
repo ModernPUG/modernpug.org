@@ -79,25 +79,28 @@ class PostUpdater
      */
     private function getTagIdsFromEntry(EntryInterface $entry): array
     {
-        $tags = [];
+        $tagIds = [];
 
-        foreach ($entry->getCategories() as $category) {
-            if (empty($category['term'])) {
+        foreach ($entry->getCategories() as $categoryInformation) {
+
+            $categoryString = !empty($categoryInformation['term'])?$categoryInformation['term']:$categoryInformation['label'];
+
+            if (empty($categoryString)) {
                 continue;
             }
 
             /**
              * @var Tag
              */
-            $tag = Tag::firstOrCreate(['name' => $category['label']]);
-            $tags[] = $tag->id;
+            $tag = Tag::firstOrCreate(['name' => $categoryString]);
+            $tagIds[] = $tag->id;
         }
 
-        if (count($tags) == 0) {
-            $tags = $this->getTagsFromPost($entry);
+        if (count($tagIds) == 0) {
+            $tagIds = $this->getTagsFromPost($entry);
         }
 
-        return $tags;
+        return $tagIds;
     }
 
     private function getTagsFromPost(EntryInterface $entry): array
