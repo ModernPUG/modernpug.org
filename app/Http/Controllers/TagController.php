@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
-use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -19,5 +18,4 @@ class TagController extends Controller
 
         return view('pages.tags.index', compact('managedTags', 'allTags'));
     }
-
 }

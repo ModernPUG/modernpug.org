@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class SponsorController extends Controller
 {
     /**
@@ -15,5 +13,4 @@ class SponsorController extends Controller
     {
         return view('pages.sponsors.sponsors');
     }
-
 }

@@ -18,7 +18,6 @@ class RolePolicy
      */
     public function view(User $user)
     {
-
         if ($user->can('role-list')) {
             return true;
         }
@@ -50,7 +49,6 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-
         if ($user->can('role-edit')) {
             return true;
         }
@@ -67,7 +65,6 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-
         if ($user->can('role-delete')) {
             return true;
         }
@@ -84,7 +81,6 @@ class RolePolicy
      */
     public function restore(User $user, Role $role)
     {
-
         if ($user->can('role-restore')) {
             return true;
         }

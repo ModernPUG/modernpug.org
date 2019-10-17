@@ -17,7 +17,6 @@ class UserTest extends TestCase
         \Toastr::clear();
     }
 
-
     public function testCantAccessNormalUser()
     {
 
@@ -30,7 +29,6 @@ class UserTest extends TestCase
             ->assertToastrHasError()
             ->assertRedirect();
     }
-
 
     public function testCanAccessPermittedUser()
     {
@@ -108,7 +106,6 @@ class UserTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testCantAccessModifyUserPageByNotPermittedUser()
     {
 
@@ -123,7 +120,6 @@ class UserTest extends TestCase
             ->assertToastrHasError()
             ->assertRedirect();
     }
-
 
     public function testCanAccessModifyUserPageByPermittedUser()
     {
@@ -140,7 +136,6 @@ class UserTest extends TestCase
             ->assertOk();
     }
 
-
     public function testCantUpdateUserByNotPermittedUser()
     {
 
@@ -155,7 +150,6 @@ class UserTest extends TestCase
             ->assertToastrHasError()
             ->assertRedirect();
     }
-
 
     public function testCanUpdateUserByPermittedUser()
     {
@@ -172,6 +166,4 @@ class UserTest extends TestCase
             ->assertToastrHasSuccess()
             ->assertRedirect();
     }
-
-
 }

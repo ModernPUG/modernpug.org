@@ -3,6 +3,7 @@
  * DO NOT INCLUDE ACTUAL CODE;
  * @referrence https://github.com/barryvdh/laravel-ide-helper/issues/40
  */
+
 namespace Illuminate\Foundation\Testing {
 
     /**
@@ -10,8 +11,7 @@ namespace Illuminate\Foundation\Testing {
      * @method $this assertToastrHasSuccess
      * @method $this assertToastrHasError
      */
-    class TestResponse{
+    class TestResponse
+    {
     }
 }
-
-

@@ -23,7 +23,6 @@ class UpdateGravatar extends Command
      */
     protected $description = '아바타 이미지가 없는 사용자의 gravatar 정보를 조회 후 업데이트 해줍니다';
 
-
     /**
      * Execute the console command.
      *
