@@ -25,7 +25,7 @@
             {{ $recruit->min_salary }}~{{ $recruit->max_salary }}만원
         </p>
         <p>
-            {{ $recruit->description }}
+            {!! nl2br(e($recruit->description)) !!}
         </p>
         <!-- Post Meta -->
         <address>
