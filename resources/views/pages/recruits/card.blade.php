@@ -62,5 +62,10 @@
                 </form>
             @endcan
         </div>
+        <div class="text-right">
+            <small class="text-secondary">
+                {{ $recruit->entry_user->name }} 님이 등록하였습니다
+            </small>
+        </div>
     </div>
 </div>
