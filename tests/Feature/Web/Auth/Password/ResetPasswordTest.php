@@ -9,7 +9,6 @@ use Tests\TestCase;
 
 class ResetPasswordTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testSeeResetFormWithInvalidToken()
@@ -22,13 +21,10 @@ class ResetPasswordTest extends TestCase
 
         $token = app('auth.password.broker')->createToken($user);
 
-
         $this->get(route('password.reset', [$token]))
             ->assertSessionHasNoErrors()
             ->assertOk();
-
     }
-
 
     public function testSubmitInvalidReCaptcha()
     {
@@ -40,7 +36,6 @@ class ResetPasswordTest extends TestCase
 
         $token = app('auth.password.broker')->createToken($user);
 
-
         $this->post(route('password.update'), ['email' => 'test@example.com', 'token' => $token])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
@@ -51,7 +46,6 @@ class ResetPasswordTest extends TestCase
         ])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
-
     }
 
     public function testSubmitInvalidEmail()
@@ -77,9 +71,7 @@ class ResetPasswordTest extends TestCase
         ])
             ->assertSessionHasErrors('email')
             ->assertRedirect();
-
     }
-
 
     public function testSubmitValidEmail()
     {
@@ -87,7 +79,6 @@ class ResetPasswordTest extends TestCase
          * @var User $user
          */
         $user = factory(User::class)->create();
-
 
         $token = app('auth.password.broker')->createToken($user);
 
@@ -100,6 +91,5 @@ class ResetPasswordTest extends TestCase
         ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
-
     }
 }

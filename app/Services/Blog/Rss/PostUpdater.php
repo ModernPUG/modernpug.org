@@ -82,8 +82,7 @@ class PostUpdater
         $tagIds = [];
 
         foreach ($entry->getCategories() as $categoryInformation) {
-
-            $categoryString = !empty($categoryInformation['term'])?$categoryInformation['term']:$categoryInformation['label'];
+            $categoryString = ! empty($categoryInformation['term']) ? $categoryInformation['term'] : $categoryInformation['label'];
 
             if (empty($categoryString)) {
                 continue;
@@ -111,13 +110,11 @@ class PostUpdater
         $content = $entry->getContent();
 
         foreach ($autoTags as $tag) {
-
             if (stripos($content, $tag)) {
                 $tags[] = Tag::firstOrCreate(['name' => $tag])->id;
             }
         }
 
         return $tags;
-
     }
 }

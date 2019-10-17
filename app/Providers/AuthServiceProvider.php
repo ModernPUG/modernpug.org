@@ -3,11 +3,11 @@
 namespace App\Providers;
 
 use App\Blog;
-use App\User;
-use App\Recruit;
 use App\Policies\BlogPolicy;
-use App\Policies\UserPolicy;
 use App\Policies\RecruitPolicy;
+use App\Policies\UserPolicy;
+use App\Recruit;
+use App\User;
 use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 

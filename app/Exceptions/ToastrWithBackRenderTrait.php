@@ -2,8 +2,8 @@
 
 namespace App\Exceptions;
 
-use Toastr;
 use Illuminate\Http\Request;
+use Toastr;
 
 trait ToastrWithBackRenderTrait
 {

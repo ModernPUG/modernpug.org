@@ -28,7 +28,6 @@ class PostTest extends TestCase
          */
         $post = factory(Post::class)->create();
 
-
         $this->assertCount(0, $post->viewcount);
 
         $this->get(route('posts.show', [$post->id]))
@@ -36,6 +35,5 @@ class PostTest extends TestCase
 
         $post->refresh();
         $this->assertCount(1, $post->viewcount);
-
     }
 }

@@ -10,7 +10,6 @@ class GravatarTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testUpdate()
     {
         /**
@@ -26,8 +25,5 @@ class GravatarTest extends TestCase
 
         $user->refresh();
         $this->assertIsString($user->avatar_url);
-
     }
-
-
 }

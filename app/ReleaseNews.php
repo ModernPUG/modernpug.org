@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\ReleaseNews
