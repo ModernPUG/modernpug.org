@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'facebook_url' => $faker->url,
         'twitter_url' => $faker->url,
         'homepage_url' => $faker->url,
+        'avatar_url' => $faker->imageUrl(),
         'comment' => $faker->paragraph,
         'remember_token' => str_random(10),
     ];
