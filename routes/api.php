@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});*/
+Route::group(['as' => 'api.'], function () {
+    Route::group(['as' => 'v1.', 'prefix' => 'v1', 'middleware' => ['auth:api']], function () {
+        Route::resource('recruits', 'Api\V1\RecruitController');
+    });
+
+});
