@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
-use Illuminate\Support\Facades\DB;
 
 /**
  * App\Post
@@ -22,27 +21,27 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Blog $blog
- * @property-read \App\Preview $preview
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Viewcount[] $viewcount
+ * @property-read Blog $blog
+ * @property-read Preview $preview
+ * @property-read \Illuminate\Database\Eloquent\Collection|Tag[] $tags
+ * @property-read \Illuminate\Database\Eloquent\Collection|Viewcount[] $viewcount
  * @method static bool|null forceDelete()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post query()
+ * @method static Builder|Post newModelQuery()
+ * @method static Builder|Post newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()
+ * @method static Builder|Post query()
  * @method static bool|null restore()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereBlogId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Post withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
+ * @method static Builder|Post whereBlogId($value)
+ * @method static Builder|Post whereCreatedAt($value)
+ * @method static Builder|Post whereDeletedAt($value)
+ * @method static Builder|Post whereDescription($value)
+ * @method static Builder|Post whereId($value)
+ * @method static Builder|Post whereLink($value)
+ * @method static Builder|Post wherePublishedAt($value)
+ * @method static Builder|Post whereTitle($value)
+ * @method static Builder|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Post withoutTrashed()
  * @mixin \Eloquent
  */
 class Post extends Model
@@ -73,27 +72,28 @@ class Post extends Model
 
     public static function getLastBestPosts(int $lastDays = 30, int $limit = 20, array $tagNames = [])
     {
-        $tagCondition = '';
+        $posts = self::with('blog', 'preview', 'tags');
+
+
+        $posts->selectRaw("posts.*");
+        $posts->selectRaw("count(posts.id) AS vcount");
+        $posts->selectRaw("(COUNT(posts.id)/abs(datediff(published_at,now()))) as rank_point");
+        $posts->leftJoin('viewcount', 'posts.id', 'viewcount.post_id');
+
+
         if (count($tagNames)) {
-            $tagNamesString = implode("','", $tagNames);
-            $tagCondition = " AND posts.id IN (select post_id from post_tag where tag_id in (select id from tags where name in ('$tagNamesString'))) ";
+            $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
+                $builder->whereIn('tags.name', $tagNames);
+            });
+
         }
 
-        $sql = <<<SQL
-SELECT count(posts.id) AS vcount,(COUNT(posts.id)/abs(datediff(published_at,now()))) as rank_point, posts.*
-FROM posts
-LEFT JOIN viewcount
-ON posts.id = viewcount.post_id
-WHERE posts.published_at >= DATE(NOW()) - INTERVAL ? DAY
-AND deleted_at is null 
-$tagCondition
-GROUP BY posts.id
-ORDER BY rank_point DESC
-LIMIT ?
-SQL;
-        $result = DB::select($sql, [$lastDays, $limit]);
+        $posts->where('published_at', '>=', Carbon::parse('- '.$lastDays.' days')->format('Y-m-d H:i:s'));
 
-        return self::hydrate($result)->load('blog', 'preview', 'tags');
+        $posts->groupBy('posts.id');
+
+
+        return $posts->orderBy('rank_point', 'desc')->limit($limit)->get();
     }
 
     public function getPublishedAtAttribute($date)
