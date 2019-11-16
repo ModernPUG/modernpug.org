@@ -30,7 +30,6 @@
         "zendframework/zend-http": "^2.10"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.6",
         "beyondcode/laravel-dump-server": "^1.2",
         "codedungeon/phpunit-result-printer": "^0.23.4",
