@@ -1,10 +1,9 @@
 <?php
 
 use App\Post;
-use Faker\Factory as Faker;
+use Faker\Generator as Faker;
 
-$factory->define(App\Viewcount::class, function () {
-    $faker = Faker::create('ko_KR');
+$factory->define(App\Viewcount::class, function (Faker $faker) {
 
     return [
         'post_id' => factory(Post::class),

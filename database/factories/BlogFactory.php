@@ -1,9 +1,8 @@
 <?php
 
-use Faker\Factory as Faker;
+use Faker\Generator as Faker;
 
-$factory->define(App\Blog::class, function () {
-    $faker = Faker::create('ko_KR');
+$factory->define(App\Blog::class, function (Faker $faker) {
 
     return [
         'title' => $faker->sentence,

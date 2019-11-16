@@ -1,13 +1,12 @@
 <?php
 
 use App\Post;
-use Faker\Factory as Faker;
+use Faker\Generator as Faker;
 
-$factory->define(App\Preview::class, function () {
-    $faker = Faker::create('ko_KR');
+$factory->define(App\Preview::class, function (Faker $faker) {
 
     return [
-        'post_id'=>factory(Post::class),
-        'image_url'=>$faker->imageUrl(),
+        'post_id' => factory(Post::class),
+        'image_url' => $faker->imageUrl(),
     ];
 });

@@ -1,11 +1,10 @@
 <?php
 
-use Faker\Factory as Faker;
+use Faker\Generator as Faker;
 
-$factory->define(App\Tag::class, function () {
-    $faker = Faker::create('ko_KR');
+$factory->define(App\Tag::class, function (Faker $faker) {
 
     return [
-        'name'=>$faker->word,
+        'name' => $faker->word,
     ];
 });
