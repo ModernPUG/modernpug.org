@@ -24,7 +24,7 @@
 
 
                         <!-- Contact Form -->
-                        <form action="{{ route('recruits.update', ['id'=>$recruit->id]) }}" method="post">
+                        <form action="{{ route('recruits.update', [$recruit->id]) }}" method="post">
                             @method('put')
                             @csrf
                             <div class="row">

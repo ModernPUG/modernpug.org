@@ -39,7 +39,7 @@
 
 
                         <!-- Contact Form -->
-                        <form action="{{ route('blogs.update',['id'=>$blog->id]) }}" method="post">
+                        <form action="{{ route('blogs.update',[$blog->id]) }}" method="post">
                             @method('put')
                             @csrf
                             <div class="row">

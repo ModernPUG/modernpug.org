@@ -35,11 +35,9 @@ EOF;
         return $requestMock;
     }
 
-    /**
-     * @expectedException \App\Exceptions\SlackInviteFailException
-     */
     public function testFailRequest()
     {
+        $this->expectException(\App\Exceptions\SlackInviteFailException::class);
         $mock = $this->getFailMock();
         $inviter = new Inviter($mock);
 

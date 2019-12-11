@@ -134,7 +134,7 @@ class BlogTest extends TestCase
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
         $this->actingAs($nonOwner)->put(route('blogs.update',
-            ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
+            [$blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
             ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 
@@ -165,7 +165,7 @@ class BlogTest extends TestCase
         $this->actingAs($owner)->get(route('blogs.edit', [$blog->id]))
             ->assertOk();
 
-        $this->actingAs($owner)->put(route('blogs.update', ['id' => $blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
+        $this->actingAs($owner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
             ->assertToastrHasError()
             ->assertRedirect(route('blogs.edit', [$blog->id]));
 
@@ -173,7 +173,7 @@ class BlogTest extends TestCase
 
         $this->actingAs($owner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
             ->assertToastrHasSuccess()
-            ->assertRedirect(route('blogs.edit', ['id' => $blog->id]));
+            ->assertRedirect(route('blogs.edit', [$blog->id]));
     }
 
     public function testCantDeleteBlogByNonOwner()

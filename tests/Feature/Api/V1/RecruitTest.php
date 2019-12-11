@@ -53,7 +53,7 @@ class RecruitTest extends TestCase
         /**
          * @var Recruit $recruit
          */
-        $recruit = factory(Recruit::class)->make();
+        $recruit = factory(Recruit::class)->create();
 
         /**
          * @var User $user
@@ -62,7 +62,7 @@ class RecruitTest extends TestCase
 
         Passport::actingAs($user);
 
-        $response = $this->get(route('api.v1.recruits.show', [$recruit->id]));
+        $response = $this->get(route('api.v1.recruits.show', ['recruit' => $recruit->id]));
 
         $response->assertOk()->assertJson([
             'data' => [

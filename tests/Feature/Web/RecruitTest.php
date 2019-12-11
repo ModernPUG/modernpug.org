@@ -134,7 +134,7 @@ class RecruitTest extends TestCase
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
-        $this->actingAs($nonOwner)->put(route('recruits.update', ['id' => $recruit->id]), $recruit->toArray())
+        $this->actingAs($nonOwner)->put(route('recruits.update', [$recruit->id]), $recruit->toArray())
             ->assertToastrHasError()
             ->assertRedirect();
 
@@ -150,7 +150,7 @@ class RecruitTest extends TestCase
         $owner = factory(User::class)->create();
 
         /**
-         * @var Recruit
+         * @var Recruit $recruit
          */
         $recruit = factory(Recruit::class)->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
         $recruit->expired_at = Carbon::yesterday()->format('Y-m-d');
@@ -162,7 +162,7 @@ class RecruitTest extends TestCase
 
         $this->actingAs($owner)->put(route('recruits.update', [$recruit->id]), $recruit->toArray())
             ->assertToastrHasSuccess()
-            ->assertRedirect(route('recruits.edit', ['id' => $recruit->id]));
+            ->assertRedirect(route('recruits.edit', [$recruit->id]));
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
     }
@@ -189,7 +189,7 @@ class RecruitTest extends TestCase
 
         $this->actingAs($nonOwnerWithPermission)->put(route('recruits.update', [$recruit->id]), $recruit->toArray())
             ->assertToastrHasSuccess()
-            ->assertRedirect(route('recruits.edit', ['id' => $recruit->id]));
+            ->assertRedirect(route('recruits.edit', [$recruit->id]));
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
     }

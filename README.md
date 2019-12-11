@@ -12,7 +12,8 @@
 
 ## 프로젝트 설치
 ### 요구사항
-- php7.3 (php의 버전 및 익스텐션의 경우 문서의 내용보다 composer.json을 더 우선하십시오)
+- php
+  - composer.json의 require 참조
 - mysql
 
 ### Install
