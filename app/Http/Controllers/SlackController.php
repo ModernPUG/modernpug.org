@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\AlreadyInTeamException;
+use App\Exceptions\AlreadyInTeamInvitedUserException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
 use App\Http\Requests\Web\Slack\InviteRequest;
@@ -43,7 +44,7 @@ class SlackController extends Controller
             $inviter->invite($request->get('email'));
 
             Toastr::success('초대장이 신청하신 메일로 발송되었습니다.');
-        } catch (AlreadyInvitedException | AlreadyInTeamException $exception) { // 이메일 무작위 대입 후 에러핸들링을 통해 멤버 이메일 확인방지
+        } catch (AlreadyInvitedException | AlreadyInTeamException | AlreadyInTeamInvitedUserException $exception) { // 이메일 무작위 대입 후 에러핸들링을 통해 멤버 이메일 확인방지
 
             Toastr::warning('이미 초대장이 발송완료되었습니다. 초대장을 받지 못하셨다면 스팸메일함을 확인해보시거나 모던퍼그 페이스북을 통해 문의해주세요.');
         } catch (SlackInviteFailException $exception) {
