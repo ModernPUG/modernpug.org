@@ -4,9 +4,7 @@ namespace Tests\Feature\Api\V1;
 
 use App\Recruit;
 use App\User;
-use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
 use Tests\MakePassportClient;
 use Tests\TestCase;
