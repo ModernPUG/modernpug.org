@@ -76,8 +76,7 @@
         ],
         "test": [
             "php artisan config:cache --env=testing",
-            "php artisan migrate --env=testing",
-            "php artisan db:seed",
+            "php artisan migrate --seed --env=testing",
             "./vendor/bin/phpunit",
             "php artisan config:clear --env=testing"
         ]

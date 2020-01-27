@@ -58,7 +58,9 @@ jobs:
 
       - run: npm run dev
 
-     # run phpunit
+      - run: php artisan passport:keys
+
+      # run phpunit
       - run: composer test
 
       - store_test_results:
