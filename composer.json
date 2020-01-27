@@ -9,6 +9,9 @@
         "ext-dom": "*",
         "ext-intl": "*",
         "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-curl": "*",
+        "ext-pdo": "*",
         "creativeorange/gravatar": "^1.0",
         "doctrine/dbal": "^2.8",
         "embed/embed": "^3.3",
@@ -72,7 +75,10 @@
             "@php artisan package:discover --ansi"
         ],
         "test": [
-            "@php ./vendor/bin/phpunit"
+            "php artisan config:cache --env=testing",
+            "php artisan migrate --env=testing",
+            "./vendor/bin/phpunit",
+            "php artisan config:clear --env=testing"
         ]
     },
     "config": {
