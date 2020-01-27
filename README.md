@@ -14,27 +14,88 @@
 ### 요구사항
 - php
   - composer.json의 require 참조
-- mysql
+- database
+  - mysql 5.7
 
 ### Install
 - `git clone https://github.com/ModernPUG/modernpug.org.git`
+- `cd modernpug`
 - `chmod 777 bootstrap/cache`
 - `chmod -R 777 storage`
 - `composer install --no-scripts`
-- `cp .env.example .env` 후 `.env` 내용 수정
-- `cp .env.testing.example .env.testing` 후 `.env` 내용 수정
-- `php artisan key:generate`
+- `cp .env.example .env` 
+- `php artisan key:generate` 후 `.env` 하단의 환경설정하기를 참고하여 수정
+- `cp .env.testing.example .env.testing` 후 `.env.testing` 내용을 테스트 환경에 맞게 수정
 - `php artisan migrate`
 - `php artisan db:seed`
 
-### scss to css
+### 환경설정하기
+
+#### 기본
+
+```dotenv
+APP_NAME=Laravel
+APP_ENV=local #개발환경은 local을 그대로 둡니다
+APP_KEY=#키는 `php artisan key:generate`를 통해 자동생성 됩니다
+APP_DEBUG=true
+APP_URL=http://modernpug.org #개발하면서 사용할 URL을 입력합니다
+```
+
+#### Captcha
+- https://www.google.com/recaptcha
+- 새 사이트 등록 (reCAPTCHA v3 발급)
+  - 아래의 내용을 참고하여 `.env`를 수정해줍니다
+    - `GOOGLE_RECAPTCHA_KEY=사이트키`
+    - `GOOGLE_RECAPTCHA_SECRET=비밀키`
+
+#### Sentry
+- https://sentry.io/
+- 새 조직 생성
+- 라라벨로 신규 프로젝트 생성
+- 하단에 표시되는 `SENTRY_LARAVEL_DSN=https://~~~~@sentry.io/~~~~`의 형태로 표시되는 DSN을 복사 후 .env에 추가/수정
+
+#### Slack
+- https://slack.com/
+- 새로운 워크스페이스 생성
+- https://api.slack.com/apps
+- Create New App 을 통해 신규 앱 생성
+
+- Oauth
+  - OAuth & Permissions -> Redirect URLs
+    - `https://modernpug.org/login/slack/callback` 와 같이 자신의 도메인에 맞는 콜백 주소 추가
+  - 아래의 내용을 참고하여 `.env`를 수정
+    - `SLACK_CLIENT_ID=Basic Information의 Client ID`
+    - `SLACK_CLIENT_SECRET=Basic Information의 Client Secret`
+    - `SLACK_CLIENT_REDIRECT_URI=https://modernpug.org/login/slack/callback` 
+- Incoming Webhooks
+  - Incoming Webhooks -> Add New Webhook to Workspace
+  - 생성된 url을 `.env`파일 내 `SLACK_WEBHOOK_URL`값에 추가
+- Slash Commands
+  - Slash Commands -> Create New Command
+
+
+#### Email
+
+공식 매뉴얼 또는 구글에서 `laravel aws ses`나 `laravel mailgun` 등 검색 후 참고 
+ 
+#### Tag Manager
+태그매니저는 `Google Analytics` 등을 조금 더 효율적으로 관리하기 위한 툴입니다. 
+태그매니저를 등록 후 `Google Analytics`를 사용하는 것은 별도의 문서를 참고하시기 바랍니다 
+
+- https://tagmanager.google.com/
+- 계정 생성(일종의 회사 or 조직 or 그룹) -> 컨테이너 생성 (관리대상이 될 사이트)
+- 생성된 컨테이너 ID를 `.env` 파일 내 `TAG_MANAGER`에 추가
+
+
+
+### Resource Build 
 - `npm ci`
 - `npm run watch` or `npm run prod`
 
 
 ## Testing
 
-- .env.testing.example 파일을 복사하여 .env.testing 파일을 생성하고 테스트 환경을 수정해주세요
+- `.env.testing.example` 파일을 복사하여 `.env.testing` 파일을 생성하고 테스트 환경을 수정해주세요
 - 일부 마이그레이션과 쿼리로 인해 sqlite는 지원하지 않으니 mysql을 사용해주세요
   - 추후 관련기능 수정예정
 
