@@ -4,15 +4,23 @@ namespace Tests\Feature\Api\Auth;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\DB;
+use Laravel\Passport\Client;
+use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
+use Mockery\Generator\StringManipulation\Pass\Pass;
+use Tests\MakePassportClient;
 use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
     use DatabaseTransactions;
+    use MakePassportClient;
 
     public function testGetTokens()
     {
+
+        $this->makePassportPersonalClient();;
 
         /**
          * @var User $user
@@ -30,7 +38,6 @@ class TokenTest extends TestCase
 
     public function testRefreshToken()
     {
-
         /**
          * @var User $user
          */

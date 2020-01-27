@@ -3,16 +3,21 @@
 namespace Tests\Feature\Api\V1;
 
 use App\User;
+use DB;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Laravel\Passport\ClientRepository;
 use Laravel\Passport\Passport;
+use Tests\MakePassportClient;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
+    use MakePassportClient;
 
     public function testGenerateAccessToken()
     {
+        $this->makePassportPersonalClient();
 
         /**
          * @var User $user
@@ -26,10 +31,12 @@ class UserTest extends TestCase
 
         $user->createToken('testToken');
         $response = $this->actingAs($user)->get('oauth/personal-access-tokens');
-        $response->assertOk()->assertJson([
+        $response->assertOk()->assertJson(
             [
-                'name' => 'testToken',
-            ],
-        ]);
+                [
+                    'name' => 'testToken',
+                ],
+            ]
+        );
     }
 }
