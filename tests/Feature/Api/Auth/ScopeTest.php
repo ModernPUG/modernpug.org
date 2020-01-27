@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\Auth;
 
-
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\Passport;
@@ -10,10 +9,7 @@ use Tests\TestCase;
 
 class ScopeTest extends TestCase
 {
-
     use DatabaseTransactions;
-
-
 
     public function testGetPassportScopes()
     {
@@ -28,17 +24,12 @@ class ScopeTest extends TestCase
         $response = $this->get(route('passport.scopes.index'));
 
         $response->assertOk();
-
     }
-
 
     public function testNotLoggedUserCantAccessPassportScopes()
     {
-
         $response = $this->get(route('passport.scopes.index'));
 
         $response->assertRedirect();
-
     }
-
 }

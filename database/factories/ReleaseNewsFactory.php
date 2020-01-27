@@ -5,7 +5,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\ReleaseNews::class, function (Faker $faker) {
-
     $randomType = $faker->randomElement(array_keys(App\ReleaseNews::SUPPORT_RELEASES));
 
     return [

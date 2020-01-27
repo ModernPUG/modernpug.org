@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class RecruitTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testCantGetRecruitInformationWithoutAuthorization()
@@ -18,13 +17,10 @@ class RecruitTest extends TestCase
         $response = $this->get(route('api.v1.recruits.index'));
 
         $response->assertRedirect();
-
     }
 
     public function testGetAllRecruitInformationWithAuthorization()
     {
-
-
         factory(Recruit::class, 5)->make();
 
         /**
@@ -43,12 +39,10 @@ class RecruitTest extends TestCase
                 ],
             ],
         ]);
-
     }
 
     public function testGetRecruitInformationWithAuthorization()
     {
-
 
         /**
          * @var Recruit $recruit
@@ -68,8 +62,5 @@ class RecruitTest extends TestCase
             'data' => [
             ],
         ]);
-
     }
-
-
 }

@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
+use Illuminate\Support\Facades\DB;
 
 /**
  * App\ReleaseNews
@@ -42,9 +42,9 @@ class ReleaseNews extends Model
                 'end'       => '',
             ],
         ],
-         'Laravel' => [
-             'site_url'  => 'https://api.github.com/repos/laravel/framework/releases',
-         ],
+        'Laravel' => [
+            'site_url'  => 'https://api.github.com/repos/laravel/framework/releases',
+        ],
         'Lumen' => [
             'site_url'  => 'https://github.com/laravel/lumen/releases',
             'version'   => '.commit-title > a',
@@ -56,28 +56,28 @@ class ReleaseNews extends Model
                 'end'       => '',
             ],
         ],
-         'Codeigniter' => [
-             'site_url'  => 'https://www.codeigniter.com/userguide3/changelog.html',
-             'version'   => '#change-log > div > h2',
-             'date'      => '#change-log > div > p',
-             'post'     => [
-                 'url'      => 'https://www.codeigniter.com/userguide3/changelog.html#version-',
-                 'before'   => '/[. ]/',
-                 'after'    => '-',
-                 'end'      => '',
-             ],
-         ],
-         'Symfony' => [
-             'site_url'  => 'https://symfony.com/blog/category/releases',
-             'version'   => '#content_wrapper > div > div.row > main > div > div > h2 > a',
-             'date'      => '#content_wrapper > div > div.row > main > div > div > p.metadata > span.m-r-15',
-             'post'   =>  [
-                 'url'       => 'https://symfony.com/blog/',
-                 'before'    => '/[. ]/',
-                 'after'     => '-',
-                 'end'      => '',
-             ],
-         ],
+        'Codeigniter' => [
+            'site_url'  => 'https://www.codeigniter.com/userguide3/changelog.html',
+            'version'   => '#change-log > div > h2',
+            'date'      => '#change-log > div > p',
+            'post'     => [
+                'url'      => 'https://www.codeigniter.com/userguide3/changelog.html#version-',
+                'before'   => '/[. ]/',
+                'after'    => '-',
+                'end'      => '',
+            ],
+        ],
+        'Symfony' => [
+            'site_url'  => 'https://symfony.com/blog/category/releases',
+            'version'   => '#content_wrapper > div > div.row > main > div > div > h2 > a',
+            'date'      => '#content_wrapper > div > div.row > main > div > div > p.metadata > span.m-r-15',
+            'post'   =>  [
+                'url'       => 'https://symfony.com/blog/',
+                'before'    => '/[. ]/',
+                'after'     => '-',
+                'end'      => '',
+            ],
+        ],
         'Phalcon' => [
             'site_url'  => 'https://api.github.com/repos/phalcon/cphalcon/releases',
         ],

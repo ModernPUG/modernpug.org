@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Validators\ReCaptcha;
-use Blade;
 use Illuminate\Support\ServiceProvider;
 use Validator;
 
@@ -29,8 +28,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Validator::extend('recaptcha', ReCaptcha::class);
-
-
     }
 
     /**

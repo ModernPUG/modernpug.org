@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\Auth;
 
-
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\Passport;
@@ -10,9 +9,7 @@ use Tests\TestCase;
 
 class TokenTest extends TestCase
 {
-
     use DatabaseTransactions;
-
 
     public function testGetTokens()
     {
@@ -29,8 +26,6 @@ class TokenTest extends TestCase
         $response = $this->get(route('passport.tokens.index'));
 
         $response->assertOk();
-
-
     }
 
     public function testRefreshToken()
@@ -46,9 +41,5 @@ class TokenTest extends TestCase
         $response = $this->post(route('passport.token.refresh'));
 
         $response->assertOk();
-
-
     }
-
-
 }

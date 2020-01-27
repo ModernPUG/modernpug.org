@@ -5,7 +5,6 @@
 use Faker\Generator as Faker;
 
 $factory->define(App\Recruit::class, function (Faker $faker) {
-
     $minSalary = $faker->numberBetween(5, 10);
     $maxSalary = $faker->numberBetween(1, 5);
 

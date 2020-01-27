@@ -9,7 +9,6 @@ use Tests\TestCase;
 
 class RegisterTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testSeeLoginForm()
@@ -17,14 +16,11 @@ class RegisterTest extends TestCase
         $this->get(route('register'))->assertOk();
     }
 
-
     public function testSubmitInvalidReCaptcha()
     {
-
         $this->post(route('register'), ['email' => 'test@example.com'])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
-
 
         $this->post(route('register'), [
             'email' => 'test@example.com',
@@ -32,26 +28,20 @@ class RegisterTest extends TestCase
         ])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
-
-
     }
-
 
     public function testSubmitInvalidEmail()
     {
-
         $this->post(route('register'), [
             'email' => 'test',
             config('recaptcha.validation-key') => ReCaptcha::ACCEPT_TEST_KEY,
         ])
             ->assertSessionHasErrors('email')
             ->assertRedirect();
-
     }
 
     public function testSubmitMissMatchedPassword()
     {
-
         $this->post(route('register'), [
             'email' => 'test@example.com',
             'name' => 'test',
@@ -61,7 +51,6 @@ class RegisterTest extends TestCase
         ])
             ->assertSessionHasErrors('password')
             ->assertRedirect();
-
     }
 
     public function testRegisterUser()
@@ -82,8 +71,6 @@ class RegisterTest extends TestCase
             ->assertSessionHasNoErrors()
             ->assertRedirect();
 
-
         $this->assertDatabaseHas($user->getTable(), ['email' => $user->email]);
-
     }
 }
