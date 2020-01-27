@@ -45,7 +45,6 @@ jobs:
             - ~/.composer
 
       # node cache
-
       - restore_cache:
           keys:
             - node-v4-{{ checksum "package.json" }}
@@ -58,7 +57,9 @@ jobs:
             - ~/.yarn
 
       - run: npm run dev
-      - run: php composer test
+
+     # run phpunit
+      - run: composer test
 
       - store_test_results:
           path: tests/Report
