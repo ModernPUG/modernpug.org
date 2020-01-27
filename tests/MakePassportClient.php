@@ -1,15 +1,12 @@
 <?php
 
-
 namespace Tests;
-
 
 use DB;
 use Laravel\Passport\ClientRepository;
 
 trait MakePassportClient
 {
-
     public function makePassportPersonalClient()
     {
         $clientRepository = new ClientRepository();
@@ -29,5 +26,4 @@ trait MakePassportClient
 
         return $client;
     }
-
 }
