@@ -7,6 +7,5 @@ enabled:
 disabled:
   - single_class_element_per_statement
   - simplified_null_return
-  - length_ordered_imports
   - phpdoc_var_without_name
   - phpdoc_summary
