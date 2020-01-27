@@ -10,7 +10,6 @@ use Tests\TestCase;
 
 class EmailLoginTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testSeeLoginForm()
@@ -18,14 +17,11 @@ class EmailLoginTest extends TestCase
         $this->get(route('login'))->assertOk();
     }
 
-
     public function testSubmitInvalidReCaptcha()
     {
-
         $this->post(route('login'), ['email' => 'test@example.com'])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
-
 
         $this->post(route('login'), [
             'email' => 'test@example.com',
@@ -35,19 +31,15 @@ class EmailLoginTest extends TestCase
             ->assertRedirect();
     }
 
-
     public function testSubmitInvalidEmail()
     {
-
         $this->post(route('login'), [
             'email' => 'test',
             config('recaptcha.validation-key') => ReCaptcha::ACCEPT_TEST_KEY,
         ])
             ->assertSessionHasErrors('email')
             ->assertRedirect();
-
     }
-
 
     public function testSubmitInvalidPassword()
     {
@@ -65,7 +57,6 @@ class EmailLoginTest extends TestCase
             ->assertSessionHasErrors('password')
             ->assertRedirect();
 
-
         $this->post(route('login'), [
             'email' => $user->email,
             'password' => 'test2',
@@ -73,8 +64,6 @@ class EmailLoginTest extends TestCase
         ])
             ->assertSessionHasErrors('email')
             ->assertRedirect();
-
-
     }
 
     public function testSubmitValidPassword()
@@ -86,7 +75,6 @@ class EmailLoginTest extends TestCase
          */
         $user = factory(User::class)->create(['password' => Hash::make($password)]);
 
-
         $this->post(route('login'), [
             'email' => $user->email,
             'password' => $password,
@@ -94,6 +82,5 @@ class EmailLoginTest extends TestCase
         ])
             ->assertSessionHasNoErrors()
             ->assertRedirect();
-
     }
 }

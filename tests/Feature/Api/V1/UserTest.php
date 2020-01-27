@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Api\V1;
 
-
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Laravel\Passport\Passport;
@@ -10,7 +9,6 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-
     use DatabaseTransactions;
 
     public function testGenerateAccessToken()
@@ -33,8 +31,5 @@ class UserTest extends TestCase
                 'name' => 'testToken',
             ],
         ]);
-
     }
-
-
 }
