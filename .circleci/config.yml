@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.4-stretch-node-browsers
+      - image: circleci/php:7.4-node
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: homestead
@@ -32,9 +32,9 @@ jobs:
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
+            - composer-v1-{{ checksum "composer.lock" }}
             # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
+            - composer-v1-
 
       - run: composer install -n --prefer-dist
 
