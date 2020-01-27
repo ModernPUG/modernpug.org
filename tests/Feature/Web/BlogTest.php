@@ -99,7 +99,6 @@ class BlogTest extends TestCase
             ->assertRedirect(route('blogs.create'));
     }
 
-
     public function testSeeBlogRedirectToOriginUrl()
     {
 
