@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.3-stretch-node-browsers
+      - image: circleci/php:7.4-stretch-node-browsers
       - image: circleci/mysql:5.7
         environment:
           MYSQL_DATABASE: homestead
@@ -58,11 +58,7 @@ jobs:
             - ~/.yarn
 
       - run: npm run dev
-      - run: php artisan migrate --env=testing --force
-      - run: php artisan db:seed --env=testing --force
-
-      # run phpunit
-      - run: ./vendor/bin/phpunit
+      - run: php composer test
 
       - store_test_results:
           path: tests/Report
