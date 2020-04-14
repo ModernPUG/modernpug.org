@@ -40,6 +40,17 @@ APP_KEY=#키는 `php artisan key:generate`를 통해 자동생성 됩니다
 APP_DEBUG=true
 APP_URL=http://modernpug.org #개발하면서 사용할 URL을 입력합니다
 ```
+#### Mysql
+- dotenv에서 설정한 스키마를 생성해 준다. 기본값이 laravel 이며, 변경 가능하다.
+
+```
+DB_DATABASE=laravel
+``` 
+- 최초 설정시 dotenv 를 통해 설정한 스키마(기본 laravel)를 생성해 준다.
+- `php artisan migrate` 수행 이전에 실행되어야 한다.
+```
+mysql> create database laravel;
+```
 
 #### Captcha
 - https://www.google.com/recaptcha
