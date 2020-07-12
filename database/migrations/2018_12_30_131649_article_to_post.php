@@ -13,14 +13,11 @@ class ArticleToPost extends Migration
      */
     public function up()
     {
-
         Schema::table('viewcount', function (Blueprint $table) {
-
             $table->dropForeign('viewcount_article_id_foreign');
         });
 
         Schema::table('viewcount', function (Blueprint $table) {
-
             $table->dropIndex('viewcount_article_id_index');
         });
 
@@ -40,7 +37,6 @@ class ArticleToPost extends Migration
             $table->dropIndex('previews_article_id_foreign');
         });
 
-
         Schema::table('articles', function (Blueprint $table) {
             $table->rename('posts');
         });
@@ -59,7 +55,6 @@ class ArticleToPost extends Migration
         Schema::table('previews', function (Blueprint $table) {
             $table->renameColumn('article_id', 'post_id');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-
         });
     }
 
