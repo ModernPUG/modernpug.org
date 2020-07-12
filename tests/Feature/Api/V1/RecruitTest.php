@@ -27,11 +27,10 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-
         $token = $user->createToken('test token', ['*'])->accessToken;
 
         $response = $this->get(route('api.v1.recruits.index'),
-            ['Authorization' => 'Bearer ' . $token]);
+            ['Authorization' => 'Bearer '.$token]);
 
         $response->assertOk()->assertJson(
             [
@@ -59,7 +58,7 @@ class RecruitTest extends TestCase
         $token = $user->createToken('test token', ['*'])->accessToken;
 
         $response = $this->get(route('api.v1.recruits.show', ['recruit' => $recruit->id]),
-            ['Authorization' => 'Bearer ' . $token]);
+            ['Authorization' => 'Bearer '.$token]);
 
         $response->assertOk()->assertJson(
             [
