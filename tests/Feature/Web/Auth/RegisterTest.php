@@ -4,7 +4,9 @@ namespace Tests\Feature\Web\Auth;
 
 use App\User;
 use App\Validators\ReCaptcha;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class RegisterTest extends TestCase
@@ -55,6 +57,7 @@ class RegisterTest extends TestCase
 
     public function testRegisterUser()
     {
+        Event::fake();
 
         /**
          * @var User $user
@@ -72,5 +75,7 @@ class RegisterTest extends TestCase
             ->assertRedirect();
 
         $this->assertDatabaseHas($user->getTable(), ['email' => $user->email]);
+
+        Event::assertDispatched(Registered::class);
     }
 }
