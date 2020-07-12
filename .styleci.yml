@@ -1,7 +1,11 @@
 preset: laravel
 
+enabled:
+  - concat_with_spaces
+
 disabled:
   - single_class_element_per_statement
   - simplified_null_return
   - phpdoc_var_without_name
   - phpdoc_summary
+  - concat_without_spaces
