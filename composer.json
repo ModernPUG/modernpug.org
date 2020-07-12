@@ -75,10 +75,17 @@
             "@php artisan package:discover --ansi"
         ],
         "test": [
-            "php artisan config:cache --env=testing",
-            "php artisan migrate --seed --env=testing",
+            "@php artisan config:cache --env=testing",
+            "@php artisan migrate --seed --env=testing",
             "./vendor/bin/phpunit",
-            "php artisan config:clear --env=testing"
+            "@php artisan config:clear --env=testing"
+        ],
+        "rebuild": [
+            "@php artisan migrate:fresh --ansi",
+            "@php artisan db:seed --ansi",
+            "@php artisan feed:crawl --ansi",
+            "@php artisan release-news:crawl --ansi",
+            "@php artisan image:update --ansi"
         ]
     },
     "config": {
