@@ -4,6 +4,11 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * Class Recruit
+ * @package App\Http\Resources
+ * @mixin \App\Recruit
+ */
 class Recruit extends JsonResource
 {
     /**
@@ -14,9 +19,6 @@ class Recruit extends JsonResource
      */
     public function toArray($request)
     {
-        /**
-         * @var \App\Recruit $this
-         */
         return [
             'id' => $this->id,
             'title' => $this->title,

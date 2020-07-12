@@ -12,7 +12,7 @@
 */
 
 Route::group(['as' => 'api.'], function () {
-    Route::group(['as' => 'v1.', 'prefix' => 'v1', 'middleware' => ['auth:api']], function () {
+    Route::group(['as' => 'v1.', 'prefix' => 'v1', 'middleware' => ['auth:api', 'scope:recruits']], function () {
         Route::resource('recruits', 'Api\V1\RecruitController');
     });
 });

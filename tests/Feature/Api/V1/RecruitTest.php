@@ -5,14 +5,11 @@ namespace Tests\Feature\Api\V1;
 use App\Recruit;
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Laravel\Passport\Passport;
-use Tests\MakePassportClient;
 use Tests\TestCase;
 
 class RecruitTest extends TestCase
 {
     use DatabaseTransactions;
-    use MakePassportClient;
 
     public function testCantGetRecruitInformationWithoutAuthorization()
     {
@@ -23,8 +20,6 @@ class RecruitTest extends TestCase
 
     public function testGetAllRecruitInformationWithAuthorization()
     {
-        $this->makePassportPersonalClient();
-
         $recruits = factory(Recruit::class, 5)->create();
 
         /**
@@ -32,9 +27,11 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        Passport::actingAs($user);
 
-        $response = $this->get(route('api.v1.recruits.index'));
+        $token = $user->createToken('test token', ['*'])->accessToken;
+
+        $response = $this->get(route('api.v1.recruits.index'),
+            ['Authorization' => 'Bearer ' . $token]);
 
         $response->assertOk()->assertJson(
             [
@@ -49,8 +46,6 @@ class RecruitTest extends TestCase
 
     public function testGetRecruitInformationWithAuthorization()
     {
-        $this->makePassportPersonalClient();
-
         /**
          * @var Recruit $recruit
          */
@@ -61,9 +56,10 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        Passport::actingAs($user);
+        $token = $user->createToken('test token', ['*'])->accessToken;
 
-        $response = $this->get(route('api.v1.recruits.show', ['recruit' => $recruit->id]));
+        $response = $this->get(route('api.v1.recruits.show', ['recruit' => $recruit->id]),
+            ['Authorization' => 'Bearer ' . $token]);
 
         $response->assertOk()->assertJson(
             [
