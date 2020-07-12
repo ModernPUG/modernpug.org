@@ -35,10 +35,10 @@ class PickerDelayedResponse extends SlashCommandResponseJob
         }
 
         $taggedUsers = array_map(function ($user) {
-            return '<@'.$user.'>';
+            return '<@' . $user . '>';
         }, $this->pickedUsers);
 
-        $pickerMessage = '추첨결과 : '.implode($taggedUsers, ', ').'님이 당첨되었습니다. 축하드립니다 :tada:';
+        $pickerMessage = '추첨결과 : ' . implode($taggedUsers, ', ') . '님이 당첨되었습니다. 축하드립니다 :tada:';
         $this->respondToSlack($pickerMessage)->displayResponseToEveryoneOnChannel()->send();
     }
 }

@@ -31,7 +31,7 @@ class Inviter
      */
     public function invite(string $email)
     {
-        $uri = config('slack.url').'/api/users.admin.invite?t='.time();
+        $uri = config('slack.url') . '/api/users.admin.invite?t=' . time();
 
         $response = $this->client->request(
             'post',

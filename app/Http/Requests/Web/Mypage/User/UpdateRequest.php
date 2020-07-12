@@ -47,7 +47,7 @@ class UpdateRequest extends FormRequest
             'homepage_url' => 'nullable|url',
             'comment' => 'nullable|string|max:255',
             'roles' => 'nullable|array',
-            'roles.*' => 'string|exists:'.config('permission.table_names.roles').',name',
+            'roles.*' => 'string|exists:' . config('permission.table_names.roles') . ',name',
         ];
     }
 }

@@ -32,8 +32,8 @@ class InviteRequest extends FormRequest
     public function messages()
     {
         return [
-            config('recaptcha.validation-key').'.required' => '비정상 접근입니다. 다시 시도해주세요',
-            config('recaptcha.validation-key').'.recaptcha' => '비정상 접근입니다. 다시 시도해주세요',
+            config('recaptcha.validation-key') . '.required' => '비정상 접근입니다. 다시 시도해주세요',
+            config('recaptcha.validation-key') . '.recaptcha' => '비정상 접근입니다. 다시 시도해주세요',
         ];
     }
 }

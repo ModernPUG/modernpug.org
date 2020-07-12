@@ -74,7 +74,7 @@ class PostController extends Controller
         $link = $post->link;
 
         if (substr($link, 0, 2) == '//') {
-            $link = 'https:'.$link;
+            $link = 'https:' . $link;
         }
 
         return redirect()->to($link);

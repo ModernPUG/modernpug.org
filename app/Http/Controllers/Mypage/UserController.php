@@ -92,7 +92,7 @@ class UserController extends Controller
         $user->update($validated);
         $user->syncRoles($request->get('roles'));
 
-        Toastr::success('사용자 '.$user->name.'가 수정되었습니다.');
+        Toastr::success('사용자 ' . $user->name . '가 수정되었습니다.');
 
         return back();
     }
@@ -109,7 +109,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        Toastr::success('사용자 '.$user->name.'가 삭제되었습니다.');
+        Toastr::success('사용자 ' . $user->name . '가 삭제되었습니다.');
 
         return back();
     }

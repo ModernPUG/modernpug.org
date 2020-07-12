@@ -46,7 +46,7 @@ class BlogFeedUpdater
 
         foreach ($this->getAllBlog() as $blog) {
             try {
-                $this->print($blog->feed_url.' 시작');
+                $this->print($blog->feed_url . ' 시작');
 
                 $feed = $this->feedParser->fromUrl($blog->feed_url);
                 $this->blogUpdater->fromFeed($feed, $blog);
@@ -55,7 +55,7 @@ class BlogFeedUpdater
                 $blog->crawled_at = now();
                 $blog->update();
 
-                $this->print($blog->feed_url.' 종료');
+                $this->print($blog->feed_url . ' 종료');
             } catch (ZendFeedRuntimeException | ZendHttpRuntimeException $exception) {
                 if (app()->environment() === 'production' && app()->bound('sentry')) {
                     app('sentry')->captureException($exception);

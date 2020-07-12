@@ -43,14 +43,14 @@ class PreviewUpdater
         $this->command = $command;
 
         $blogs = $this->getTargetBlogs();
-        $this->print('블로그 : '.$blogs->count().'건 검색시작');
+        $this->print('블로그 : ' . $blogs->count() . '건 검색시작');
         foreach ($blogs as $blog) {
             $this->parseBlogImageUrl($blog);
         }
         $this->print('블로그 검색완료');
 
         $posts = $this->searchImageUnregisteredPosts();
-        $this->print('게시글 : '.$posts->count().'건 검색시작');
+        $this->print('게시글 : ' . $posts->count() . '건 검색시작');
         foreach ($posts as $post) {
             $this->parsePostImageUrl($post);
         }

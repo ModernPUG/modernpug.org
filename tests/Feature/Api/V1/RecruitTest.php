@@ -27,7 +27,6 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-
         $token = $user->createToken('test token', ['*'])->accessToken;
 
         $response = $this->get(route('api.v1.recruits.index'),

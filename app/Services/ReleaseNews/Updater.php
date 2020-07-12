@@ -117,8 +117,8 @@ class Updater
             }
         }
 
-        $this->print('성공 건수: '.$success);
-        $fail && $this->print('실패 건수: '.$fail);
+        $this->print('성공 건수: ' . $success);
+        $fail && $this->print('실패 건수: ' . $fail);
     }
 
     /**
@@ -204,9 +204,9 @@ class Updater
         }
 
         if (empty($before) && empty($after)) {
-            return $url.$version.$end;
+            return $url . $version . $end;
         } else {
-            return $url.strtolower(preg_replace($before, $after, trim($version))).$end;
+            return $url . strtolower(preg_replace($before, $after, trim($version))) . $end;
         }
     }
 

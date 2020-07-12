@@ -67,7 +67,7 @@ class PostUpdater
         $link = $entry->getLink();
 
         if (strpos($link, '//') === 0) {
-            $link = 'https:'.$link;
+            $link = 'https:' . $link;
         }
 
         return $link;
