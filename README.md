@@ -103,6 +103,10 @@ mysql> create database laravel;
 - `npm ci`
 - `npm run watch` or `npm run prod`
 
+### 관리자 계정 등록
+- 웹사이트에서 Register 메뉴를 이용해 일반 회원가입
+- `php artisan user:assign-role` 을 이용해 관리자 권한 등록 
+
 
 ## Testing
 
