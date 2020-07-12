@@ -13,21 +13,53 @@ class ArticleToPost extends Migration
      */
     public function up()
     {
+
+        Schema::table('viewcount', function (Blueprint $table) {
+
+            $table->dropForeign('viewcount_article_id_foreign');
+        });
+
+        Schema::table('viewcount', function (Blueprint $table) {
+
+            $table->dropIndex('viewcount_article_id_index');
+        });
+
+        Schema::table('article_tag', function (Blueprint $table) {
+            $table->dropForeign('article_tag_article_id_foreign');
+        });
+
+        Schema::table('article_tag', function (Blueprint $table) {
+            $table->dropIndex('article_tag_article_id_index');
+        });
+
+        Schema::table('previews', function (Blueprint $table) {
+            $table->dropForeign('previews_article_id_foreign');
+        });
+
+        Schema::table('previews', function (Blueprint $table) {
+            $table->dropIndex('previews_article_id_foreign');
+        });
+
+
         Schema::table('articles', function (Blueprint $table) {
             $table->rename('posts');
         });
 
         Schema::table('viewcount', function (Blueprint $table) {
             $table->renameColumn('article_id', 'post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
 
         Schema::table('article_tag', function (Blueprint $table) {
             $table->renameColumn('article_id', 'post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->rename('post_tag');
         });
 
         Schema::table('previews', function (Blueprint $table) {
             $table->renameColumn('article_id', 'post_id');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+
         });
     }
 
