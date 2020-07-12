@@ -74,9 +74,9 @@ class Post extends Model
     {
         $posts = self::with('blog', 'preview', 'tags');
 
-        $posts->selectRaw('posts.*');
+        $posts->selectRaw('posts.id, posts.title, posts.published_at, posts.description, posts.blog_id');
         $posts->selectRaw('count(posts.id) AS vcount');
-        $posts->selectRaw('(COUNT(posts.id)/abs(datediff(published_at,now()))) as rank_point');
+        $posts->selectRaw('(COUNT(posts.id)/abs(datediff(posts.published_at,now()))) as rank_point');
         $posts->leftJoin('viewcount', 'posts.id', 'viewcount.post_id');
 
         if (count($tagNames)) {
@@ -85,9 +85,10 @@ class Post extends Model
             });
         }
 
-        $posts->where('published_at', '>=', Carbon::parse('- '.$lastDays.' days')->format('Y-m-d H:i:s'));
+        $searchDate = Carbon::parse('- ' . $lastDays . ' days')->format('Y-m-d H:i:s');
+        $posts->where('posts.published_at', '>=', $searchDate);
 
-        $posts->groupBy('posts.id');
+        $posts->groupBy('posts.id', 'posts.title', 'posts.published_at', 'posts.description', 'posts.blog_id');
 
         return $posts->orderBy('rank_point', 'desc')->limit($limit)->get();
     }
