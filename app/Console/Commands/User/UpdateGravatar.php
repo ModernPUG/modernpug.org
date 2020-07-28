@@ -33,7 +33,7 @@ class UpdateGravatar extends Command
     {
         $users = User::whereAvatarUrl(null)->get();
 
-        $users->each(function (User $user) use ($client) {
+        $users->each(function (User $user) {
             $user->avatar_url = Gravatar::get($user->email);
             $user->update();
         });

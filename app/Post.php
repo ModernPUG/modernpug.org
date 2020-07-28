@@ -85,7 +85,7 @@ class Post extends Model
             });
         }
 
-        $searchDate = Carbon::parse('- ' . $lastDays . ' days')->format('Y-m-d H:i:s');
+        $searchDate = Carbon::parse('- '.$lastDays.' days')->format('Y-m-d H:i:s');
         $posts->where('posts.published_at', '>=', $searchDate);
 
         $posts->groupBy('posts.id', 'posts.title', 'posts.published_at', 'posts.description', 'posts.blog_id');
