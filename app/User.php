@@ -28,19 +28,28 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $homepage_url
  * @property string|null $comment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Blog[] $blogs
+ * @property-read int|null $blogs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
+ * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Email[] $emails
+ * @property-read int|null $emails_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\OauthIdentity[] $oauth_identities
+ * @property-read int|null $oauth_identities_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Permission[] $permissions
+ * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Recruit[] $recruits
+ * @property-read int|null $recruits_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Role[] $roles
- * @method static bool|null forceDelete()
+ * @property-read int|null $roles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\User onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User role($roles, $guard = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatarUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereComment($value)

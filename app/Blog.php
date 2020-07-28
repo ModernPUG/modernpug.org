@@ -23,13 +23,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $crawled_at
  * @property-read \App\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
+ * @property-read int|null $posts_count
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog crawledBlog()
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Blog onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCrawledAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCreatedAt($value)

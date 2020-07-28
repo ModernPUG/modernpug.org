@@ -24,12 +24,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\User $entry_user
- * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit newQuery()
  * @method static \Illuminate\Database\Query\Builder|\App\Recruit onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit query()
- * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereAddress($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereCompanyName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Recruit whereCreatedAt($value)
