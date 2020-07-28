@@ -27,7 +27,7 @@ jobs:
       - run: sudo docker-php-ext-enable mcrypt
 
       - run: chmod -R 777 storage
-      - run: cp .env.testing.example .env.testing
+      - run: cp .env.testing.example .env
 
       # Download and cache dependencies
 
@@ -61,7 +61,9 @@ jobs:
 
       - run: npm run dev
 
-      - run: php artisan passport:install --env=testing
+      - run: php artisan migrate --seed
+      - run: php artisan passport:install
+      - run: ./vendor/bin/phpunit
 
       # run phpunit
       - run: composer test
