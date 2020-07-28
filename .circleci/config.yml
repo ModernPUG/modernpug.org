@@ -61,7 +61,7 @@ jobs:
 
       - run: npm run dev
 
-      - run: php artisan passport:keys
+      - run: php artisan passport:install --env=testing
 
       # run phpunit
       - run: composer test

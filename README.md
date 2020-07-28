@@ -28,6 +28,7 @@
 - `cp .env.testing.example .env.testing` 후 `.env.testing` 내용을 테스트 환경에 맞게 수정
 - `php artisan migrate`
 - `php artisan db:seed`
+- `php artisan passport:install`
 
 ### 환경설정하기
 
