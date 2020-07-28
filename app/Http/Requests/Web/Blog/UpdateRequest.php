@@ -39,6 +39,7 @@ class UpdateRequest extends FormRequest
     {
         return [
             'feed_url'=>'required|url',
+            'comment'=>'nullable|string',
         ];
     }
 }

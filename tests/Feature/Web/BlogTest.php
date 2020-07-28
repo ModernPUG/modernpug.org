@@ -11,8 +11,8 @@ class BlogTest extends TestCase
 {
     use DatabaseTransactions;
 
-    const NOT_AVAILABLE_FEED = 'http://test.com';
-    const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
+    public const NOT_AVAILABLE_FEED = 'http://test.com';
+    public const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
 
     protected function setUp(): void
     {
@@ -44,7 +44,6 @@ class BlogTest extends TestCase
 
     public function testCreateBlogWithEmptyRequestByAuthorizedUser()
     {
-
         /**
          * @var User
          */
@@ -59,7 +58,6 @@ class BlogTest extends TestCase
 
     public function testCreateCantAccessibleBlogByAuthorizedUser()
     {
-
         /**
          * @var User
          */
@@ -81,7 +79,6 @@ class BlogTest extends TestCase
 
     public function testCreateCanAccessibleBlogByAuthorizedUser()
     {
-
         /**
          * @var User
          */
@@ -101,7 +98,6 @@ class BlogTest extends TestCase
 
     public function testSeeBlogRedirectToOriginUrl()
     {
-
         /**
          * @var Blog $blog
          */
@@ -113,7 +109,6 @@ class BlogTest extends TestCase
 
     public function testCantUpdateBlogByNonOwner()
     {
-
         /**
          * @var User
          */
@@ -148,7 +143,6 @@ class BlogTest extends TestCase
 
     public function testUpdateBlogByOwner()
     {
-
         /**
          * @var User
          */
@@ -170,14 +164,20 @@ class BlogTest extends TestCase
 
         \Toastr::clear();
 
-        $this->actingAs($owner)->put(route('blogs.update', [$blog->id, 'feed_url' => self::AVAILABLE_FEED]))
+        $testComment = 'test';
+        $this->actingAs($owner)->put(route('blogs.update',
+            [$blog->id, 'feed_url' => self::AVAILABLE_FEED, 'comment' => ''.$testComment.'',]))
             ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.edit', [$blog->id]));
+
+        $blog->refresh();
+
+        $this->assertEquals(self::AVAILABLE_FEED, $blog->feed_url);
+        $this->assertEquals($testComment, $blog->comment);
     }
 
     public function testCantDeleteBlogByNonOwner()
     {
-
         /**
          * @var User
          */
@@ -199,7 +199,6 @@ class BlogTest extends TestCase
 
     public function testCanDeleteBlogByOwner()
     {
-
         /**
          * @var User
          */
@@ -221,7 +220,6 @@ class BlogTest extends TestCase
 
     public function testCanDeleteBlogByNonOwnerWithPermission()
     {
-
         /**
          * @var User
          */
@@ -244,7 +242,6 @@ class BlogTest extends TestCase
 
     public function testCantRestoreBlogByNonOwner()
     {
-
         /**
          * @var User
          */
@@ -267,7 +264,6 @@ class BlogTest extends TestCase
 
     public function testCanRestoreBlogByOwner()
     {
-
         /**
          * @var User
          */
@@ -290,7 +286,6 @@ class BlogTest extends TestCase
 
     public function testCanRestoreBlogByNonOwnerWithPermission()
     {
-
         /**
          * @var User
          */

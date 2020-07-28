@@ -28,7 +28,7 @@ class BlogController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function index()
     {
@@ -39,8 +39,8 @@ class BlogController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @param CreateRequest $request
-     * @return Response
+     * @param  CreateRequest  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function create(CreateRequest $request)
     {
@@ -49,8 +49,8 @@ class BlogController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param StoreRequest $request
-     * @return Response
+     * @param  StoreRequest  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      * @throws CannotConnectFeedException
      */
     public function store(StoreRequest $request)
@@ -77,7 +77,7 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      * @param  Blog  $blog
-     * @return Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
      */
     public function show(Blog $blog)
     {
@@ -86,9 +86,9 @@ class BlogController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param EditRequest $request
-     * @param Blog $blog
-     * @return Response
+     * @param  EditRequest  $request
+     * @param  Blog  $blog
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
      */
     public function edit(EditRequest $request, Blog $blog)
     {
@@ -96,8 +96,8 @@ class BlogController extends Controller
     }
 
     /**
-     * @param UpdateRequest $request
-     * @param Blog $blog
+     * @param  UpdateRequest  $request
+     * @param  Blog  $blog
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRequest $request, Blog $blog)
@@ -107,7 +107,7 @@ class BlogController extends Controller
 
             ZendReader::import($feed_url);
 
-            $blog->save($request->validated());
+            $blog->update($request->validated());
 
             Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
@@ -119,9 +119,9 @@ class BlogController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param DeleteRequest $request
-     * @param Blog $blog
-     * @return Response
+     * @param  DeleteRequest  $request
+     * @param  Blog  $blog
+     * @return \Illuminate\Http\RedirectResponse
      * @throws Exception
      */
     public function destroy(DeleteRequest $request, Blog $blog)
@@ -134,7 +134,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @param RestoreRequest $request
+     * @param  RestoreRequest  $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
