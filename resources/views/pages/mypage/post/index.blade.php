@@ -106,7 +106,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7">
+                                    <td colspan="7" class="text-center">
                                         검색 결과가 없습니다
                                     </td>
                                 </tr>

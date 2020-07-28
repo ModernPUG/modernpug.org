@@ -106,8 +106,12 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8">
-                                            검색 결과가 없습니다
+                                        <td colspan="8" class="text-center">
+                                            @if(auth()->user()->blogs->count() === 0)
+                                                <a href="{{ route('blogs.create') }}" class="btn btn-outline-primary btn-sm">블로그 등록하러 가기</a>
+                                            @else
+                                                검색 결과가 없습니다
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforelse
