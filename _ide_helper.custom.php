@@ -4,7 +4,7 @@
  * @referrence https://github.com/barryvdh/laravel-ide-helper/issues/40
  */
 
-namespace Illuminate\Foundation\Testing {
+namespace Illuminate\Foundation\Testing;
 
     /**
      * Class TestResponse
@@ -14,4 +14,3 @@ namespace Illuminate\Foundation\Testing {
     class TestResponse
     {
     }
-}
