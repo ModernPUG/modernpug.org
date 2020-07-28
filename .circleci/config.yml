@@ -19,9 +19,12 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo apt update && sudo apt install libmcrypt-dev -y
       - run: sudo docker-php-ext-install zip
       - run: sudo docker-php-ext-install pdo_mysql
       - run: sudo docker-php-ext-enable pdo_mysql
+      - run: sudo pecl install mcrypt
+      - run: sudo docker-php-ext-enable mcrypt
 
       - run: chmod -R 777 storage
       - run: cp .env.testing.example .env.testing
