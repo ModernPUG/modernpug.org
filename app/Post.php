@@ -95,7 +95,7 @@ class Post extends Model
 
     public function getPublishedAtAttribute($date)
     {
-        return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('y-m-d');
+        return Carbon::parse($date)->format('y-m-d');
     }
 
     public function blog()
