@@ -44,7 +44,7 @@
                     <h4>정기 모임 후원</h4>
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <a href="http://imicorp.co.kr/" target="_blank" class="headline">
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post">
@@ -60,7 +60,7 @@
                             </a>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <a href="https://www.jetbrains.com/" target="_blank" class="headline">
                                 <!-- Single Blog Post -->
                                 <div class="single-blog-post">
@@ -71,6 +71,23 @@
                                     <!-- Post Content -->
                                     <div class="post-content">
                                         <h5>Jetbrains</h5>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <a href="https://www.wisen.co.kr/" target="_blank" class="headline">
+                                <!-- Single Blog Post -->
+                                <div class="single-blog-post">
+                                    <!-- Post Thumbnail -->
+                                    <div class="post-thumbnail">
+                                        <img src="/img/sponsors/gsneotek.jpeg" alt="">
+                                    </div>
+                                    <!-- Post Content -->
+                                    <div class="post-content">
+                                        <h5>GS 네오텍</h5>
                                     </div>
                                 </div>
                             </a>

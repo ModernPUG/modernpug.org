@@ -13,5 +13,10 @@
                 <img src="/img/sponsors/logo_JetBrains_4_banner.png" alt="Jetbrains">
             </a>
         </div>
+        <div class="single-blog-post post-style-2 d-flex align-items-center widget-post">
+            <a href="https://www.wisen.co.kr/" target="_blank">
+                <img src="/img/sponsors/gsneotek_banner.png" alt="GsNeotek">
+            </a>
+        </div>
     </div>
 </div>
