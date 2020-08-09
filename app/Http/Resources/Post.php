@@ -6,7 +6,6 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class Post
- * @package App\Http\Resources
  * @mixin \App\Post
  */
 class Post extends JsonResource

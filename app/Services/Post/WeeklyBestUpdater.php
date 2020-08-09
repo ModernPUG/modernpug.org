@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Post;
-
 
 use App\Post;
 use App\Tag;
@@ -11,7 +9,6 @@ use App\WeeklyBestPost;
 
 class WeeklyBestUpdater
 {
-
     public const LAST_DAYS = 700;
     public const LIMIT = 10;
 
@@ -26,7 +23,6 @@ class WeeklyBestUpdater
             return true;
         }
 
-
         $posts = Post::getLastBestPosts(self::LAST_DAYS, self::LIMIT, Tag::getAllManagedTags());
 
         $posts->each(function (Post $post, int $key) use ($weeklyBest) {
@@ -37,7 +33,6 @@ class WeeklyBestUpdater
                 'point' => $post->rank_point,
             ]);
         });
-
 
         return true;
     }

@@ -166,7 +166,7 @@ class BlogTest extends TestCase
 
         $testComment = 'test';
         $this->actingAs($owner)->put(route('blogs.update',
-            [$blog->id, 'feed_url' => self::AVAILABLE_FEED, 'comment' => ''.$testComment.'',]))
+            [$blog->id, 'feed_url' => self::AVAILABLE_FEED, 'comment' => ''.$testComment.'']))
             ->assertToastrHasSuccess()
             ->assertRedirect(route('blogs.edit', [$blog->id]));
 

@@ -23,7 +23,7 @@ class WeeklyBestController extends Controller
     {
         $weeklyBests = WeeklyBest::all();
 
-        if (!$weeklyBest->id) {
+        if (! $weeklyBest->id) {
             $weeklyBest = $weeklyBests->when($request->year, function (Builder $builder) use ($request) {
                 return $builder->where('year', $request->year);
             })->when($request->week_no, function (Builder $builder) use ($request) {

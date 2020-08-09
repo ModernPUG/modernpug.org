@@ -28,5 +28,4 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WeeklyBestPost extends Model
 {
-
 }

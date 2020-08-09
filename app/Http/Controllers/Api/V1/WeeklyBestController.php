@@ -23,8 +23,6 @@ class WeeklyBestController extends Controller
             return $builder->where('week_no', $request->week_no);
         })->paginate();
 
-
         return WeeklyBestResource::collection($weeklyBests);
     }
-
 }

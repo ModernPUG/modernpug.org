@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class WeeklyBestRequest
- * @package App\Http\Requests\Api\V1
  * @property-read int|null $year
  * @property-read int|null $week_no
  */
