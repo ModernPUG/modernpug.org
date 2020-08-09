@@ -25,10 +25,10 @@ class WeeklyBestController extends Controller
 
         if (! $weeklyBest->id) {
             $weeklyBest = $weeklyBests->when($request->year, function (Builder $builder) use ($request) {
-                    return $builder->where('year', $request->year);
-                })->when($request->week_no, function (Builder $builder) use ($request) {
-                    return $builder->where('week_no', $request->week_no);
-                })->last() ?? new WeeklyBest();
+                return $builder->where('year', $request->year);
+            })->when($request->week_no, function (Builder $builder) use ($request) {
+                return $builder->where('week_no', $request->week_no);
+            })->last() ?? new WeeklyBest();
         }
 
         return view('pages.posts.weekly', compact('weeklyBests', 'weeklyBest'));
