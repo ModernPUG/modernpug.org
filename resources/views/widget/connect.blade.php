@@ -13,6 +13,9 @@
             @if(config('modernpug.github_repo'))
                 <a href="{{ config('modernpug.github_repo') }}" target="_blank"><i class="fa fa-github"></i></a>
             @endif
+            @if(config('modernpug.youtube'))
+                <a href="{{ config('modernpug.youtube') }}" target="_blank"><i class="fa fa-youtube"></i></a>
+            @endif
         </div>
     </div>
 </div>
