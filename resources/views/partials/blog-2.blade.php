@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Post $post
+ * @var string|null $title_prefix
  */
 ?>
 <!-- Single Blog Post -->
@@ -14,7 +15,7 @@
     <!-- Post Content -->
     <div class="post-content">
         <a href="{{ route('posts.show',[$post->id]) }}" target="_blank" class="headline">
-            <h5>{{ $post->title }}</h5>
+            <h5>{{ $title_prefix??"" }}{{ $post->title }}</h5>
             <p>{!! \App\Services\Blog\StripPosts::panel($post->description) !!}</p>
 
             @if($post->tags->count())

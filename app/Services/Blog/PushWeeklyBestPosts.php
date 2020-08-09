@@ -9,8 +9,8 @@ use Illuminate\Notifications\Messages\SlackMessage;
 
 class PushWeeklyBestPosts
 {
-    const LAST_DAYS = 7;
-    const LIMIT = 10;
+    public const LAST_DAYS = 7;
+    public const LIMIT = 10;
 
     public function pushSlack()
     {
