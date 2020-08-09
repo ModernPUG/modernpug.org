@@ -44,5 +44,4 @@ class WeeklyBestTest extends TestCase
             ]
         );
     }
-
 }

@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(WeeklyBest::class, function (Faker $faker) {
     return [
         'year' => $faker->year(),
-        'week_no' => $faker->numberBetween(1,52),
+        'week_no' => $faker->numberBetween(1, 52),
     ];
 });
