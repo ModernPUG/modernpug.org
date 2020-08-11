@@ -13,9 +13,9 @@ class WeeklyBestTest extends TestCase
 
     public function testCantGetWeeklyBestInformationWithoutAuthorization()
     {
-        $response = $this->get(route('api.v1.posts.weekly-best'));
+        $response = $this->getJson(route('api.v1.posts.weekly-best'));
 
-        $response->assertRedirect();
+        $response->assertUnauthorized();
     }
 
     public function testGetAllWeeklyBestInformationWithAuthorization()
@@ -29,7 +29,7 @@ class WeeklyBestTest extends TestCase
 
         $token = $user->createToken('test token', ['*'])->accessToken;
 
-        $response = $this->get(route('api.v1.posts.weekly-best'), ['Authorization' => 'Bearer '.$token]);
+        $response = $this->getJson(route('api.v1.posts.weekly-best'), ['Authorization' => 'Bearer '.$token]);
 
         $response->assertOk()->assertJsonStructure(
             [
