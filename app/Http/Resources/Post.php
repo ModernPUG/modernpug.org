@@ -21,7 +21,8 @@ class Post extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'link' => $this->link,
+            'link' => route('article.show', [$this->id]),
+            'origin_link' => $this->link,
             'description' => $this->description,
             'blog_id' => $this->blog_id,
             'published_at' => $this->published_at,

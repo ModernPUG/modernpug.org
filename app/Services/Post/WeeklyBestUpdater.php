@@ -9,7 +9,7 @@ use App\WeeklyBestPost;
 
 class WeeklyBestUpdater
 {
-    public const LAST_DAYS = 700;
+    public const LAST_DAYS = 30;
     public const LIMIT = 10;
 
     public function update(): bool
@@ -19,7 +19,7 @@ class WeeklyBestUpdater
             'week_no' => date('W'),
         ]);
 
-        if ($weeklyBest->id) {
+        if ($weeklyBest->posts->count()) {
             return true;
         }
 
