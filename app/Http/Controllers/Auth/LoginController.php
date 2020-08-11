@@ -7,9 +7,13 @@ use App\Http\Controllers\Controller;
 use App\OauthIdentity;
 use App\Services\User\Exceptions\AccessDeniedUserException;
 use App\User;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Socialite;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class LoginController extends Controller
 {
@@ -31,7 +35,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected string $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -47,10 +51,9 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return void
      *
-     * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateLogin(Request $request)
     {
@@ -62,7 +65,7 @@ class LoginController extends Controller
 
     /**
      * @param $provider
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function redirectToProvider($provider)
     {
@@ -71,41 +74,40 @@ class LoginController extends Controller
 
     /**
      * @param $provider
-     * @return \Illuminate\Http\Response
+     * @return Application|\Illuminate\Http\RedirectResponse|Response|Redirector
      */
     public function handleProviderCallback($provider)
     {
-
         /**
          * @var \Laravel\Socialite\Contracts\User
          */
-        $provider_user = Socialite::with($provider)->user();
+        $providerUser = Socialite::with($provider)->user();
 
-        $oauth_identity = OauthIdentity::firstOrNew([
+        $oauthIdentity = OauthIdentity::firstOrNew([
             'provider' => $provider,
-            'provider_user_id' => $provider_user->id,
+            'provider_user_id' => $providerUser->id,
         ]);
 
-        $email = Email::firstOrNew(['email' => $provider_user->getEmail()]);
+        $email = Email::firstOrNew(['email' => $providerUser->getEmail()]);
 
-        if ($oauth_identity->user_id) {
-            $user = User::withTrashed()->find($oauth_identity->user_id);
+        if ($oauthIdentity->user_id) {
+            $user = User::withTrashed()->find($oauthIdentity->user_id);
         } else {
-            $user = User::withTrashed()->firstOrNew(['email' => $provider_user->getEmail()]);
+            $user = User::withTrashed()->firstOrNew(['email' => $providerUser->getEmail()]);
         }
 
-        $oauth_identity->access_token = $provider_user->token;
+        $oauthIdentity->access_token = $providerUser->token;
 
         if (! $user->id) {
-            $user->name = $provider_user->getName();
+            $user->name = $providerUser->getName();
             $email->is_primary = 1;
         }
 
-        $user->avatar_url = $user->avatar_url ?: $provider_user->getAvatar();
+        $user->avatar_url = $user->avatar_url ?: $providerUser->getAvatar();
 
         $user->save();
         $user->emails()->save($email);
-        $user->oauth_identities()->save($oauth_identity);
+        $user->oauth_identities()->save($oauthIdentity);
 
         if ($user->deleted_at) {
             throw new AccessDeniedUserException('탈퇴 처리된 회원입니다');
