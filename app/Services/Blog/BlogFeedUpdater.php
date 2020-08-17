@@ -13,7 +13,6 @@ use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeExcept
 
 class BlogFeedUpdater
 {
-
     /**
      * @var Command|null
      */
@@ -66,7 +65,7 @@ class BlogFeedUpdater
                 $this->print($blog->crawling_fail_count);
 
                 if ($blog->crawling_fail_count >= Blog::AUTO_IGNORE_CRAWLING_FAIL_COUNT) {
-                    $this->print($blog->feed_url." 중단합니다");
+                    $this->print($blog->feed_url.' 중단합니다');
                     $blog->ignore_crawling = true;
                     $blog->save();
                 }
