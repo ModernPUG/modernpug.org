@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 7.22.4 on 2020-08-10 08:12:59.
+ * Generated for Laravel 7.22.4 on 2020-08-17 22:26:04.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -15457,6 +15457,84 @@ namespace Facade\Ignition\Facades {
  
 }
 
+namespace Pressutto\LaravelSlack\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Slack {
+        
+        /**
+         * Set the recipients of the message.
+         *
+         * @param object|array|string $recipient
+         * @return \Pressutto\LaravelSlack\Slack 
+         * @static 
+         */ 
+        public static function to($recipient)
+        {
+                        /** @var \Pressutto\LaravelSlack\Slack $instance */
+                        return $instance->to($recipient);
+        }
+        
+        /**
+         * Send a new message.
+         *
+         * @param string|\Pressutto\LaravelSlack\SlackMessage $message
+         * @return void 
+         * @static 
+         */ 
+        public static function send($message)
+        {
+                        /** @var \Pressutto\LaravelSlack\Slack $instance */
+                        $instance->send($message);
+        }
+        
+        /**
+         * Return the sent messages.
+         *
+         * @return \Pressutto\LaravelSlack\Testing\SlackMessage[] 
+         * @static 
+         */ 
+        public static function sentMessages()
+        {
+                        /** @var \Pressutto\LaravelSlack\Testing\SlackFake $instance */
+                        return $instance->sentMessages();
+        }
+        
+        /**
+         * Assert that at least, or exactly(if $strict is true)
+         * $count messages passed to $callable
+         * returns true.
+         *
+         * @param callable $callback
+         * @param int $count
+         * @param bool $strict
+         * @static 
+         */ 
+        public static function assertSent($callback, $count = 1, $strict = false)
+        {
+                        /** @var \Pressutto\LaravelSlack\Testing\SlackFake $instance */
+                        return $instance->assertSent($callback, $count, $strict);
+        }
+        
+        /**
+         * Asserts $count exactly messages were sent.
+         *
+         * @param int $count
+         * @static 
+         */ 
+        public static function assertSentCount($count)
+        {
+                        /** @var \Pressutto\LaravelSlack\Testing\SlackFake $instance */
+                        return $instance->assertSentCount($count);
+        }
+         
+    }
+ 
+}
+
 namespace Laravel\Socialite\Facades { 
 
     /**
@@ -18825,6 +18903,8 @@ namespace  {
     class Gravatar extends \Creativeorange\Gravatar\Facades\Gravatar {}
 
     class Flare extends \Facade\Ignition\Facades\Flare {}
+
+    class Slack extends \Pressutto\LaravelSlack\Facades\Slack {}
 
     class Socialite extends \Laravel\Socialite\Facades\Socialite {}
 

@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2020-08-10 08:12:55.
+    * Generated on 2020-08-17 22:26:11.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -45,6 +45,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -217,6 +218,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -389,6 +391,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -561,6 +564,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -733,6 +737,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -905,6 +910,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -1077,6 +1083,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,
@@ -1249,6 +1256,7 @@ namespace PHPSTORM_META {
         'League\OAuth2\Server\AuthorizationServer' => \League\OAuth2\Server\AuthorizationServer::class,
         'League\OAuth2\Server\ResourceServer' => \League\OAuth2\Server\ResourceServer::class,
         'NunoMaduro\Collision\Contracts\Provider' => \NunoMaduro\Collision\Provider::class,
+        'Pressutto\LaravelSlack\Slack' => \Pressutto\LaravelSlack\Slack::class,
         'Psr\Http\Message\ResponseInterface' => \Nyholm\Psr7\Response::class,
         'Psr\Http\Message\ServerRequestInterface' => \Nyholm\Psr7\ServerRequest::class,
         'Sentry\ClientBuilderInterface' => \Sentry\ClientBuilder::class,

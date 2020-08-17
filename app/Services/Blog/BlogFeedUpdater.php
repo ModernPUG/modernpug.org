@@ -7,28 +7,29 @@ use App\Services\Blog\Rss\BlogUpdater;
 use App\Services\Blog\Rss\FeedParser;
 use App\Services\Blog\Rss\PostUpdater;
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Collection;
 use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
 use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
 
 class BlogFeedUpdater
 {
-    protected $lastError;
+
     /**
-     * @var Command
+     * @var Command|null
      */
-    protected $command;
+    protected ?Command $command;
     /**
      * @var FeedParser
      */
-    protected $feedParser;
+    protected FeedParser $feedParser;
     /**
      * @var BlogUpdater
      */
-    protected $blogUpdater;
+    protected BlogUpdater $blogUpdater;
     /**
      * @var PostUpdater
      */
-    protected $postUpdater;
+    protected PostUpdater $postUpdater;
 
     public function __construct(
         FeedParser $feedParser,
@@ -53,24 +54,40 @@ class BlogFeedUpdater
                 $this->postUpdater->fromFeed($feed, $blog);
 
                 $blog->crawled_at = now();
+                $blog->crawling_fail_count = 0;
+                $blog->last_crawling_failed_at = null;
+
                 $blog->update();
 
                 $this->print($blog->feed_url.' 종료');
             } catch (ZendFeedRuntimeException | ZendHttpRuntimeException $exception) {
-                if (app()->environment() === 'production' && app()->bound('sentry')) {
-                    app('sentry')->captureException($exception);
+                $blog->increment('crawling_fail_count', 1, ['last_crawling_failed_at' => now()]);
+                $this->print($blog->feed_url);
+                $this->print($blog->crawling_fail_count);
+
+                if ($blog->crawling_fail_count >= Blog::AUTO_IGNORE_CRAWLING_FAIL_COUNT) {
+                    $this->print($blog->feed_url." 중단합니다");
+                    $blog->ignore_crawling = true;
+                    $blog->save();
                 }
 
                 if (app()->environment() !== 'production') {
                     $this->print($exception->getMessage());
                 }
+            } catch (\Exception $exception) {
+                if (app()->environment() === 'production' && app()->bound('sentry')) {
+                    app('sentry')->captureException($exception);
+                }
             }
         }
     }
 
+    /**
+     * @return Collection|Blog[]
+     */
     private function getAllBlog()
     {
-        return Blog::orderBy('title', 'asc')->get();
+        return Blog::where('ignore_crawling', false)->orderBy('title', 'asc')->get();
     }
 
     private function print(string $message)

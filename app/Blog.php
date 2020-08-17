@@ -21,6 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $crawled_at
+ * @property int $crawling_fail_count
+ * @property string|null $last_crawling_failed_at
+ * @property int $ignore_crawling
  * @property-read \App\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Post[] $posts
  * @property-read int|null $posts_count
@@ -31,12 +34,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog query()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereComment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCrawledAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCrawlingFailCount($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereFeedUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereIgnoreCrawling($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereImageUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereLastCrawlingFailedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereOwnerId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereSiteUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Blog whereTitle($value)
@@ -48,8 +54,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model
 {
     use SoftDeletes;
+    public const AUTO_IGNORE_CRAWLING_FAIL_COUNT = 5;
 
-    protected $dates = ['deleted_at', 'crawled_at'];
+    protected $dates = ['deleted_at', 'crawled_at', 'last_crawling_failed_at'];
     protected $fillable = [
         'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];
