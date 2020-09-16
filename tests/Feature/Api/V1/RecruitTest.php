@@ -32,14 +32,12 @@ class RecruitTest extends TestCase
         $response = $this->get(route('api.v1.recruits.index'),
             ['Authorization' => 'Bearer '.$token]);
 
-        $response->assertOk()->assertJson(
+        $response->assertOk()->assertJsonStructure(
             [
-                'data' => $recruits->map(
-                    function (Recruit $recruit) {
-                        return $recruit->only(['id', 'title']);
-                    }
-                )->toArray(),
-            ]
+                'data' => [
+                    '*' => ['id', 'title'],
+                ],
+            ],
         );
     }
 
