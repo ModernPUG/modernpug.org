@@ -3,9 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 
@@ -42,7 +40,6 @@ class ReleaseNews extends Notification
 
     public function toSlack($notifiable)
     {
-
         $message = new SlackMessage();
         $message->content('오늘의 릴리즈 뉴스입니다.');
         $message->to(config('release-news.slack.notification-channel'));
@@ -56,6 +53,5 @@ class ReleaseNews extends Notification
         }
 
         return $message;
-
     }
 }

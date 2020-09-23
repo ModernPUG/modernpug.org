@@ -30,10 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('recaptcha', ReCaptcha::class);
 
-
         Paginator::useBootstrap();
-
-
     }
 
     /**
