@@ -6,7 +6,7 @@
 
 <?php
 /**
- * @var \App\Models\Tag $tag
+ * @var \App\Models\WeeklyBest $latestWeeklyBest
  */
 ?>
 @section('content')
@@ -66,7 +66,8 @@
                                     <p>2</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="https://www.facebook.com/groups/655071604594451/events/?source=4&action_history=null&filter=calendar" target="_blank">
+                                    <a href="https://www.facebook.com/groups/655071604594451/events/?source=4&action_history=null&filter=calendar"
+                                       target="_blank">
                                         이달의 행사 안내
                                     </a>
                                 </div>
@@ -91,27 +92,63 @@
                         <!-- category Area -->
                         <div class="world-category-area">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="title">Monthly Best</li>
-
-                                @foreach($monthlyBestByTag as $tag => $posts)
-                                <li class="nav-item">
-                                    <a class="nav-link {{ $loop->first?"active":"" }}" id="monthly-best-tab-title-{{ $tag }}" data-toggle="tab"
-                                       href="#monthly-best-tab-body-{{ $tag }}" role="tab" aria-controls="monthly-best-tab-body-{{ $tag }}" aria-selected="false">{{ $tag }}</a>
+                                <li class="title">
+                                    {{ $latestWeeklyBest->year }}년
+                                    {{ $latestWeeklyBest->week_no }}주차 주간 인기글
+                                    <a class="title" href="{{ route('posts.weekly') }}">
+                                        <small>더보기</small>
+                                    </a>
                                 </li>
-                                @endforeach
                             </ul>
 
                             <div class="tab-content" id="myTabContent">
 
-                                @foreach($monthlyBestByTag as $tag => $posts)
-                                    @include('pages.home.partials.tab-body',['tabName'=>'monthly-best-tab-body','tag'=>$tag,'posts'=>$monthlyBestByTag[$tag],'active'=>$loop->first])
-                                @endforeach
+
+                                <div class="row">
+                                    <div class="col-12 col-md-6">
+
+                                        @foreach($latestWeeklyBest->posts as $post)
+                                            @if(!$loop->first)
+                                                @continue
+                                            @endif
+
+                                            @include('partials.blog',['post'=>$post])
+                                        @endforeach
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+
+
+                                        @foreach($latestWeeklyBest->posts as $post)
+                                            @if($loop->first)
+                                                @continue
+                                            @endif
+
+                                            @if($loop->iteration > 7)
+                                                @continue
+                                            @endif
+
+                                            @include('partials.blog-2-non-body',['post'=>$post])
+                                        @endforeach
+
+
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
 
                     </div>
 
-
+                    <!-- Load More btn -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="load-more-btn mb-50 text-center">
+                                <a href="{{ route('posts.weekly') }}" class="btn world-btn">Read More</a>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="world-latest-posts">
@@ -121,14 +158,14 @@
                                     <h5>Latest Posts</h5>
                                 </div>
 
-                            <?php
-                            /**
-                             * @var \App\Models\Post $post
-                             */
-                            ?>
-                            @foreach($latestPosts as $post)
-                                @include('partials.blog-2',['post'=>$post])
-                            @endforeach
+                                <?php
+                                /**
+                                 * @var \App\Models\Post $post
+                                 */
+                                ?>
+                                @foreach($latestPosts as $post)
+                                    @include('partials.blog-2',['post'=>$post])
+                                @endforeach
 
                             </div>
                         </div>

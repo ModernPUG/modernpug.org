@@ -4,27 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\WeeklyBest;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
-        $managedTags = Tag::getAllPrimaryTags();
-
-        $monthlyDay = 300;
-        $monthlyBestByTag = [];
-        $monthlyBestByTag['All'] = Post::getLastBestPosts($monthlyDay, 5, Tag::getAllManagedTags());
-        foreach ($managedTags as $tag) {
-            $monthlyBestByTag[$tag] = Post::getLastBestPosts($monthlyDay, 5, Tag::MANAGED_TAGS[$tag]);
-        }
+        /**
+         * @var WeeklyBest $latestWeeklyBest
+         */
+        $latestWeeklyBest = WeeklyBest::latest()->firstOrNew();
 
         $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags());
 
-        return view('pages.home.index', compact('monthlyBestByTag', 'latestPosts'));
+        return view('pages.home.index', compact('latestWeeklyBest', 'latestPosts'));
     }
 }

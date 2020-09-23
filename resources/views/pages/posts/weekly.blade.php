@@ -62,16 +62,16 @@
                         <!-- category Area -->
                         <div class="world-category-area">
                             @if($weeklyBest->id)
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="title">{{ $weeklyBest->year }}년 {{ $weeklyBest->week_no }}주차 주간 인기글</li>
-                            </ul>
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="title">{{ $weeklyBest->year }}년 {{ $weeklyBest->week_no }}주차 주간 인기글</li>
+                                </ul>
 
-                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-content" id="myTabContent">
 
-                                @foreach($weeklyBest->posts as $post)
-                                    @include('partials.blog-2',['title_prefix'=>$loop->iteration.". ",'post'=>$post])
-                                @endforeach
-                            </div>
+                                    @foreach($weeklyBest->posts as $post)
+                                        @include('partials.blog-2',['title_prefix'=>$loop->iteration.". ",'post'=>$post])
+                                    @endforeach
+                                </div>
                             @else
                                 <h4 class="text-center">아직 발행된 주간 인기글이 없습니다.</h4>
                             @endif
@@ -86,16 +86,19 @@
                         <!-- Widget Area -->
                         <div class="sidebar-widget-area">
                             <h5 class="title">About Modern PHP User Group</h5>
-                            <div class="widget-content">
 
+                            <ul class="widget-content">
                                 @foreach($weeklyBests as $best)
-                                    <a href="{{ route('posts.weekly', [$best]) }}"
-                                       class="{{ $best->is($weeklyBest)?"active":""  }}">
-                                        {{ $best->year }}년
-                                        {{ $best->week_no }}주차 인기글
-                                    </a>
+                                    <li>
+                                        <i class="fa fa-book"></i>
+                                        <a href="{{ route('posts.weekly', [$best]) }}"
+                                           class="{{ $best->is($weeklyBest)?"active":""  }}">
+                                            {{ $best->year }}년
+                                            {{ $best->week_no }}주차 인기글
+                                        </a>
+                                    </li>
                                 @endforeach
-                            </div>
+                            </ul>
                         </div>
 
                         @include('widget.banner')
