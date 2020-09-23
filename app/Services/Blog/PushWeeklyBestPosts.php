@@ -2,10 +2,10 @@
 
 namespace App\Services\Blog;
 
-use App\Post;
-use App\Tag;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Notifications\WeeklyBestPosts;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Notifications\Messages\SlackMessage;
 
 class PushWeeklyBestPosts
 {
@@ -14,22 +14,8 @@ class PushWeeklyBestPosts
 
     public function pushSlack()
     {
-        $message = new SlackMessage();
-        $message->content('Modern PUG 주간 인기글입니다');
-        $message->from('ModernPUG');
-        $image = url('/img/logo/logo-slack.png');
-        $message->image($image);
-
-        $rank = 1;
-
-        foreach ($this->getTargetPosts() as $post) {
-            $attachment = $post->convertAttachment($rank);
-
-            $message->attachments[] = $attachment;
-            $rank++;
-        }
-
-        \Slack::send($message);
+        \Notification::route('slack', config('laravel-slack.slack_webhook_url'))
+            ->notify(new WeeklyBestPosts($this->getTargetPosts()));
     }
 
     /**

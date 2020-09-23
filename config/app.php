@@ -165,7 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Spatie\SlashCommand\SlashCommandServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
 
         /*

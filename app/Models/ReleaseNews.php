@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Support\Facades\DB;
 
 /**
- * App\ReleaseNews
+ * App\Models\ReleaseNews
  *
  * @property int $id
  * @property string $site_url 웹 사이트의 주소
@@ -16,16 +16,16 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Support\Carbon|null $released_at 출시일
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereReleasedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereSiteUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\ReleaseNews whereVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereReleasedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereSiteUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews whereVersion($value)
  * @mixin \Eloquent
  */
 class ReleaseNews extends Model

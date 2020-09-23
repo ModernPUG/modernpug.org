@@ -5,7 +5,7 @@
 
 @php
     /**
-     * @var App\Blog $blog
+     * @var \App\Models\Blog $blog
      */
 @endphp
 
@@ -68,7 +68,7 @@
                                     <div>블로그의 정보는 신청하신 Feed 에 있는 정보로 모두 업데이트 됩니다</div>
                                     <div>
                                         수집된 정보는
-                                        @foreach(\App\Tag::MANAGED_TAGS as $primaryTag => $tags)
+                                        @foreach(\App\Models\Tag::MANAGED_TAGS as $primaryTag => $tags)
                                             <code class="btn btn-sm btn-outline-dark">{{ $primaryTag }}</code>
                                         @endforeach
                                         의 태그로 분류 되며 자세한 정보는

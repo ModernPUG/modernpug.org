@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class Post
- * @mixin \App\Post
+ * @mixin \App\Models\Post
  */
 class Post extends JsonResource
 {

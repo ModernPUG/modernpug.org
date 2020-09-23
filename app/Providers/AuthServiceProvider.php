@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Blog;
+use App\Models\Blog;
+use App\Models\Recruit;
+use App\Models\User;
 use App\Policies\BlogPolicy;
 use App\Policies\RecruitPolicy;
 use App\Policies\UserPolicy;
-use App\Recruit;
-use App\User;
 use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;

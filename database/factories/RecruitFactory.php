@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Recruit::class, function (Faker $faker) {
+$factory->define(\App\Models\Recruit::class, function (Faker $faker) {
     $minSalary = $faker->numberBetween(5, 10);
     $maxSalary = $faker->numberBetween(1, 5);
 
@@ -21,6 +21,6 @@ $factory->define(App\Recruit::class, function (Faker $faker) {
         'min_salary' => $minSalary * $salary,
         'max_salary' => ($minSalary + $maxSalary) * $salary,
         'expired_at' => $faker->dateTimeInInterval('-1 months', '+2 months'),
-        'entry_user_id' => factory(\App\User::class),
+        'entry_user_id' => factory(\App\Models\User::class),
     ];
 });

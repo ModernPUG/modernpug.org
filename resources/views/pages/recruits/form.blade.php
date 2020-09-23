@@ -1,6 +1,6 @@
 @php
     /**
-     * @var \App\Recruit $recruit
+     * @var \App\Models\Recruit $recruit
      */
 @endphp
 <div class="col-12">

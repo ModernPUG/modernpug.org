@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Web\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Validators\ReCaptcha;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

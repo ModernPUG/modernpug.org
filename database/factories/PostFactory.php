@@ -2,10 +2,10 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Blog;
+use App\Models\Blog;
 use Faker\Generator as Faker;
 
-$factory->define(App\Post::class, function (Faker $faker) {
+$factory->define(\App\Models\Post::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence,
         'link' => $faker->url,

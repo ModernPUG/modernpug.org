@@ -2,7 +2,7 @@
 
 namespace App\Services\Blog;
 
-use App\Blog;
+use App\Models\Blog;
 use App\Services\Blog\Rss\BlogUpdater;
 use App\Services\Blog\Rss\FeedParser;
 use App\Services\Blog\Rss\PostUpdater;

@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands\User;
 
-use App\Role;
-use App\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

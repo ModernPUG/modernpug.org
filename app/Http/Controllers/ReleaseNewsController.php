@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\ReleaseNews;
+use App\Models\ReleaseNews;
 
 /**
  * @property ReleaseNews releaseNews

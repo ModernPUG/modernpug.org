@@ -4,7 +4,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(\App\Models\User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
@@ -16,6 +16,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'homepage_url' => $faker->url,
         'avatar_url' => $faker->imageUrl(),
         'comment' => $faker->paragraph,
-        'remember_token' => str_random(10),
+        'remember_token' => Str::random(10),
     ];
 });

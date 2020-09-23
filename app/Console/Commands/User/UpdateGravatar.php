@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands\User;
 
-use App\User;
+use App\Models\User;
 use Creativeorange\Gravatar\Facades\Gravatar;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;

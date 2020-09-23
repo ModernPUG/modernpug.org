@@ -6,7 +6,7 @@
 
 <?php
 /**
- * @var \App\Tag $tag
+ * @var \App\Models\Tag $tag
  */
 ?>
 @section('content')
@@ -123,7 +123,7 @@
 
                             <?php
                             /**
-                             * @var \App\Post $post
+                             * @var \App\Models\Post $post
                              */
                             ?>
                             @foreach($latestPosts as $post)

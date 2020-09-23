@@ -17,7 +17,7 @@ class RecruitController extends Controller
      */
     public function index()
     {
-        return Recruit::collection(\App\Recruit::where('expired_at', '>=', Carbon::now())->paginate());
+        return Recruit::collection(\App\Models\Recruit::where('expired_at', '>=', Carbon::now())->paginate());
     }
 
     /**
@@ -49,7 +49,7 @@ class RecruitController extends Controller
      */
     public function show($id)
     {
-        return new Recruit(\App\Recruit::findOrFail($id));
+        return new Recruit(\App\Models\Recruit::findOrFail($id));
     }
 
     /**

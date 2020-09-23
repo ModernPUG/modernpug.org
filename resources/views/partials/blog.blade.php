@@ -1,7 +1,7 @@
 <?php
 /**
- * @var \App\Tag     $tag
- * @var \App\Post $post
+ * @var \App\Models\Tag     $tag
+ * @var \App\Models\Post $post
  * @var bool         $active
  * @var string       $tabName
  */

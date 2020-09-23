@@ -17,7 +17,7 @@ class WeeklyBestController extends Controller
      */
     public function __invoke(WeeklyBestRequest $request)
     {
-        $weeklyBests = \App\WeeklyBest::with('posts')->when($request->year, function (Builder $builder) use ($request) {
+        $weeklyBests = \App\Models\WeeklyBest::with('posts')->when($request->year, function (Builder $builder) use ($request) {
             return $builder->where('year', $request->year);
         })->when($request->week_no, function (Builder $builder) use ($request) {
             return $builder->where('week_no', $request->week_no);

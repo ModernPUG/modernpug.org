@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class Recruit
- * @mixin \App\Recruit
+ * @mixin \App\Models\Recruit
  */
 class Recruit extends JsonResource
 {

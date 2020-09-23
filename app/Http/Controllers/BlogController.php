@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
 use App\Http\Requests\Web\Blog\CreateRequest;
 use App\Http\Requests\Web\Blog\DeleteRequest;
 use App\Http\Requests\Web\Blog\EditRequest;
 use App\Http\Requests\Web\Blog\RestoreRequest;
 use App\Http\Requests\Web\Blog\StoreRequest;
 use App\Http\Requests\Web\Blog\UpdateRequest;
+use App\Models\Blog;
+use App\Models\User;
 use App\Services\Blog\Rss\Exceptions\CannotConnectFeedException;
-use App\User;
 use Exception;
 use Illuminate\Http\Response;
 use Toastr;

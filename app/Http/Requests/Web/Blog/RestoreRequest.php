@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Blog;
 
-use App\Blog;
+use App\Models\Blog;
+use App\Models\User;
 use App\Services\Blog\Exceptions\BlogPolicyException;
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RestoreRequest extends FormRequest

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Blog;
-use App\Post;
-use App\Tag;
-use App\Viewcount;
+use App\Models\Blog;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\Viewcount;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

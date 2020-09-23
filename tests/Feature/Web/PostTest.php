@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Web;
 
-use App\Post;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 

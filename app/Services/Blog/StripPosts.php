@@ -8,6 +8,8 @@
 
 namespace App\Services\Blog;
 
+use Illuminate\Support\Str;
+
 class StripPosts
 {
     public static function panel(string $html)
@@ -18,7 +20,7 @@ class StripPosts
         $html = html_entity_decode($html);
         $html = strip_tags($html);
         $html = trim($html);
-        $html = str_limit($html, 200);
+        $html = Str::limit($html, 200);
 
         return $html;
     }
@@ -32,7 +34,7 @@ class StripPosts
         $html = strip_tags($html, '<img><br><br/>');
         $html = nl2br($html);
         $html = trim($html);
-        $html = str_limit($html, 200);
+        $html = Str::limit($html, 200);
 
         return $html;
     }
@@ -48,7 +50,7 @@ class StripPosts
         $html = preg_replace("/[ \t]+/", ' ', $html);
         $html = preg_replace("/[ \n]{2,}/", "\n", $html);
 
-        $html = str_limit($html, 400);
+        $html = Str::limit($html, 400);
 
         return $html;
     }

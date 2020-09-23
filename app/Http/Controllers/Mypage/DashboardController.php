@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Mypage;
 
-use App\Blog;
 use App\Http\Controllers\Controller;
-use App\Post;
+use App\Models\Blog;
+use App\Models\Post;
 
 class DashboardController extends Controller
 {

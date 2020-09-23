@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Web\Recruit;
 
-use App\Recruit;
-use App\User;
+use App\Models\Recruit;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest

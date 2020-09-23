@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Post $post
+ * @var \App\Models\Post $post
  * @var string|null $title_prefix
  */
 ?>

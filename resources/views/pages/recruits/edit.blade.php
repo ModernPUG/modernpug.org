@@ -5,7 +5,7 @@
 
 @php
     /**
-     * @var App\Recruit $recruit
+     * @var \App\Models\Recruit $recruit
      */
 @endphp
 

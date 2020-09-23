@@ -8,9 +8,9 @@
 
 namespace App\Services\Blog;
 
-use App\Blog;
-use App\Post;
-use App\Preview;
+use App\Models\Blog;
+use App\Models\Post;
+use App\Models\Preview;
 use Embed\Embed;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;

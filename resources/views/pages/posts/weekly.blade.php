@@ -4,8 +4,8 @@
 
 @php
     /**
-     * @var \App\WeeklyBest[]|\Illuminate\Database\Eloquent\Collection $weeklyBests
-     * @var \App\WeeklyBest|null $weeklyBest
+     * @var \App\Models\WeeklyBest[]|\Illuminate\Database\Eloquent\Collection $weeklyBests
+     * @var \App\Models\WeeklyBest|null $weeklyBest
      */
 @endphp
 

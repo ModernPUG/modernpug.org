@@ -4,8 +4,8 @@
 
 @php
     /**
-     * @var \App\User $user
-     * @var \App\Role[] $roles
+     * @var \App\Models\User $user
+     * @var \App\Models\Role[] $roles
      */
 @endphp
 

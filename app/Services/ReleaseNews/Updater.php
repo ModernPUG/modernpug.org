@@ -2,7 +2,7 @@
 
 namespace App\Services\ReleaseNews;
 
-use App\ReleaseNews;
+use App\Models\ReleaseNews;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;

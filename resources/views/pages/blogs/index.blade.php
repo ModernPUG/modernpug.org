@@ -4,8 +4,8 @@
 
 @php
 /**
- * @var \App\Blog[]|\Illuminate\Database\Eloquent\Collection $myBlogs
- * @var \App\Blog[]|\Illuminate\Database\Eloquent\Collection $blogs
+ * @var \App\Models\Blog[]|\Illuminate\Database\Eloquent\Collection $myBlogs
+ * @var \App\Models\Blog[]|\Illuminate\Database\Eloquent\Collection $blogs
  */
 @endphp
 

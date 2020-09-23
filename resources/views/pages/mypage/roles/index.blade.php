@@ -4,7 +4,7 @@
 
 @php
     /**
-     * @var App\Role[]|Illuminate\Database\Eloquent\Collection $roles
+     * @var \App\Models\Role[]|Illuminate\Database\Eloquent\Collection $roles
      */
 @endphp
 

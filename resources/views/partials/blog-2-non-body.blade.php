@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Post $post
+ * @var \App\Models\Post $post
  */
 ?>
 <div class="single-blog-post post-style-2 d-flex align-items-center article">

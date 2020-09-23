@@ -1,6 +1,6 @@
 @php
     /**
-     * @var App\User[] $facilitators
+     * @var \App\Models\User[] $facilitators
      */
 @endphp
 

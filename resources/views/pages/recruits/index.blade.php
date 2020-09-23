@@ -4,7 +4,7 @@
 
 @php
     /**
-     * @var App\Recruit[]|Illuminate\Database\Eloquent\Collection $recruits
+     * @var \App\Models\Recruit[]|Illuminate\Database\Eloquent\Collection $recruits
      */
 @endphp
 

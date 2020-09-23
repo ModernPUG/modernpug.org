@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Web\Blog;
 
-use App\Blog;
-use App\User;
+use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateRequest extends FormRequest

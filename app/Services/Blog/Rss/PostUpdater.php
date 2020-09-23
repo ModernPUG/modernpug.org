@@ -2,9 +2,9 @@
 
 namespace App\Services\Blog\Rss;
 
-use App\Blog;
-use App\Post;
-use App\Tag;
+use App\Models\Blog;
+use App\Models\Post;
+use App\Models\Tag;
 use Zend\Feed\Reader\Entry\EntryInterface;
 use Zend\Feed\Reader\Feed\FeedInterface;
 

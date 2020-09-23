@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Web;
 
-use App\Recruit;
-use App\User;
+use App\Models\Recruit;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

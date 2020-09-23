@@ -4,7 +4,7 @@
 
 <?php
 /**
- * @var \App\Post $post
+ * @var \App\Models\Post $post
  */
 ?>
 
@@ -95,7 +95,7 @@
 
                 <?php
                 /**
-                 * @var \App\Post $relatedPost
+                 * @var \App\Models\Post $relatedPost
                  */
                 ?>
                 @foreach($relatedPosts as $relatedPost)

@@ -2,7 +2,7 @@
 
 namespace App\Services\Blog\Rss;
 
-use App\Blog;
+use App\Models\Blog;
 use Zend\Feed\Reader\Feed\FeedInterface;
 
 class BlogUpdater

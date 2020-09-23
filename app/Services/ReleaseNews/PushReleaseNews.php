@@ -2,37 +2,26 @@
 
 namespace App\Services\ReleaseNews;
 
-use App\ReleaseNews;
-use Illuminate\Notifications\Messages\SlackMessage;
+use App\Models\ReleaseNews as ReleaseNewsModel;
+use App\Notifications\ReleaseNews;
+use Illuminate\Database\Eloquent\Collection;
 
 class PushReleaseNews
 {
     public function pushSlack()
     {
-        $message = new SlackMessage();
-        $message->content('오늘의 릴리즈 뉴스입니다.');
-        $message->to(config('release-news.slack.notification-channel'));
-        $message->from('ModernPUG');
-        $image = url('/img/logo/logo-slack.png');
-        $message->image($image);
-
-        $count = 0;
-        foreach ($this->getTargetReleaseNews() as $release) {
-            $attachment = $release->convertAttachment($release);
-            $message->attachments[] = $attachment;
-            $count++;
-        }
-
-        if ($count !== 0) {
-            \Slack::send($message);
+        $releaseNews = $this->getTargetReleaseNews();
+        if ($releaseNews->count() !== 0) {
+            \Notification::route('slack', config('laravel-slack.slack_webhook_url'))
+                ->notify(new ReleaseNews($releaseNews));
         }
     }
 
     /**
-     * @return object
+     * @return ReleaseNews[]|Collection
      */
     private function getTargetReleaseNews()
     {
-        return ReleaseNews::getPushReleaseNews();
+        return ReleaseNewsModel::getPushReleaseNews();
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Email;
 use App\Http\Controllers\Controller;
-use App\OauthIdentity;
+use App\Models\Email;
+use App\Models\OauthIdentity;
+use App\Models\User;
 use App\Services\User\Exceptions\AccessDeniedUserException;
-use App\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;

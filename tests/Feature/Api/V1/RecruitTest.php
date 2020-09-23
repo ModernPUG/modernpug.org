@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Api\V1;
 
-use App\Recruit;
-use App\User;
+use App\Models\Recruit;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 

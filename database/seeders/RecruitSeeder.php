@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
 class RecruitSeeder extends Seeder
@@ -12,7 +14,7 @@ class RecruitSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-            factory(\App\Recruit::class)->times(20)->create();
+            factory(\App\Models\Recruit::class)->times(20)->create();
         }
     }
 }

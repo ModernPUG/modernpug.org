@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Web\Mypage\User;
 
+use App\Models\User;
 use App\Services\User\Exceptions\UserPolicyException;
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DeleteRequest extends FormRequest

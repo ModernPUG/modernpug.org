@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Services\Blog\StripPosts;
 use Carbon\Carbon;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
- * App\Post
+ * App\Models\Post
  *
  * @property int $id
  * @property string $title
@@ -21,27 +21,27 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \App\Blog $blog
- * @property-read \App\Preview $preview
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tag[] $tags
+ * @property-read \App\Models\Blog $blog
+ * @property-read \App\Models\Preview $preview
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
  * @property-read int|null $tags_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Viewcount[] $viewcount
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Viewcount[] $viewcount
  * @property-read int|null $viewcount_count
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post newQuery()
- * @method static \Illuminate\Database\Query\Builder|\App\Post onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereBlogId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post wherePublishedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Post whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Post withTrashed()
- * @method static \Illuminate\Database\Query\Builder|\App\Post withoutTrashed()
+ * @method static Builder|Post newModelQuery()
+ * @method static Builder|Post newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()
+ * @method static Builder|Post query()
+ * @method static Builder|Post whereBlogId($value)
+ * @method static Builder|Post whereCreatedAt($value)
+ * @method static Builder|Post whereDeletedAt($value)
+ * @method static Builder|Post whereDescription($value)
+ * @method static Builder|Post whereId($value)
+ * @method static Builder|Post whereLink($value)
+ * @method static Builder|Post wherePublishedAt($value)
+ * @method static Builder|Post whereTitle($value)
+ * @method static Builder|Post whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Post withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Post withoutTrashed()
  * @mixin \Eloquent
  */
 class Post extends Model

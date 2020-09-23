@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests\Web\Mypage\Role;
 
-use App\Role;
+use App\Models\Role;
+use App\Models\User;
 use App\Services\Role\Exceptions\RolePolicyException;
-use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class IndexRequest extends FormRequest

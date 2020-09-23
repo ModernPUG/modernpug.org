@@ -4,7 +4,7 @@
 
 @php
 /**
- * @var \App\Tag[]|\Illuminate\Database\Eloquent\Collection $allTags
+ * @var \App\Models\Tag[]|\Illuminate\Database\Eloquent\Collection $allTags
  */
 @endphp
 

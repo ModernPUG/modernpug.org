@@ -2,10 +2,10 @@
 
 namespace App\Services\Post;
 
-use App\Post;
-use App\Tag;
-use App\WeeklyBest;
-use App\WeeklyBestPost;
+use App\Models\Post;
+use App\Models\Tag;
+use App\Models\WeeklyBest;
+use App\Models\WeeklyBestPost;
 
 class WeeklyBestUpdater
 {

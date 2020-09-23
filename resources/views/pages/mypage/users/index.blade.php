@@ -4,7 +4,7 @@
 
 @php
     /**
-     * @var App\User[]|Illuminate\Database\Eloquent\Collection|Illuminate\Contracts\Pagination\LengthAwarePaginator $users
+     * @var \App\Models\User[]|Illuminate\Database\Eloquent\Collection|Illuminate\Contracts\Pagination\LengthAwarePaginator $users
      */
 @endphp
 

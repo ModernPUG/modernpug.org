@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Mypage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Mypage\Role\IndexRequest;
-use App\Role;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller

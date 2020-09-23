@@ -2,7 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\WeeklyBest;
+use App\Models\WeeklyBest;
 use Faker\Generator as Faker;
 
 $factory->define(WeeklyBest::class, function (Faker $faker) {
