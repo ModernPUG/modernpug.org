@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Api\V1;
+namespace Tests\Feature\Api\V1\Posts;
 
 use App\Models\User;
 use App\Models\WeeklyBestPost;
