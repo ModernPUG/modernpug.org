@@ -23,8 +23,8 @@ class WeeklyBestController extends Controller
             function (Builder $builder) use ($request) {
                 return $builder->where('year', $request->year);
             })->when($request->week_no, function (Builder $builder) use ($request) {
-            return $builder->where('week_no', $request->week_no);
-        })->paginate();
+                return $builder->where('week_no', $request->week_no);
+            })->paginate();
 
         return WeeklyBestResource::collection($weeklyBests);
     }
