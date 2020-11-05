@@ -19,7 +19,7 @@ class IndexController extends Controller
         $createdTo = $request->input('created_to');
 
         $posts = Post::when($createdAt, function (Builder $builder) use ($createdAt) {
-            $builder->whereBetween('created_at', [$createdAt, $createdAt]);
+            $builder->whereBetween('created_at', [$createdAt.' 00:00:00', $createdAt.' 23:59:59']);
         })->when($createdFrom, function (Builder $builder) use ($createdFrom) {
             $builder->where('created_at', '>=', $createdFrom." 00:00:00");
         })->when($createdTo, function (Builder $builder) use ($createdTo) {
