@@ -38,7 +38,6 @@ class WeeklyBestPosts extends Notification
         return ['slack'];
     }
 
-
     public function toSlack($notification)
     {
         $message = new SlackMessage();
