@@ -92,6 +92,7 @@ class IndexTest extends TestCase
             ->assertJsonCount('1', 'data')
             ->assertJsonPath('data.0.created_at', $today->toJSON());
     }
+
     public function testGetAllPostsFilterYesterday()
     {
         $yesterday = Carbon::yesterday();
