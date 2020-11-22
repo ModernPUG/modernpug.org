@@ -82,7 +82,6 @@ class IndexTest extends TestCase
         $todayPost = factory(Post::class)->create(['created_at' => $today]);
         $todayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
-
         /**
          * @var User $user
          */
