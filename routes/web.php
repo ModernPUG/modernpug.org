@@ -44,7 +44,7 @@ Route::resource('blogs', 'BlogController');
 Route::patch('blogs/{blog}/restore', 'BlogController@restore')->name('blogs.restore');
 
 Route::get('posts/search/{tag?}', 'PostController@search')->name('posts.search');
-Route::get('posts/weekly-best/{WeeklyBest?}', 'WeeklyBestController')->name('posts.weekly');
+Route::get('posts/weekly-best/{weeklyBest?}', 'WeeklyBestController')->name('posts.weekly');
 Route::patch('posts/{post}/restore', 'PostController@restore')->name('posts.restore');
 Route::resource('posts', 'PostController');
 

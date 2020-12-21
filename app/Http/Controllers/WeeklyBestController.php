@@ -21,14 +21,14 @@ class WeeklyBestController extends Controller
      */
     public function __invoke(WeeklyBestRequest $request, WeeklyBest $weeklyBest)
     {
-        $weeklyBests = WeeklyBest::all();
+        $weeklyBests = WeeklyBest::latest()->get();
 
         if (! $weeklyBest->id) {
             $weeklyBest = $weeklyBests->when($request->year, function (Builder $builder) use ($request) {
                 return $builder->where('year', $request->year);
             })->when($request->week_no, function (Builder $builder) use ($request) {
                 return $builder->where('week_no', $request->week_no);
-            })->last() ?? new WeeklyBest();
+            })->first() ?? new WeeklyBest();
         }
 
         return view('pages.posts.weekly', compact('weeklyBests', 'weeklyBest'));
