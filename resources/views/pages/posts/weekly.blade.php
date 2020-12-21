@@ -84,15 +84,15 @@
                     <div class="post-sidebar-area">
 
                         <!-- Widget Area -->
-                        <div class="sidebar-widget-area">
+                        <div class="sidebar-widget-area weekly-best">
                             <h5 class="title">About Modern PHP User Group</h5>
 
                             <ul class="widget-content">
                                 @foreach($weeklyBests as $best)
-                                    <li>
-                                        <i class="fa fa-book"></i>
+                                    <li class="active">
                                         <a href="{{ route('posts.weekly', [$best]) }}"
-                                           class="{{ $best->is($weeklyBest)?"active":""  }}">
+                                           class="{{ $best->is($weeklyBest)?"text-primary active":""  }}">
+                                            <i class="fa fa-book"></i>
                                             {{ $best->year }}년
                                             {{ $best->week_no }}주차 인기글
                                         </a>
