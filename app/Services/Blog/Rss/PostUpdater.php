@@ -5,11 +5,25 @@ namespace App\Services\Blog\Rss;
 use App\Models\Blog;
 use App\Models\Post;
 use App\Models\Tag;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 use Zend\Feed\Reader\Entry\EntryInterface;
 use Zend\Feed\Reader\Feed\FeedInterface;
 
 class PostUpdater
 {
+
+    /**
+     * @var Client
+     */
+    private Client $guzzle;
+
+    public function __construct(Client $guzzle)
+    {
+        $this->guzzle = $guzzle;
+    }
+
+
     public function fromFeed(FeedInterface $feed, Blog $blog)
     {
 
@@ -41,6 +55,15 @@ class PostUpdater
     private function updateBlogFromEntry(Blog $blog, EntryInterface $entry): Post
     {
         $link = $this->makePostLink($entry);
+
+        try {
+            $this->guzzle->get($link);
+        }
+        catch (GuzzleException $exception){
+            Post::where('link', $link)->delete();
+        }
+
+
         $description = $entry->getDescription();
         $published_at = $entry->getDateModified();
 
