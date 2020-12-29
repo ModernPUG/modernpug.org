@@ -19,7 +19,6 @@
         "facade/ignition": "^2.3",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^7.0",
-        "jolicode/slack-php-api": "^1.2",
         "laravel/framework": "^8.3",
         "laravel/legacy-factories": "^1.0",
         "laravel/passport": "^10.0",
