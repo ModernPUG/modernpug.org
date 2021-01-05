@@ -12,7 +12,6 @@ use Zend\Feed\Reader\Feed\FeedInterface;
 
 class PostUpdater
 {
-
     /**
      * @var Client
      */
@@ -22,7 +21,6 @@ class PostUpdater
     {
         $this->guzzle = $guzzle;
     }
-
 
     public function fromFeed(FeedInterface $feed, Blog $blog)
     {
@@ -58,11 +56,9 @@ class PostUpdater
 
         try {
             $this->guzzle->get($link);
-        }
-        catch (GuzzleException $exception){
+        } catch (GuzzleException $exception) {
             Post::where('link', $link)->delete();
         }
-
 
         $description = $entry->getDescription();
         $published_at = $entry->getDateModified();
