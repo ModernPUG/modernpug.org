@@ -19,12 +19,15 @@ class WeeklyBestController extends Controller
      */
     public function __invoke(WeeklyBestRequest $request)
     {
-        $weeklyBests = WeeklyBest::with('posts')->when($request->year,
-            function (Builder $builder) use ($request) {
+        $weeklyBests = WeeklyBest::with('posts')
+            ->when($request->year, function (Builder $builder) use ($request) {
                 return $builder->where('year', $request->year);
-            })->when($request->week_no, function (Builder $builder) use ($request) {
+            })
+            ->when($request->week_no, function (Builder $builder) use ($request) {
                 return $builder->where('week_no', $request->week_no);
-            })->latest()->paginate();
+            })
+            ->latest()
+            ->paginate();
 
         return WeeklyBestResource::collection($weeklyBests);
     }

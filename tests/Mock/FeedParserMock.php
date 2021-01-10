@@ -3,6 +3,7 @@
 namespace Tests\Mock;
 
 use App\Services\Blog\Rss\FeedParser;
+use Mockery;
 
 trait FeedParserMock
 {
@@ -12,7 +13,7 @@ trait FeedParserMock
     {
         $feedInterfaceMock = $this->getFeedInterFaceMock();
 
-        $feedParserMock = \Mockery::mock(FeedParser::class);
+        $feedParserMock = Mockery::mock(FeedParser::class);
         $feedParserMock->shouldReceive('fromUrl')->andReturn($feedInterfaceMock);
 
         return $feedParserMock;
