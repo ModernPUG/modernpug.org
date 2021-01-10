@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Blog\WeeklyBestRequest;
 use App\Models\WeeklyBest;
 use Illuminate\Contracts\Foundation\Application;

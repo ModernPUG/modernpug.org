@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Mypage;
+namespace App\Http\Controllers\Web\Mypage;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +18,11 @@ class BlogController extends Controller
     {
         $user = auth()->user();
 
-        $blogs = Blog::withTrashed()->withCount('posts')->whereOwnerId($user->id)->paginate(10);
+        $blogs = Blog::withTrashed()->withCount('posts')->whereOwnerId($user->id)->get();
 
-        return view('pages.mypage.blog.index', compact('blogs'));
+        $posts = Post::withTrashed()->with('blog', 'preview')->withCount('viewcount')->whereIn('blog_id', $blogs)->paginate(10);
+
+        return view('pages.mypage.post.index', compact('blogs', 'posts'));
     }
 
     /**

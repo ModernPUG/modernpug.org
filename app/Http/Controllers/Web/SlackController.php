@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
 use App\Exceptions\AlreadyInTeamException;
 use App\Exceptions\AlreadyInTeamInvitedUserException;
 use App\Exceptions\AlreadyInvitedException;
 use App\Exceptions\SlackInviteFailException;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Slack\InviteRequest;
 use App\Services\Slack\Inviter;
 use Illuminate\Http\Request;

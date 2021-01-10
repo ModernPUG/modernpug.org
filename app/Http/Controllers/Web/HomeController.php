@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\WeeklyBest;
@@ -17,7 +18,7 @@ class HomeController extends Controller
      *
      * @return Application|Factory|Response|View
      */
-    public function index()
+    public function __invoke()
     {
         /**
          * @var WeeklyBest $latestWeeklyBest

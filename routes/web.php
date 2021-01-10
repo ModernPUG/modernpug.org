@@ -11,32 +11,32 @@
 |
 */
 
-use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LogoController;
-use App\Http\Controllers\Mypage\BlogController as MypageBlogController;
-use App\Http\Controllers\Mypage\DashboardController;
-use App\Http\Controllers\Mypage\PostController as MypagePostController;
-use App\Http\Controllers\Mypage\ProfileController as MypageProfileController;
-use App\Http\Controllers\Mypage\RoleController as MypageRoleController;
-use App\Http\Controllers\Mypage\TokenController as MypageTokenController;
-use App\Http\Controllers\Mypage\UserController as MypageUserController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RecruitController;
-use App\Http\Controllers\ReleaseNewsController;
-use App\Http\Controllers\SlackController;
-use App\Http\Controllers\SponsorController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\WeeklyBestController;
+use App\Http\Controllers\Web\AboutUsController;
+use App\Http\Controllers\Web\BlogController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\LogoController;
+use App\Http\Controllers\Web\Mypage\BlogController as MypageBlogController;
+use App\Http\Controllers\Web\Mypage\DashboardController;
+use App\Http\Controllers\Web\Mypage\PostController as MypagePostController;
+use App\Http\Controllers\Web\Mypage\ProfileController as MypageProfileController;
+use App\Http\Controllers\Web\Mypage\RoleController as MypageRoleController;
+use App\Http\Controllers\Web\Mypage\TokenController as MypageTokenController;
+use App\Http\Controllers\Web\Mypage\UserController as MypageUserController;
+use App\Http\Controllers\Web\PostController;
+use App\Http\Controllers\Web\RecruitController;
+use App\Http\Controllers\Web\ReleaseNewsController;
+use App\Http\Controllers\Web\SlackController;
+use App\Http\Controllers\Web\SponsorController;
+use App\Http\Controllers\Web\TagController;
+use App\Http\Controllers\Web\WeeklyBestController;
 
 Auth::routes(['verify' => true]);
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('login/{driver}', [LoginController::class, 'redirectToProvider'])->name('login.social');
 Route::get('login/{driver}/callback', [LoginController::class, 'handleProviderCallback']);
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/home', function () {
     return redirect('/');
@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => 'mypage', 'as' => 'mypag
 });
 
 Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
-    Route::resource('releases', ReleaseNewsController::class);
+    Route::get('releases', ReleaseNewsController::class)->name('releases.index');
 });
 
 Route::resource('blogs', BlogController::class);

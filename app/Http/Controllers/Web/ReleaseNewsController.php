@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Models\ReleaseNews;
 
 /**
@@ -14,7 +15,7 @@ class ReleaseNewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         $types = ReleaseNews::getAllReleaseTypes();
         $releases = ReleaseNews::getReleaseNews();

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Web;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Recruit\CreateRequest;
 use App\Http\Requests\Web\Recruit\DeleteRequest;
 use App\Http\Requests\Web\Recruit\EditRequest;
