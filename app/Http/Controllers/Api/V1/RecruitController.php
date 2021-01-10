@@ -20,7 +20,6 @@ class RecruitController extends Controller
      */
     public function index(IndexRequest $request)
     {
-
         $createdAt = $request->input('created_at');
         $createdFrom = $request->input('created_from');
         $createdTo = $request->input('created_to');
@@ -36,7 +35,6 @@ class RecruitController extends Controller
                 $builder->where('created_at', '<=', $createdTo.' 23:59:59');
             })
             ->get();
-
 
         return RecruitResource::collection($recruits);
     }

@@ -46,7 +46,6 @@ class RecruitTest extends TestCase
         );
     }
 
-
     public function testGetAllRecruitsFilterToday()
     {
         $yesterday = Carbon::yesterday();
@@ -109,7 +108,6 @@ class RecruitTest extends TestCase
             ->assertJsonCount('1', 'data')
             ->assertJsonPath('data.0.created_at', $yesterday->toJSON());
     }
-
 
     public function testGetRecruitInformationWithAuthorization()
     {
