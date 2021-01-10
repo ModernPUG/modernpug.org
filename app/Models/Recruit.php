@@ -55,7 +55,6 @@ class Recruit extends Model
         'expired_at' => 'date:Y-m-d',
     ];
 
-
     protected $fillable = [
         'title',
         'company_name',
@@ -74,7 +73,6 @@ class Recruit extends Model
     {
         return self::make(['min_salary' => 3000, 'max_salary' => 8000]);
     }
-
 
     public function entry_user()
     {
