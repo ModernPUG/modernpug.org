@@ -9,7 +9,7 @@ class SponsorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         return view('pages.sponsors.sponsors');
     }

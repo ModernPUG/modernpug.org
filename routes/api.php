@@ -11,10 +11,14 @@
 |
 */
 
+use App\Http\Controllers\Api\V1\Posts\IndexController as PostsIndexController;
+use App\Http\Controllers\Api\V1\Posts\WeeklyBestController as PostsWeeklyBestController;
+use App\Http\Controllers\Api\V1\RecruitController;
+
 Route::group(['as' => 'api.'], function () {
     Route::group(['as' => 'v1.', 'prefix' => 'v1', 'middleware' => ['auth:sanctum']], function () {
-        Route::resource('recruits', 'Api\V1\RecruitController');
-        Route::get('posts', 'Api\V1\Posts\IndexController')->name('posts.index');
-        Route::get('posts/weekly-best', 'Api\V1\Posts\WeeklyBestController')->name('posts.weekly-best');
+        Route::resource('recruits', RecruitController::class);
+        Route::get('posts', PostsIndexController::class)->name('posts.index');
+        Route::get('posts/weekly-best', PostsWeeklyBestController::class)->name('posts.weekly-best');
     });
 });

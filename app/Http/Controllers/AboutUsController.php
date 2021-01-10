@@ -11,7 +11,7 @@ class AboutUsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         $facilitators = User::role('facilitators')->get();
 

@@ -11,7 +11,7 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function __invoke()
     {
         $managedTags = Tag::MANAGED_TAGS;
         $allTags = Tag::orderBy('name')->get();
