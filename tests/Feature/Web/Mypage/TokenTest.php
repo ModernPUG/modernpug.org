@@ -29,7 +29,6 @@ class TokenTest extends TestCase
         $this->assertCount(1, $user->tokens);
     }
 
-
     public function testDeleteTokenWithAuthorizedUser()
     {
         /**
@@ -58,6 +57,4 @@ class TokenTest extends TestCase
         $this->actingAs($notOwnedUser)->delete(route('mypage.tokens.delete', ['id' => $token->id]))
             ->assertNotFound();
     }
-
-
 }
