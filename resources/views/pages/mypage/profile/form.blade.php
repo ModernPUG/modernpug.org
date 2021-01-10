@@ -233,7 +233,6 @@
                                         @endforelse
 
 
-
                                     </div>
                                 </div>
 
@@ -268,14 +267,73 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="apiTokenCreateModal" tabindex="-1" role="dialog"
+         aria-labelledby="apiTokenCreateModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="apiTokenCreateModalLabel">API 토큰의 이름을 입력해주세요</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="apiTokenCreate" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">생성</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="apiTokenResultModal" tabindex="-1" role="dialog"
+         aria-labelledby="apiTokenResultModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="apiTokenResultModalLabel">API 토큰이 생성되었습니다.</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    아래의 토큰을 Api를 호출하실때 Header에
+                    <br>
+                    'Authorization' => 'Bearer {YOUR_TOKEN}'
+                    <br>
+                    로 추가해주세요
+                    <input type="text" class="form-control" id="apiTokenResult" readonly value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
 @push('js')
     <script>
         $('#create-token').on('click', function () {
+            $("#apiTokenCreateModal").modal();
+        });
 
-            let name = prompt('토큰의 이름을 입력해주세요');
+        $('#apiTokenCreateModal').on('shown.bs.modal', function () {
+            $("#apiTokenCreate").focus();
+        });
+
+        $('#apiTokenCreateModal .btn-primary').on('click', function () {
+
+            let name = $("#apiTokenCreate").val();
 
             if (!name) {
                 toastr.error('토큰의 이름은 필수입력값입니다')
@@ -290,11 +348,16 @@
                 type: 'post',
                 dataType: 'json'
             }).complete(function (status) {
-                prompt('API 토큰이 생성되었습니다. 아래의 텍스트를 복사해주세요', status.responseJSON.token);
-                document.location.reload();
+                $("#apiTokenResult").val(status.responseJSON.token);
+                $("#apiTokenResultModal").modal();
+                $("#apiTokenCreateModal").modal('hide');
             });
 
         });
+
+        $('#apiTokenResultModal').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
 
         $(".delete-token").on('click', function () {
 
