@@ -10,7 +10,6 @@ use App\Policies\RecruitPolicy;
 use App\Policies\UserPolicy;
 use Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Laravel\Passport\Passport;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -33,7 +32,6 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Passport::routes();
 
         Gate::before(function (User $user, $ability) {
             return $user->hasRole('super-admin') ? true : null;

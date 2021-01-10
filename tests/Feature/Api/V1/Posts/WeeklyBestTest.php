@@ -27,7 +27,7 @@ class WeeklyBestTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->getJson(route('api.v1.posts.weekly-best'), ['Authorization' => 'Bearer '.$token]);
 

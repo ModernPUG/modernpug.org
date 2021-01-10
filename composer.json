@@ -21,7 +21,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "laravel/framework": "^8.3",
         "laravel/legacy-factories": "^1.0",
-        "laravel/passport": "^10.0",
+        "laravel/sanctum": "^2.8",
         "laravel/slack-notification-channel": "^2.2",
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.4",
@@ -75,6 +75,7 @@
         ],
         "test": [
             "@php artisan config:cache --env=testing",
+            "@php artisan db:wipe --env=testing",
             "@php artisan migrate --seed --env=testing",
             "./vendor/bin/phpunit",
             "@php artisan config:clear --env=testing"

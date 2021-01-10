@@ -40,7 +40,7 @@ class IndexTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->getJson(route('api.v1.posts.index', [
             'created_at' => $yesterday->format('Y-m-d'),
@@ -82,33 +82,23 @@ class IndexTest extends TestCase
         $todayPost = factory(Post::class)->create(['created_at' => $today]);
         $todayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
+
+        $posts = Post::all()->toArray();
+
+
         /**
          * @var User $user
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->getJson(route('api.v1.posts.index', [
             'created_from' => $today->format('Y-m-d'),
             'created_to' => $today->format('Y-m-d'),
         ]), ['Authorization' => 'Bearer '.$token]);
 
-        $response->assertOk()->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'title',
-                    'link',
-                    'origin_link',
-                    'description',
-                    'blog_id',
-                    'published_at',
-                    'created_at',
-                    'updated_at',
-                ],
-            ],
-        ])
+        $response->assertOk()
             ->assertJsonCount('1', 'data')
             ->assertJsonPath('data.0.created_at', $today->toJSON());
     }
@@ -134,28 +124,14 @@ class IndexTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->getJson(route('api.v1.posts.index', [
             'created_from' => $yesterday->format('Y-m-d'),
             'created_to' => $yesterday->format('Y-m-d'),
         ]), ['Authorization' => 'Bearer '.$token]);
 
-        $response->assertOk()->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'title',
-                    'link',
-                    'origin_link',
-                    'description',
-                    'blog_id',
-                    'published_at',
-                    'created_at',
-                    'updated_at',
-                ],
-            ],
-        ])
+        $response->assertOk()
             ->assertJsonCount('1', 'data')
             ->assertJsonPath('data.0.created_at', $yesterday->toJSON());
     }
@@ -179,26 +155,12 @@ class IndexTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->getJson(route('api.v1.posts.index', [
         ]), ['Authorization' => 'Bearer '.$token]);
 
-        $response->assertOk()->assertJsonStructure([
-            'data' => [
-                '*' => [
-                    'id',
-                    'title',
-                    'link',
-                    'origin_link',
-                    'description',
-                    'blog_id',
-                    'published_at',
-                    'created_at',
-                    'updated_at',
-                ],
-            ],
-        ])
+        $response->assertOk()
             ->assertJsonCount('1', 'data');
     }
 }

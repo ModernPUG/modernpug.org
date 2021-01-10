@@ -62,7 +62,6 @@ jobs:
       - run: npm run dev
 
       - run: php artisan migrate --seed
-      - run: php artisan passport:install
       - run: ./vendor/bin/phpunit
 
       # run phpunit

@@ -4,6 +4,7 @@ namespace Tests\Feature\Api\V1;
 
 use App\Models\Recruit;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -27,7 +28,7 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->get(route('api.v1.recruits.index'),
             ['Authorization' => 'Bearer '.$token]);
@@ -53,7 +54,7 @@ class RecruitTest extends TestCase
          */
         $user = factory(User::class)->create();
 
-        $token = $user->createToken('test token', ['*'])->accessToken;
+        $token = $user->createToken('test token', ['*'])->plainTextToken;
 
         $response = $this->get(route('api.v1.recruits.show', ['recruit' => $recruit->id]),
             ['Authorization' => 'Bearer '.$token]);
