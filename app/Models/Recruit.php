@@ -49,10 +49,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Recruit extends Model
 {
+    use SoftDeletes;
+
     protected $casts = [
-        'expired_at'  => 'date:Y-m-d',
+        'expired_at' => 'date:Y-m-d',
     ];
-    protected $dates = ['expired_at'];
+
+
     protected $fillable = [
         'title',
         'company_name',
@@ -72,7 +75,6 @@ class Recruit extends Model
         return self::make(['min_salary' => 3000, 'max_salary' => 8000]);
     }
 
-    use SoftDeletes;
 
     public function entry_user()
     {
