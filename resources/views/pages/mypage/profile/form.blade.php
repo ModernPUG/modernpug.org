@@ -232,6 +232,8 @@
                                             </div>
                                         @endforelse
 
+
+
                                     </div>
                                 </div>
 
@@ -287,7 +289,8 @@
                 },
                 type: 'post',
                 dataType: 'json'
-            }).done(function (result) {
+            }).complete(function (status) {
+                prompt('API 토큰이 생성되었습니다. 아래의 텍스트를 복사해주세요', status.responseJSON.token);
                 document.location.reload();
             });
 
@@ -299,7 +302,7 @@
                 url: $(this).data('url'),
                 type: 'delete',
                 dataType: 'json'
-            }).done(function (result) {
+            }).complete(function (result) {
                 document.location.reload();
             });
         });

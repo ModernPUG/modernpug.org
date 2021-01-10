@@ -17,9 +17,9 @@ class TokenController extends Controller
          */
         $user = $request->user();
 
-        $user->createToken($request->get('name'));
+        $token = $user->createToken($request->get('name'));
 
-        return response()->noContent(Response::HTTP_CREATED);
+        return response()->json(['token' => $token->plainTextToken], Response::HTTP_CREATED);
     }
 
     public function delete(Request $request, string $id)
