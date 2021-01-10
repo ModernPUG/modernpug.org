@@ -29,8 +29,6 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $comment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
  * @property-read int|null $blogs_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Client[] $clients
- * @property-read int|null $clients_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
  * @property-read int|null $emails_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -43,7 +41,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $recruits_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Passport\Token[] $tokens
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
