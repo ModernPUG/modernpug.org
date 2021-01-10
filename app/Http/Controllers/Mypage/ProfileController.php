@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Mypage;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
 use Toastr;
@@ -26,7 +27,12 @@ class ProfileController extends Controller
             $args['password'] = Hash::make($password);
         }
 
-        auth()->user()->update($args);
+        /**
+         * @var User $user
+         */
+        $user = $request->user();
+
+        $user->update($args);
 
         Toastr::success('프로필이 수정되었습니다');
 

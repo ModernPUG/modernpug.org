@@ -76,7 +76,8 @@
                                         @if(!$user->email_verified_at)
                                             <span class="text-danger" role="alert">
                                                 아직 이메일을 인증받지 않았습니다.
-                                                <a href="{{ route('verification.resend') }}" class="btn btn-warning btn-xs">
+                                                <a href="{{ route('verification.resend') }}"
+                                                   class="btn btn-warning btn-xs">
                                                     인증메일 전송
                                                 </a>
                                             </span>
@@ -205,6 +206,35 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group row">
+                                    <label class="col-md-4 col-form-label text-md-right">
+                                        API 토큰
+
+                                        <br>
+                                        <button type="button" class="btn btn-sm btn-info" id="create-token">생성</button>
+
+                                    </label>
+
+
+                                    <div class="col-md-6">
+                                        @forelse($user->tokens as $token)
+                                            <div>
+                                                이름: {{ $token->name }},
+                                                생성일 : {{ $token->created_at->format('y-m-d') }}
+                                                <div class="btn btn-sm btn-danger delete-token"
+                                                     data-id="{{ $token->id }}"
+                                                     data-url="{{ route('mypage.tokens.delete', [$token->id]) }}">삭제
+                                                </div>
+                                            </div>
+                                        @empty
+                                            <div>
+                                                생성된 API 토큰이 없습니다.
+                                            </div>
+                                        @endforelse
+
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
@@ -237,3 +267,41 @@
         </div>
     </div>
 @endsection
+
+
+@push('js')
+    <script>
+        $('#create-token').on('click', function () {
+
+            let name = prompt('토큰의 이름을 입력해주세요');
+
+            if (!name) {
+                toastr.error('토큰의 이름은 필수입력값입니다')
+                return;
+            }
+
+            $.ajax({
+                url: '{{ route('mypage.tokens.store') }}',
+                data: {
+                    name: name,
+                },
+                type: 'post',
+                dataType: 'json'
+            }).done(function (result) {
+                document.location.reload();
+            });
+
+        });
+
+        $(".delete-token").on('click', function () {
+
+            $.ajax({
+                url: $(this).data('url'),
+                type: 'delete',
+                dataType: 'json'
+            }).done(function (result) {
+                document.location.reload();
+            });
+        });
+    </script>
+@endpush

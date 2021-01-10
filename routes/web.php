@@ -21,6 +21,7 @@ use App\Http\Controllers\Mypage\DashboardController;
 use App\Http\Controllers\Mypage\PostController as MypagePostController;
 use App\Http\Controllers\Mypage\ProfileController as MypageProfileController;
 use App\Http\Controllers\Mypage\RoleController as MypageRoleController;
+use App\Http\Controllers\Mypage\TokenController as MypageTokenController;
 use App\Http\Controllers\Mypage\UserController as MypageUserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RecruitController;
@@ -47,6 +48,8 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => 'mypage', 'as' => 'mypag
         Route::resource('users', MypageUserController::class);
         Route::patch('users/{user}/restore', [MypageUserController::class, 'restore'])->name('users.restore');
         Route::resource('roles', MypageRoleController::class);
+        Route::post('tokens', [MypageTokenController::class, 'store'])->name('tokens.store');
+        Route::delete('tokens/{id}', [MypageTokenController::class, 'delete'])->name('tokens.delete');
 
         Route::resource('blogs', MypageBlogController::class);
         Route::resource('posts', MypagePostController::class);
