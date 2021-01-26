@@ -81,11 +81,6 @@ class BlogController extends Controller
 
             return redirect(route('blogs.create'));
         }
-        catch (AlreadyExistsException $exception)
-        {
-            Toastr::error($exception->getMessage());
-            return back();
-        }
         catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
