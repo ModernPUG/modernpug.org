@@ -96,6 +96,26 @@ class BlogTest extends TestCase
             ->assertRedirect(route('blogs.create'));
     }
 
+    public function testCreateDuplicateBlogByAuthorizedUser()
+    {
+        /**
+         * @var User
+         */
+        $user = factory(User::class)->create();
+
+        $this->actingAs($user)->get(route('blogs.create'))->assertOk();
+
+        /**
+         * @var Blog $blog
+         */
+        $blog = factory(Blog::class)->create(['feed_url' => self::AVAILABLE_FEED]);
+
+        $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
+            ->assertToastrHasError()
+            ->assertRedirect(route('blogs.create'));
+
+    }
+
     public function testSeeBlogRedirectToOriginUrl()
     {
         /**

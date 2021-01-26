@@ -11,9 +11,15 @@ use App\Http\Requests\Web\Blog\StoreRequest;
 use App\Http\Requests\Web\Blog\UpdateRequest;
 use App\Models\Blog;
 use App\Models\User;
+use App\Services\Blog\Exceptions\AlreadyExistsException;
 use App\Services\Blog\Rss\Exceptions\CannotConnectFeedException;
 use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 use Toastr;
 use Zend\Feed\Exception\RuntimeException;
 use Zend\Feed\Reader\Reader as ZendReader;
@@ -29,7 +35,7 @@ class BlogController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
+     * @return Application|Factory|Response|View
      */
     public function index()
     {
@@ -41,7 +47,7 @@ class BlogController extends Controller
     /**
      * Show the form for creating a new resource.
      * @param  CreateRequest  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
+     * @return Application|Factory|Response|View
      */
     public function create(CreateRequest $request)
     {
@@ -51,18 +57,22 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param  StoreRequest  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Response|Redirector
      * @throws CannotConnectFeedException
      */
     public function store(StoreRequest $request)
     {
         try {
-            $feed_url = $request->get('feed_url');
+            $feedUrl = $request->get('feed_url');
 
-            ZendReader::import($feed_url);
+            ZendReader::import($feedUrl);
+
+            if (Blog::where('feed_url', '=', $feedUrl)->exists()) {
+                throw new AlreadyExistsException();
+            }
 
             /**
-             * @var User
+             * @var User $user
              */
             $user = auth()->user();
             $user->blogs()->create($request->validated());
@@ -70,7 +80,13 @@ class BlogController extends Controller
             Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return redirect(route('blogs.create'));
-        } catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
+        }
+        catch (AlreadyExistsException $exception)
+        {
+            Toastr::error($exception->getMessage());
+            return back();
+        }
+        catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }
@@ -78,7 +94,7 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      * @param  Blog  $blog
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|Response|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function show(Blog $blog)
     {
@@ -89,7 +105,7 @@ class BlogController extends Controller
      * Show the form for editing the specified resource.
      * @param  EditRequest  $request
      * @param  Blog  $blog
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|Response|\Illuminate\View\View
+     * @return Application|Factory|Response|View
      */
     public function edit(EditRequest $request, Blog $blog)
     {
@@ -99,14 +115,14 @@ class BlogController extends Controller
     /**
      * @param  UpdateRequest  $request
      * @param  Blog  $blog
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(UpdateRequest $request, Blog $blog)
     {
         try {
-            $feed_url = $request->get('feed_url');
+            $feedUrl = $request->get('feed_url');
 
-            ZendReader::import($feed_url);
+            ZendReader::import($feedUrl);
 
             $blog->update($request->validated());
 
@@ -122,7 +138,7 @@ class BlogController extends Controller
      * Remove the specified resource from storage.
      * @param  DeleteRequest  $request
      * @param  Blog  $blog
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      * @throws Exception
      */
     public function destroy(DeleteRequest $request, Blog $blog)
@@ -137,7 +153,7 @@ class BlogController extends Controller
     /**
      * @param  RestoreRequest  $request
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function restore(RestoreRequest $request, $id)
     {

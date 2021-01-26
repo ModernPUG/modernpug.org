@@ -15,10 +15,16 @@ class TestServiceProvider extends ServiceProvider
     public function register()
     {
         TestResponse::macro('assertToastrHasSuccess', function () {
+            /**
+             * @var TestResponse $this
+             */
             return $this->assertSessionHas('toastr::notifications.0.type', 'success');
         });
 
         TestResponse::macro('assertToastrHasError', function () {
+            /**
+             * @var TestResponse $this
+             */
             return $this->assertSessionHas('toastr::notifications.0.type', 'error');
         });
     }
