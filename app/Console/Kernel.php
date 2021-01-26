@@ -5,6 +5,8 @@ namespace App\Console;
 use App\Console\Commands\CrawlFeed;
 use App\Console\Commands\CrawlReleaseNews;
 use App\Console\Commands\PostImageUpdater;
+use App\Console\Commands\PushDailyNewPosts;
+use App\Console\Commands\PushDailyNewRecruits;
 use App\Console\Commands\PushTodayReleaseNews;
 use App\Console\Commands\UpdateWeeklyBestPosts;
 use App\Console\Commands\User\UpdateGravatar;
@@ -40,6 +42,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(UpdateWeeklyBestPosts::class)->weeklyOn(1, '7:00');
         //$schedule->command(PushWeeklyBestPosts::class)->weeklyOn(1, '7:00');
         $schedule->command(PushTodayReleaseNews::class)->dailyAt('7:05');
+        $schedule->command(PushDailyNewPosts::class)->dailyAt('7:05');
+        $schedule->command(PushDailyNewRecruits::class)->dailyAt('7:05');
     }
 
     /**

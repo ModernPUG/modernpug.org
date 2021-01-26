@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
  * App\Models\Recruit
@@ -74,8 +76,29 @@ class Recruit extends Model
         return self::make(['min_salary' => 3000, 'max_salary' => 8000]);
     }
 
+    public static function getDailyPushTargets()
+    {
+        $yesterday = Carbon::yesterday();
+
+        return self::where('expired_at', '>=', Carbon::today())
+            ->whereBetween('created_at', [$yesterday->startOfDay(), $yesterday->endOfDay()])
+            ->get();
+    }
+
     public function entry_user()
     {
         return $this->belongsTo(User::class);
+    }
+
+
+    /**
+     * @return SlackAttachment
+     */
+    public function convertAttachment(): SlackAttachment
+    {
+        $attachment = new SlackAttachment();
+        $attachment->title = "[".$this->company_name."]".$this->title;
+        $attachment->action('공고보가', $this->link);
+        return $attachment;
     }
 }

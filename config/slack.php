@@ -10,4 +10,5 @@ return [
     'url' => env('SLACK_URL', ''),
     'token' => env('SLACK_INVITE_TOKEN', ''),
     'invite-channels'=>env('SLACK_INVITE_CHANNELS', ''),
+    'recruit-channel'=>env('SLACK_RECRUIT_CHANNEL', ''),
 ];
