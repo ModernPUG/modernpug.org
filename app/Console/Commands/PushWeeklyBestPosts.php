@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Services\Blog\PushWeeklyBestPosts as PushWeeklyBestPostsService;
 use Illuminate\Console\Command;
 
 class PushWeeklyBestPosts extends Command
@@ -10,7 +11,7 @@ class PushWeeklyBestPosts extends Command
      * The name and signature of the console command.
      * @var string
      */
-    protected $signature = 'posts:push-slack';
+    protected $signature = 'posts:push-weekly-best';
 
     /**
      * The console command description.
@@ -29,9 +30,9 @@ class PushWeeklyBestPosts extends Command
 
     /**
      * Execute the console command.
-     * @param \App\Services\Blog\PushWeeklyBestPosts $pushWeeklyBestPosts
+     * @param  PushWeeklyBestPostsService  $pushWeeklyBestPosts
      */
-    public function handle(\App\Services\Blog\PushWeeklyBestPosts $pushWeeklyBestPosts)
+    public function handle(PushWeeklyBestPostsService $pushWeeklyBestPosts)
     {
         $pushWeeklyBestPosts->pushSlack();
     }

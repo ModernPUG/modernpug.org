@@ -19,7 +19,7 @@ class PushDailyNewRecruits extends Command
      *
      * @var string
      */
-    protected $description = '릴리즈 뉴스 정보를 슬랙 푸시 알림을 전송합니다.';
+    protected $description = '어제 등록된 신규 채용정보를 슬랙으로 발송합니다';
 
     /**
      * Execute the console command.
