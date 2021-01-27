@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Services\ReleaseNews\PushReleaseNews;
+use App\Services\Blog\PushDailyNewPosts as PushDailyNewPostsService;
 use Illuminate\Console\Command;
 
 class PushDailyNewPosts extends Command
@@ -19,15 +19,16 @@ class PushDailyNewPosts extends Command
      *
      * @var string
      */
-    protected $description = '릴리즈 뉴스 정보를 슬랙 푸시 알림을 전송합니다.';
+    protected $description = '어제 등록된 신규 블로그 포스트를 슬랙으로 발송합니다.';
 
     /**
      * Execute the console command.
      *
-     * @param PushReleaseNews $pushReleaseNews
+     * @param  PushDailyNewPostsService  $pushDailyNewPosts
      * @return mixed
      */
-    public function handle($pushReleaseNews)
+    public function handle(PushDailyNewPostsService $pushDailyNewPosts)
     {
+        $pushDailyNewPosts->pushSlack();
     }
 }

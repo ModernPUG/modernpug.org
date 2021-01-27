@@ -93,6 +93,24 @@ class Post extends Model
         return $posts->orderBy('rank_point', 'desc')->limit($limit)->get();
     }
 
+    public static function getDailyNewPosts(array $tagNames)
+    {
+        $yesterday = Carbon::yesterday();
+
+        $posts = self::with('blog', 'preview', 'tags');
+
+        if (count($tagNames)) {
+            $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
+                $builder->whereIn('tags.name', $tagNames);
+            });
+        }
+
+        $posts->whereBetween('posts.published_at', [$yesterday->startOfDay(), $yesterday->endOfDay()]);
+
+        return $posts->get();
+
+    }
+
     public function getPublishedAtAttribute($date)
     {
         return Carbon::parse($date)->format('y-m-d');
