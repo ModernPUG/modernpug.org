@@ -90,15 +90,15 @@ class Recruit extends Model
         return $this->belongsTo(User::class);
     }
 
-
     /**
      * @return SlackAttachment
      */
     public function convertAttachment(): SlackAttachment
     {
         $attachment = new SlackAttachment();
-        $attachment->title = "[".$this->company_name."]".$this->title;
+        $attachment->title = '['.$this->company_name.']'.$this->title;
         $attachment->action('공고보가', $this->link);
+
         return $attachment;
     }
 }
