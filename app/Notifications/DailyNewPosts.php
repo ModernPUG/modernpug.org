@@ -41,7 +41,7 @@ class DailyNewPosts extends Notification
     public function toSlack($notification)
     {
         $message = new SlackMessage();
-        $message->to('#general');
+        $message->to(config('slack.post-channel'));
         $message->content('Modern PUG 오늘의 신규글입니다');
         $message->from('ModernPUG');
         $image = url('/img/logo/logo-slack.png');
