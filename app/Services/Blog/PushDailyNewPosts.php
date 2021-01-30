@@ -10,14 +10,12 @@ use Illuminate\Support\Facades\Notification;
 
 class PushDailyNewPosts
 {
-
     public function pushSlack()
     {
         $newPosts = $this->getTargetPosts();
         if (! $newPosts->count()) {
             return;
         }
-
 
         Notification::route('slack', config('laravel-slack.slack_webhook_url'))
             ->notify(new DailyNewPosts($newPosts));

@@ -113,7 +113,6 @@ class BlogTest extends TestCase
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
             ->assertToastrHasError()
             ->assertRedirect(route('blogs.create'));
-
     }
 
     public function testSeeBlogRedirectToOriginUrl()
