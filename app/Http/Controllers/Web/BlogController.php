@@ -80,8 +80,7 @@ class BlogController extends Controller
             Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return redirect(route('blogs.create'));
-        }
-        catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
+        } catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }

@@ -108,7 +108,6 @@ class Post extends Model
         $posts->whereBetween('posts.published_at', [$yesterday->startOfDay(), $yesterday->endOfDay()]);
 
         return $posts->get();
-
     }
 
     public function getPublishedAtAttribute($date)
