@@ -75,10 +75,10 @@
             "@php artisan package:discover --ansi"
         ],
         "test": [
-            "@php artisan config:cache --env=testing",
+            "@php artisan optimize --env=testing",
             "@php artisan db:wipe --env=testing",
             "@php artisan migrate --seed --env=testing",
-            "./vendor/bin/phpunit",
+            "@php artisan test --env=testing",
             "@php artisan config:clear --env=testing"
         ],
         "rebuild": [
