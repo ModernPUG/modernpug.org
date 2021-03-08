@@ -32,20 +32,13 @@ class PostController extends Controller
     {
         $managedTags = Tag::getAllPrimaryTags();
 
-        $weeklyDay = 300;
-        $weeklyBestByTag = [];
-        $weeklyBestByTag['All'] = Post::getLastBestPosts($weeklyDay, 5, Tag::getAllManagedTags());
-        foreach ($managedTags as $tag) {
-            $weeklyBestByTag[$tag] = Post::getLastBestPosts($weeklyDay, 5, Tag::MANAGED_TAGS[$tag]);
-        }
-
         $latestPostsByTag = [];
-        $latestPostsByTag['All'] = Post::getLatestPosts(5);
+        $latestPostsByTag['All'] = Post::getLatestPosts(10);
         foreach ($managedTags as $tag) {
-            $latestPostsByTag[$tag] = Post::getLatestPosts(5, Tag::MANAGED_TAGS[$tag]);
+            $latestPostsByTag[$tag] = Post::getLatestPosts(10, Tag::MANAGED_TAGS[$tag]);
         }
 
-        return view('pages.posts.index', compact('weeklyBestByTag', 'latestPostsByTag'));
+        return view('pages.posts.index', compact('latestPostsByTag'));
     }
 
     /**

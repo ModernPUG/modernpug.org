@@ -49,29 +49,8 @@
             <div class="row justify-content-center">
                 <!-- ============= Post Content Area Start ============= -->
                 <div class="col-12 col-lg-8">
-                    <div class="post-content-area mb-100">
-                        <!-- category Area -->
-                        <div class="world-category-area">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="title">Weekly Best</li>
-
-                                @foreach($weeklyBestByTag as $tag => $posts)
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ $loop->first?"active":"" }}" id="weekly-best-tab-title-{{ $tag }}" data-toggle="tab"
-                                           href="#weekly-best-tab-body-{{ $tag }}" role="tab" aria-controls="weekly-best-tab-body-{{ $tag }}" aria-selected="false">{{ $tag }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
-
-                            <div class="tab-content" id="myTabContent">
 
 
-                                @foreach($weeklyBestByTag as $tag => $posts)
-                                    @include('pages.posts.partials.tab-body',['tabName'=>'weekly-best-tab-body','tag'=>$tag,'posts'=>$weeklyBestByTag[$tag],'active'=>$loop->first])
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
                     <div class="post-content-area mb-100">
                         <!-- category Area -->
                         <div class="world-category-area">
