@@ -28,6 +28,5 @@ class PushWeeklyBestPosts
         $weeklyBest = WeeklyBest::latest()->first();
 
         return $weeklyBest->posts;
-
     }
 }
