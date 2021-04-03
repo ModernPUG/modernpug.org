@@ -160,6 +160,11 @@
 <!-- Active js -->
 <script src="/vendor/world/js/active.js"></script>
 <script src="{{ mix('js/custom.js') }}"></script>
+@env(['local','testing'])
+    <script src="https://cdn.jsdelivr.net/gh/underground-works/clockwork-browser@1/dist/toolbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/underground-works/clockwork-browser@1/dist/metrics.js"></script>
+@endenv
+
 @include('common.toastr')
 
 @yield('js')

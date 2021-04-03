@@ -2,13 +2,24 @@
 
 namespace Tests;
 
+use Clockwork\Support\Laravel\Tests\UsesClockwork;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Mockery\MockInterface;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+    use UsesClockwork;
 
-    protected function mockArrayIterator(\Mockery\MockInterface $mock, array $items)
+    protected function setUp(): void
+    {
+        parent::setUp();
+        if (config('clockwork.tests.collect')) {
+            $this->setUpClockwork();
+        }
+    }
+
+    protected function mockArrayIterator(MockInterface $mock, array $items)
     {
         if ($mock instanceof \ArrayAccess) {
             foreach ($items as $key => $val) {

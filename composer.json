@@ -43,6 +43,7 @@
         "codedungeon/phpunit-result-printer": "^0.28.0",
         "filp/whoops": "^2.4",
         "fzaninotto/faker": "^1.9",
+        "itsgoingd/clockwork": "^5.0",
         "mockery/mockery": "^1.2"
     },
     "autoload": {
