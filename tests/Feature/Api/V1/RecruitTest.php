@@ -24,8 +24,8 @@ class RecruitTest extends TestCase
         $notExpiredCount = 5;
         $expiredCount = 1;
 
-        factory(Recruit::class, $notExpiredCount)->create(['expired_at' => now()->addDays(10)]);
-        factory(Recruit::class, $expiredCount)->create(['expired_at' => now()->days(-1)]);
+        Recruit::factory()->count($notExpiredCount)->create(['expired_at' => now()->addDays(10)]);
+        Recruit::factory()->count($expiredCount)->create(['expired_at' => now()->days(-1)]);
 
         /**
          * @var User $user
