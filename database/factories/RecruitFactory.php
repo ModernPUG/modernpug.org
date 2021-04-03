@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Recruit;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RecruitFactory extends Factory
@@ -30,7 +31,7 @@ class RecruitFactory extends Factory
             'title' => $this->faker->sentence,
             'company_name' => $this->faker->company,
             'description' => $this->faker->paragraph,
-            'skills' => implode(',', $this->faker->words(random_int(1, 5))),
+            'skills' => implode(',', $this->faker->randomElements(Tag::getAllManagedTags(), random_int(1, 5))),
             'link' => $this->faker->url,
             'image_url' => $this->faker->imageUrl(),
             'address' => $this->faker->address,
