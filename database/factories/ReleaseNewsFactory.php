@@ -27,7 +27,7 @@ class ReleaseNewsFactory extends Factory
             'site_url' => \App\Models\ReleaseNews::SUPPORT_RELEASES[$randomType]['site_url'],
             'type' => $randomType,
             'version' => $this->faker->randomNumber(),
-            'released_at' => $this->faker->dateTime,
+            'released_at' => $this->faker->dateTimeBetween('-1 month'),
         ];
     }
 }

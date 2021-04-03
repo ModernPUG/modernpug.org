@@ -83,9 +83,7 @@
         "rebuild": [
             "@php artisan migrate:fresh --ansi",
             "@php artisan db:seed --ansi",
-            "@php artisan feed:crawl --ansi",
-            "@php artisan release-news:crawl --ansi",
-            "@php artisan image:update --ansi"
+            "@php artisan ide-helper:model -WR --ansi"
         ]
     },
     "config": {

@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
 /**
- * App\Models\User.
+ * App\Models\User
  *
  * @property int $id
  * @property string $name
@@ -28,23 +28,22 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $twitter_url
  * @property string|null $homepage_url
  * @property string|null $comment
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
- * @property int|null $blogs_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
- * @property int|null $emails_count
- * @property \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property int|null $notifications_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\OauthIdentity[] $oauth_identities
- * @property int|null $oauth_identities_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
- * @property int|null $permissions_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Recruit[] $recruits
- * @property int|null $recruits_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
- * @property int|null $roles_count
- * @property \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
- * @property int|null $tokens_count
- *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
+ * @property-read int|null $blogs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
+ * @property-read int|null $emails_count
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OauthIdentity[] $oauth_identities
+ * @property-read int|null $oauth_identities_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Recruit[] $recruits
+ * @property-read int|null $recruits_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
+ * @property-read int|null $roles_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
+ * @property-read int|null $tokens_count
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()

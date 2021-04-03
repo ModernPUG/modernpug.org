@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 /**
- * App\Models\Viewcount.
+ * App\Models\Viewcount
  *
- * @property int                             $id
- * @property int                             $post_id
- * @property string                          $ip
+ * @property int $id
+ * @property int $post_id
+ * @property string $ip
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount query()

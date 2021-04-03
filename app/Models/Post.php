@@ -11,24 +11,23 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
- * App\Models\Post.
+ * App\Models\Post
  *
- * @property int                                                              $id
- * @property string                                                           $title
- * @property string                                                           $link
- * @property string                                                           $description
- * @property int                                                              $blog_id
- * @property \Illuminate\Support\Carbon                                       $published_at
- * @property \Illuminate\Support\Carbon|null                                  $created_at
- * @property \Illuminate\Support\Carbon|null                                  $updated_at
- * @property \Illuminate\Support\Carbon|null                                  $deleted_at
- * @property \App\Models\Blog                                                 $blog
- * @property \App\Models\Preview                                              $preview
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[]       $tags
- * @property int|null                                                         $tags_count
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Viewcount[] $viewcount
- * @property int|null                                                         $viewcount_count
- *
+ * @property int $id
+ * @property string $title
+ * @property string $link
+ * @property string $description
+ * @property int $blog_id
+ * @property \Illuminate\Support\Carbon $published_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \App\Models\Blog $blog
+ * @property-read \App\Models\Preview $preview
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Tag[] $tags
+ * @property-read int|null $tags_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Viewcount[] $viewcount
+ * @property-read int|null $viewcount_count
  * @method static Builder|Post newModelQuery()
  * @method static Builder|Post newQuery()
  * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()

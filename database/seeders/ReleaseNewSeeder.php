@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog;
+use App\Models\ReleaseNews;
 use Illuminate\Database\Seeder;
 
-class BlogSeeder extends Seeder
+class ReleaseNewSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-
         if (app()->environment('local')) {
-            Blog::factory()->count(random_int(5, 20))->create();
+
+            ReleaseNews::factory()->count(random_int(10, 20))->create();
         }
     }
 }

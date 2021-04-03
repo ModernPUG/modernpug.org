@@ -9,25 +9,24 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
- * App\Models\Recruit.
+ * App\Models\Recruit
  *
- * @property int                             $id
- * @property string                          $title
- * @property string                          $company_name
- * @property string                          $description
- * @property string                          $skills
- * @property string                          $link
- * @property string|null                     $image_url
- * @property string                          $address
- * @property int|null                        $min_salary
- * @property int|null                        $max_salary
- * @property mixed                           $expired_at
- * @property int                             $entry_user_id
+ * @property int $id
+ * @property string $title
+ * @property string $company_name
+ * @property string $description
+ * @property string $skills
+ * @property string $link
+ * @property string|null $image_url
+ * @property string $address
+ * @property int|null $min_salary
+ * @property int|null $max_salary
+ * @property mixed $expired_at
+ * @property int $entry_user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \App\Models\User                $entry_user
- *
+ * @property-read \App\Models\User $entry_user
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newQuery()
  * @method static \Illuminate\Database\Query\Builder|Recruit onlyTrashed()

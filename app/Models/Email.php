@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Email.
+ * App\Models\Email
  *
- * @property int                             $id
- * @property int                             $user_id
- * @property int                             $is_primary
- * @property string                          $email
+ * @property int $id
+ * @property int $user_id
+ * @property int $is_primary
+ * @property string $email
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property \App\Models\User                $user
- *
+ * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|Email newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Email newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Email query()

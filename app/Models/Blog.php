@@ -8,27 +8,26 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * App\Models\Blog.
+ * App\Models\Blog
  *
- * @property int                                                         $id
- * @property string|null                                                 $title
- * @property string                                                      $feed_url
- * @property string|null                                                 $site_url
- * @property string|null                                                 $description
- * @property string|null                                                 $image_url
- * @property int|null                                                    $owner_id
- * @property string|null                                                 $comment
- * @property \Illuminate\Support\Carbon|null                             $created_at
- * @property \Illuminate\Support\Carbon|null                             $updated_at
- * @property \Illuminate\Support\Carbon|null                             $deleted_at
- * @property \Illuminate\Support\Carbon|null                             $crawled_at
- * @property int                                                         $crawling_fail_count
- * @property \Illuminate\Support\Carbon|null                             $last_crawling_failed_at
- * @property int                                                         $ignore_crawling
- * @property \App\Models\User|null                                       $owner
- * @property \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
- * @property int|null                                                    $posts_count
- *
+ * @property int $id
+ * @property string|null $title
+ * @property string $feed_url
+ * @property string|null $site_url
+ * @property string|null $description
+ * @property string|null $image_url
+ * @property int|null $owner_id
+ * @property string|null $comment
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $crawled_at
+ * @property int $crawling_fail_count
+ * @property \Illuminate\Support\Carbon|null $last_crawling_failed_at
+ * @property int $ignore_crawling
+ * @property-read \App\Models\User|null $owner
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
+ * @property-read int|null $posts_count
  * @method static Builder|Blog crawledBlog()
  * @method static Builder|Blog newModelQuery()
  * @method static Builder|Blog newQuery()

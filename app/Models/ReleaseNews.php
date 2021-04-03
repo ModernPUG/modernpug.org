@@ -8,16 +8,15 @@ use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Support\Facades\DB;
 
 /**
- * App\Models\ReleaseNews.
+ * App\Models\ReleaseNews
  *
- * @property int                             $id
- * @property string                          $site_url    웹 사이트의 주소
- * @property string                          $type        release type (Laravel, PHP, CI)
- * @property string                          $version     release version
+ * @property int $id
+ * @property string $site_url 웹 사이트의 주소
+ * @property string $type release type (Laravel, PHP, CI)
+ * @property string $version release version
  * @property \Illuminate\Support\Carbon|null $released_at 출시일
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- *
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews query()
@@ -34,7 +33,7 @@ class ReleaseNews extends Model
 {
     use HasFactory;
 
-    const SUPPORT_RELEASES = [
+    public const SUPPORT_RELEASES = [
         'PHP' => [
             'site_url' => 'https://www.php.net/ChangeLog-7.php',
             'version' => '#layout-content > section > h3',

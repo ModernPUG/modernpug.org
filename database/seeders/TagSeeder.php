@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
-class BlogSeeder extends Seeder
+class TagSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,10 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-
         if (app()->environment('local')) {
-            Blog::factory()->count(random_int(5, 20))->create();
+            foreach (Tag::getAllManagedTags() as $tagName) {
+                Tag::create(['name' => $tagName]);
+            }
         }
     }
 }

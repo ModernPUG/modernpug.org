@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'title' => $this->faker->sentence,
             'link' => $this->faker->url,
             'description' => $this->faker->paragraph,
-            'published_at' => $this->faker->dateTime,
+            'published_at' => $this->faker->dateTimeBetween('-1 month'),
             'blog_id' => Blog::factory(),
         ];
     }
