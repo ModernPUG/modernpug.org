@@ -35,7 +35,8 @@ class PostController extends Controller
         $latestPostsByTag = [];
         $latestPostsByTag['All'] = Post::getLatestPosts(10);
         foreach ($managedTags as $tag) {
-            $latestPostsByTag[$tag] = Post::getLatestPosts(10, Tag::MANAGED_TAGS[$tag]);
+            $latestPostsByTag[$tag] = Post::getLatestPosts(10, Tag::MANAGED_TAGS[$tag])
+                ->load('preview','blog');
         }
 
         return view('pages.posts.index', compact('latestPostsByTag'));

@@ -23,9 +23,9 @@ class HomeController extends Controller
         /**
          * @var WeeklyBest $latestWeeklyBest
          */
-        $latestWeeklyBest = WeeklyBest::latest()->firstOrNew();
+        $latestWeeklyBest = WeeklyBest::with('posts.preview','posts.blog')->latest()->firstOrNew();
 
-        $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags());
+        $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags())->load('preview','blog');
 
         return view('pages.home.index', compact('latestWeeklyBest', 'latestPosts'));
     }

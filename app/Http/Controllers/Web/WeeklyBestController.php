@@ -29,7 +29,7 @@ class WeeklyBestController extends Controller
                 return $builder->where('year', $request->year);
             })->when($request->week_no, function (Builder $builder) use ($request) {
                 return $builder->where('week_no', $request->week_no);
-            })->first() ?? new WeeklyBest();
+            })->first()->load('posts.preview', 'posts.blog', 'posts.tags') ?? new WeeklyBest();
         }
 
         return view('pages.posts.weekly', compact('weeklyBests', 'weeklyBest'));
