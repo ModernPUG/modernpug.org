@@ -1,14 +1,31 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use App\Models\OauthIdentity;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\OauthIdentity::class, function (Faker $faker) {
-    return [
-        'user_id' => factory(\App\Models\User::class),
-        'provider_user_id' => $faker->uuid,
-        'provider' => $faker->randomElement(\App\Models\OauthIdentity::SUPPORT_PROVIDER),
-        'access_token' => $faker->uuid,
-    ];
-});
+class OauthIdentityFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = OauthIdentity::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'user_id' => \App\Models\User::factory(),
+            'provider_user_id' => $this->faker->uuid,
+            'provider' => $this->faker->randomElement(\App\Models\OauthIdentity::SUPPORT_PROVIDER),
+            'access_token' => $this->faker->uuid,
+        ];
+    }
+}

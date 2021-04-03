@@ -3,17 +3,19 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 /**
- * App\Models\Viewcount
+ * App\Models\Viewcount.
  *
- * @property int $id
- * @property int $post_id
- * @property string $ip
+ * @property int                             $id
+ * @property int                             $post_id
+ * @property string                          $ip
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount query()
@@ -26,6 +28,8 @@ use Illuminate\Http\Request;
  */
 class Viewcount extends Model
 {
+    use HasFactory;
+
     protected $table = 'viewcount';
     protected $fillable = ['post_id', 'ip'];
 
@@ -34,7 +38,7 @@ class Viewcount extends Model
         $viewCount = self::whereDate('created_at', Carbon::today())
             ->where('post_id', $post->id)->where('ip', $request->ip())->get();
 
-        if (! $viewCount->count()) {
+        if (!$viewCount->count()) {
             self::create(['post_id' => $post->id, 'ip' => $request->ip()]);
         }
     }

@@ -1,16 +1,31 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\WeeklyBestPost;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(WeeklyBestPost::class, function (Faker $faker) {
-    return [
+class WeeklyBestPostFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = WeeklyBestPost::class;
 
-        'weekly_best_id' => factory(\App\Models\WeeklyBest::class),
-        'post_id' => factory(\App\Models\Post::class),
-        'point' => $faker->randomNumber(),
-        'rank' => $faker->numberBetween(1, 10),
-    ];
-});
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'weekly_best_id' => \App\Models\WeeklyBest::factory(),
+            'post_id' => \App\Models\Post::factory(),
+            'point' => $this->faker->randomNumber(),
+            'rank' => $this->faker->numberBetween(1, 10),
+        ];
+    }
+}

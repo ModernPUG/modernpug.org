@@ -20,32 +20,30 @@ class BlogTest extends TestCase
 
     public function testCantSeeBlogByNonOwner()
     {
-
         /**
          * @var User $user
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
 
         $this->actingAs($nonOwner)->get(route('mypage.blogs.index'))->assertOk()->assertDontSee($blog->title);
     }
 
     public function testCanSeeBlogByOwner()
     {
-
         /**
          * @var User $user
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog = Blog::factory()->create(['owner_id' => $owner]);
 
         $this->actingAs($owner)->get(route('mypage.blogs.index'))->assertOk()->assertSee($blog->title);
     }

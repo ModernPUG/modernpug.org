@@ -16,7 +16,7 @@ class RecruitTest extends TestCase
     {
         $this->get(route('recruits.index'))->assertOk();
 
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::parse('+10 days')]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::parse('+10 days')]);
 
         $this->get(route('recruits.index'))
             ->assertSee($recruit->title)
@@ -27,7 +27,7 @@ class RecruitTest extends TestCase
     {
         $this->get(route('recruits.index'))->assertOk();
 
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::parse('-10 days')]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::parse('-10 days')]);
 
         $this->get(route('recruits.index'))
             ->assertDontSee($recruit->title)
@@ -44,7 +44,7 @@ class RecruitTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create(['email_verified_at' => null]);
+        $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)->get(route('recruits.create'))->assertRedirect('/email/verify');
         $this->actingAs($user)->post(route('recruits.store'))->assertRedirect('/email/verify');
@@ -52,11 +52,10 @@ class RecruitTest extends TestCase
 
     public function testCantCreateRecruitWithEmptyRequestByAuthorizedUser()
     {
-
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('recruits.create'))->assertOk();
 
@@ -67,18 +66,17 @@ class RecruitTest extends TestCase
 
     public function testCantCreateExpiredRecruitByAuthorizedUser()
     {
-
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('recruits.create'))->assertOk();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->make(['entry_user_id' => null]);
+        $recruit = Recruit::factory()->make(['entry_user_id' => null]);
         $recruit->expired_at = Carbon::parse('-10 days')->format('Y-m-d');
 
         $this->actingAs($user)->post(route('recruits.store'), $recruit->toArray())
@@ -90,18 +88,17 @@ class RecruitTest extends TestCase
 
     public function testCanCreateValidRecruitByAuthorizedUser()
     {
-
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('recruits.create'))->assertOk();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->make(['entry_user_id' => null]);
+        $recruit = Recruit::factory()->make(['entry_user_id' => null]);
 
         $recruit->expired_at = Carbon::parse('+10 days')->format('Y-m-d');
 
@@ -114,16 +111,15 @@ class RecruitTest extends TestCase
 
     public function testCantUpdateRecruitByNonOwner()
     {
-
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
         $recruit->expired_at = Carbon::yesterday()->format('Y-m-d');
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
@@ -143,16 +139,15 @@ class RecruitTest extends TestCase
 
     public function testUpdateRecruitByOwner()
     {
-
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Recruit $recruit
          */
-        $recruit = factory(Recruit::class)->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
         $recruit->expired_at = Carbon::yesterday()->format('Y-m-d');
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
@@ -169,17 +164,16 @@ class RecruitTest extends TestCase
 
     public function testUpdateRecruitByNonOwnerWithPermission()
     {
-
         /**
          * @var User
          */
-        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission = User::factory()->create();
         $nonOwnerWithPermission->givePermissionTo('recruit-edit');
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
         $recruit->expired_at = Carbon::yesterday()->format('Y-m-d');
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
@@ -196,16 +190,15 @@ class RecruitTest extends TestCase
 
     public function testCantDeleteRecruitByNonOwner()
     {
-
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
@@ -218,16 +211,15 @@ class RecruitTest extends TestCase
 
     public function testCanDeleteRecruitByOwner()
     {
-
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
@@ -240,17 +232,16 @@ class RecruitTest extends TestCase
 
     public function testCanDeleteRecruitByNonOwnerWithPermission()
     {
-
         /**
          * @var User
          */
-        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission = User::factory()->create();
         $nonOwnerWithPermission->givePermissionTo('recruit-delete');
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
 
         $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
 
@@ -263,16 +254,15 @@ class RecruitTest extends TestCase
 
     public function testCantRestoreRecruitByNonOwner()
     {
-
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
         $recruit->delete();
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
@@ -286,16 +276,15 @@ class RecruitTest extends TestCase
 
     public function testCanRestoreRecruitByOwner()
     {
-
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['entry_user_id'=>$owner, 'expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
         $recruit->delete();
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
@@ -309,17 +298,16 @@ class RecruitTest extends TestCase
 
     public function testCanRestoreRecruitByNonOwnerWithPermission()
     {
-
         /**
          * @var User
          */
-        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission = User::factory()->create();
         $nonOwnerWithPermission->givePermissionTo('recruit-restore');
 
         /**
          * @var Recruit
          */
-        $recruit = factory(Recruit::class)->create(['expired_at' => Carbon::tomorrow()]);
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
         $recruit->delete();
 
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);

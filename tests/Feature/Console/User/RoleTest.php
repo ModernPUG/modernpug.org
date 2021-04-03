@@ -13,11 +13,10 @@ class RoleTest extends TestCase
 
     public function testAssignRole()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $role = Role::firstOrFail();
 
@@ -36,11 +35,10 @@ class RoleTest extends TestCase
 
     public function testRemoveRole()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $role = Role::firstOrFail();
 

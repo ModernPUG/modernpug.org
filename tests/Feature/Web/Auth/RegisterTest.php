@@ -62,7 +62,7 @@ class RegisterTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $this->post(route('register'), [
             'email' => $user->email,

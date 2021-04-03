@@ -13,11 +13,10 @@ class ResetPasswordTest extends TestCase
 
     public function testSeeResetFormWithInvalidToken()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = app('auth.password.broker')->createToken($user);
 
@@ -28,11 +27,10 @@ class ResetPasswordTest extends TestCase
 
     public function testSubmitInvalidReCaptcha()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = app('auth.password.broker')->createToken($user);
 
@@ -53,12 +51,12 @@ class ResetPasswordTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         /**
          * @var User $anotherUser
          */
-        $anotherUser = factory(User::class)->create();
+        $anotherUser = User::factory()->create();
 
         $token = app('auth.password.broker')->createToken($user);
 
@@ -78,7 +76,7 @@ class ResetPasswordTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = app('auth.password.broker')->createToken($user);
 

@@ -1,26 +1,43 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use Faker\Generator as Faker;
+use App\Models\Recruit;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Recruit::class, function (Faker $faker) {
-    $minSalary = $faker->numberBetween(5, 10);
-    $maxSalary = $faker->numberBetween(1, 5);
+class RecruitFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Recruit::class;
 
-    $salary = 500;
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $minSalary = $this->faker->numberBetween(5, 10);
+        $maxSalary = $this->faker->numberBetween(1, 5);
 
-    return [
-        'title' => $faker->sentence,
-        'company_name' => $faker->company,
-        'description' => $faker->paragraph,
-        'skills' => implode(',', $faker->words(random_int(1, 5))),
-        'link' => $faker->url,
-        'image_url' => $faker->imageUrl(),
-        'address' => $faker->address,
-        'min_salary' => $minSalary * $salary,
-        'max_salary' => ($minSalary + $maxSalary) * $salary,
-        'expired_at' => $faker->dateTimeInInterval('-1 months', '+2 months'),
-        'entry_user_id' => factory(\App\Models\User::class),
-    ];
-});
+        $salary = 500;
+
+        return [
+            'title' => $this->faker->sentence,
+            'company_name' => $this->faker->company,
+            'description' => $this->faker->paragraph,
+            'skills' => implode(',', $this->faker->words(random_int(1, 5))),
+            'link' => $this->faker->url,
+            'image_url' => $this->faker->imageUrl(),
+            'address' => $this->faker->address,
+            'min_salary' => $minSalary * $salary,
+            'max_salary' => ($minSalary + $maxSalary) * $salary,
+            'expired_at' => $this->faker->dateTimeInInterval('-1 months', '+2 months'),
+            'entry_user_id' => \App\Models\User::factory(),
+        ];
+    }
+}

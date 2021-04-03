@@ -22,11 +22,10 @@ class PostTest extends TestCase
 
     public function testIfSeePostIncreaseViewCountAndRedirectOriginLink()
     {
-
         /**
          * @var Post $post
          */
-        $post = factory(Post::class)->create();
+        $post = Post::factory()->create();
 
         $this->assertCount(0, $post->viewcount);
 

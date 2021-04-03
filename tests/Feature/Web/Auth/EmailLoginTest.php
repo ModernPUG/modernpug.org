@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Validators\ReCaptcha;
 use Hash;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class EmailLoginTest extends TestCase
@@ -14,6 +15,7 @@ class EmailLoginTest extends TestCase
 
     public function testSeeLoginForm()
     {
+        UploadedFile::fake()->image('sdf');
         $this->get(route('login'))->assertOk();
     }
 
@@ -48,7 +50,7 @@ class EmailLoginTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create(['password' => Hash::make($password)]);
+        $user = User::factory()->create(['password' => Hash::make($password)]);
 
         $this->post(route('login'), [
             'email' => $user->email,
@@ -73,7 +75,7 @@ class EmailLoginTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create(['password' => Hash::make($password)]);
+        $user = User::factory()->create(['password' => Hash::make($password)]);
 
         $this->post(route('login'), [
             'email' => $user->email,

@@ -1,13 +1,29 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\WeeklyBest;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(WeeklyBest::class, function (Faker $faker) {
-    return [
-        'year' => $faker->year(),
-        'week_no' => $faker->numberBetween(1, 52),
-    ];
-});
+class WeeklyBestFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = WeeklyBest::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'year' => $this->faker->year(),
+            'week_no' => $this->faker->numberBetween(1, 52),
+        ];
+    }
+}

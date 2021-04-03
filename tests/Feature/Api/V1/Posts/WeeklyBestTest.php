@@ -20,12 +20,12 @@ class WeeklyBestTest extends TestCase
 
     public function testGetAllWeeklyBestInformationWithAuthorization()
     {
-        factory(WeeklyBestPost::class)->create();
+        WeeklyBestPost::factory()->create();
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 

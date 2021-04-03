@@ -19,11 +19,10 @@ class DashboardTest extends TestCase
 
     public function testEmailNotVerifiedUserRedirectToEmailVerify()
     {
-
         /**
          * @var User
          */
-        $user = factory(User::class)->create(['email_verified_at' => null]);
+        $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)->get(route('mypage.dashboard.index'))
             ->assertRedirect('/email/verify');
@@ -31,15 +30,14 @@ class DashboardTest extends TestCase
 
     public function testUserCanOnlySeeOwnedBlog()
     {
-
         /**
          * @var User
          * @var Blog $ownedBlog
          * @var Blog $nonOwnedBlog
          */
-        $owner = factory(User::class)->create();
-        $ownedBlog = factory(Blog::class)->create(['owner_id' => $owner->id]);
-        $nonOwnedBlog = factory(Blog::class)->create();
+        $owner = User::factory()->create();
+        $ownedBlog = Blog::factory()->create(['owner_id' => $owner->id]);
+        $nonOwnedBlog = Blog::factory()->create();
 
         $this->actingAs($owner)->get(route('mypage.dashboard.index'))
             ->assertSee($ownedBlog->title)

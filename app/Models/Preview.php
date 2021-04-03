@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Preview
+ * App\Models\Preview.
  *
- * @property int $id
- * @property int $post_id
- * @property string $image_url
+ * @property int                             $id
+ * @property int                             $post_id
+ * @property string                          $image_url
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Post $post
+ * @property \App\Models\Post                $post
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Preview newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Preview newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Preview query()
@@ -25,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Preview extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['post_id', 'image_url'];
 
     public function post()

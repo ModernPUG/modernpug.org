@@ -18,11 +18,10 @@ class RoleTest extends TestCase
 
     public function testEmailNotVerifiedUserRedirectToEmailVerify()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create(['email_verified_at' => null]);
+        $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)->get(route('mypage.roles.index'))
             ->assertRedirect('/email/verify');
@@ -30,11 +29,10 @@ class RoleTest extends TestCase
 
     public function testCantAccessNotPermittedUser()
     {
-
         /**
          * @var User $owner
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('mypage.roles.index'))
             ->assertToastrHasError()
@@ -43,11 +41,10 @@ class RoleTest extends TestCase
 
     public function testCanAccessPermittedUser()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('role-list');
 
         $this->actingAs($user)->get(route('mypage.roles.index'))

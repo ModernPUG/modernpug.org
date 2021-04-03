@@ -36,7 +36,7 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create(['email_verified_at' => null]);
+        $user = User::factory()->create(['email_verified_at' => null]);
 
         $this->actingAs($user)->get(route('blogs.create'))->assertRedirect('/email/verify');
         $this->actingAs($user)->post(route('blogs.store'))->assertRedirect('/email/verify');
@@ -47,7 +47,7 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('blogs.create'))->assertOk();
 
@@ -61,14 +61,14 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('blogs.create'))->assertOk();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->make(['owner_id' => null]);
+        $blog = Blog::factory()->make(['owner_id' => null]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
             ->assertToastrHasError()
@@ -82,14 +82,14 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('blogs.create'))->assertOk();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->make(['feed_url' => self::AVAILABLE_FEED]);
+        $blog = Blog::factory()->make(['feed_url' => self::AVAILABLE_FEED]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
             ->assertToastrHasSuccess()
@@ -101,14 +101,14 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('blogs.create'))->assertOk();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['feed_url' => self::AVAILABLE_FEED]);
+        $blog = Blog::factory()->create(['feed_url' => self::AVAILABLE_FEED]);
 
         $this->actingAs($user)->post(route('blogs.store'), $blog->toArray())
             ->assertToastrHasError()
@@ -120,7 +120,7 @@ class BlogTest extends TestCase
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => null]);
+        $blog = Blog::factory()->create(['owner_id' => null]);
 
         $this->get(route('blogs.show', [$blog->id]))
             ->assertRedirect($blog->site_url);
@@ -131,12 +131,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
@@ -165,12 +165,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog = Blog::factory()->create(['owner_id' => $owner]);
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
@@ -200,12 +200,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
@@ -221,12 +221,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog = Blog::factory()->create(['owner_id' => $owner]);
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
@@ -242,13 +242,13 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission = User::factory()->create();
         $nonOwnerWithPermission->givePermissionTo('blog-delete');
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
@@ -264,12 +264,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
         $blog->delete();
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -286,12 +286,12 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog = Blog::factory()->create(['owner_id' => $owner]);
         $blog->delete();
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);
@@ -308,13 +308,13 @@ class BlogTest extends TestCase
         /**
          * @var User
          */
-        $nonOwnerWithPermission = factory(User::class)->create();
+        $nonOwnerWithPermission = User::factory()->create();
         $nonOwnerWithPermission->givePermissionTo('blog-restore');
 
         /**
          * @var Blog $blog
          */
-        $blog = factory(Blog::class)->create();
+        $blog = Blog::factory()->create();
         $blog->delete();
 
         $this->get(route('blogs.index'))->assertOk()->assertDontSee($blog->title);

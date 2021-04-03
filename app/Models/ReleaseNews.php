@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Messages\SlackAttachment;
 use Illuminate\Support\Facades\DB;
 
 /**
- * App\Models\ReleaseNews
+ * App\Models\ReleaseNews.
  *
- * @property int $id
- * @property string $site_url 웹 사이트의 주소
- * @property string $type release type (Laravel, PHP, CI)
- * @property string $version release version
+ * @property int                             $id
+ * @property string                          $site_url    웹 사이트의 주소
+ * @property string                          $type        release type (Laravel, PHP, CI)
+ * @property string                          $version     release version
  * @property \Illuminate\Support\Carbon|null $released_at 출시일
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews query()
@@ -30,59 +32,61 @@ use Illuminate\Support\Facades\DB;
  */
 class ReleaseNews extends Model
 {
+    use HasFactory;
+
     const SUPPORT_RELEASES = [
         'PHP' => [
-            'site_url'  => 'https://www.php.net/ChangeLog-7.php',
-            'version'   => '#layout-content > section > h3',
-            'date'      => '#layout-content > section > b > time',
-            'post'      => [
-                'url'       => 'https://www.php.net/ChangeLog-7.php#',
-                'before'    => '',
-                'after'     => '',
-                'end'       => '',
+            'site_url' => 'https://www.php.net/ChangeLog-7.php',
+            'version' => '#layout-content > section > h3',
+            'date' => '#layout-content > section > b > time',
+            'post' => [
+                'url' => 'https://www.php.net/ChangeLog-7.php#',
+                'before' => '',
+                'after' => '',
+                'end' => '',
             ],
         ],
         'Laravel' => [
-            'site_url'  => 'https://api.github.com/repos/laravel/framework/releases',
+            'site_url' => 'https://api.github.com/repos/laravel/framework/releases',
         ],
         'Lumen' => [
-            'site_url'  => 'https://github.com/laravel/lumen/releases',
-            'version'   => '.commit-title > a',
-            'date'      => '.list-style-none relative-time',
-            'post'      => [
-                'url'       => 'https://github.com/laravel/lumen/releases/tag/v',
-                'before'    => '',
-                'after'     => '',
-                'end'       => '',
+            'site_url' => 'https://github.com/laravel/lumen/releases',
+            'version' => '.commit-title > a',
+            'date' => '.list-style-none relative-time',
+            'post' => [
+                'url' => 'https://github.com/laravel/lumen/releases/tag/v',
+                'before' => '',
+                'after' => '',
+                'end' => '',
             ],
         ],
         'Codeigniter' => [
-            'site_url'  => 'https://www.codeigniter.com/userguide3/changelog.html',
-            'version'   => '#change-log > div > h2',
-            'date'      => '#change-log > div > p',
-            'post'     => [
-                'url'      => 'https://www.codeigniter.com/userguide3/changelog.html#version-',
-                'before'   => '/[. ]/',
-                'after'    => '-',
-                'end'      => '',
+            'site_url' => 'https://www.codeigniter.com/userguide3/changelog.html',
+            'version' => '#change-log > div > h2',
+            'date' => '#change-log > div > p',
+            'post' => [
+                'url' => 'https://www.codeigniter.com/userguide3/changelog.html#version-',
+                'before' => '/[. ]/',
+                'after' => '-',
+                'end' => '',
             ],
         ],
         'Symfony' => [
-            'site_url'  => 'https://symfony.com/blog/category/releases',
-            'version'   => '#content_wrapper > div > div.row > main > div > div > h2 > a',
-            'date'      => '#content_wrapper > div > div.row > main > div > div > p.metadata > span.m-r-15',
-            'post'   =>  [
-                'url'       => 'https://symfony.com/blog/',
-                'before'    => '/[. ]/',
-                'after'     => '-',
-                'end'      => '',
+            'site_url' => 'https://symfony.com/blog/category/releases',
+            'version' => '#content_wrapper > div > div.row > main > div > div > h2 > a',
+            'date' => '#content_wrapper > div > div.row > main > div > div > p.metadata > span.m-r-15',
+            'post' => [
+                'url' => 'https://symfony.com/blog/',
+                'before' => '/[. ]/',
+                'after' => '-',
+                'end' => '',
             ],
         ],
         'Phalcon' => [
-            'site_url'  => 'https://api.github.com/repos/phalcon/cphalcon/releases',
+            'site_url' => 'https://api.github.com/repos/phalcon/cphalcon/releases',
         ],
         'Slim' => [
-            'site_url'  => 'https://api.github.com/repos/slimphp/Slim/releases',
+            'site_url' => 'https://api.github.com/repos/slimphp/Slim/releases',
         ],
         /*
         'Composer' => [
@@ -114,8 +118,9 @@ class ReleaseNews extends Model
     }
 
     /**
-     * @param  string $type    SUPPORT_RELEASES type
-     * @param  string $version version of type
+     * @param string $type    SUPPORT_RELEASES type
+     * @param string $version version of type
+     *
      * @return object
      */
     public static function existTypeAndVersion(string $type, string $version)
@@ -160,7 +165,6 @@ SQL;
 
     /**
      * @param $release
-     * @return SlackAttachment
      */
     public function convertAttachment($release): SlackAttachment
     {

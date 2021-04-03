@@ -30,7 +30,7 @@ class RecruitTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -54,17 +54,17 @@ class RecruitTest extends TestCase
         /**
          * @var Recruit $yesterdayRecruit
          */
-        $yesterdayRecruit = factory(Recruit::class)->create(['created_at' => $yesterday, 'expired_at' => $today]);
+        $yesterdayRecruit = Recruit::factory()->create(['created_at' => $yesterday, 'expired_at' => $today]);
 
         /**
          * @var Recruit $todayRecruit
          */
-        $todayRecruit = factory(Recruit::class)->create(['created_at' => $today, 'expired_at' => $today]);
+        $todayRecruit = Recruit::factory()->create(['created_at' => $today, 'expired_at' => $today]);
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -85,17 +85,17 @@ class RecruitTest extends TestCase
         /**
          * @var Recruit $yesterdayRecruit
          */
-        $yesterdayRecruit = factory(Recruit::class)->create(['created_at' => $yesterday, 'expired_at' => $today]);
+        $yesterdayRecruit = Recruit::factory()->create(['created_at' => $yesterday, 'expired_at' => $today]);
 
         /**
          * @var Recruit $todayRecruit
          */
-        $todayRecruit = factory(Recruit::class)->create(['created_at' => $today, 'expired_at' => $today]);
+        $todayRecruit = Recruit::factory()->create(['created_at' => $today, 'expired_at' => $today]);
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -114,12 +114,12 @@ class RecruitTest extends TestCase
         /**
          * @var Recruit $recruit
          */
-        $recruit = factory(Recruit::class)->create();
+        $recruit = Recruit::factory()->create();
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 

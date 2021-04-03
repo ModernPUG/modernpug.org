@@ -1,13 +1,30 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
 use App\Models\Post;
-use Faker\Generator as Faker;
+use App\Models\Preview;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(\App\Models\Preview::class, function (Faker $faker) {
-    return [
-        'post_id' => factory(Post::class),
-        'image_url' => $faker->imageUrl(),
-    ];
-});
+class PreviewFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Preview::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'post_id' => Post::factory(),
+            'image_url' => $this->faker->imageUrl(),
+        ];
+    }
+}

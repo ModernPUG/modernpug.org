@@ -21,7 +21,7 @@ class TokenTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->post(route('mypage.tokens.store', ['name' => 'test token']))
             ->assertCreated();
@@ -34,7 +34,7 @@ class TokenTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token')->accessToken;
         $this->actingAs($user)->delete(route('mypage.tokens.delete', ['id' => $token->id]))
@@ -48,11 +48,11 @@ class TokenTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token')->accessToken;
 
-        $notOwnedUser = factory(User::class)->create();
+        $notOwnedUser = User::factory()->create();
 
         $this->actingAs($notOwnedUser)->delete(route('mypage.tokens.delete', ['id' => $token->id]))
             ->assertNotFound();

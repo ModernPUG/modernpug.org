@@ -14,7 +14,7 @@ class RecruitSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-            factory(\App\Models\Recruit::class)->times(20)->create();
+            \App\Models\Recruit::factory()->times(20)->create();
         }
     }
 }

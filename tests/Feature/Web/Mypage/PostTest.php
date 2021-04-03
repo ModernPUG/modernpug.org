@@ -14,37 +14,35 @@ class PostTest extends TestCase
 
     public function testCantSeePostByNonOwner()
     {
-
         /**
          * @var User
          */
-        $nonOwner = factory(User::class)->create();
+        $nonOwner = User::factory()->create();
 
         /**
          * @var Post
          */
-        $post = factory(Post::class)->create();
+        $post = Post::factory()->create();
 
         $this->actingAs($nonOwner)->get(route('mypage.posts.index'))->assertOk()->assertDontSee($post->title);
     }
 
     public function testCanSeePostByOwner()
     {
-
         /**
          * @var User
          */
-        $owner = factory(User::class)->create();
+        $owner = User::factory()->create();
 
         /**
          * @var Blog
          */
-        $blog = factory(Blog::class)->create(['owner_id' => $owner]);
+        $blog = Blog::factory()->create(['owner_id' => $owner]);
 
         /**
          * @var Post
          */
-        $post = factory(Post::class)->create(['blog_id' => $blog]);
+        $post = Post::factory()->create(['blog_id' => $blog]);
 
         $this->actingAs($owner)->get(route('mypage.posts.index'))->assertOk()->assertSee($post->title);
     }

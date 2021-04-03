@@ -26,19 +26,19 @@ class IndexTest extends TestCase
         /**
          * @var Post $yesterdayPost
          */
-        $yesterdayPost = factory(Post::class)->create(['created_at' => $yesterday]);
+        $yesterdayPost = Post::factory()->create(['created_at' => $yesterday]);
         $yesterdayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var Post $post
          */
-        $post = factory(Post::class)->create();
+        $post = Post::factory()->create();
         $post->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -73,13 +73,13 @@ class IndexTest extends TestCase
         /**
          * @var Post $yesterdayPost
          */
-        $yesterdayPost = factory(Post::class)->create(['created_at' => $yesterday]);
+        $yesterdayPost = Post::factory()->create(['created_at' => $yesterday]);
         $yesterdayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var Post $todayPost
          */
-        $todayPost = factory(Post::class)->create(['created_at' => $today]);
+        $todayPost = Post::factory()->create(['created_at' => $today]);
         $todayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         $posts = Post::all()->toArray();
@@ -87,7 +87,7 @@ class IndexTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -108,19 +108,19 @@ class IndexTest extends TestCase
         /**
          * @var Post $yesterdayPost
          */
-        $yesterdayPost = factory(Post::class)->create(['created_at' => $yesterday]);
+        $yesterdayPost = Post::factory()->create(['created_at' => $yesterday]);
         $yesterdayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var Post $todayPost
          */
-        $todayPost = factory(Post::class)->create(['created_at' => $today]);
+        $todayPost = Post::factory()->create(['created_at' => $today]);
         $todayPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 
@@ -139,19 +139,19 @@ class IndexTest extends TestCase
         /**
          * @var Post $trackedTagPost
          */
-        $trackedTagPost = factory(Post::class)->create();
+        $trackedTagPost = Post::factory()->create();
         $trackedTagPost->tags()->sync(Tag::firstOrCreate(['name' => Tag::MANAGED_TAGS['PHP'][0]]));
 
         /**
          * @var Post $untrackedTagPost
          */
-        $untrackedTagPost = factory(Post::class)->create();
+        $untrackedTagPost = Post::factory()->create();
         $untrackedTagPost->tags()->sync(Tag::firstOrCreate(['name' => 'UNTRACKED_TAG']));
 
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $token = $user->createToken('test token', ['*'])->plainTextToken;
 

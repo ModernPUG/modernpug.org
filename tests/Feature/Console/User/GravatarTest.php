@@ -15,7 +15,7 @@ class GravatarTest extends TestCase
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'avatar_url' => null,
         ]);
 

@@ -19,11 +19,10 @@ class UserTest extends TestCase
 
     public function testCantAccessNormalUser()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
 
         $this->actingAs($user)->get(route('mypage.users.index'))
             ->assertToastrHasError()
@@ -32,11 +31,10 @@ class UserTest extends TestCase
 
     public function testCanAccessPermittedUser()
     {
-
         /**
          * @var User $user
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('user-list');
 
         $this->actingAs($user)->get(route('mypage.users.index'))->assertOk();
@@ -44,13 +42,12 @@ class UserTest extends TestCase
 
     public function testCantDeleteNormalUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
-        $targetUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->delete(route('mypage.users.destroy', [$targetUser->id]))
             ->assertToastrHasError()
@@ -59,14 +56,13 @@ class UserTest extends TestCase
 
     public function testCanDeletePermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('user-delete');
-        $targetUser = factory(User::class)->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->delete(route('mypage.users.destroy', [$targetUser->id]))
             ->assertToastrHasSuccess()
@@ -75,13 +71,12 @@ class UserTest extends TestCase
 
     public function testCantRestoreNormalUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
-        $targetUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create();
         $targetUser->delete();
 
         $this->actingAs($user)->patch(route('mypage.users.restore', [$targetUser->id]))
@@ -91,14 +86,13 @@ class UserTest extends TestCase
 
     public function testCanRestorePermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('user-restore');
-        $targetUser = factory(User::class)->create();
+        $targetUser = User::factory()->create();
         $targetUser->delete();
 
         $this->actingAs($user)->patch(route('mypage.users.restore', [$targetUser->id]))
@@ -108,13 +102,12 @@ class UserTest extends TestCase
 
     public function testCantAccessModifyUserPageByNotPermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
-        $targetUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->get(route('mypage.users.edit', [$targetUser->id]))
             ->assertToastrHasError()
@@ -123,14 +116,13 @@ class UserTest extends TestCase
 
     public function testCanAccessModifyUserPageByPermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('user-edit');
-        $targetUser = factory(User::class)->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->get(route('mypage.users.edit', [$targetUser->id]))
             ->assertOk();
@@ -138,13 +130,12 @@ class UserTest extends TestCase
 
     public function testCantUpdateUserByNotPermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
-        $targetUser = factory(User::class)->create();
+        $user = User::factory()->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]))
             ->assertToastrHasError()
@@ -153,14 +144,13 @@ class UserTest extends TestCase
 
     public function testCanUpdateUserByPermittedUser()
     {
-
         /**
          * @var User $user
          * @var User $targetUser
          */
-        $user = factory(User::class)->create();
+        $user = User::factory()->create();
         $user->givePermissionTo('user-edit');
-        $targetUser = factory(User::class)->create();
+        $targetUser = User::factory()->create();
 
         $this->actingAs($user)->put(route('mypage.users.update', [$targetUser->id]), $targetUser->toArray())
             ->assertToastrHasSuccess()
