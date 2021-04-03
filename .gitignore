@@ -16,3 +16,6 @@ tests/Report/
 *.sqlite
 .phpunit.result.cache
 *.http
+.php_cs.cache
+.phpstorm.meta.php
+public/mix-manifest.json
