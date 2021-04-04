@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
  * App\Models\Viewcount
  *
  * @property int $id
- * @property int $post_id
+ * @property int|null $post_id
  * @property string $ip
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string $view_type
+ * @property int $view_id
  * @method static \Database\Factories\ViewcountFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newQuery()
@@ -24,6 +26,8 @@ use Illuminate\Http\Request;
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount wherePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Viewcount whereViewId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Viewcount whereViewType($value)
  * @mixin \Eloquent
  */
 class Viewcount extends Model
@@ -31,15 +35,26 @@ class Viewcount extends Model
     use HasFactory;
 
     protected $table = 'viewcount';
-    protected $fillable = ['post_id', 'ip'];
+    protected $fillable = [
+        'post_id',
+        'view_type',
+        'view_id',
+        'ip',
+    ];
 
-    public static function increase(Post $post, Request $request)
+    public static function increase(Model $model, Request $request)
     {
         $viewCount = self::whereDate('created_at', Carbon::today())
-            ->where('post_id', $post->id)->where('ip', $request->ip())->get();
+            ->where('view_type', get_class($model))
+            ->where('view_id', $model->id)
+            ->where('ip', $request->ip())->get();
 
         if (!$viewCount->count()) {
-            self::create(['post_id' => $post->id, 'ip' => $request->ip()]);
+            self::create([
+                'view_type' => get_class($model),
+                'view_id' => $model->id,
+                'ip' => $request->ip(),
+            ]);
         }
     }
 }

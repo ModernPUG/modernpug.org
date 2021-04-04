@@ -23,7 +23,6 @@ class ViewcountFactory extends Factory
     public function definition()
     {
         return [
-            'post_id' => Post::factory(),
             'ip' => $this->faker->ipv4,
         ];
     }
