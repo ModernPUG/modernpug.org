@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * App\Models\WeeklyBestPost
@@ -31,4 +32,10 @@ use Illuminate\Database\Eloquent\Model;
 class WeeklyBestPost extends Model
 {
     use HasFactory;
+
+
+    public function weekly_best(): BelongsTo
+    {
+        return $this->belongsTo(WeeklyBest::class);
+    }
 }

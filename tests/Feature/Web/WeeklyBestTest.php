@@ -22,9 +22,9 @@ class WeeklyBestTest extends TestCase
 
     public function testGetWeeklyBest()
     {
-        $weeklyBest = WeeklyBestPost::factory()->create();
+        $weeklyBestPost = WeeklyBestPost::factory()->create();
 
-        $response = $this->get(route('posts.weekly', [$weeklyBest]));
+        $response = $this->get(route('posts.weekly', [$weeklyBestPost->weekly_best]));
 
         $response->assertOk();
 
