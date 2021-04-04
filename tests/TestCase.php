@@ -4,6 +4,7 @@ namespace Tests;
 
 use Clockwork\Support\Laravel\Tests\UsesClockwork;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Kamaln7\Toastr\Facades\Toastr;
 use Mockery\MockInterface;
 
 abstract class TestCase extends BaseTestCase
@@ -14,6 +15,7 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Toastr::clear();
         if (config('clockwork.tests.collect')) {
             $this->setUpClockwork();
         }

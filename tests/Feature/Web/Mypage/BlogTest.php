@@ -11,12 +11,6 @@ class BlogTest extends TestCase
 {
     use DatabaseTransactions;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        \Toastr::clear();
-    }
 
     public function testCantSeeBlogByNonOwner()
     {
