@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Blog\WeeklyBestRequest;
+use App\Models\Banner;
 use App\Models\WeeklyBest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -32,6 +33,8 @@ class WeeklyBestController extends Controller
             })->first()->load('posts.preview', 'posts.blog', 'posts.tags') ?? new WeeklyBest();
         }
 
-        return view('pages.posts.weekly', compact('weeklyBests', 'weeklyBest'));
+        $banners = Banner::getActiveBanners();
+
+        return view('pages.posts.weekly', compact('weeklyBests', 'weeklyBest', 'banners'));
     }
 }

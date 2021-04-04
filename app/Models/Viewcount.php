@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
  * @property string $ip
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\ViewcountFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount query()

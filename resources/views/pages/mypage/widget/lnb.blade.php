@@ -25,11 +25,16 @@
 
     <!-- Widget Area -->
         <div class="sidebar-widget-area">
-            <a href="{{ route('mypage.dashboard.index') }}" class="title">Blog</a>
+            <h5 class="title">Blog</h5>
             <div class="widget-content">
 
                 <h5 class="headline"><a href="{{ route('mypage.blogs.index') }}">Blogs</a></h5>
                 <h5 class="headline"><a href="{{ route('mypage.posts.index') }}">Posts</a></h5>
+            </div>
+
+            <h5 class="title">Advertisement</h5>
+            <div class="widget-content">
+                <h5 class="headline"><a href="{{ route('mypage.banners.index') }}">Banners</a></h5>
             </div>
         </div>
 

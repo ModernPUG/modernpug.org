@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
 /**
@@ -28,6 +29,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property-read int|null $tags_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Viewcount[] $viewcount
  * @property-read int|null $viewcount_count
+ * @method static \Database\Factories\PostFactory factory(...$parameters)
  * @method static Builder|Post newModelQuery()
  * @method static Builder|Post newQuery()
  * @method static \Illuminate\Database\Query\Builder|Post onlyTrashed()
@@ -79,7 +81,10 @@ class Post extends Model
         $posts->selectRaw('posts.id, posts.title, posts.published_at, posts.description, posts.blog_id');
         $posts->selectRaw('count(posts.id) AS vcount');
         $posts->selectRaw('(COUNT(posts.id)/abs(datediff(posts.published_at,now()))) as rank_point');
-        $posts->leftJoin('viewcount', 'posts.id', 'viewcount.post_id');
+        $posts->leftJoin('viewcount', function (JoinClause $clause) {
+            $clause->on('posts.id', 'viewcount.view_id')
+                ->where('viewcount.view_type', '=', self::class);
+        });
 
         if (count($tagNames)) {
             $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
@@ -134,7 +139,7 @@ class Post extends Model
 
     public function viewcount()
     {
-        return $this->hasMany(Viewcount::class);
+        return $this->morphMany(Viewcount::class, 'view');
     }
 
     public function convertAttachment(int $rank): SlackAttachment

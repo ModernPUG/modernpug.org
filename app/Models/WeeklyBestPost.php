@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $rank 선정 순위
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\WeeklyBestPostFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBestPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBestPost newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBestPost query()

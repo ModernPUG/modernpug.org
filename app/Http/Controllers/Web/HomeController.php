@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\WeeklyBest;
@@ -23,10 +24,12 @@ class HomeController extends Controller
         /**
          * @var WeeklyBest $latestWeeklyBest
          */
-        $latestWeeklyBest = WeeklyBest::with('posts.preview','posts.blog')->latest()->firstOrNew();
+        $latestWeeklyBest = WeeklyBest::with('posts.preview', 'posts.blog')->latest()->firstOrNew();
 
-        $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags())->load('preview','blog');
+        $latestPosts = Post::getLatestPosts(4, Tag::getAllManagedTags())->load('preview', 'blog');
 
-        return view('pages.home.index', compact('latestWeeklyBest', 'latestPosts'));
+        $banners = Banner::getActiveBanners(Banner::POSITION_LNB);
+
+        return view('pages.home.index', compact('latestWeeklyBest', 'latestPosts', 'banners'));
     }
 }

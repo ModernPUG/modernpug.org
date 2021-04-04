@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Post;
 use App\Models\Tag;
@@ -39,7 +40,9 @@ class PostController extends Controller
                 ->load('preview','blog');
         }
 
-        return view('pages.posts.index', compact('latestPostsByTag'));
+        $banners = Banner::getActiveBanners(Banner::POSITION_LNB);
+
+        return view('pages.posts.index', compact('latestPostsByTag', 'banners'));
     }
 
     /**

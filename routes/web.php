@@ -16,6 +16,9 @@ use App\Http\Controllers\Web\AboutUsController;
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LogoController;
+use App\Http\Controllers\Web\Mypage\BannerConfirmController;
+use App\Http\Controllers\Web\Mypage\BannerController;
+use App\Http\Controllers\Web\Mypage\BannerImageController;
 use App\Http\Controllers\Web\Mypage\BlogController as MypageBlogController;
 use App\Http\Controllers\Web\Mypage\DashboardController;
 use App\Http\Controllers\Web\Mypage\PostController as MypagePostController;
@@ -53,6 +56,10 @@ Route::group(['middleware' => ['auth:web'], 'prefix' => 'mypage', 'as' => 'mypag
 
         Route::resource('blogs', MypageBlogController::class);
         Route::resource('posts', MypagePostController::class);
+        Route::resource('banners', BannerController::class);
+        Route::resource('banners.images', BannerImageController::class);
+        Route::post('banners/{banner}/confirm', [BannerConfirmController::class, 'store'])->name('banners.approve');
+        Route::delete('banners/{banner}/confirm', [BannerConfirmController::class, 'destroy'])->name('banners.disapprove');
     });
 
     Route::get('profile', [MypageProfileController::class, 'show'])->name('profile.show');

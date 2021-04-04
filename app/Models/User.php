@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,6 +31,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $comment
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
  * @property-read int|null $blogs_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Banner[] $approve_banners
+ * @property-read int|null $approve_banners_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Banner[] $create_banners
+ * @property-read int|null $create_banners_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
  * @property-read int|null $emails_count
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
@@ -44,6 +49,7 @@ use Spatie\Permission\Traits\HasRoles;
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
+ * @method static \Database\Factories\UserFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Query\Builder|User onlyTrashed()
@@ -107,23 +113,33 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function blogs()
+    public function blogs(): HasMany
     {
         return $this->hasMany(Blog::class, 'owner_id');
     }
 
-    public function emails()
+    public function emails(): HasMany
     {
         return $this->hasMany(Email::class);
     }
 
-    public function oauth_identities()
+    public function oauth_identities(): HasMany
     {
         return $this->hasMany(OauthIdentity::class);
     }
 
-    public function recruits()
+    public function recruits(): HasMany
     {
         return $this->hasMany(Recruit::class, 'entry_user_id');
+    }
+
+    public function create_banners(): HasMany
+    {
+        return $this->hasMany(Banner::class, 'create_user_id');
+    }
+
+    public function approve_banners(): HasMany
+    {
+        return $this->hasMany(Banner::class, 'approve_user_id');
     }
 }

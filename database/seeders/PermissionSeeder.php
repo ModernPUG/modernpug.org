@@ -47,6 +47,14 @@ class PermissionSeeder extends Seeder
             'recruit-edit',
             'recruit-delete',
             'recruit-restore',
+
+            'banner-list',
+            'banner-create',
+            'banner-edit',
+            'banner-delete',
+            'banner-restore',
+            'banner-allow',
+            'banner-disallow',
         ];
 
         $models = config('permission.models.permission');

@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @property-read int|null $posts_count
  * @method static Builder|Blog crawledBlog()
+ * @method static \Database\Factories\BlogFactory factory(...$parameters)
  * @method static Builder|Blog newModelQuery()
  * @method static Builder|Blog newQuery()
  * @method static \Illuminate\Database\Query\Builder|Blog onlyTrashed()

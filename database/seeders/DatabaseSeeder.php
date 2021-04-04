@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RecruitSeeder::class);
         $this->call(ReleaseNewSeeder::class);
+        $this->call(BannerSeeder::class);
     }
 }
