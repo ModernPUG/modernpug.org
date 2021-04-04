@@ -1,1 +1,0 @@
-{"version":3,"sources":["app.js"],"names":["log","o","console","jQuery","$"],"mappings":"AAAA,QAASA,KAAIC,GAAIC,QAAQF,IAAIC,GAE7BE,OAAO,SAASC","file":"app.pkgd.js","sourcesContent":["function log(o) {console.log(o);}\n\njQuery(function($){\n\n\n});\n\n"],"sourceRoot":"/source/"}
