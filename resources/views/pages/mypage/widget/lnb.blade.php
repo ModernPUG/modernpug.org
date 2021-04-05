@@ -19,6 +19,7 @@
                     @can('role-list')
                     <h5 class="headline"><a href="{{ route('mypage.roles.index') }}">Roles</a></h5>
                     @endcan
+                    <h5 class="headline"><a href="{{ route('mypage.points.index') }}">Points</a></h5>
                 </div>
             </div>
     @endhasrole

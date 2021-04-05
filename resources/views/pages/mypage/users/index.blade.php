@@ -47,6 +47,7 @@
                                 <th>블로그</th>
                                 <th>Role</th>
                                 <th>Oauth</th>
+                                <th>포인트</th>
                                 <th>가입일</th>
                                 <th>삭제일</th>
                                 <th>삭제/복구</th>
@@ -97,6 +98,17 @@
                                         @endforeach
                                     </td>
                                     <td>
+                                        {{ number_format($user->ad_point) }}
+                                        /
+                                        {{ number_format($user->skill_point) }}
+                                        /
+                                        {{ number_format($user->community_point) }}
+                                        /
+                                        {{ number_format($user->used_point) }}
+                                        /
+                                        {{ number_format($user->remain_point) }}
+                                    </td>
+                                    <td>
                                         {{ $user->created_at->format('y-m-d') }}
                                     </td>
                                     <td>
@@ -128,7 +140,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="10">
+                                    <td colspan="11">
                                         사용자가 없습니다
                                     </td>
                                 </tr>
@@ -138,7 +150,7 @@
                             <tfoot>
 
                             <tr>
-                                <td colspan="10" class="text-center">
+                                <td colspan="11" class="text-center">
                                     @if($users->count())
                                         {!! $users->appends(Request::except('page'))->render() !!}
                                     @endif

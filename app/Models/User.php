@@ -29,10 +29,15 @@ use Spatie\Permission\Traits\HasRoles;
  * @property string|null $twitter_url
  * @property string|null $homepage_url
  * @property string|null $comment
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
- * @property-read int|null $blogs_count
+ * @property int $ad_point 광고 포인트
+ * @property int $skill_point 기술 포인트
+ * @property int $community_point 커뮤니티 포인트
+ * @property int $used_point 사용완료 포인트
+ * @property int $remain_point 잔여 포인트
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Banner[] $approve_banners
  * @property-read int|null $approve_banners_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Blog[] $blogs
+ * @property-read int|null $blogs_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Banner[] $create_banners
  * @property-read int|null $create_banners_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Email[] $emails
@@ -56,8 +61,10 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User permission($permissions)
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
  * @method static \Illuminate\Database\Eloquent\Builder|User role($roles, $guard = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereAdPoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAvatarUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereComment($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereCommunityPoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
@@ -68,9 +75,12 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereRemainPoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereSkillPoint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereTwitterUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereUsedPoint($value)
  * @method static \Illuminate\Database\Query\Builder|User withTrashed()
  * @method static \Illuminate\Database\Query\Builder|User withoutTrashed()
  * @mixin \Eloquent

@@ -55,6 +55,9 @@ class PermissionSeeder extends Seeder
             'banner-restore',
             'banner-allow',
             'banner-disallow',
+
+
+            'point-list',
         ];
 
         $models = config('permission.models.permission');
