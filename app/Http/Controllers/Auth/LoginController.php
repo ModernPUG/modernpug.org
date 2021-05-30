@@ -12,7 +12,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
+use SocialiteProviders\Slack\Provider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class LoginController extends Controller
@@ -63,12 +64,20 @@ class LoginController extends Controller
     }
 
     /**
-     * @param $provider
+     * @param $driver
      * @return RedirectResponse
      */
-    public function redirectToProvider($provider)
+    public function redirectToProvider($driver): RedirectResponse
     {
-        return Socialite::driver($provider)->redirect();
+        /**
+         * @var Provider $provider
+         */
+        $provider = Socialite::driver($driver);
+        if ($driver === 'slack') {
+            $provider->with(['team' => config('services.slack.team')]);
+        }
+        return $provider->redirect();
+
     }
 
     /**
