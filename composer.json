@@ -12,6 +12,7 @@
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-pdo": "*",
+        "ext-gd": "*",
         "creativeorange/gravatar": "^1.0",
         "doctrine/dbal": "^3.1",
         "embed/embed": "^4.3",
