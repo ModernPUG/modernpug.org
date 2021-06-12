@@ -17,7 +17,6 @@ class WeeklyBestTest extends TestCase
         $response = $this->get(route('posts.weekly'));
 
         $response->assertOk();
-
     }
 
     public function testGetWeeklyBest()
@@ -27,6 +26,5 @@ class WeeklyBestTest extends TestCase
         $response = $this->get(route('posts.weekly', [$weeklyBestPost->weekly_best]));
 
         $response->assertOk();
-
     }
 }

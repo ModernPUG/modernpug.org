@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Post;
 use App\Models\Viewcount;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

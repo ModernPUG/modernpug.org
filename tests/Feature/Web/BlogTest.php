@@ -14,7 +14,6 @@ class BlogTest extends TestCase
     public const NOT_AVAILABLE_FEED = 'http://test.com';
     public const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
 
-
     public function testIndex()
     {
         $this->get(route('blogs.index'))->assertOk();

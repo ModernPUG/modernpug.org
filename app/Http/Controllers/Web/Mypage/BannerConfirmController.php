@@ -9,7 +9,6 @@ use App\Models\Banner;
 
 class BannerConfirmController extends Controller
 {
-
     public function store(ApproveRequest $request, Banner $banner)
     {
         $banner->approved_at = now();
@@ -21,7 +20,6 @@ class BannerConfirmController extends Controller
             'message' => '승인되었습니다',
         ]);
     }
-
 
     public function destroy(DisapproveRequest $request, Banner $banner)
     {
