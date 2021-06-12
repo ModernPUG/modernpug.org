@@ -30,6 +30,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - run: npm install
+      - run: npm run production
+
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
