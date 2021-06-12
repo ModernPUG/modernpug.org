@@ -44,7 +44,6 @@ class BannerImageController extends Controller
     public function destroy(Banner $banner, File $image): JsonResponse
     {
         try {
-
             if ($banner->images()->count() <= 1) {
                 throw new \Exception('배너 이미지는 최소한 1개는 있어야 합니다.');
             }
@@ -57,7 +56,6 @@ class BannerImageController extends Controller
                 'result' => true,
             ]);
         } catch (\Exception $exception) {
-
             return response()->json([
                 'result' => false,
                 'error' => [

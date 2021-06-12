@@ -23,7 +23,7 @@ class IndexRequest extends FormRequest
 
         $result = $user->can('view', Point::class);
 
-        if (!$result) {
+        if (! $result) {
             throw new PolicyException();
         }
 

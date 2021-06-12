@@ -10,7 +10,6 @@ class UserTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testCantAccessNormalUser()
     {
         /**
