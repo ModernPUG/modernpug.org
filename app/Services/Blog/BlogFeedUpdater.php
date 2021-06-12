@@ -8,8 +8,8 @@ use App\Services\Blog\Rss\FeedParser;
 use App\Services\Blog\Rss\PostUpdater;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Collection;
-use Zend\Feed\Reader\Exception\RuntimeException as ZendFeedRuntimeException;
-use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendHttpRuntimeException;
+use Laminas\Feed\Reader\Exception\RuntimeException as LaminasFeedRuntimeException;
+use Laminas\Http\Client\Adapter\Exception\RuntimeException as LaminasHttpRuntimeException;
 
 class BlogFeedUpdater
 {
@@ -59,7 +59,7 @@ class BlogFeedUpdater
                 $blog->update();
 
                 $this->print($blog->feed_url.' 종료');
-            } catch (ZendFeedRuntimeException | ZendHttpRuntimeException $exception) {
+            } catch (LaminasFeedRuntimeException | LaminasHttpRuntimeException $exception) {
                 $blog->increment('crawling_fail_count', 1, ['last_crawling_failed_at' => now()]);
                 $this->print($blog->feed_url);
                 $this->print($blog->crawling_fail_count);

@@ -5,22 +5,25 @@ namespace App\Http\Controllers\Web\Mypage;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\Post;
+use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         $user = auth()->user();
 
+        /**
+         * @var Collection $blogs
+         */
         $blogs = Blog::withTrashed()->withCount('posts')->whereOwnerId($user->id)->get();
 
-        $posts = Post::withTrashed()->with('blog', 'preview')->withCount('viewcount')->whereIn('blog_id', $blogs)->paginate(10);
+        $posts = Post::withTrashed()->with('blog', 'preview')
+            ->withCount('viewcount')
+            ->whereIn('blog_id', $blogs->pluck('id'))
+            ->paginate(10);
 
         return view('pages.mypage.post.index', compact('blogs', 'posts'));
     }

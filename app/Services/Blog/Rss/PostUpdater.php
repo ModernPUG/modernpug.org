@@ -7,8 +7,8 @@ use App\Models\Post;
 use App\Models\Tag;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Zend\Feed\Reader\Entry\EntryInterface;
-use Zend\Feed\Reader\Feed\FeedInterface;
+use Laminas\Feed\Reader\Entry\EntryInterface;
+use Laminas\Feed\Reader\Feed\FeedInterface;
 
 class PostUpdater
 {

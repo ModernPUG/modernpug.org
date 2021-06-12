@@ -2,14 +2,14 @@
 
 namespace App\Services\Blog\Rss;
 
-use Zend\Feed\Reader\Feed\FeedInterface;
-use Zend\Feed\Reader\Reader as ZendReader;
+use Laminas\Feed\Reader\Feed\FeedInterface;
+use Laminas\Feed\Reader\Reader as LaminasReader;
 
 class FeedParser
 {
     public function fromUrl(string $url): FeedInterface
     {
-        $feed = ZendReader::import($url);
+        $feed = LaminasReader::import($url);
 
         return $feed;
     }

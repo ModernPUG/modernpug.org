@@ -29,6 +29,7 @@ class PostTest extends TestCase
 
     public function testCanSeePostByOwner()
     {
+        $this->withoutExceptionHandling();
         /**
          * @var User
          */
@@ -44,6 +45,7 @@ class PostTest extends TestCase
          */
         $post = Post::factory()->create(['blog_id' => $blog]);
 
-        $this->actingAs($owner)->get(route('mypage.posts.index'))->assertOk()->assertSee($post->title);
+        $testResponse = $this->actingAs($owner)->get(route('mypage.posts.index'));
+        $testResponse->assertOk()->assertSee($post->title);
     }
 }

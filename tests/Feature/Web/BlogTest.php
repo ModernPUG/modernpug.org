@@ -11,7 +11,7 @@ class BlogTest extends TestCase
 {
     use DatabaseTransactions;
 
-    public const NOT_AVAILABLE_FEED = 'http://test.com';
+    public const NOT_AVAILABLE_FEED = 'https://test.com';
     public const AVAILABLE_FEED = 'https://blog.jetbrains.com/feed/';
 
 
@@ -140,8 +140,9 @@ class BlogTest extends TestCase
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 
-        $this->actingAs($nonOwner)->put(route('blogs.update',
-            [$blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]))
+        $testResponse = $this->actingAs($nonOwner)->put(route('blogs.update',
+            [$blog->id, 'feed_url' => self::NOT_AVAILABLE_FEED]));
+        $testResponse
             ->assertToastrHasError()
             ->assertRedirect(route('blogs.index'));
 

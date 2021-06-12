@@ -3,7 +3,7 @@
 namespace App\Services\Blog\Rss;
 
 use App\Models\Blog;
-use Zend\Feed\Reader\Feed\FeedInterface;
+use Laminas\Feed\Reader\Feed\FeedInterface;
 
 class BlogUpdater
 {

@@ -2,7 +2,7 @@
 
 namespace Tests\Mock;
 
-use Zend\Feed\Reader\Feed\FeedInterface;
+use Laminas\Feed\Reader\Feed\FeedInterface;
 
 trait FeedInterfaceMock
 {

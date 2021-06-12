@@ -21,10 +21,10 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 use Toastr;
-use Zend\Feed\Exception\RuntimeException;
-use Zend\Feed\Reader\Reader as ZendReader;
-use Zend\Http\Client\Adapter\Exception\RuntimeException as ZendRuntimeException;
-use Zend\Http\Exception\InvalidArgumentException;
+use Laminas\Feed\Exception\RuntimeException;
+use Laminas\Feed\Reader\Reader as LaminasReader;
+use Laminas\Http\Client\Adapter\Exception\RuntimeException as LaminasRuntimeException;
+use Laminas\Http\Exception\InvalidArgumentException;
 
 class BlogController extends Controller
 {
@@ -65,7 +65,7 @@ class BlogController extends Controller
         try {
             $feedUrl = $request->get('feed_url');
 
-            ZendReader::import($feedUrl);
+            LaminasReader::import($feedUrl);
 
             if (Blog::where('feed_url', '=', $feedUrl)->exists()) {
                 throw new AlreadyExistsException();
@@ -80,7 +80,7 @@ class BlogController extends Controller
             Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return redirect(route('blogs.create'));
-        } catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
+        } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }
@@ -116,14 +116,14 @@ class BlogController extends Controller
         try {
             $feedUrl = $request->get('feed_url');
 
-            ZendReader::import($feedUrl);
+            LaminasReader::import($feedUrl);
 
             $blog->update($request->validated());
 
             Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return back();
-        } catch (InvalidArgumentException | ZendRuntimeException | RuntimeException $exception) {
+        } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }

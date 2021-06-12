@@ -2,7 +2,7 @@
 
 namespace Tests\Mock;
 
-use Zend\Feed\Reader\Entry\EntryInterface;
+use Laminas\Feed\Reader\Entry\EntryInterface;
 
 trait EntryInterfaceMock
 {

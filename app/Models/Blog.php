@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -64,17 +66,17 @@ class Blog extends Model
         'title', 'feed_url', 'site_url', 'description', 'image_url', 'owner_id', 'comment',
     ];
 
-    public function scopeCrawledBlog(Builder $query)
+    public function scopeCrawledBlog(Builder $query): Builder
     {
         return $query->whereNotNull('site_url')->where('site_url', '!=', '');
     }
 
-    public function posts()
+    public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
     }
 
-    public function owner()
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
