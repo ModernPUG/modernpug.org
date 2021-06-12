@@ -34,10 +34,8 @@ class PointFactory extends Factory
         ];
     }
 
-
     public function pointByModel(Model $model)
     {
-
         return $this->state(function () use ($model) {
             return [
                 'point_type' => get_class($model),

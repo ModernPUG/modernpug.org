@@ -15,7 +15,6 @@ class BannerSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-
             Banner::factory()->count(random_int(2, 5))->create();
         }
     }
