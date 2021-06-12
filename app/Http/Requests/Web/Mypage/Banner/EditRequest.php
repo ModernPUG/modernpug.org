@@ -17,7 +17,6 @@ class EditRequest extends FormRequest
     {
         $banner = $this->route('banner');
 
-
         /**
          * @var User $user
          */
@@ -26,6 +25,7 @@ class EditRequest extends FormRequest
         if ($user->cant('update', $banner)) {
             throw new BannerPolicyException($user);
         }
+
         return true;
     }
 

@@ -17,7 +17,6 @@ class DeleteRequest extends FormRequest
     {
         $banner = $this->route('banner');
 
-
         /**
          * @var User $user
          */
