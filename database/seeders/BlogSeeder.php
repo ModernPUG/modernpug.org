@@ -14,7 +14,6 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-
         if (app()->environment('local')) {
             Blog::factory()->count(random_int(5, 20))->create();
         }
