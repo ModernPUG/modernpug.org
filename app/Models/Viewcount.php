@@ -49,7 +49,7 @@ class Viewcount extends Model
             ->where('view_id', $model->id)
             ->where('ip', $request->ip())->get();
 
-        if (!$viewCount->count()) {
+        if (! $viewCount->count()) {
             self::create([
                 'view_type' => get_class($model),
                 'view_id' => $model->id,

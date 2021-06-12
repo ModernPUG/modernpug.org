@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
         if (app()->environment('local')) {
 
             /**
@@ -29,7 +28,6 @@ class UserSeeder extends Seeder
             ]);
 
             $admin->assignRole(Role::all());
-
 
             $normalUser = User::factory()->create([
                 'name' => 'guest',

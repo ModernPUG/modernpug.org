@@ -37,7 +37,7 @@ class PostController extends Controller
         $latestPostsByTag['All'] = Post::getLatestPosts(10);
         foreach ($managedTags as $tag) {
             $latestPostsByTag[$tag] = Post::getLatestPosts(10, Tag::MANAGED_TAGS[$tag])
-                ->load('preview','blog');
+                ->load('preview', 'blog');
         }
 
         $banners = Banner::getActiveBanners(Banner::POSITION_LNB);

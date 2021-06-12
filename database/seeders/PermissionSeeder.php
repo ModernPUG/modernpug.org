@@ -56,7 +56,6 @@ class PermissionSeeder extends Seeder
             'banner-allow',
             'banner-disallow',
 
-
             'point-list',
         ];
 
