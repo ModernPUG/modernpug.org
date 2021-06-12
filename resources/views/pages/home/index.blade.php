@@ -55,8 +55,9 @@
                                     <p>1</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="https://www.facebook.com/events/2353261694736737/" target="_blank">
-                                        모던PUG 5월 정기 모임 안내
+                                    <a href="{{ config('modernpug.facebook') }}" target="_blank">
+                                        <i class="fa fa-facebook-square"></i>
+                                        모던 PUG 공식 페이스북
                                     </a>
                                 </div>
                             </div>
@@ -66,9 +67,21 @@
                                     <p>2</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="https://www.facebook.com/groups/655071604594451/events/?source=4&action_history=null&filter=calendar"
-                                       target="_blank">
-                                        이달의 행사 안내
+                                    <a href="{{ route('slack.index') }}">
+                                        <i class="fa fa-slack"></i>
+                                        모던 PUG 슬랙
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="single-slide d-flex align-items-center">
+                                <div class="post-number">
+                                    <p>3</p>
+                                </div>
+                                <div class="post-title">
+                                    <a href="{{ config('modernpug.youtube') }}" target="_blank">
+                                        <i class="fa fa-youtube"></i>
+                                        모던 PUG 공식 유튜브 채널
                                     </a>
                                 </div>
                             </div>
