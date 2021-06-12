@@ -201,29 +201,6 @@
                 </div>
             </div>
 
-
-            <div class="row justify-content-center">
-
-
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post post-style-3 mt-50">
-                        <img src="/img/index/52835872_10217490523671072_6775070197997895680_n.jpg" alt="2019년 3월 정기모임">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post post-style-3 mt-50">
-                        <img src="/img/index/201904.jpg" alt="2019년 4월 정기모임">
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="single-blog-post post-style-3 mt-50">
-                        <img src="/img/index/58713304_10217915481054741_8037517380152197120_o.jpg" alt="2019년 5월 정기모임">
-                    </div>
-                </div>
-
-
-            </div>
-
         </div>
     </div>
 @endsection
