@@ -16,15 +16,11 @@ class PointSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-
             User::all()->each(function (User $user) {
-
                 Point::factory()->count(random_int(1, 5))->create([
                     'receive_user_id' => $user->id,
                 ]);
-
             });
         }
-
     }
 }
