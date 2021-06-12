@@ -60,3 +60,10 @@ jobs:
 
       - name: Execute tests
         run: composer test
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
+        if: failure()
+        with:
+          name: Logs
+          path: ./storage/logs
