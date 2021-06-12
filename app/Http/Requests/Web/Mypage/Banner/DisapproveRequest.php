@@ -17,7 +17,6 @@ class DisapproveRequest extends FormRequest
     {
         $banner = $this->route('banner');
 
-
         /**
          * @var User $user
          */
@@ -26,6 +25,7 @@ class DisapproveRequest extends FormRequest
         if ($user->cant('disapprove', $banner)) {
             throw new BannerPolicyException($user);
         }
+
         return true;
     }
 

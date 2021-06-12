@@ -30,9 +30,7 @@ class BannerController extends Controller
             })
             ->paginate(10);
 
-
         return view('pages.mypage.banner.index', compact('banners'));
-
     }
 
     public function create(Banner $banner)
@@ -42,8 +40,6 @@ class BannerController extends Controller
 
     public function store(StoreRequest $request): RedirectResponse
     {
-
-
         $uuid = Str::UUID();
         $file = new File();
 
@@ -56,15 +52,12 @@ class BannerController extends Controller
         $file->mime = $image->getClientMimeType();
         $file->size = $image->getSize();
 
-
         $banner = new Banner($request->validated());
         $banner->create_user()->associate($request->user())->save();
         $banner->images()->save($file);
 
-
         return redirect()->route('mypage.banners.edit', [$banner]);
     }
-
 
     public function show(Banner $banner)
     {
@@ -78,7 +71,6 @@ class BannerController extends Controller
 
     public function update(UpdateRequest $request, Banner $banner): RedirectResponse
     {
-
         $image = $request->file('image');
         if ($image) {
             $uuid = Str::UUID();
@@ -93,7 +85,6 @@ class BannerController extends Controller
             $file->size = $image->getSize();
             $banner->images()->save($file);
         }
-
 
         $banner->update($request->validated());
 

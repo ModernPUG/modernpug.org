@@ -34,7 +34,6 @@ class WeeklyBestPost extends Model
 {
     use HasFactory;
 
-
     public function weekly_best(): BelongsTo
     {
         return $this->belongsTo(WeeklyBest::class);
