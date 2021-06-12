@@ -61,10 +61,8 @@ class Point extends Model
         return $this->belongsTo(User::class);
     }
 
-
     public function point()
     {
         return $this->morphTo();
     }
-
 }
