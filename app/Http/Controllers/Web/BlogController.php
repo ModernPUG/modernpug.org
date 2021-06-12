@@ -20,11 +20,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
-use Toastr;
 use Laminas\Feed\Exception\RuntimeException;
 use Laminas\Feed\Reader\Reader as LaminasReader;
 use Laminas\Http\Client\Adapter\Exception\RuntimeException as LaminasRuntimeException;
 use Laminas\Http\Exception\InvalidArgumentException;
+use Toastr;
 
 class BlogController extends Controller
 {

@@ -73,7 +73,6 @@ class Banner extends Model
         'closed_at',
     ];
 
-
     public function create_user(): BelongsTo
     {
         return $this->belongsTo(User::class);
