@@ -5,13 +5,12 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-curl": "*",
         "ext-dom": "*",
         "ext-intl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "ext-mcrypt": "*",
         "ext-pdo": "*",
         "creativeorange/gravatar": "^1.0",
         "doctrine/dbal": "^2.8",
@@ -28,28 +27,27 @@
         "nunomaduro/collision": "^5.0",
         "oriceon/toastr-5-laravel": "dev-master",
         "phpunit/phpunit": "^9.3",
-        "sentry/sentry-laravel": "^1.9",
-        "socialiteproviders/slack": "^3.1",
+        "sentry/sentry-laravel": "^2.6",
+        "socialiteproviders/slack": "^4.1",
         "spatie/laravel-flash": "^1.8",
         "spatie/laravel-permission": "^3.13",
         "symfony/dom-crawler": "^4.3",
-        "zendframework/zend-feed": "^2.12",
-        "zendframework/zend-http": "^2.10"
+        "zendframework/zend-feed": "^2.6",
+        "zendframework/zend-http": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.7",
         "beyondcode/laravel-dump-server": "^1.4",
-        "codedungeon/phpunit-result-printer": "^0.28.0",
+        "codedungeon/phpunit-result-printer": "^0.30.1",
         "filp/whoops": "^2.4",
-        "fzaninotto/faker": "^1.9",
         "itsgoingd/clockwork": "^5.0",
         "mockery/mockery": "^1.2"
     },
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-            "Database\\Factories\\": "database/Factories/",
-            "Database\\Seeders\\": "database/Seeders/"
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
