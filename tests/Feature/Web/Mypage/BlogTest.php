@@ -11,7 +11,6 @@ class BlogTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testCantSeeBlogByNonOwner()
     {
         /**

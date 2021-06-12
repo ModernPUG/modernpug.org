@@ -76,8 +76,8 @@ class LoginController extends Controller
         if ($driver === 'slack') {
             $provider->with(['team' => config('services.slack.team')]);
         }
-        return $provider->redirect();
 
+        return $provider->redirect();
     }
 
     /**
