@@ -17,12 +17,8 @@ class WeeklyBestSeeder extends Seeder
      */
     public function run()
     {
-
         if (app()->environment('local')) {
-
-
             for ($i = 0; $i < 5; $i++) {
-
                 $time = Carbon::parse('-'.$i.'week');
 
                 /**

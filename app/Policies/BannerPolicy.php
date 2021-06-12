@@ -93,7 +93,6 @@ class BannerPolicy
         return false;
     }
 
-
     public function approve(User $user, Banner $banner)
     {
         if ($user->can('banner-allow')) {
@@ -111,6 +110,4 @@ class BannerPolicy
 
         return false;
     }
-
-
 }

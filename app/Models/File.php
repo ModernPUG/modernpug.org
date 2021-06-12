@@ -44,5 +44,4 @@ class File extends Model
     public const UPDATED_AT = null;
 
     protected $keyType = 'string';
-
 }
