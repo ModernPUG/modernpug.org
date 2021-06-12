@@ -11,10 +11,8 @@ class PointTest extends TestCase
 {
     use DatabaseTransactions;
 
-
     public function testGuestCantSeePoint()
     {
-
         $this->get(route('mypage.points.index'))
             ->assertRedirect();
     }
@@ -30,7 +28,6 @@ class PointTest extends TestCase
         $this->actingAs($user)->get(route('mypage.points.index'))
             ->assertRedirect();
     }
-
 
     public function testAdminCanSeePoint()
     {

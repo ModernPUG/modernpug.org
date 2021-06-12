@@ -22,7 +22,6 @@ class BannerFactory extends Factory
      */
     public function definition()
     {
-
         if ($this->faker->boolean) {
             $approvedAt = $this->faker->dateTimeBetween('-1 month', '+1 week');
             $approveUser = User::factory();
@@ -30,7 +29,6 @@ class BannerFactory extends Factory
             $approvedAt = null;
             $approveUser = null;
         }
-
 
         return [
             'title' => $this->faker->sentence,
@@ -46,10 +44,8 @@ class BannerFactory extends Factory
         ];
     }
 
-
     public function allow(User $user): BannerFactory
     {
-
         return $this->state(function () use ($user) {
             return [
                 'approve_user_id' => $user->id,
@@ -60,7 +56,6 @@ class BannerFactory extends Factory
 
     public function disallow(): BannerFactory
     {
-
         return $this->state(function () {
             return [
                 'approve_user_id' => null,
@@ -68,5 +63,4 @@ class BannerFactory extends Factory
             ];
         });
     }
-
 }
