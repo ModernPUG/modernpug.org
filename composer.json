@@ -39,6 +39,7 @@
         "barryvdh/laravel-ide-helper": "^2.7",
         "beyondcode/laravel-dump-server": "^1.4",
         "codedungeon/phpunit-result-printer": "^0.30.1",
+        "fakerphp/faker": "^1.14",
         "filp/whoops": "^2.4",
         "itsgoingd/clockwork": "^5.0",
         "mockery/mockery": "^1.2"
