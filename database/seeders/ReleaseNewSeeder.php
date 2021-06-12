@@ -15,7 +15,6 @@ class ReleaseNewSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-
             ReleaseNews::factory()->count(random_int(10, 20))->create();
         }
     }
