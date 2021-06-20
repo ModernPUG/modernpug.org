@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\Jumpit;
-
 
 use GuzzleHttp\Client;
 
@@ -21,7 +19,7 @@ class SearchRecruits
             ->get('https://api.jumpit.co.kr/modernpug/positions')
             ->getBody()
             ->getContents();
+
         return json_decode($contents);
     }
-
 }

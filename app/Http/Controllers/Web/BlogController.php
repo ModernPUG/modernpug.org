@@ -35,12 +35,10 @@ class BlogController extends Controller
         return view('pages.blogs.index', compact('blogs'));
     }
 
-
     public function create(CreateRequest $request): View
     {
         return view('pages.blogs.create');
     }
-
 
     public function store(StoreRequest $request): RedirectResponse
     {
@@ -67,7 +65,6 @@ class BlogController extends Controller
         }
     }
 
-
     public function show(Blog $blog): RedirectResponse
     {
         return redirect($blog->site_url);
@@ -77,7 +74,6 @@ class BlogController extends Controller
     {
         return view('pages.blogs.edit', compact('blog'));
     }
-
 
     public function update(UpdateRequest $request, Blog $blog): RedirectResponse
     {
@@ -96,7 +92,6 @@ class BlogController extends Controller
         }
     }
 
-
     public function destroy(DeleteRequest $request, Blog $blog): RedirectResponse
     {
         $blog->delete();
@@ -105,7 +100,6 @@ class BlogController extends Controller
 
         return back();
     }
-
 
     public function restore(RestoreRequest $request, $id): RedirectResponse
     {
