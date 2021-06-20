@@ -17,7 +17,6 @@ class ApproveRequest extends FormRequest
     {
         $banner = $this->route('banner');
 
-
         /**
          * @var User $user
          */
@@ -26,8 +25,8 @@ class ApproveRequest extends FormRequest
         if ($user->cant('approve', $banner)) {
             throw new BannerPolicyException($user);
         }
-        return true;
 
+        return true;
     }
 
     /**

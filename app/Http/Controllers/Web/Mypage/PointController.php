@@ -17,7 +17,6 @@ class PointController extends Controller
      */
     public function index(IndexRequest $request)
     {
-
         $points = Point::with('receive_user', 'give_user')->paginate(10);
 
         return view('pages.mypage.point.index', compact('points'));

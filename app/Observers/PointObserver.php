@@ -14,8 +14,8 @@ class PointObserver
      */
     public function created(Point $point)
     {
-        if (is_numeric($point->receive_user->{$point->type."_point"})) {
-            $point->receive_user->{$point->type."_point"} += $point->point;
+        if (is_numeric($point->receive_user->{$point->type.'_point'})) {
+            $point->receive_user->{$point->type.'_point'} += $point->point;
             $point->receive_user->save();
         }
     }
