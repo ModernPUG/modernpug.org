@@ -27,7 +27,7 @@ class BlogFactory extends Factory
             'feed_url' => $this->faker->unique()->url,
             'site_url' => $this->faker->unique()->url,
             'description' => $this->faker->paragraph,
-            'image_url' => $this->faker->url,
+            'image_url' => $this->faker->imageUrl(),
             'owner_id' => User::factory(),
             'comment' => $this->faker->paragraph,
         ];

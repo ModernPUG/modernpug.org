@@ -13,18 +13,13 @@ use App\Models\Blog;
 use App\Models\User;
 use App\Services\Blog\Exceptions\AlreadyExistsException;
 use App\Services\Blog\Rss\Exceptions\CannotConnectFeedException;
-use Exception;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
-use Toastr;
 use Laminas\Feed\Exception\RuntimeException;
 use Laminas\Feed\Reader\Reader as LaminasReader;
 use Laminas\Http\Client\Adapter\Exception\RuntimeException as LaminasRuntimeException;
 use Laminas\Http\Exception\InvalidArgumentException;
+use Toastr;
 
 class BlogController extends Controller
 {
@@ -33,34 +28,21 @@ class BlogController extends Controller
         $this->middleware(['auth:web', 'verified'])->except(['index', 'show']);
     }
 
-    /**
-     * Display a listing of the resource.
-     * @return Application|Factory|Response|View
-     */
-    public function index()
+    public function index(): View
     {
-        $blogs = Blog::crawledBlog()->get();
+        $blogs = Blog::withCount('posts')->latest('updated_at')->crawledBlog()->get();
 
         return view('pages.blogs.index', compact('blogs'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @param  CreateRequest  $request
-     * @return Application|Factory|Response|View
-     */
-    public function create(CreateRequest $request)
+
+    public function create(CreateRequest $request): View
     {
         return view('pages.blogs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param  StoreRequest  $request
-     * @return Application|RedirectResponse|Response|Redirector
-     * @throws CannotConnectFeedException
-     */
-    public function store(StoreRequest $request)
+
+    public function store(StoreRequest $request): RedirectResponse
     {
         try {
             $feedUrl = $request->get('feed_url');
@@ -85,33 +67,19 @@ class BlogController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     * @param  Blog  $blog
-     * @return Application|RedirectResponse|Response|Redirector
-     */
-    public function show(Blog $blog)
+
+    public function show(Blog $blog): RedirectResponse
     {
         return redirect($blog->site_url);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param  EditRequest  $request
-     * @param  Blog  $blog
-     * @return Application|Factory|Response|View
-     */
-    public function edit(EditRequest $request, Blog $blog)
+    public function edit(EditRequest $request, Blog $blog): View
     {
         return view('pages.blogs.edit', compact('blog'));
     }
 
-    /**
-     * @param  UpdateRequest  $request
-     * @param  Blog  $blog
-     * @return RedirectResponse
-     */
-    public function update(UpdateRequest $request, Blog $blog)
+
+    public function update(UpdateRequest $request, Blog $blog): RedirectResponse
     {
         try {
             $feedUrl = $request->get('feed_url');
@@ -128,14 +96,8 @@ class BlogController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param  DeleteRequest  $request
-     * @param  Blog  $blog
-     * @return RedirectResponse
-     * @throws Exception
-     */
-    public function destroy(DeleteRequest $request, Blog $blog)
+
+    public function destroy(DeleteRequest $request, Blog $blog): RedirectResponse
     {
         $blog->delete();
 
@@ -144,12 +106,8 @@ class BlogController extends Controller
         return back();
     }
 
-    /**
-     * @param  RestoreRequest  $request
-     * @param $id
-     * @return RedirectResponse
-     */
-    public function restore(RestoreRequest $request, $id)
+
+    public function restore(RestoreRequest $request, $id): RedirectResponse
     {
         Blog::onlyTrashed()->findOrFail($id)->restore();
 
