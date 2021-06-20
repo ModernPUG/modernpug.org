@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Services\Jumpit;
-
 
 use App\Models\Recruit;
 use stdClass;
 
 class ConvertRecruit
 {
-
     public function convert(stdClass $recruit): Recruit
     {
         return new Recruit([
@@ -23,5 +20,4 @@ class ConvertRecruit
             'expired_at' => $recruit->closedAt,
         ]);
     }
-
 }
