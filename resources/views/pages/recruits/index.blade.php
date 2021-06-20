@@ -1,6 +1,8 @@
 @extends('common.layout')
 
-@section('title', 'Recruiting' )
+@section('title', '성장하는 회사! 성장하는 개발자와 함께 하고 싶으신가요?')
+@section('meta.title', '성장하는 회사! 성장하는 개발자와 함께 하고 싶으신가요?')
+@section('meta.description', '모던 PHP 유저그룹과 함께하는 기업들에 지원해보세요! 성장하는 실력과 행복한 코딩을 위한 첫걸음!')
 
 @php
     /**
