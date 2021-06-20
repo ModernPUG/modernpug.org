@@ -1,7 +1,7 @@
 @php
-/**
- * @var \App\Models\Recruit $recruit
- */
+    /**
+     * @var \App\Models\Recruit $recruit
+     */
 @endphp
 
 <!-- Single Blog Post -->
@@ -11,7 +11,11 @@
         <img src="{{ $recruit->image_url??"/img/adult-article-assortment-1496183.jpg" }}" alt="{{ $recruit->title }}">
         <!-- category -->
         <div class="label">
-            {{ $recruit->expired_at->format('Y-m-d 마감') }}
+            @if($recruit->expired_at=='9999-12-31 23:59:59')
+                상시 채용
+            @else
+                {{ $recruit->expired_at->format('Y-m-d 마감') }}
+            @endif
         </div>
     </div>
     <!-- Post Content -->
@@ -21,16 +25,20 @@
             -
             {{ $recruit->company_name }}
         </h5>
-        <p>
-            {{ $recruit->min_salary }}~{{ $recruit->max_salary }}만원
-        </p>
-        <p>
+        @if($recruit->address)
+            <address>
+                {{ $recruit->address }}
+            </address>
+        @endif
+        @if($recruit->min_salary && $recruit->max_salary)
+            <p>
+                {{ $recruit->min_salary }}~{{ $recruit->max_salary }}만원
+            </p>
+        @endif
+
+        <p style="max-height:200px;overflow-y: scroll">
             {!! nl2br(e($recruit->description)) !!}
         </p>
-        <!-- Post Meta -->
-        <address>
-            {{ $recruit->address }}
-        </address>
 
         <div class="tags">
             @foreach(explode(',',$recruit->skills) as $skill)
@@ -41,31 +49,41 @@
         </div>
 
 
-        <div class="text-right">
+        <div class="text-right mt-4 mb-4">
 
-            <a href="{{ $recruit->link }}" class="btn btn-primary btn-sm" target="_blank">
-                지원하기
-            </a>
-            @can('update', $recruit)
-                <a href="{{ route('recruits.edit',[$recruit->id])}}" target="_blank"
-                   class="btn btn-sm btn-success">
-                    수정
+            @if($recruit->id)
+                <a href="{{ $recruit->link }}" class="btn btn-outline-primary w-100 btn-sm" target="_blank">
+                    <i class="fa fa-external-link"></i>
+                    지원하기
                 </a>
-            @endcan
-            @can('delete', $recruit)
-                <form class="d-inline-block"
-                      action="{{ route('recruits.destroy', [$recruit->id] ) }}"
-                      method="post">
-                    @csrf
-                    @method("DELETE")
-                    <input type="submit" class="btn btn-danger btn-sm" value="삭제">
-                </form>
-            @endcan
+                @can('update', $recruit)
+                    <a href="{{ route('recruits.edit',[$recruit->id])}}" target="_blank"
+                       class="btn btn-sm btn-success">
+                        수정
+                    </a>
+                @endcan
+                @can('delete', $recruit)
+                    <form class="d-inline-block"
+                          action="{{ route('recruits.destroy', [$recruit->id] ) }}"
+                          method="post">
+                        @csrf
+                        @method("DELETE")
+                        <input type="submit" class="btn btn-danger btn-sm" value="삭제">
+                    </form>
+                @endcan
+            @else
+                <a href="{{ $recruit->link }}" class="btn btn-outline-info w-100 btn-sm" target="_blank">
+                    <i class="fa fa-external-link"></i>
+                    지원하고 취업 축하금 받기
+                </a>
+            @endif
         </div>
-        <div class="text-right">
-            <small class="text-secondary">
-                {{ $recruit->entry_user->name }} 님이 등록하였습니다
-            </small>
-        </div>
+        @if($recruit->entry_user)
+            <div class="text-right">
+                <small class="text-secondary">
+                    {{ $recruit->entry_user->name }} 님이 등록하였습니다
+                </small>
+            </div>
+        @endif
     </div>
 </div>

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\CrawlFeed;
 use App\Console\Commands\CrawlReleaseNews;
+use App\Console\Commands\Jumpit\RefreshRecruitCache;
 use App\Console\Commands\PostImageUpdater;
 use App\Console\Commands\PushDailyNewPosts;
 use App\Console\Commands\PushDailyNewRecruits;
@@ -44,6 +45,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(PushTodayReleaseNews::class)->dailyAt('7:05');
         $schedule->command(PushDailyNewPosts::class)->dailyAt('7:05');
         $schedule->command(PushDailyNewRecruits::class)->dailyAt('7:05');
+        $schedule->command(RefreshRecruitCache::class)->hourly();
     }
 
     /**

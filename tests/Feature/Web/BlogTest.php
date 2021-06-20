@@ -3,6 +3,7 @@
 namespace Tests\Feature\Web;
 
 use App\Models\Blog;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
@@ -241,9 +242,10 @@ class BlogTest extends TestCase
         $nonOwnerWithPermission->givePermissionTo('blog-delete');
 
         /**
-         * @var Blog $blog
+         * @var Post $post
          */
-        $blog = Blog::factory()->create();
+        $post = Post::factory()->create();
+        $blog = $post->blog;
 
         $this->get(route('blogs.index'))->assertOk()->assertSee($blog->title);
 

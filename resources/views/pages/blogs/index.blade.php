@@ -40,9 +40,6 @@
 
                     <div class="row">
                         @foreach($blogs as $blog)
-                            @if($blog->posts_count===0)
-                                @continue
-                            @endif
 
                             <div class="col-md-6 col-lg-4 col-xl-3 mb-30">
                                 <!-- Single Blog Post -->

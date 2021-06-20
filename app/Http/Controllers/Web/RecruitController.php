@@ -11,49 +11,51 @@ use App\Http\Requests\Web\Recruit\StoreRequest;
 use App\Http\Requests\Web\Recruit\UpdateRequest;
 use App\Models\Recruit;
 use App\Models\User;
+use App\Services\Jumpit\CachedRecruit;
+use App\Services\Jumpit\ConvertRecruit;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Toastr;
 
 class RecruitController extends Controller
 {
-    public function __construct()
+    private CachedRecruit $searchRecruits;
+    private ConvertRecruit $convertRecruit;
+
+    public function __construct(CachedRecruit $searchRecruits, ConvertRecruit $convertRecruit)
     {
         $this->middleware(['auth:web', 'verified'])->except(['index']);
+        $this->searchRecruits = $searchRecruits;
+        $this->convertRecruit = $convertRecruit;
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): View
     {
         $recruits = Recruit::where('expired_at', '>=', Carbon::now())->get();
 
-        return view('pages.recruits.index', compact('recruits'));
+        $cachedRecruits = $this->searchRecruits->getCachedRecruits();
+
+        $sponsorRecruits = collect();
+        $sponsorUrl = $cachedRecruits?->result->link;
+        if (is_array($cachedRecruits?->result->positions)) {
+            foreach ($cachedRecruits->result->positions as $position) {
+                $sponsorRecruits->add($this->convertRecruit->convert($position));
+            }
+        }
+
+        return view('pages.recruits.index', compact('recruits', 'sponsorUrl', 'sponsorRecruits'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @param CreateRequest $request
-     * @return void
-     */
-    public function create(CreateRequest $request)
+    public function create(CreateRequest $request): View
     {
         $recruit = Recruit::initializeWithDefault();
 
         return view('pages.recruits.create', compact('recruit'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): RedirectResponse
     {
         /**
          * @var User
@@ -70,34 +72,20 @@ class RecruitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return Response
      */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param EditRequest $request
-     * @param Recruit $recruit
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(EditRequest $request, Recruit $recruit)
+    public function edit(EditRequest $request, Recruit $recruit): View
     {
         return view('pages.recruits.edit', compact('recruit'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param UpdateRequest $request
-     * @param Recruit $recruit
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateRequest $request, Recruit $recruit)
+    public function update(UpdateRequest $request, Recruit $recruit): RedirectResponse
     {
         $recruit->update($request->validated());
 
@@ -106,15 +94,7 @@ class RecruitController extends Controller
         return back();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param DeleteRequest $request
-     * @param Recruit $recruit
-     * @return void
-     * @throws \Exception
-     */
-    public function destroy(DeleteRequest $request, Recruit $recruit)
+    public function destroy(DeleteRequest $request, Recruit $recruit): RedirectResponse
     {
         $recruit->delete();
 
@@ -123,12 +103,7 @@ class RecruitController extends Controller
         return back();
     }
 
-    /**
-     * @param RestoreRequest $request
-     * @param $id
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function restore(RestoreRequest $request, $id)
+    public function restore(RestoreRequest $request, $id): RedirectResponse
     {
         Recruit::onlyTrashed()->findOrFail($id)->restore();
 
