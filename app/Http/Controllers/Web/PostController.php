@@ -157,7 +157,7 @@ class PostController extends Controller
         $posts = Post::with('blog', 'preview', 'tags');
 
         if ($keyword) {
-            $posts->where(function(Builder $builder) use ($keyword) {
+            $posts->where(function (Builder $builder) use ($keyword) {
                 $builder->where('title', 'like', "%{$keyword}%")
                 ->orWhere('description', 'like', "%{$keyword}%");
             });
