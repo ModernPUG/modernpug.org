@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 
 class StripPosts
 {
-    public static function panel(string $html)
+    public static function panel(?string $html)
     {
         $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
         $html = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $html);
@@ -25,7 +25,7 @@ class StripPosts
         return $html;
     }
 
-    public static function view(string $html)
+    public static function view(?string $html)
     {
         $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
         $html = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $html);
@@ -39,7 +39,7 @@ class StripPosts
         return $html;
     }
 
-    public static function slack(string $html)
+    public static function slack(?string $html)
     {
         $html = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $html);
         $html = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $html);
