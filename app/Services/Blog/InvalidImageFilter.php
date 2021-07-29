@@ -26,6 +26,10 @@ class InvalidImageFilter
             return null;
         }
 
+        if (str_contains($url, 'naver.com')) {
+            return null;
+        }
+
         if ($this->client->head($url)->getStatusCode() !== 200) {
             return null;
         }
