@@ -12,7 +12,7 @@ class PushDailyNewPosts extends Command
      *
      * @var string
      */
-    protected $signature = 'posts:push-daily-new-article';
+    protected $signature = 'posts:push-daily-new-posts';
 
     /**
      * The console command description.

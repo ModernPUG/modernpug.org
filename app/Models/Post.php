@@ -112,7 +112,9 @@ class Post extends Model
             });
         }
 
-        $posts->whereBetween('posts.published_at', [$yesterday->startOfDay(), $yesterday->endOfDay()]);
+        $posts->whereBetween('posts.created_at', [
+            $yesterday->startOfDay()->toDateTimeString(), $yesterday->endOfDay()->toDateTimeString(),
+        ]);
 
         return $posts->get();
     }
