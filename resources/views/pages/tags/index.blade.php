@@ -51,7 +51,9 @@
                     <div class="row">
                         <p>
                         @foreach($allTags as $tag)
-                            <a href="{{ route('posts.search',[$tag->name]) }}" class="btn btn-sm btn-outline-dark">{{ $tag->name }}</a>
+                            @if($tag->name)
+                                <a href="{{ route('posts.search',[$tag->name]) }}" class="btn btn-sm btn-outline-dark">{{ $tag->name }}</a>
+                            @endif
                         @endforeach
                         </p>
                     </div>

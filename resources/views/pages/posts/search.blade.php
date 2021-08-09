@@ -96,7 +96,7 @@
                     @endforelse
 
 
-                    <div class="pull-right">
+                    <div class="d-flex justify-content-center">
                         @if($posts->count())
                             {!! $posts->appends(Request::except('page'))->render() !!}
                         @endif
