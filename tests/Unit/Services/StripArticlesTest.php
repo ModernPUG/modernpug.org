@@ -28,7 +28,6 @@ class StripArticlesTest extends TestCase
 
         $this->assertEquals('제목<br>본문', $resultText);
 
-
         $resultText = StripPosts::view(null);
 
         $this->assertEquals('', $resultText);
@@ -36,17 +35,14 @@ class StripArticlesTest extends TestCase
 
     public function testSlack()
     {
-
         $originText = "<html><head><style>.html{}</style></head><body><h1>제  목</h1><br>본\n\n문<script>console.log('test')</script></body></html>";
 
         $resultText = StripPosts::slack($originText);
 
         $this->assertEquals("제 목본\n문", $resultText);
 
-
         $resultText = StripPosts::slack(null);
 
         $this->assertEquals('', $resultText);
-
     }
 }
