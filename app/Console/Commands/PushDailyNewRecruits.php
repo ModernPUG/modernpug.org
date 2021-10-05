@@ -24,7 +24,7 @@ class PushDailyNewRecruits extends Command
     /**
      * Execute the console command.
      *
-     * @param PushDailyNewRecruitsService $pushReleaseNews
+     * @param  PushDailyNewRecruitsService  $pushReleaseNews
      * @return mixed
      */
     public function handle(PushDailyNewRecruitsService $pushReleaseNews)
