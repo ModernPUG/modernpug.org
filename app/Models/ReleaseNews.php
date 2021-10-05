@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
  * @property \Illuminate\Support\Carbon|null $released_at 출시일
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Database\Factories\ReleaseNewsFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ReleaseNews newQuery()
@@ -118,9 +119,8 @@ class ReleaseNews extends Model
     }
 
     /**
-     * @param string $type    SUPPORT_RELEASES type
-     * @param string $version version of type
-     *
+     * @param  string  $type  SUPPORT_RELEASES type
+     * @param  string  $version  version of type
      * @return object
      */
     public static function existTypeAndVersion(string $type, string $version)

@@ -27,6 +27,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\User $entry_user
+ *
  * @method static \Database\Factories\RecruitFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newQuery()

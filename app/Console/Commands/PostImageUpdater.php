@@ -24,7 +24,7 @@ class PostImageUpdater extends Command
     /**
      * Execute the console command.
      *
-     * @param PreviewUpdater $previewUpdater
+     * @param  PreviewUpdater  $previewUpdater
      * @return mixed
      */
     public function handle(PreviewUpdater $previewUpdater)

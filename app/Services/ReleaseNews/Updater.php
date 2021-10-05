@@ -30,10 +30,11 @@ class Updater
     }
 
     /**
-     * @param int $count each type crawling limit 5
-     * @param int $success crawling success count
-     * @param int $duplicate crawling duplicate count
-     * @param int $fail crawling fail count
+     * @param  int  $count  each type crawling limit 5
+     * @param  int  $success  crawling success count
+     * @param  int  $duplicate  crawling duplicate count
+     * @param  int  $fail  crawling fail count
+     *
      * @throws \Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -122,8 +123,8 @@ class Updater
     }
 
     /**
-     * @param   string $url
-     * @return  Crawler
+     * @param  string  $url
+     * @return Crawler
      */
     private function convertCrawlerFromUrl(string $url)
     {
@@ -135,8 +136,9 @@ class Updater
     }
 
     /**
-     * @param string $url
+     * @param  string  $url
      * @return \Psr\Http\Message\StreamInterface
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function requestGithubAPI(string $url)
@@ -147,7 +149,7 @@ class Updater
     }
 
     /**
-     * @param mixed ...$argv
+     * @param  mixed  ...$argv
      * @return array
      */
     private function mergeCrawlerResult(...$argv)
@@ -163,8 +165,8 @@ class Updater
     }
 
     /**
-     * @param   string $version
-     * @return  string
+     * @param  string  $version
+     * @return string
      */
     private function convertReleaseVersion(string $version)
     {
@@ -188,12 +190,12 @@ class Updater
     }
 
     /**
-     * @param   string $url
-     * @param   string $before
-     * @param   string $after
-     * @param   string $version
-     * @param   string $end
-     * @return  string
+     * @param  string  $url
+     * @param  string  $before
+     * @param  string  $after
+     * @param  string  $version
+     * @param  string  $end
+     * @return string
      */
     private function releaseInContent(string $url, string $before, string $after, string $version, string $end)
     {
@@ -211,8 +213,8 @@ class Updater
     }
 
     /**
-     * @param   string $date
-     * @return  string
+     * @param  string  $date
+     * @return string
      */
     private function modifyReleaseDate(string $date)
     {
