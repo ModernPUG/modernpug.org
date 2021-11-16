@@ -107,8 +107,8 @@ class RemoveRole extends Command
     }
 
     /**
-     * @param User|null $user
-     * @param string $role
+     * @param  User|null  $user
+     * @param  string  $role
      * @return bool
      */
     private function askRemoveRole(User $user, string $role): bool
