@@ -7,8 +7,8 @@
             @if(config('modernpug.facebook'))
                 <a href="{{ config('modernpug.facebook') }}" target="_blank"><i class="fa fa-facebook"></i></a>
             @endif
-            @if(config('modernpug.slack'))
-                <a href="{{ config('modernpug.slack') }}" target="_blank"><i class="fa fa-slack"></i></a>
+            @if(config('modernpug.discord'))
+                <a href="{{ config('modernpug.discord') }}" target="_blank"><i class="fab fa-discord"></i></a>
             @endif
             @if(config('modernpug.github_repo'))
                 <a href="{{ config('modernpug.github_repo') }}" target="_blank"><i class="fa fa-github"></i></a>

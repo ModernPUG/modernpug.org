@@ -14,6 +14,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\AboutUsController;
 use App\Http\Controllers\Web\BlogController;
+use App\Http\Controllers\Web\DiscordController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LogoController;
 use App\Http\Controllers\Web\Mypage\BannerConfirmController;
@@ -91,3 +92,5 @@ Route::resource('recruits', RecruitController::class);
 Route::patch('recruits/{recruit}/restore', [RecruitController::class, 'restore'])->name('recruits.restore');
 
 Route::resource('slack', SlackController::class);
+
+Route::get('discord', DiscordController::class)->name('discord');

@@ -67,9 +67,9 @@
                                     <p>2</p>
                                 </div>
                                 <div class="post-title">
-                                    <a href="{{ route('slack.index') }}">
-                                        <i class="fa fa-slack"></i>
-                                        모던 PUG 슬랙
+                                    <a href="{{ route('discord') }}">
+                                        <i class="fab fa-discord"></i>
+                                        모던 PUG 디스코드
                                     </a>
                                 </div>
                             </div>

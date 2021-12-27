@@ -61,6 +61,8 @@
     <!-- Style CSS -->
     <link rel="stylesheet" href="/vendor/world/style.css">
     <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/v4-shims.min.css" integrity="sha512-fHavkBby/gcFEB2taaBfG0DLdHRGrnvkWQNXVZ5Yb/Fj6LkogecQUd6oyvBVsrWPaHSxs5tNza6LUW/Y6Az9lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('css')
     @stack('css')
 </head>
@@ -116,7 +118,7 @@
                         <p>
                             홈페이지와 관련된 내용은
                             <a class="text-info" href="{{ config('modernpug.facebook') }}" target="_blank">페이스북 그룹</a>,
-                            <a class="text-info" href="{{ config('modernpug.slack') }}" target="_blank">슬랙</a>,
+                            <a class="text-info" href="{{ config('modernpug.discord') }}" target="_blank">디스코드</a>,
                             <a class="text-info" href="{{ config('modernpug.github_repo') }}" target="_blank">깃허브</a>
                             를 통해서 문의바랍니다
                         </p>
@@ -129,18 +131,6 @@
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
-                </div>
-            </div>
-            <div class="col-12 col-md-4 mb-50">
-                <div class="footer-single-widget">
-                    <h5>
-                        Invite ModernPUG Slack
-                        <i class="fa fa-slack"></i>
-                    </h5>
-                    <form action="{{ route('slack.store') }}" method="post" onclick="document.location.href=this.attributes.action.value;">
-                        <input type="email" name="email" placeholder="Join Us" required>
-                        <button type="button"><i class="fa fa-arrow-right"></i></button>
-                    </form>
                 </div>
             </div>
         </div>

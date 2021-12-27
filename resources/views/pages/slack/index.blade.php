@@ -29,6 +29,24 @@
 
     <section class="contact-area section-padding-100">
         <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-12 col-md-10 col-lg-8">
+
+                    <div class="alert alert-danger" role="alert">
+                        Slack은 이제 사용을 중단하고 디스코드로 전환합니다. 새로 오신분은 아래의 디스코드로 접속해주세요.
+                    </div>
+
+                    <a href="{{ config('modernpug.discord') }}" class="btn btn-primary">
+                        <i class="fab fa-discord"></i>
+                        디스코드 바로가기
+                    </a>
+                    <hr>
+                </div>
+            </div>
+
+
             <div class="row justify-content-center">
                 <!-- Contact Form Area -->
                 <div class="col-12 col-md-10 col-lg-8">
