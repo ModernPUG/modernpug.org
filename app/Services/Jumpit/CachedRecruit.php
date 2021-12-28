@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\Services\Jumpit;
-
 
 use Exception;
 use Illuminate\Support\Facades\Cache;
 
 class CachedRecruit
 {
-
     protected const CACHE_KEY = 'jumpit-recruits';
     private SearchRecruits $searchRecruits;
 
@@ -27,6 +24,7 @@ class CachedRecruit
             }
 
             Cache::put(self::CACHE_KEY, $response);
+
             return true;
         } catch (Exception) {
             return false;
@@ -37,6 +35,4 @@ class CachedRecruit
     {
         return Cache::get(self::CACHE_KEY);
     }
-
-
 }
