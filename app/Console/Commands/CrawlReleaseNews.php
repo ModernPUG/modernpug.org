@@ -24,8 +24,9 @@ class CrawlReleaseNews extends Command
     /**
      * Execute the console command.
      *
-     * @param Updater $updater
+     * @param  Updater  $updater
      * @return mixed
+     *
      * @throws \Exception
      */
     public function handle(Updater $updater)
