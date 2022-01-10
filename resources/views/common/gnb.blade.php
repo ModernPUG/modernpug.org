@@ -27,13 +27,6 @@
         </div>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="https://wiki.modernpug.org/questions"
-           target="_blank">
-            QNA & WIKI
-            <i class="fa fa-external-link"></i>
-        </a>
-    </li>
 
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"

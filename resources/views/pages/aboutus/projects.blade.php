@@ -70,28 +70,6 @@
                         </div>
                         <!-- Post Content -->
                         <div class="post-content">
-                            <a href="https://wiki.modernpug.org/" class="headline">
-                                <h5>QNA / WIKI</h5>
-                            </a>
-                            <p>
-                                PHP와 관련된 QNA 및 WIKI를 제공합니다
-                            </p>
-                            <!-- Post Meta -->
-                            <div class="post-meta">
-                                <p>
-                                    관리 : @lesstif
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-blog-post post-style-4 d-flex align-items-center" style="width:100%">
-                        <!-- Post Thumbnail -->
-                        <div class="post-thumbnail">
-                            <img src="{{ asset('img/logo/logo-01.png') }}" alt="">
-                        </div>
-                        <!-- Post Content -->
-                        <div class="post-content">
                             <a href="http://modernpug.github.io/php-the-right-way/" class="headline">
                                 <h5>PHP The Right Way</h5>
                             </a>
