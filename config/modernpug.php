@@ -9,7 +9,7 @@
 return [
     'facebook' => 'https://www.facebook.com/groups/655071604594451/',
     'slack' => 'https://modernpug.slack.com/',
-    'discord' => 'https://discord.gg/9BuTr5K63g/',
+    'discord' => 'https://discord.gg/9BuTr5K63g',
     'github' => 'https://github.com/ModernPUG',
     'github_repo' => 'https://github.com/ModernPUG/modernpug.org',
     'meetup_repo' => 'https://github.com/ModernPUG/meetup',
