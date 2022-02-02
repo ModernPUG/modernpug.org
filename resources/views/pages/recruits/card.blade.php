@@ -32,7 +32,7 @@
         @endif
         @if($recruit->min_salary && $recruit->max_salary)
             <p>
-                {{ $recruit->min_salary }}~{{ $recruit->max_salary }}만원
+                {{ number_format($recruit->min_salary) }}~{{ number_format($recruit->max_salary) }}만원
             </p>
         @endif
 
