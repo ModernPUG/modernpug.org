@@ -24,7 +24,7 @@ class PushTodayReleaseNews extends Command
     /**
      * Execute the console command.
      *
-     * @param PushReleaseNews $pushReleaseNews
+     * @param  PushReleaseNews  $pushReleaseNews
      * @return mixed
      */
     public function handle(PushReleaseNews $pushReleaseNews)
