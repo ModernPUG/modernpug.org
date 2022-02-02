@@ -2,65 +2,59 @@
 
 namespace Tests\Unit\Services;
 
+use App\Exceptions\SlackInviteFailException;
 use App\Services\Slack\Inviter;
+use GuzzleHttp\Client;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\Psr7\Response;
 use Tests\TestCase;
 
 class SlackInviterTest extends TestCase
 {
-    public function testSuccessRequest()
+    public function testSuccessRequest(): void
     {
         $mock = $this->getSuccessMock();
         $inviter = new Inviter($mock);
 
-        $inviter->invite('test@test.com');
+        $result = $inviter->invite('test@test.com');
+
+        $this->assertTrue($result);
+
     }
 
-    private function getSuccessMock()
+    private function getSuccessMock(): Client
     {
         $body = <<<'EOF'
 {"ok":true}
 EOF;
 
-        /** @var \Mockery\MockInterface|\GuzzleHttp\Psr7\Response $responseMock */
-        $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
-        $responseMock->shouldReceive('getContents')->andReturn($body);
-        $responseMock->shouldReceive('getStatusCode')->andReturn(200);
-        $responseMock->shouldReceive('getHeader')->andReturn(['Content-Type' => 'json']);
-        $responseMock->shouldReceive('getBody')->andReturn($responseMock);
+        $mock = new MockHandler([
+            new Response(200, [], $body),
+        ]);
 
-        /** @var \Mockery\MockInterface|\GuzzleHttp\Client $requestMock */
-        $requestMock = \Mockery::mock(\GuzzleHttp\Client::class);
-        $requestMock->shouldReceive('request')->andReturn($responseMock);
-
-        return $requestMock;
+        return new Client(['handler' => $mock]);
     }
 
-    public function testFailRequest()
+    public function testFailRequest(): void
     {
-        $this->expectException(\App\Exceptions\SlackInviteFailException::class);
+        $this->expectException(SlackInviteFailException::class);
         $mock = $this->getFailMock();
         $inviter = new Inviter($mock);
 
         $inviter->invite('test@test.com');
     }
 
-    private function getFailMock()
+    private function getFailMock(): Client
     {
         $body = <<<'EOF'
 {"ok":false, "error": "invaild_auth"}
 EOF;
 
-        /** @var \Mockery\MockInterface|\GuzzleHttp\Psr7\Response $responseMock */
-        $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
-        $responseMock->shouldReceive('getContents')->andReturn($body);
-        $responseMock->shouldReceive('getStatusCode')->andReturn(200);
-        $responseMock->shouldReceive('getHeader')->andReturn(['Content-Type' => 'json']);
-        $responseMock->shouldReceive('getBody')->andReturn($responseMock);
 
-        /** @var \Mockery\MockInterface|\GuzzleHttp\Client $requestMock */
-        $requestMock = \Mockery::mock(\GuzzleHttp\Client::class);
-        $requestMock->shouldReceive('request')->andReturn($responseMock);
+        $mock = new MockHandler([
+            new Response(200, [], $body),
+        ]);
 
-        return $requestMock;
+        return new Client(['handler' => $mock]);
     }
 }

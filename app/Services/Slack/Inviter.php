@@ -11,10 +11,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class Inviter
 {
-    /**
-     * @var Client
-     */
-    protected $client;
+    protected Client $client;
 
     public function __construct(Client $client)
     {
@@ -29,7 +26,7 @@ class Inviter
      * @throws AlreadyInTeamException
      * @throws AlreadyInTeamInvitedUserException
      */
-    public function invite(string $email)
+    public function invite(string $email): bool
     {
         $uri = config('slack.url').'/api/users.admin.invite?t='.time();
 
@@ -51,15 +48,17 @@ class Inviter
         $result = json_decode($response->getBody()->getContents());
 
         if (! $result->ok) {
-            if ($result->error == 'already_invited') {
+            if ($result->error === 'already_invited') {
                 throw new AlreadyInvitedException();
-            } elseif ($result->error == 'already_in_team') {
+            } elseif ($result->error === 'already_in_team') {
                 throw new AlreadyInTeamException();
-            } elseif ($result->error == 'already_in_team_invited_user') {
+            } elseif ($result->error === 'already_in_team_invited_user') {
                 throw new AlreadyInTeamInvitedUserException();
             } else {
                 throw new SlackInviteFailException($result->error);
             }
         }
+
+        return true;
     }
 }
