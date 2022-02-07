@@ -22,12 +22,9 @@ class PostImageUpdater extends Command
     protected $description = '파싱한 이미지의 미리보기 이미지를 구해옵니다';
 
     /**
-     * Execute the console command.
-     *
      * @param PreviewUpdater $previewUpdater
-     * @return mixed
      */
-    public function handle(PreviewUpdater $previewUpdater)
+    public function handle(PreviewUpdater $previewUpdater): void
     {
         $previewUpdater->update();
     }

@@ -12,6 +12,7 @@ use App\Models\Blog;
 use App\Models\Post;
 use App\Models\Preview;
 use Embed\Embed;
+use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Database\Query\Builder;
@@ -19,26 +20,16 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class PreviewUpdater
 {
-    /**
-     * @var Client
-     */
-    protected $client;
-    /**
-     * @var Command
-     */
-    protected $command;
-    /**
-     * @var InvalidImageFilter
-     */
-    protected $invalidImageFilter;
+    protected ?Command $command;
 
-    public function __construct(Client $client, InvalidImageFilter $invalidImageFilter)
-    {
-        $this->client = $client;
-        $this->invalidImageFilter = $invalidImageFilter;
+    public function __construct(
+        protected Client $client,
+        protected InvalidImageFilter $invalidImageFilter,
+        protected Embed $embed
+    ) {
     }
 
-    public function update(?Command $command = null)
+    public function update(?Command $command = null): void
     {
         $this->command = $command;
 
@@ -57,21 +48,21 @@ class PreviewUpdater
         $this->print('게시글 검색완료');
     }
 
-    private function searchImageUnregisteredPosts()
+    private function searchImageUnregisteredPosts(): iterable
     {
         return Post::whereNotIn('id', function (Builder $builder) {
             $builder->select('post_id')->from('previews');
         })->get();
     }
 
-    private function getTargetBlogs()
+    private function getTargetBlogs(): iterable
     {
 
         //return Blog::whereNull('image_url')->get();
         return Blog::all();
     }
 
-    private function parseBlogImageUrl(Blog $blog)
+    private function parseBlogImageUrl(Blog $blog): void
     {
         $imageUrl = $this->getImageUrlBaseFeed($blog->feed_url);
 
@@ -91,7 +82,7 @@ class PreviewUpdater
             $crawler = new Crawler($contents);
 
             return $crawler->filter('image url')->text();
-        } catch (\Exception $exception) {
+        } catch (Exception) {
             return null;
         }
     }
@@ -99,29 +90,28 @@ class PreviewUpdater
     private function getImageUrlBaseOgImage(string $url): ?string
     {
         try {
-            $info = Embed::create($url);
+            $info = $this->embed->get($url);
 
-            $info->image = $this->invalidImageFilter->filter($info->image);
+            return $info->image ? $this->invalidImageFilter->filter($info->image) : null;
 
-            return $info->image;
-        } catch (\Exception $exception) {
+        } catch (Exception) {
             return null;
         }
     }
 
-    private function parsePostImageUrl(Post $post)
+    private function parsePostImageUrl(Post $post): void
     {
         $imageUrl = $this->getImageUrlBaseOgImage($post->link);
 
         if ($imageUrl) {
-            $preview = new Preview;
+            $preview = new Preview();
             $preview->image_url = $imageUrl;
             $preview->post_id = $post->id;
             $preview->save();
         }
     }
 
-    private function print(string $message)
+    private function print(string $message): void
     {
         if ($this->command) {
             $this->command->info($message);
