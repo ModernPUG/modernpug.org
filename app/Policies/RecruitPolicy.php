@@ -13,8 +13,8 @@ class RecruitPolicy
     /**
      * Determine whether the user can view the recruits.
      *
-     * @param User $user
-     * @param Recruit $recruit
+     * @param  User  $user
+     * @param  Recruit  $recruit
      * @return mixed
      */
     public function view(User $user, Recruit $recruit)
@@ -25,7 +25,7 @@ class RecruitPolicy
     /**
      * Determine whether the user can create recruits.
      *
-     * @param User $user
+     * @param  User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -36,8 +36,8 @@ class RecruitPolicy
     /**
      * Determine whether the user can update the recruits.
      *
-     * @param User $user
-     * @param Recruit $recruit
+     * @param  User  $user
+     * @param  Recruit  $recruit
      * @return mixed
      */
     public function update(User $user, Recruit $recruit)
@@ -56,8 +56,8 @@ class RecruitPolicy
     /**
      * Determine whether the user can delete the recruits.
      *
-     * @param User $user
-     * @param Recruit $recruit
+     * @param  User  $user
+     * @param  Recruit  $recruit
      * @return mixed
      */
     public function delete(User $user, Recruit $recruit)
@@ -76,8 +76,8 @@ class RecruitPolicy
     /**
      * Determine whether the user can restore the recruits.
      *
-     * @param User $user
-     * @param Recruit $recruit
+     * @param  User  $user
+     * @param  Recruit  $recruit
      * @return mixed
      */
     public function restore(User $user, Recruit $recruit)
