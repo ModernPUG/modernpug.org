@@ -19,7 +19,6 @@ class SlackInviterTest extends TestCase
         $result = $inviter->invite('test@test.com');
 
         $this->assertTrue($result);
-
     }
 
     private function getSuccessMock(): Client
@@ -49,7 +48,6 @@ EOF;
         $body = <<<'EOF'
 {"ok":false, "error": "invaild_auth"}
 EOF;
-
 
         $mock = new MockHandler([
             new Response(200, [], $body),

@@ -93,7 +93,6 @@ class PreviewUpdater
             $info = $this->embed->get($url);
 
             return $info->image ? $this->invalidImageFilter->filter($info->image) : null;
-
         } catch (Exception) {
             return null;
         }
