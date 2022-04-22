@@ -12,7 +12,7 @@ class PointPolicy
     /**
      * Determine whether the user can view the recruits.
      *
-     * @param User $user
+     * @param  User  $user
      * @return mixed
      */
     public function view(User $user)
