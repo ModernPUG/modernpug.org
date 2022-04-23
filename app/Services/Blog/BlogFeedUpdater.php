@@ -59,7 +59,7 @@ class BlogFeedUpdater
                 $blog->update();
 
                 $this->print($blog->feed_url.' 종료');
-            } catch (LaminasFeedRuntimeException | LaminasHttpRuntimeException $exception) {
+            } catch (LaminasFeedRuntimeException|LaminasHttpRuntimeException $exception) {
                 $blog->increment('crawling_fail_count', 1, ['last_crawling_failed_at' => now()]);
                 $this->print($blog->feed_url);
                 $this->print($blog->crawling_fail_count);
