@@ -19,7 +19,8 @@ class Inviter
     }
 
     /**
-     * @param string $email
+     * @param  string  $email
+     *
      * @throws GuzzleException
      * @throws SlackInviteFailException
      * @throws AlreadyInvitedException

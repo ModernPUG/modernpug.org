@@ -23,7 +23,7 @@ class CloseRequest extends FormRequest
         $user = auth()->user();
         $result = $user->can('update', $recruit);
 
-        if (!$result) {
+        if (! $result) {
             throw new RecruitPolicyException('채용공고를 조기 마감 할 권한이 없습니다');
         }
 
