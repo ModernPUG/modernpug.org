@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\V1\Recruits\IndexRequest;
 use App\Http\Resources\Recruit as RecruitResource;
+use App\Models\Recruit;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class RecruitController extends Controller
         $createdFrom = $request->input('created_from');
         $createdTo = $request->input('created_to');
 
-        $recruits = \App\Models\Recruit::where('expired_at', '>=', Carbon::today())
+        $recruits = Recruit::where('expired_at', '>=', Carbon::today())
             ->when($createdAt, function (Builder $builder) use ($createdAt) {
                 $builder->whereBetween('created_at', [$createdAt.' 00:00:00', $createdAt.' 23:59:59']);
             })
@@ -68,7 +69,7 @@ class RecruitController extends Controller
      */
     public function show($id)
     {
-        return new RecruitResource(\App\Models\Recruit::findOrFail($id));
+        return new RecruitResource(Recruit::findOrFail($id));
     }
 
     /**

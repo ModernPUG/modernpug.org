@@ -16,7 +16,7 @@ class Recruit extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
         return [
             'id' => $this->id,
@@ -34,7 +34,7 @@ class Recruit extends JsonResource
             'expired_at' => $this->expired_at,
             'created_user' => $this->entry_user->name,
             'closed_at' => $this->closed_at,
-            'closed_user' => $this->closed_user->name,
+            'closed_user' => $this->closed_user?->name,
         ];
     }
 }
