@@ -103,8 +103,8 @@ class AssignRole extends Command
     }
 
     /**
-     * @param User|null $user
-     * @param string $role
+     * @param  User|null  $user
+     * @param  string  $role
      * @return bool
      */
     private function askAssignRole(User $user, string $role): bool
