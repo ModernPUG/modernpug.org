@@ -4,11 +4,15 @@
      */
 @endphp
 
-<!-- Single Blog Post -->
-<div class="single-blog-post recruit">
+    <!-- Single Blog Post -->
+<div class="single-blog-post recruit ">
     <!-- Post Thumbnail -->
     <div class="post-thumbnail">
-        <img src="{{ $recruit->image_url??"/img/adult-article-assortment-1496183.jpg" }}" alt="{{ $recruit->title }}">
+        <img src="{{ $recruit->image_url??"/img/adult-article-assortment-1496183.jpg" }}" alt="{{ $recruit->title }}"
+             @if($recruit->closed_at)
+                 style="filter: grayscale(1)"
+            @endif
+        >
         <!-- category -->
         <div class="label">
             @if($recruit->expired_at=='9999-12-31 23:59:59')
@@ -52,16 +56,38 @@
         <div class="text-right mt-4 mb-4">
 
             @if($recruit->id)
-                <a href="{{ $recruit->link }}" class="btn btn-outline-primary w-100 btn-sm" target="_blank">
-                    <i class="fa fa-external-link"></i>
-                    지원하기
-                </a>
+
+                @if($recruit->closed_at)
+                    <a href="{{ $recruit->link }}" class="btn btn-secondary w-100 btn-sm" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        조기 마감되었습니다.
+                    </a>
+                @else
+                    <a href="{{ $recruit->link }}" class="btn btn-outline-primary w-100 btn-sm" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        지원하기
+                    </a>
+                @endif
+
                 @can('update', $recruit)
                     <a href="{{ route('recruits.edit',[$recruit->id])}}" target="_blank"
                        class="btn btn-sm btn-success">
                         수정
                     </a>
+
+                    @if(!$recruit->closed_at)
+                        <form class="d-inline-block"
+                              action="{{ route('recruits.close', [$recruit->id] ) }}"
+                              method="post">
+                            @csrf
+                            @method("PATCH")
+                            <input type="submit" class="btn btn-sm btn-warning" value="조기 마감">
+                        </form>
+                    @else
+                        <div class="btn btn-sm btn-secondary">조기 마감 완료</div>
+                    @endif
                 @endcan
+
                 @can('delete', $recruit)
                     <form class="d-inline-block"
                           action="{{ route('recruits.destroy', [$recruit->id] ) }}"
@@ -82,6 +108,14 @@
             <div class="text-right">
                 <small class="text-secondary">
                     {{ $recruit->entry_user->name }} 님이 등록하였습니다
+                </small>
+            </div>
+        @endif
+
+        @if($recruit->closed_user)
+            <div class="text-right">
+                <small class="text-danger">
+                    {{ $recruit->closed_user?->name }} 님이 조기 마감하였습니다
                 </small>
             </div>
         @endif

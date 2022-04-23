@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Exceptions\AlreadyClosedRecruitException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Web\Recruit\CloseRequest;
 use App\Http\Requests\Web\Recruit\CreateRequest;
 use App\Http\Requests\Web\Recruit\DeleteRequest;
 use App\Http\Requests\Web\Recruit\EditRequest;
@@ -101,6 +103,28 @@ class RecruitController extends Controller
         Toastr::success('삭제가 완료되었습니다.');
 
         return back();
+    }
+
+    public function close(CloseRequest $request, Recruit $recruit): RedirectResponse
+    {
+        try {
+            if ($recruit->closed_at) {
+                throw new AlreadyClosedRecruitException();
+            }
+
+            $recruit->update([
+                'closed_at' => now(),
+                'closed_user_id' => auth()->user()?->getAuthIdentifier(),
+            ]);
+
+            Toastr::success('채용공고가 조기마감되었습니다. 노출이 재개됩니다');
+
+            return back();
+        } catch (\Exception $exception) {
+            Toastr::warning($exception->getMessage());
+
+            return back();
+        }
     }
 
     public function restore(RestoreRequest $request, $id): RedirectResponse

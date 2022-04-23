@@ -188,6 +188,71 @@ class RecruitTest extends TestCase
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
     }
 
+
+    public function testCantCloseRecruitByNonOwner()
+    {
+        /**
+         * @var User
+         */
+        $nonOwner = User::factory()->create();
+
+        /**
+         * @var Recruit
+         */
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
+
+        $this->actingAs($nonOwner)->patch(route('recruits.close', [$recruit->id]))
+            ->assertToastrHasError()
+            ->assertRedirect();
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
+    }
+
+    public function testCloseRecruitByOwner()
+    {
+        /**
+         * @var User
+         */
+        $owner = User::factory()->create();
+
+        /**
+         * @var Recruit $recruit
+         */
+        $recruit = Recruit::factory()->create(['entry_user_id' => $owner, 'expired_at' => Carbon::tomorrow()]);
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
+
+        $this->actingAs($owner)->patch(route('recruits.close', [$recruit->id]))
+            ->assertToastrHasSuccess()
+            ->assertRedirect();
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee('조기 마감되었습니다.');
+    }
+
+    public function testCloseRecruitByNonOwnerWithPermission()
+    {
+        /**
+         * @var User
+         */
+        $nonOwnerWithPermission = User::factory()->create();
+        $nonOwnerWithPermission->givePermissionTo('recruit-edit');
+
+        /**
+         * @var Recruit
+         */
+        $recruit = Recruit::factory()->create(['expired_at' => Carbon::tomorrow()]);
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee($recruit->title);
+
+        $this->actingAs($nonOwnerWithPermission)->patch(route('recruits.close', [$recruit->id]))
+            ->assertToastrHasSuccess()
+            ->assertRedirect();
+
+        $this->get(route('recruits.index'))->assertOk()->assertSee('조기 마감되었습니다.');
+    }
+
     public function testCantDeleteRecruitByNonOwner()
     {
         /**

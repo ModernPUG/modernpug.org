@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Messages\SlackAttachment;
 
@@ -26,6 +27,9 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property string|null $closed_at
+ * @property int|null $closed_user_id
+ * @property-read \App\Models\User|null $closed_user
  * @property-read \App\Models\User $entry_user
  * @method static \Database\Factories\RecruitFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
@@ -33,6 +37,8 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @method static \Illuminate\Database\Query\Builder|Recruit onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit query()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereClosedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereClosedUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereCompanyName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit whereDeletedAt($value)
@@ -72,6 +78,8 @@ class Recruit extends Model
         'max_salary',
         'expired_at',
         'entry_user_id',
+        'closed_at',
+        'closed_user_id',
     ];
 
     public static function initializeWithDefault()
@@ -88,9 +96,14 @@ class Recruit extends Model
             ->get();
     }
 
-    public function entry_user()
+    public function entry_user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function closed_user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'closed_user_id');
     }
 
     public function convertAttachment(): SlackAttachment
