@@ -35,7 +35,9 @@ class RecruitController extends Controller
 
     public function index(): View
     {
-        $recruits = Recruit::where('expired_at', '>=', Carbon::now())->get();
+        $recruits = Recruit::where('expired_at', '>=', Carbon::now())
+            ->whereNull('closed_at')
+            ->get();
 
         $cachedRecruits = $this->searchRecruits->getCachedRecruits();
 

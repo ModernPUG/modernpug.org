@@ -30,6 +30,7 @@ class RecruitController extends Controller
         $closedTo = $request->input('closed_to');
 
         $recruits = Recruit::where('expired_at', '>=', Carbon::today())
+            ->whereNull('closed_at')
             ->when($createdAt, function (Builder $builder) use ($createdAt) {
                 $builder->whereBetween('created_at', [$createdAt.' 00:00:00', $createdAt.' 23:59:59']);
             })
