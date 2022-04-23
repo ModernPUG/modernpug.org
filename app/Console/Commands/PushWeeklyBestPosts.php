@@ -9,18 +9,21 @@ class PushWeeklyBestPosts extends Command
 {
     /**
      * The name and signature of the console command.
+     *
      * @var string
      */
     protected $signature = 'posts:push-weekly-best';
 
     /**
      * The console command description.
+     *
      * @var string
      */
     protected $description = '';
 
     /**
      * Create a new command instance.
+     *
      * @return void
      */
     public function __construct()
@@ -30,6 +33,7 @@ class PushWeeklyBestPosts extends Command
 
     /**
      * Execute the console command.
+     *
      * @param  PushWeeklyBestPostsService  $pushWeeklyBestPosts
      */
     public function handle(PushWeeklyBestPostsService $pushWeeklyBestPosts)

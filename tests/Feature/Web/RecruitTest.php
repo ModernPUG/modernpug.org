@@ -188,7 +188,6 @@ class RecruitTest extends TestCase
         $this->get(route('recruits.index'))->assertOk()->assertDontSee($recruit->title);
     }
 
-
     public function testCantCloseRecruitByNonOwner()
     {
         /**

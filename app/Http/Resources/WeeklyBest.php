@@ -6,6 +6,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class WeeklyBest
+ *
  * @mixin \App\Models\WeeklyBest
  */
 class WeeklyBest extends JsonResource
