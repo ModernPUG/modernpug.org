@@ -23,6 +23,7 @@ class PostController extends Controller
         $posts = Post::withTrashed()->with('blog', 'preview')
             ->withCount('viewcount')
             ->whereIn('blog_id', $blogs->pluck('id'))
+            ->latest()
             ->paginate(10);
 
         return view('pages.mypage.post.index', compact('blogs', 'posts'));
