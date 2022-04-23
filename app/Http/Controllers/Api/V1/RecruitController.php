@@ -25,6 +25,10 @@ class RecruitController extends Controller
         $createdFrom = $request->input('created_from');
         $createdTo = $request->input('created_to');
 
+        $closedAt = $request->input('closed_at');
+        $closedFrom = $request->input('closed_from');
+        $closedTo = $request->input('closed_to');
+
         $recruits = Recruit::where('expired_at', '>=', Carbon::today())
             ->when($createdAt, function (Builder $builder) use ($createdAt) {
                 $builder->whereBetween('created_at', [$createdAt.' 00:00:00', $createdAt.' 23:59:59']);
@@ -34,6 +38,15 @@ class RecruitController extends Controller
             })
             ->when($createdTo, function (Builder $builder) use ($createdTo) {
                 $builder->where('created_at', '<=', $createdTo.' 23:59:59');
+            })
+            ->when($closedAt, function (Builder $builder) use ($closedAt) {
+                $builder->whereBetween('closed_at', [$closedAt.' 00:00:00', $closedAt.' 23:59:59']);
+            })
+            ->when($closedFrom, function (Builder $builder) use ($closedFrom) {
+                $builder->where('closed_at', '>=', $closedFrom.' 00:00:00');
+            })
+            ->when($closedTo, function (Builder $builder) use ($closedTo) {
+                $builder->where('closed_at', '<=', $closedTo.' 23:59:59');
             })
             ->get();
 
