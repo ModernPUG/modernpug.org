@@ -16,6 +16,7 @@ class SlackController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -25,6 +26,7 @@ class SlackController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -34,9 +36,11 @@ class SlackController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param InviteRequest $request
-     * @param Inviter $inviter
+     *
+     * @param  InviteRequest  $request
+     * @param  Inviter  $inviter
      * @return \Illuminate\Http\Response
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function store(InviteRequest $request, Inviter $inviter)
@@ -45,7 +49,7 @@ class SlackController extends Controller
             $inviter->invite($request->get('email'));
 
             Toastr::success('초대장이 신청하신 메일로 발송되었습니다.');
-        } catch (AlreadyInvitedException | AlreadyInTeamException | AlreadyInTeamInvitedUserException $exception) { // 이메일 무작위 대입 후 에러핸들링을 통해 멤버 이메일 확인방지
+        } catch (AlreadyInvitedException|AlreadyInTeamException|AlreadyInTeamInvitedUserException $exception) { // 이메일 무작위 대입 후 에러핸들링을 통해 멤버 이메일 확인방지
 
             Toastr::warning('이미 초대장이 발송완료되었습니다. 초대장을 받지 못하셨다면 스팸메일함을 확인해보시거나 모던퍼그 페이스북을 통해 문의해주세요.');
         } catch (SlackInviteFailException $exception) {
@@ -60,7 +64,8 @@ class SlackController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  int $id
+     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -70,7 +75,8 @@ class SlackController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param  int $id
+     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -80,8 +86,9 @@ class SlackController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -91,7 +98,8 @@ class SlackController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     * @param  int $id
+     *
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

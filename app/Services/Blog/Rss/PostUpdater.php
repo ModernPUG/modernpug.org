@@ -37,8 +37,8 @@ class PostUpdater
     }
 
     /**
-     * @param Post $post
-     * @param array $tags
+     * @param  Post  $post
+     * @param  array  $tags
      */
     private function attachTags(Post $post, array $tags): void
     {
@@ -46,8 +46,8 @@ class PostUpdater
     }
 
     /**
-     * @param Blog $blog
-     * @param EntryInterface $entry
+     * @param  Blog  $blog
+     * @param  EntryInterface  $entry
      * @return Post
      */
     private function updateBlogFromEntry(Blog $blog, EntryInterface $entry): Post
@@ -93,7 +93,7 @@ class PostUpdater
     }
 
     /**
-     * @param EntryInterface $entry
+     * @param  EntryInterface  $entry
      * @return int[]
      */
     private function getTagIdsFromEntry(EntryInterface $entry): array
