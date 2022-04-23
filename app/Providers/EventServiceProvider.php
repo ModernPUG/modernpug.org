@@ -7,7 +7,9 @@ use App\Observers\PointObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+use SocialiteProviders\Discord\DiscordExtendSocialite;
+use SocialiteProviders\Manager\SocialiteWasCalled;
+use SocialiteProviders\Slack\SlackExtendSocialite;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,8 +23,9 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-        \SocialiteProviders\Manager\SocialiteWasCalled::class => [
-            'SocialiteProviders\\Slack\\SlackExtendSocialite@handle',
+        SocialiteWasCalled::class => [
+            SlackExtendSocialite::class.'@handle',
+            DiscordExtendSocialite::class.'@handle',
         ],
     ];
 
