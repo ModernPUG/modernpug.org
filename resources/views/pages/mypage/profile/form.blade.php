@@ -39,6 +39,22 @@
 
                                     </div>
                                 </div>
+
+
+                                @if($user->roles->count())
+                                    <div class="form-group row">
+                                        <label for="name"
+                                               class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+
+                                        <div class="col-md-6">
+                                            @foreach($user->roles as $role)
+                                                <div class="btn btn-sm btn-primary">{{ $role->name }}</div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endif
+
+
                                 <div class="form-group row">
 
                                     <label for="name"
