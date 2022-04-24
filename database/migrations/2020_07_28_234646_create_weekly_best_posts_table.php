@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWeeklyBestPostsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -22,8 +21,8 @@ class CreateWeeklyBestPostsTable extends Migration
 
         Schema::create('weekly_best_posts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('weekly_best_id');
-            $table->unsignedBigInteger('post_id');
+            $table->foreignId('weekly_best_id');
+            $table->foreignId('post_id');
             $table->unsignedInteger('point')->comment('선정 당시 부여된 포인트');
             $table->unsignedInteger('rank')->comment('선정 순위');
             $table->timestamps();
@@ -39,4 +38,4 @@ class CreateWeeklyBestPostsTable extends Migration
     {
         Schema::dropIfExists('weekly_best_posts');
     }
-}
+};

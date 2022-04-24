@@ -3,7 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Http\Request;
-use Toastr;
 
 trait ToastrWithBackRenderTrait
 {
@@ -11,7 +10,7 @@ trait ToastrWithBackRenderTrait
     {
         $request->flash();
         $message = $this->getMessage();
-        Toastr::error($message);
+        toastr()->error($message);
 
         return back();
     }

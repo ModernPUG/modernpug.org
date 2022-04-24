@@ -12,7 +12,7 @@ class TestServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         TestResponse::macro('assertToastrHasSuccess', function () {
             /**
@@ -34,7 +34,7 @@ class TestServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }

@@ -19,7 +19,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
-use Toastr;
 
 class RecruitController extends Controller
 {
@@ -36,7 +35,7 @@ class RecruitController extends Controller
     public function index(): View
     {
         $recruits = Recruit::where('expired_at', '>=', Carbon::now())
-            ->whereNull('closed_at')
+            ->orderBy('closed_at')
             ->get();
 
         $cachedRecruits = $this->searchRecruits->getCachedRecruits();
@@ -68,7 +67,7 @@ class RecruitController extends Controller
 
         $user->recruits()->save(Recruit::make($request->validated()));
 
-        Toastr::success('등록이 완료되었습니다.');
+        toastr()->success('등록이 완료되었습니다.');
 
         return redirect(route('recruits.index'));
     }
@@ -93,7 +92,7 @@ class RecruitController extends Controller
     {
         $recruit->update($request->validated());
 
-        Toastr::success('수정이 완료되었습니다.');
+        toastr()->success('수정이 완료되었습니다.');
 
         return back();
     }
@@ -102,7 +101,7 @@ class RecruitController extends Controller
     {
         $recruit->delete();
 
-        Toastr::success('삭제가 완료되었습니다.');
+        toastr()->success('삭제가 완료되었습니다.');
 
         return back();
     }
@@ -119,11 +118,11 @@ class RecruitController extends Controller
                 'closed_user_id' => auth()->user()?->getAuthIdentifier(),
             ]);
 
-            Toastr::success('채용공고가 조기마감되었습니다. 노출이 재개됩니다');
+            toastr()->success('채용공고가 조기마감되었습니다. 노출이 재개됩니다');
 
             return back();
         } catch (\Exception $exception) {
-            Toastr::warning($exception->getMessage());
+            toastr()->warning($exception->getMessage());
 
             return back();
         }
@@ -133,7 +132,7 @@ class RecruitController extends Controller
     {
         Recruit::onlyTrashed()->findOrFail($id)->restore();
 
-        Toastr::success('채용공고가 복구되었습니다. 노출이 재개됩니다');
+        toastr()->success('채용공고가 복구되었습니다. 노출이 재개됩니다');
 
         return back();
     }

@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Posts\IndexController as PostsIndexController;
+use App\Http\Controllers\Api\V1\Posts\WeeklyBestController as PostsWeeklyBestController;
+use App\Http\Controllers\Api\V1\RecruitController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -10,10 +15,6 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-use App\Http\Controllers\Api\V1\Posts\IndexController as PostsIndexController;
-use App\Http\Controllers\Api\V1\Posts\WeeklyBestController as PostsWeeklyBestController;
-use App\Http\Controllers\Api\V1\RecruitController;
 
 Route::group(['as' => 'api.'], function () {
     Route::group(['as' => 'v1.', 'prefix' => 'v1', 'middleware' => ['auth:sanctum']], function () {

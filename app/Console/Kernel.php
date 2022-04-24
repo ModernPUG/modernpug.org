@@ -16,25 +16,8 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        CrawlFeed::class,
-        CrawlReleaseNews::class,
-        PostImageUpdater::class,
-        UpdateWeeklyBestPosts::class,
-    ];
 
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  Schedule  $schedule
-     * @return void
-     */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command(CrawlFeed::class)->hourly();
         $schedule->command(PostImageUpdater::class)->hourly();
@@ -48,12 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(RefreshRecruitCache::class)->hourly();
     }
 
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 

@@ -12,7 +12,6 @@ use App\Models\Role;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
-use Toastr;
 
 class UserController extends Controller
 {
@@ -92,7 +91,7 @@ class UserController extends Controller
         $user->update($validated);
         $user->syncRoles($request->get('roles'));
 
-        Toastr::success('사용자 '.$user->name.'가 수정되었습니다.');
+        toastr()->success('사용자 '.$user->name.'가 수정되었습니다.');
 
         return back();
     }
@@ -109,7 +108,7 @@ class UserController extends Controller
     {
         $user->delete();
 
-        Toastr::success('사용자 '.$user->name.'가 삭제되었습니다.');
+        toastr()->success('사용자 '.$user->name.'가 삭제되었습니다.');
 
         return back();
     }
@@ -123,7 +122,7 @@ class UserController extends Controller
     {
         User::onlyTrashed()->findOrFail($id)->restore();
 
-        Toastr::success('사용자의 복구가 완료되었습니다');
+        toastr()->success('사용자의 복구가 완료되었습니다');
 
         return back();
     }

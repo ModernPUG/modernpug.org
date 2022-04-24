@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePreviewsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,8 +13,8 @@ class CreatePreviewsTable extends Migration
     public function up()
     {
         Schema::create('previews', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('article_id')->unsigned();
+            $table->id();
+            $table->foreignId('article_id');
             $table->string('image_url');
             $table->timestamps();
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
@@ -31,4 +30,4 @@ class CreatePreviewsTable extends Migration
     {
         Schema::dropIfExists('previews');
     }
-}
+};

@@ -8,20 +8,19 @@ class ReCaptcha
 {
     public const ACCEPT_TEST_KEY = 'test';
 
-    /**
-     * @var Client
-     */
-    private $client;
-
-    public function __construct(Client $client)
+    public function __construct(private Client $client)
     {
         $this->client = $client;
     }
 
-    public function validate($attribute, $value, $parameters, $validator)
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     */
+    public function validate($attribute, $value, $parameters, $validator): bool
     {
         if (app()->environment('testing')) {
-            return $value == self::ACCEPT_TEST_KEY;
+            return $value === self::ACCEPT_TEST_KEY;
         }
 
         $response = $this->client->post('https://www.google.com/recaptcha/api/siteverify',
@@ -32,7 +31,7 @@ class ReCaptcha
                 ],
             ]
         );
-        $body = json_decode((string) $response->getBody());
+        $body = json_decode($response->getBody()->getContents(), false, 512, JSON_THROW_ON_ERROR);
 
         return $body->success;
     }

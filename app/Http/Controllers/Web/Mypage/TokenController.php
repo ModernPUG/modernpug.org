@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Toastr;
 
 class TokenController extends Controller
 {
@@ -31,7 +30,7 @@ class TokenController extends Controller
 
         $user->tokens()->findOrFail($id)->delete();
 
-        Toastr::success('토큰이 삭제되었습니다');
+        toastr()->success('토큰이 삭제되었습니다');
 
         return response()->noContent();
     }

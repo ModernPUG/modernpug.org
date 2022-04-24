@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ArticleToPost extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -82,4 +81,4 @@ class ArticleToPost extends Migration
             $table->renameColumn('post_id', 'article_id');
         });
     }
-}
+};

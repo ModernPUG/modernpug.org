@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEarlyCloseColumnToRecruitsTable extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::table('recruits', function (Blueprint $table) {
@@ -21,4 +20,4 @@ class AddEarlyCloseColumnToRecruitsTable extends Migration
             $table->dropColumn('closed_user_id');
         });
     }
-}
+};

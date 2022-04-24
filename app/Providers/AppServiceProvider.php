@@ -4,17 +4,12 @@ namespace App\Providers;
 
 use App\Validators\ReCaptcha;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
-use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot()
+    public function boot(): void
     {
         Validator::extend('greater_than_field', function ($attribute, $value, $parameters, $validator) {
             $min_field = $parameters[0];
@@ -33,12 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
     }
 
-    /**
-     * Register any application services.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
+        //
     }
+
 }

@@ -4,8 +4,8 @@ namespace Tests;
 
 use Clockwork\Support\Laravel\Tests\UsesClockwork;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use Kamaln7\Toastr\Facades\Toastr;
 use Mockery\MockInterface;
+use Yoeunes\Toastr\Facades\Toastr;
 
 abstract class TestCase extends BaseTestCase
 {

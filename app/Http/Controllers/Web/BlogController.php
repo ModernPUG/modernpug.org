@@ -19,7 +19,6 @@ use Laminas\Feed\Exception\RuntimeException;
 use Laminas\Feed\Reader\Reader as LaminasReader;
 use Laminas\Http\Client\Adapter\Exception\RuntimeException as LaminasRuntimeException;
 use Laminas\Http\Exception\InvalidArgumentException;
-use Toastr;
 
 class BlogController extends Controller
 {
@@ -57,7 +56,7 @@ class BlogController extends Controller
             $user = auth()->user();
             $user->blogs()->create($request->validated());
 
-            Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
+            toastr()->success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return redirect(route('blogs.create'));
         } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
@@ -84,7 +83,7 @@ class BlogController extends Controller
 
             $blog->update($request->validated());
 
-            Toastr::success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
+            toastr()->success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return back();
         } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
@@ -96,7 +95,7 @@ class BlogController extends Controller
     {
         $blog->delete();
 
-        Toastr::success('블로그 삭제가 완료되었습니다. 관련된 게시글들은 노출에서 제외됩니다');
+        toastr()->success('블로그 삭제가 완료되었습니다. 관련된 게시글들은 노출에서 제외됩니다');
 
         return back();
     }
@@ -105,7 +104,7 @@ class BlogController extends Controller
     {
         Blog::onlyTrashed()->findOrFail($id)->restore();
 
-        Toastr::success('블로그 복구가 완료되었습니다. 관련된 게시글들은 노출이 재개됩니다');
+        toastr()->success('블로그 복구가 완료되었습니다. 관련된 게시글들은 노출이 재개됩니다');
 
         return back();
     }

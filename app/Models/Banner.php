@@ -27,7 +27,7 @@ use Illuminate\Support\Collection;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\Models\User|null $approve_user
- * @property-read \App\Models\User $create_user
+ * @property-read \App\Models\User|null $create_user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\File[] $images
  * @property-read int|null $images_count
  * @method static \Database\Factories\BannerFactory factory(...$parameters)

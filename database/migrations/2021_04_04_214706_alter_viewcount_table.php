@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterViewcountTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -18,7 +17,7 @@ class AlterViewcountTable extends Migration
         });
 
         Schema::table('viewcount', function (Blueprint $table) {
-            $table->integer('post_id')->nullable()->unsigned()->change();
+            $table->foreignId('post_id')->nullable()->change();
             $table->morphs('view');
             $table->index(['view_type', 'view_id', 'ip'], 'search_ip');
         });
@@ -38,7 +37,7 @@ class AlterViewcountTable extends Migration
     public function down()
     {
         Schema::table('viewcount', function (Blueprint $table) {
-            $table->integer('post_id')->nullable(false)->unsigned()->change();
+            $table->foreignId('post_id')->nullable(false)->change();
             $table->dropMorphs('view');
             $table->dropIndex('search_ip');
         });
@@ -46,4 +45,4 @@ class AlterViewcountTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
-}
+};

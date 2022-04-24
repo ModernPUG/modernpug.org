@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,8 +13,8 @@ class CreateEmailsTable extends Migration
     public function up()
     {
         Schema::create('emails', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->id();
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->boolean('is_primary')->default(0)->index();
             $table->string('email')->unique();
@@ -32,4 +31,4 @@ class CreateEmailsTable extends Migration
     {
         Schema::dropIfExists('emails');
     }
-}
+};

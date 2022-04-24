@@ -14,7 +14,6 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
-use Kamaln7\Toastr\Facades\Toastr;
 
 class BannerController extends Controller
 {
@@ -88,7 +87,7 @@ class BannerController extends Controller
 
         $banner->update($request->validated());
 
-        Toastr::success('저장되었습니다');
+        toastr()->success('저장되었습니다');
 
         return back();
     }
@@ -97,7 +96,7 @@ class BannerController extends Controller
     {
         $banner->delete();
 
-        Toastr::success('삭제되었습니다');
+        toastr()->success('삭제되었습니다');
 
         return redirect()->route('mypage.banners.index');
     }

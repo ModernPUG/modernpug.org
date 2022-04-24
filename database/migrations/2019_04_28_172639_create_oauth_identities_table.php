@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOauthIdentitiesTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,8 +13,8 @@ class CreateOauthIdentitiesTable extends Migration
     public function up()
     {
         Schema::create('oauth_identities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->id();
+            $table->foreignId('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('provider_user_id');
             $table->string('provider');
@@ -35,4 +34,4 @@ class CreateOauthIdentitiesTable extends Migration
     {
         Schema::dropIfExists('oauth_identities');
     }
-}
+};

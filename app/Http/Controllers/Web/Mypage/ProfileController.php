@@ -7,7 +7,6 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
-use Toastr;
 
 class ProfileController extends Controller
 {
@@ -34,7 +33,7 @@ class ProfileController extends Controller
 
         $user->update($args);
 
-        Toastr::success('프로필이 수정되었습니다');
+        toastr()->success('프로필이 수정되었습니다');
 
         return redirect(route('mypage.profile.show'));
     }

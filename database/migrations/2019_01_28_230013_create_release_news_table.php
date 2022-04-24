@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReleaseNewsTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -14,7 +13,7 @@ class CreateReleaseNewsTable extends Migration
     public function up()
     {
         Schema::create('release_news', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('site_url')->comment('웹 사이트의 주소');
             $table->string('type')->comment('release type (Laravel, PHP, CI)');
             $table->string('version')->comment('release version');
@@ -32,4 +31,4 @@ class CreateReleaseNewsTable extends Migration
     {
         Schema::dropIfExists('release_news');
     }
-}
+};

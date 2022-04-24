@@ -10,14 +10,15 @@ class Authenticate extends Middleware
      * Get the path the user should be redirected to when they are not authenticated.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * @return string|null
      */
-    protected function redirectTo($request)
+    protected function redirectTo($request): ?string
     {
-        if (! $request->expectsJson()) {
-            \Toastr::error('로그인 후 사용해주세요');
+        if (!$request->expectsJson()) {
+            toastr()->error('로그인 후 사용해주세요');
 
             return route('login');
         }
+        return null;
     }
 }
