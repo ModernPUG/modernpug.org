@@ -15,12 +15,12 @@ class IndexRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'created_at' => 'date',
-            'created_from' => 'date',
-            'created_to' => 'date',
-            'closed_at' => 'date',
-            'closed_from' => 'date',
-            'closed_to' => 'date',
+            'created_at' => ['nullable', 'date'],
+            'created_from' => ['nullable', 'date'],
+            'created_to' => ['nullable', 'date'],
+            'closed_at' => ['nullable', 'date'],
+            'closed_from' => ['nullable', 'date'],
+            'closed_to' => ['nullable', 'date'],
         ];
     }
 }
