@@ -7,12 +7,7 @@ use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
             foreach (Tag::getAllManagedTags() as $tagName) {

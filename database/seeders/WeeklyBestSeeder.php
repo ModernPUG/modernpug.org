@@ -10,12 +10,7 @@ use Illuminate\Database\Seeder;
 
 class WeeklyBestSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
             for ($i = 0; $i < 5; $i++) {

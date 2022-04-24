@@ -7,12 +7,7 @@ use Illuminate\Database\Seeder;
 
 class BannerSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
             Banner::factory()->count(random_int(2, 5))->create();

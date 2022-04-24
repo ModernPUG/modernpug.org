@@ -7,12 +7,7 @@ use Illuminate\Database\Seeder;
 
 class ReleaseNewSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
             ReleaseNews::factory()->count(random_int(10, 20))->create();

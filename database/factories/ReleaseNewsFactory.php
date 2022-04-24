@@ -7,24 +7,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ReleaseNewsFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = ReleaseNews::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
-        $randomType = $this->faker->randomKey(\App\Models\ReleaseNews::SUPPORT_RELEASES);
+        $randomType = $this->faker->randomKey(ReleaseNews::SUPPORT_RELEASES);
 
         return [
-            'site_url' => \App\Models\ReleaseNews::SUPPORT_RELEASES[$randomType]['site_url'],
+            'site_url' => ReleaseNews::SUPPORT_RELEASES[$randomType]['site_url'],
             'type' => $randomType,
             'version' => $this->faker->randomNumber(),
             'released_at' => $this->faker->dateTimeBetween('-1 month'),

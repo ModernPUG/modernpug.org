@@ -7,12 +7,7 @@ use Illuminate\Database\Seeder;
 
 class BlogSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
             Blog::factory()->count(random_int(5, 20))->create();

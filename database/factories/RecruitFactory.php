@@ -4,23 +4,14 @@ namespace Database\Factories;
 
 use App\Models\Recruit;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class RecruitFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
     protected $model = Recruit::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition()
+    public function definition(): array
     {
         $minSalary = $this->faker->numberBetween(5, 10);
         $maxSalary = $this->faker->numberBetween(1, 5);
@@ -38,7 +29,17 @@ class RecruitFactory extends Factory
             'min_salary' => $minSalary * $salary,
             'max_salary' => ($minSalary + $maxSalary) * $salary,
             'expired_at' => $this->faker->dateTimeInInterval('-1 months', '+2 months'),
-            'entry_user_id' => \App\Models\User::factory(),
+            'entry_user_id' => User::factory(),
         ];
+    }
+
+    public function close(): RecruitFactory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'closed_at' => now(),
+                'closed_user_id' => User::factory(),
+            ];
+        });
     }
 }

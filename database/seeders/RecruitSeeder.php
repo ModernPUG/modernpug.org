@@ -2,19 +2,16 @@
 
 namespace Database\Seeders;
 
+use App\Models\Recruit;
 use Illuminate\Database\Seeder;
 
 class RecruitSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
         if (app()->environment('local')) {
-            \App\Models\Recruit::factory()->times(20)->create();
+            Recruit::factory()->times(20)->create();
+            Recruit::factory()->times(5)->close()->create();
         }
     }
 }
