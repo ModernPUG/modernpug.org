@@ -34,6 +34,34 @@ class RecruitTest extends TestCase
             ->assertOk();
     }
 
+    public function testCanSee7DaysAgoClosedRecruit()
+    {
+        $this->get(route('recruits.index'))->assertOk();
+
+        $recruit = Recruit::factory()->create([
+            'expired_at' => Carbon::parse('+10 days'),
+            'closed_at' => Carbon::parse('-7 days'),
+        ]);
+
+        $this->get(route('recruits.index'))
+            ->assertSee($recruit->title)
+            ->assertOk();
+    }
+
+    public function testCantSee8DaysAgoClosedRecruit()
+    {
+        $this->get(route('recruits.index'))->assertOk();
+
+        $recruit = Recruit::factory()->create([
+            'expired_at' => Carbon::parse('+10 days'),
+            'closed_at' => Carbon::parse('-8 days'),
+        ]);
+
+        $this->get(route('recruits.index'))
+            ->assertDontSee($recruit->title)
+            ->assertOk();
+    }
+
     public function testCantCreateRecruitUnauthorizedUser()
     {
         $this->get(route('recruits.create'))

@@ -115,7 +115,7 @@
         @if($recruit->closed_user)
             <div class="text-right">
                 <small class="text-danger">
-                    {{ $recruit->closed_user?->name }} 님이 조기 마감하였습니다
+                    {{ $recruit->closed_user?->name }} 님이 {{ $recruit->closed_at->format('m월 d일') }}에 조기 마감하였습니다
                 </small>
             </div>
         @endif

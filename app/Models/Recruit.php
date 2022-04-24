@@ -66,6 +66,10 @@ class Recruit extends Model
         'expired_at' => 'date:Y-m-d',
     ];
 
+    protected $dates = [
+        'closed_at',
+    ];
+
     protected $fillable = [
         'title',
         'company_name',

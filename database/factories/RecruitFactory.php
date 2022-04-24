@@ -37,8 +37,8 @@ class RecruitFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'closed_at' => now(),
-                'closed_user_id' => User::factory(),
+                'closed_at' => $attributes['closed_at'] ?? $this->faker->dateTimeInInterval('-7 days', '-1 days'),
+                'closed_user_id' => $attributes['closed_user_id'] ?? User::factory(),
             ];
         });
     }

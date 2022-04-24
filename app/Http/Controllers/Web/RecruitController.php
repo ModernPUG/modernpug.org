@@ -17,6 +17,7 @@ use App\Services\Jumpit\CachedRecruit;
 use App\Services\Jumpit\ConvertRecruit;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
@@ -35,6 +36,10 @@ class RecruitController extends Controller
     public function index(): View
     {
         $recruits = Recruit::where('expired_at', '>=', Carbon::now())
+            ->where(function (Builder $builder) {
+                $builder->whereNull('closed_at')
+                    ->orWhere('closed_at', '>=', now()->subWeek());
+            })
             ->orderBy('closed_at')
             ->get();
 
