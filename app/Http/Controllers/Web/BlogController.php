@@ -59,7 +59,7 @@ class BlogController extends Controller
             toastr()->success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return redirect(route('blogs.create'));
-        } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
+        } catch (InvalidArgumentException|LaminasRuntimeException|RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }
@@ -86,7 +86,7 @@ class BlogController extends Controller
             toastr()->success('등록이 완료되었습니다. 사이트 글의 수집 및 반영까지는 최대 1시간까지 걸릴 수 있습니다');
 
             return back();
-        } catch (InvalidArgumentException | LaminasRuntimeException | RuntimeException $exception) {
+        } catch (InvalidArgumentException|LaminasRuntimeException|RuntimeException $exception) {
             throw new CannotConnectFeedException($exception->getMessage());
         }
     }
