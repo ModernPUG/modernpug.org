@@ -31,6 +31,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property int|null $closed_user_id
  * @property-read \App\Models\User|null $closed_user
  * @property-read \App\Models\User $entry_user
+ *
  * @method static \Database\Factories\RecruitFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newQuery()
