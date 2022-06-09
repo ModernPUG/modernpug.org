@@ -27,6 +27,7 @@ class PostController extends Controller
 
     /**
      * Display a listing of the resource.
+     *
      * @return Application|Factory|Response|View
      */
     public function index()
@@ -47,6 +48,7 @@ class PostController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
      * @return Response
      */
     public function create()
@@ -56,6 +58,7 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param  Request  $request
      * @return Response
      */
@@ -66,6 +69,7 @@ class PostController extends Controller
 
     /**
      * Display the specified resource.
+     *
      * @param  Post  $post
      * @param  Request  $request
      * @return RedirectResponse
@@ -90,6 +94,7 @@ class PostController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
      * @param  int  $id
      * @return Response
      */
@@ -100,6 +105,7 @@ class PostController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      * @param  Request  $request
      * @param  int  $id
      * @return Response
@@ -111,8 +117,10 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param  int  $id
      * @return RedirectResponse
+     *
      * @throws Exception
      */
     public function destroy($id)
@@ -132,6 +140,7 @@ class PostController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
      * @param  int  $id
      * @return RedirectResponse
      */
@@ -157,7 +166,7 @@ class PostController extends Controller
         $posts = Post::with('blog', 'preview', 'tags');
 
         if ($keyword) {
-            $posts->where(function(Builder $builder) use ($keyword) {
+            $posts->where(function (Builder $builder) use ($keyword) {
                 $builder->where('title', 'like', "%{$keyword}%")
                 ->orWhere('description', 'like', "%{$keyword}%");
             });

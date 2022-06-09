@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param IndexRequest $request
+     * @param  IndexRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function index(IndexRequest $request)
@@ -40,7 +40,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,7 +50,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -61,8 +61,8 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param EditRequest $request
-     * @param User $user
+     * @param  EditRequest  $request
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(EditRequest $request, User $user)
@@ -75,8 +75,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateRequest $request
-     * @param User $user
+     * @param  UpdateRequest  $request
+     * @param  User  $user
      * @return void
      */
     public function update(UpdateRequest $request, User $user)
@@ -99,9 +99,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param DeleteRequest $request
-     * @param User $user
+     * @param  DeleteRequest  $request
+     * @param  User  $user
      * @return void
+     *
      * @throws \Exception
      */
     public function destroy(DeleteRequest $request, User $user)
@@ -114,7 +115,7 @@ class UserController extends Controller
     }
 
     /**
-     * @param RestoreRequest $request
+     * @param  RestoreRequest  $request
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
