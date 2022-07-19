@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string $view_type
  * @property int $view_id
+ *
  * @method static \Database\Factories\ViewcountFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Viewcount newQuery()
