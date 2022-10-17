@@ -58,6 +58,10 @@
         <a class="nav-link" href="{{ route('recruits.index') }}">Recruits</a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ config('modernpug.discord') }}"><i class="fab fa-discord"></i> Q&A</a>
+    </li>
+
 
     @auth
         <li class="nav-item dropdown">
