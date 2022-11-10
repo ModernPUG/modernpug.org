@@ -4,6 +4,8 @@ namespace App\Console;
 
 use App\Console\Commands\CrawlFeed;
 use App\Console\Commands\CrawlReleaseNews;
+use App\Console\Commands\Discord\UpdateChannelTagCommand;
+use App\Console\Commands\Discord\UpdateThreadCommand;
 use App\Console\Commands\Jumpit\RefreshRecruitCache;
 use App\Console\Commands\PostImageUpdater;
 use App\Console\Commands\PushDailyNewPosts;
@@ -28,6 +30,8 @@ class Kernel extends ConsoleKernel
         $schedule->command(PushDailyNewPosts::class)->dailyAt('7:05');
         $schedule->command(PushDailyNewRecruits::class)->dailyAt('7:05');
         $schedule->command(RefreshRecruitCache::class)->hourly();
+        $schedule->command(UpdateChannelTagCommand::class)->hourly();
+        $schedule->command(UpdateThreadCommand::class)->hourly();
     }
 
     protected function commands(): void

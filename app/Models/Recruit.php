@@ -22,16 +22,15 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property string $address
  * @property int|null $min_salary
  * @property int|null $max_salary
- * @property mixed $expired_at
+ * @property \Illuminate\Support\Carbon $expired_at
  * @property int $entry_user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property string|null $closed_at
+ * @property \Illuminate\Support\Carbon|null $closed_at
  * @property int|null $closed_user_id
  * @property-read \App\Models\User|null $closed_user
  * @property-read \App\Models\User $entry_user
- *
  * @method static \Database\Factories\RecruitFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Recruit newQuery()

@@ -30,7 +30,6 @@ use Illuminate\Support\Collection;
  * @property-read \App\Models\User|null $create_user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\File[] $images
  * @property-read int|null $images_count
- *
  * @method static \Database\Factories\BannerFactory factory(...$parameters)
  * @method static Builder|Banner newModelQuery()
  * @method static Builder|Banner newQuery()

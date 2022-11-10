@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\AboutUsController;
 use App\Http\Controllers\Web\BlogController;
 use App\Http\Controllers\Web\DiscordController;
+use App\Http\Controllers\Web\DiscordThreadController;
 use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\LogoController;
 use App\Http\Controllers\Web\Mypage\BannerConfirmController;
@@ -89,6 +90,7 @@ Route::get('logos', LogoController::class)->name('modernpug.logo');
 Route::get('sponsors', SponsorController::class)->name('sponsors.index');
 
 Route::resource('recruits', RecruitController::class);
+Route::get('threads', DiscordThreadController::class)->name('threads.index');
 
 Route::patch('recruits/{recruit}/close', [RecruitController::class, 'close'])->name('recruits.close');
 

@@ -59,7 +59,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ config('modernpug.discord') }}"><i class="fab fa-discord"></i> Q&A</a>
+        <a class="nav-link" href="{{ route('threads.index') }}"><i class="fab fa-discord"></i> Q&A</a>
     </li>
 
 

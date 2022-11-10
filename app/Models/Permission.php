@@ -18,7 +18,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property-read int|null $roles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
  * @property-read int|null $users_count
- *
  * @method static \Database\Factories\PermissionFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Permission newQuery()

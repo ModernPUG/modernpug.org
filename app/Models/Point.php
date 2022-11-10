@@ -19,7 +19,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon $created_at
  * @property-read \App\Models\User|null $give_user
  * @property-read \App\Models\User|null $receive_user
- *
  * @method static \Database\Factories\PointFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Point newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Point newQuery()
