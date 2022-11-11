@@ -91,11 +91,11 @@
                                                 </span>
                                             @endif
                                             {{ $thread->name }}
-                                            <span class="btn btn-outline-secondary btn-xs">
+                                            <span class="btn btn-outline-secondary btn-xs pl-2 pr-2 ml-2">
                                                 <i class="fa fa-user"></i>
                                                 {{ number_format($thread->member_count) }}
                                             </span>
-                                            <span class="btn btn-outline-secondary btn-xs">
+                                            <span class="btn btn-outline-secondary btn-xs pl-2 pr-2">
                                                 <i class="fa fa-comment"></i>
                                                 {{ number_format($thread->message_count) }}
                                             </span>
