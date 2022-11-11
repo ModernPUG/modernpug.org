@@ -106,7 +106,7 @@
                                 <div class="post-meta">
                                     <p>
                                         @foreach($thread->tags as $tag)
-                                            <span class="btn btn-outline-dark btn-xs">
+                                            <span class="btn btn-outline-dark btn-xs pl-2 pr-2">
                                                 {{ $tag->name }}
                                             </span>
                                         @endforeach
