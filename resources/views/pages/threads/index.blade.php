@@ -121,7 +121,7 @@
                         @endforelse
 
 
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-5">
                             @if($threads->count())
                                 {!! $threads->appends(Request::except('page'))->render() !!}
                             @endif
