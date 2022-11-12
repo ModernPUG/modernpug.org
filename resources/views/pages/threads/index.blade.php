@@ -91,11 +91,11 @@
                                                 </span>
                                             @endif
                                             {{ $thread->name }}
-                                            <span class="btn btn-outline-secondary btn-xs">
+                                            <span class="btn btn-outline-secondary btn-xs pl-2 pr-2 ml-2">
                                                 <i class="fa fa-user"></i>
                                                 {{ number_format($thread->member_count) }}
                                             </span>
-                                            <span class="btn btn-outline-secondary btn-xs">
+                                            <span class="btn btn-outline-secondary btn-xs pl-2 pr-2">
                                                 <i class="fa fa-comment"></i>
                                                 {{ number_format($thread->message_count) }}
                                             </span>
@@ -106,7 +106,7 @@
                                 <div class="post-meta">
                                     <p>
                                         @foreach($thread->tags as $tag)
-                                            <span class="btn btn-outline-dark btn-xs">
+                                            <span class="btn btn-outline-dark btn-xs pl-2 pr-2">
                                                 {{ $tag->name }}
                                             </span>
                                         @endforeach
@@ -121,7 +121,7 @@
                         @endforelse
 
 
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center mt-5">
                             @if($threads->count())
                                 {!! $threads->appends(Request::except('page'))->render() !!}
                             @endif
