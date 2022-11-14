@@ -76,7 +76,7 @@
                     <div class="post-content-area mb-100">
                         @forelse($threads as $thread)
                             <!-- Single Blog Post -->
-                            <div class="single-blog-post article p-2">
+                            <div class="single-blog-post article p-2 mb-3">
                                 <!-- Post Content -->
                                 <div class="p-2">
                                     <a href="{{ $thread->toUrl() }}" target="_blank" class="headline">
