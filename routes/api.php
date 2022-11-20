@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\V1\Posts\IndexController as PostsIndexController;
 use App\Http\Controllers\Api\V1\Posts\WeeklyBestController as PostsWeeklyBestController;
 use App\Http\Controllers\Api\V1\RecruitController;
+use App\Http\Controllers\Api\V1\Threads\IndexController as ThreadIndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,5 +22,6 @@ Route::group(['as' => 'api.'], function () {
         Route::resource('recruits', RecruitController::class);
         Route::get('posts', PostsIndexController::class)->name('posts.index');
         Route::get('posts/weekly-best', PostsWeeklyBestController::class)->name('posts.weekly-best');
+        Route::get('threads', ThreadIndexController::class)->name('threads.index');
     });
 });

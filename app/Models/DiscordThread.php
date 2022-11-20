@@ -69,6 +69,6 @@ class DiscordThread extends Model
 
     public function toUrl(): string
     {
-        return 'https://discord.com/channels/'.config('discord.guild_id').'/'.$this->thread_id;
+        return 'https://discord.com/channels/'.$this->guild_id.'/'.$this->thread_id;
     }
 }
