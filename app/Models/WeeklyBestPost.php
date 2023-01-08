@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\WeeklyBest|null $weekly_best
+ *
  * @method static \Database\Factories\WeeklyBestPostFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBestPost newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBestPost newQuery()
