@@ -30,7 +30,7 @@ class WeeklyBestUpdater
                 'weekly_best_id' => $weeklyBest->id,
                 'post_id' => $post->id,
                 'rank' => $key + 1,
-                'point' => $post->rank_point,
+                'point' => $post->rank_point ?? 0,
             ]);
         });
 
