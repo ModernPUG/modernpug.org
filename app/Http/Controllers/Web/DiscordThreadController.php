@@ -21,5 +21,4 @@ class DiscordThreadController extends Controller
 
         return view('pages.threads.index', compact('threads'));
     }
-
 }

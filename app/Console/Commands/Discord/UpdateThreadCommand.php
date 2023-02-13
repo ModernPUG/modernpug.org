@@ -17,6 +17,7 @@ class UpdateThreadCommand extends Command
     {
         $this->updateActiveThread($client);
         $this->updateArchivedThread($client);
+
         return 0;
     }
 
