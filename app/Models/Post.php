@@ -85,6 +85,9 @@ class Post extends Model
             $clause->on('posts.id', 'viewcount.view_id')
                 ->where('viewcount.view_type', '=', self::class);
         });
+        $posts->whereHas('blog', function (Builder $builder) {
+            $builder->withoutTrashed();
+        });
 
         if (count($tagNames)) {
             $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
