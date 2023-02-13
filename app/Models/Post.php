@@ -65,6 +65,10 @@ class Post extends Model
     {
         $posts = self::with('blog', 'preview', 'tags');
 
+        $posts->whereHas('blog', function (Builder $builder) {
+            $builder->withoutTrashed();
+        });
+
         if (count($tagNames)) {
             $posts->whereHas('tags', function (Builder $builder) use ($tagNames) {
                 $builder->whereIn('tags.name', $tagNames);
