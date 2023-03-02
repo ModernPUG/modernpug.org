@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @property \Illuminate\Support\Carbon $thread_started_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Database\Factories\DiscordThreadFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|DiscordThread newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DiscordThread newQuery()
