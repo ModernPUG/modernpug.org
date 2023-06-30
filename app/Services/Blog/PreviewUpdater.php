@@ -57,7 +57,6 @@ class PreviewUpdater
 
     private function getTargetBlogs(): iterable
     {
-
         //return Blog::whereNull('image_url')->get();
         return Blog::all();
     }
