@@ -29,6 +29,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @property-read int|null $tags_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Viewcount[] $viewcount
  * @property-read int|null $viewcount_count
+ *
  * @method static \Database\Factories\PostFactory factory(...$parameters)
  * @method static Builder|Post newModelQuery()
  * @method static Builder|Post newQuery()
@@ -45,6 +46,7 @@ use Illuminate\Notifications\Messages\SlackAttachment;
  * @method static Builder|Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Post withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Post withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Post extends Model
