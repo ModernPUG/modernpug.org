@@ -47,7 +47,7 @@ class UpdateThreadCommand extends Command
                 'thread_started_at' => $thread->thread_metadata->create_timestamp,
             ]);
 
-            $discordThread->tags()->sync($thread->applied_tags);
+            $discordThread->tags()->sync($thread?->applied_tags ?? []);
         }
     }
 
