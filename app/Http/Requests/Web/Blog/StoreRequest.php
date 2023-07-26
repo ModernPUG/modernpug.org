@@ -15,7 +15,6 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-
         /**
          * @var User
          */

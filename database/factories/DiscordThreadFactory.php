@@ -24,5 +24,4 @@ class DiscordThreadFactory extends Factory
             'thread_started_at' => $this->faker->dateTime(),
         ];
     }
-
 }

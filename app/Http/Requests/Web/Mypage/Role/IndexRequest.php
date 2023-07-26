@@ -16,7 +16,6 @@ class IndexRequest extends FormRequest
      */
     public function authorize()
     {
-
         /**
          * @var User $user
          */
