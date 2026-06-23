@@ -15,7 +15,6 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-
         /**
          * @var User
          */
@@ -32,8 +31,8 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'feed_url'=>'required|url',
-            'comment'=>'nullable|string',
+            'feed_url' => 'required|url',
+            'comment' => 'nullable|string',
         ];
     }
 }

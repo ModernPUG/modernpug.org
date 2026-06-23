@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Post $post
+ *
  * @method static \Database\Factories\PreviewFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Preview newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Preview newQuery()
@@ -23,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Preview whereImageUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Preview wherePostId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Preview whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Preview extends Model

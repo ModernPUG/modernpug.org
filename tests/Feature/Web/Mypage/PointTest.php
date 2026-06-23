@@ -19,7 +19,6 @@ class PointTest extends TestCase
 
     public function testUserCantSeePoint()
     {
-
         /**
          * @var User $user
          */
@@ -31,7 +30,6 @@ class PointTest extends TestCase
 
     public function testAdminCanSeePoint()
     {
-
         /**
          * @var User $user
          */

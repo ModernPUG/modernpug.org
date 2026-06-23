@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user
+ *
  * @method static \Database\Factories\OauthIdentityFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthIdentity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|OauthIdentity newQuery()
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|OauthIdentity whereProviderUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthIdentity whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|OauthIdentity whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class OauthIdentity extends Model

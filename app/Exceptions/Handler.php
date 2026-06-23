@@ -3,9 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use function Sentry\configureScope;
 use Sentry\State\Scope;
 use Throwable;
+
+use function Sentry\configureScope;
 
 class Handler extends ExceptionHandler
 {

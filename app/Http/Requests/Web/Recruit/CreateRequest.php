@@ -15,7 +15,6 @@ class CreateRequest extends FormRequest
      */
     public function authorize()
     {
-
         /**
          * @var User
          */
