@@ -64,7 +64,6 @@ class BannerTest extends TestCase
 
     public function testAuthorizedUserCanSeeOwnedBanners()
     {
-
         /**
          * @var User $otherUser
          */
@@ -95,7 +94,6 @@ class BannerTest extends TestCase
 
     public function testAdminUserCanSeeAllBanners()
     {
-
         /**
          * @var User $otherUser
          */
@@ -216,7 +214,6 @@ class BannerTest extends TestCase
 
     public function testOwnerCanDeleteBanner()
     {
-
         /**
          * @var Banner $banner
          */
@@ -232,7 +229,6 @@ class BannerTest extends TestCase
 
     public function testNonAdminCantAllowBanner()
     {
-
         /**
          * @var Banner $banner
          */
@@ -249,7 +245,6 @@ class BannerTest extends TestCase
 
     public function testAdminCanAllowBanner()
     {
-
         /**
          * @var Banner $banner
          */
@@ -275,7 +270,6 @@ class BannerTest extends TestCase
 
     public function testNonAdminCantDisallowBanner()
     {
-
         /**
          * @var User $admin
          */
@@ -298,7 +292,6 @@ class BannerTest extends TestCase
 
     public function testAdminCanDisallowBanner()
     {
-
         /**
          * @var User $admin
          */

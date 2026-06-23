@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $upload_type
  * @property int $upload_id
  * @property \Illuminate\Support\Carbon|null $deleted_at
+ *
  * @method static \Database\Factories\FileFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|File newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|File newQuery()
@@ -34,6 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|File whereUploadType($value)
  * @method static \Illuminate\Database\Query\Builder|File withTrashed()
  * @method static \Illuminate\Database\Query\Builder|File withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class File extends Model

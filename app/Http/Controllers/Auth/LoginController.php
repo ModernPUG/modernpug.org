@@ -64,7 +64,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @param $driver
+     * @param  $driver
      * @return RedirectResponse
      */
     public function redirectToProvider($driver): RedirectResponse
@@ -81,7 +81,7 @@ class LoginController extends Controller
     }
 
     /**
-     * @param $provider
+     * @param  $provider
      * @return Application|\Illuminate\Http\RedirectResponse|Response|Redirector
      */
     public function handleProviderCallback($provider)

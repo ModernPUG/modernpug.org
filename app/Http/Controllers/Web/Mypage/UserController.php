@@ -116,7 +116,7 @@ class UserController extends Controller
 
     /**
      * @param  RestoreRequest  $request
-     * @param $id
+     * @param  $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function restore(RestoreRequest $request, $id)

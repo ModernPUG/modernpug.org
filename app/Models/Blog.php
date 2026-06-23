@@ -30,6 +30,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \App\Models\User|null $owner
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @property-read int|null $posts_count
+ *
  * @method static Builder|Blog crawledBlog()
  * @method static \Database\Factories\BlogFactory factory(...$parameters)
  * @method static Builder|Blog newModelQuery()
@@ -53,6 +54,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Blog whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Blog withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Blog withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Blog extends Model

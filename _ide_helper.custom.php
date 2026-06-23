@@ -1,4 +1,5 @@
 <?php
+
 /**
  * DO NOT INCLUDE ACTUAL CODE;
  *
@@ -7,12 +8,12 @@
 
 namespace Illuminate\Foundation\Testing;
 
-    /**
-     * Class TestResponse
-     *
-     * @method $this assertToastrHasSuccess
-     * @method $this assertToastrHasError
-     */
-    class TestResponse
-    {
-    }
+/**
+ * Class TestResponse
+ *
+ * @method $this assertToastrHasSuccess
+ * @method $this assertToastrHasError
+ */
+class TestResponse
+{
+}

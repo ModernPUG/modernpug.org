@@ -17,7 +17,7 @@ class RequestTest extends TestCase
 
     public function testResetPasswordWithoutCaptcha()
     {
-        $this->post(route('password.email'), ['email'=>'test@example.com'])
+        $this->post(route('password.email'), ['email' => 'test@example.com'])
             ->assertSessionHasErrors(config('recaptcha.validation-key'))
             ->assertRedirect();
     }
@@ -28,14 +28,14 @@ class RequestTest extends TestCase
     public function testRequestResetPasswordWithNotExistsEmail()
     {
         $this->post(route('password.email'), [
-            'email'=>'test',
+            'email' => 'test',
             config('recaptcha.validation-key') => ReCaptcha::ACCEPT_TEST_KEY,
         ])
             ->assertSessionHasErrors('email')
             ->assertRedirect();
 
         $this->post(route('password.email'), [
-            'email'=>'test@example.com',
+            'email' => 'test@example.com',
             config('recaptcha.validation-key') => ReCaptcha::ACCEPT_TEST_KEY,
         ])
             ->assertSessionHasErrors('email')

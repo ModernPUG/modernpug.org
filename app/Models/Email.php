@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\User $user
+ *
  * @method static \Database\Factories\EmailFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|Email newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Email newQuery()
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Email whereIsPrimary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Email whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Email whereUserId($value)
+ *
  * @mixin \Eloquent
  */
 class Email extends Model

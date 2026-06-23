@@ -29,6 +29,7 @@ class UpdateChannelTagCommand extends Command
                 'name' => $tag->name,
             ]);
         }
+
         return 0;
     }
 }
