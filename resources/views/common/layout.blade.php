@@ -60,7 +60,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Style CSS -->
     <link rel="stylesheet" href="/vendor/world/style.css">
-    <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
+    @vite('resources/sass/custom.scss')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/v4-shims.min.css" integrity="sha512-fHavkBby/gcFEB2taaBfG0DLdHRGrnvkWQNXVZ5Yb/Fj6LkogecQUd6oyvBVsrWPaHSxs5tNza6LUW/Y6Az9lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @yield('css')
@@ -149,7 +149,7 @@
 <script src="/vendor/world/js/plugins.js"></script>
 <!-- Active js -->
 <script src="/vendor/world/js/active.js"></script>
-<script src="{{ mix('js/custom.js') }}"></script>
+@vite('resources/js/custom.js')
 @env(['local','testing'])
     <script src="https://cdn.jsdelivr.net/gh/underground-works/clockwork-browser@1/dist/toolbar.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/underground-works/clockwork-browser@1/dist/metrics.js"></script>

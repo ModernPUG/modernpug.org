@@ -2,23 +2,17 @@
 
 namespace Tests;
 
-use Clockwork\Support\Laravel\Tests\UsesClockwork;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Mockery\MockInterface;
-use Yoeunes\Toastr\Facades\Toastr;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-    use UsesClockwork;
 
     protected function setUp(): void
     {
         parent::setUp();
-        Toastr::clear();
-        if (config('clockwork.tests.collect')) {
-            $this->setUpClockwork();
-        }
+        app('flasher.storage_manager')->clear();
     }
 
     protected function mockArrayIterator(MockInterface $mock, array $items)

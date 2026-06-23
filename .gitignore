@@ -19,6 +19,7 @@ tests/Report/
 .php_cs.cache
 .phpstorm.meta.php
 public/mix-manifest.json
+public/build
 public/css
 public/js
 _ide_helper.php
