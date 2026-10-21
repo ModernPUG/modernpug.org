@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Post[] $posts
  * @property-read int|null $posts_count
+ *
  * @method static \Database\Factories\WeeklyBestFactory factory(...$parameters)
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBest newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBest newQuery()
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBest whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBest whereWeekNo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|WeeklyBest whereYear($value)
+ *
  * @mixin \Eloquent
  */
 class WeeklyBest extends Model

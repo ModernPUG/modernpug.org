@@ -128,5 +128,4 @@ class IndexTest extends TestCase
             ->assertJsonCount('1', 'data')
             ->assertJsonPath('data.0.created_at', $yesterday->toJSON());
     }
-
 }

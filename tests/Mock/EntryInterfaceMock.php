@@ -14,7 +14,7 @@ trait EntryInterfaceMock
         $entryMock->shouldReceive('getLink')->andReturn('http://test.com/1');
         $entryMock->shouldReceive('getDateModified')->andReturn(date('Y-m-d H:i:s'));
         $entryMock->shouldReceive('getCategories')->andReturn([
-            ['label'=>'php'], ['label'=>'js'],
+            ['label' => 'php'], ['label' => 'js'],
         ]);
 
         return $entryMock;

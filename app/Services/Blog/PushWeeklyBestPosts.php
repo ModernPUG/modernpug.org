@@ -21,7 +21,6 @@ class PushWeeklyBestPosts
      */
     private function getTargetPosts()
     {
-
         /**
          * @var WeeklyBest $weeklyBest
          */

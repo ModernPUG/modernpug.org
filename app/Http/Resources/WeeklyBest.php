@@ -25,7 +25,7 @@ class WeeklyBest extends JsonResource
             'week_no' => $this->week_no,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'posts'=> Post::collection($this->posts),
+            'posts' => Post::collection($this->posts),
         ];
     }
 }
