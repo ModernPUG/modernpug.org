@@ -24,8 +24,8 @@ class PickerRequest extends FormRequest
     public function rules()
     {
         return [
-            'channel_id'=>'required',
-            'user_id'=>'required',
+            'channel_id' => 'required',
+            'user_id' => 'required',
         ];
     }
 }

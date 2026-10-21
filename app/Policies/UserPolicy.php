@@ -9,7 +9,7 @@ class UserPolicy
 {
     use HandlesAuthorization;
 
-    public function view(User $user, User $routeUser = null)
+    public function view(User $user, ?User $routeUser = null)
     {
         if ($user->can('user-list')) {
             return true;

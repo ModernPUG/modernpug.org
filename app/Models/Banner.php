@@ -30,6 +30,7 @@ use Illuminate\Support\Collection;
  * @property-read \App\Models\User|null $create_user
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\File[] $images
  * @property-read int|null $images_count
+ *
  * @method static \Database\Factories\BannerFactory factory(...$parameters)
  * @method static Builder|Banner newModelQuery()
  * @method static Builder|Banner newQuery()
@@ -50,6 +51,7 @@ use Illuminate\Support\Collection;
  * @method static Builder|Banner whereUrl($value)
  * @method static \Illuminate\Database\Query\Builder|Banner withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Banner withoutTrashed()
+ *
  * @mixin \Eloquent
  */
 class Banner extends Model
@@ -88,7 +90,7 @@ class Banner extends Model
         return $this->morphMany(File::class, 'upload');
     }
 
-    public static function getActiveBanners(string $position = null): Collection
+    public static function getActiveBanners(?string $position = null): Collection
     {
         return self::when($position, function (Builder $builder) use ($position) {
             return $builder->where('position', '=', $position);

@@ -38,8 +38,8 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'feed_url'=>'required|url',
-            'comment'=>'nullable|string',
+            'feed_url' => 'required|url',
+            'comment' => 'nullable|string',
         ];
     }
 }

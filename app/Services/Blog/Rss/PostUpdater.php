@@ -24,7 +24,6 @@ class PostUpdater
 
     public function fromFeed(FeedInterface $feed, Blog $blog)
     {
-
         /*
          * @var Entry
          */
@@ -78,7 +77,7 @@ class PostUpdater
     }
 
     /**
-     * @param $entry
+     * @param  $entry
      * @return string
      */
     private function makePostLink(EntryInterface $entry): string
